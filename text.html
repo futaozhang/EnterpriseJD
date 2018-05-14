@@ -4,53 +4,51 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<meta name="renderer" content="webkit" />
-	<meta name="Keywords" content="JD"/>
-	<title>京东-中小企业采购工具</title>
+	<title>Document</title>
 </head>
-<style type="text/css">
-.content div{
-	width: 10px;
-}
-img{
-	width: 100%;
-}
-   
-</style>
-<link rel="stylesheet" type="text/css" href="css/commit.css"/>
-<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
 <body>
-	<!--header-->
-	<div class="head">
-			
-	</div>
-	
-	<!--content-->
-	<div class="content">
-		<div>
-			<img src="img/pc1.png"/>
-		</div>
-		<div>
-			<img src="img/pc2.png"/>
-		</div>
-		<div>
-			<img src="img/pc3.png"/>
-		</div>
-	</div>
-	
-	<!--leftSelct-->		
-	<div class="leftSelct">
-	
-	</div>
+<ul class="kucunlist" id="ulList">                            
+    <script id="j-tmpl" type="text/template">
+        {{ if(it.length>0){ }}    
+            {{ for (var i = 0, l = it.length; i < l; i++) {}}
+            <li class="border-tb tbox" onclick="location.href='<%=basePath%>/query/stock/toQueryProductStock.action?piNo={{=it[i].pi_no}}'">
+                <div>
+                    <img src="<%=imgServerPath %>{{=it[i].pi_imgpath}}">
+                </div>
+                
+                <div class="arrow-right">
+                    <h5 class="ellipsis-t"><i>{{=it[i].pi_no}}</i>{{=it[i].pi_name}}</h5>
+                    <p>{{=it[i].ct_name}} {{=it[i].bd_name}}</p>
+                    <p><b>价格:￥{{=it[i].pi_retailprice}}</b> | <b>库存:{{=it[i].amount}}</b></p>
+                </div>
+            </li>
+            {{ } }}
+        {{ } else { }}
+        
+            <li class="border-tb tbox"> 
+                <h2>未检索到数据</h2>
+            </li>
+            
+        {{ } }}
+    </script>
+</ul>  
 
 </body>
-<script type="text/javascript">
-	$(".pic ul li").click(function(){
-	
-	$(this).stop(true).animate({width:"800px"},1000).siblings().stop(false).animate({width:"60px"},1000);
-	console.log($(this))
-
-});
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	var data=[
+	{
+		"pi_name":"2323",
+		"pi_retailprice":"123"
+	},
+	{
+		"pi_name":"2323",
+		"pi_retailprice":"12312"
+	}
+	]
+	var tmpl = document.getElementById('j-tmpl').innerHTML;
+	document.getElementById('ulList').innerHTML=doT.template(tmpl)(data);
 </script>
+
 </html>

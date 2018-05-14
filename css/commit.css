@@ -31,16 +31,20 @@ button:focus{
 }
 .content{
 	margin: 0 auto;
-	width: 80vw;
+	width: 1200px;
+	overflow: hidden;
 	position: relative;
 }
-
+.leftSelct div{
+	left: 0px;
+}
 .leftSelct .bg{
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	left: 0px;
 	top: 0;
+	display: none;
 	background-color: rgba(0,0,0,0.7);
 	
 }
@@ -51,8 +55,8 @@ button:focus{
 	top: 40%;
 	width: 60px;
 }
-.isLogoing button{
-	width: 50px;
+.isLogoing a{
+	width: 40px;
 	border-radius: 5px;
 	background-color: #1dafec;
 	margin-bottom: 5px;
@@ -61,6 +65,7 @@ button:focus{
 	position: relative;
 	color: white;
 	cursor: pointer;	
+	display: inline-block;
 }
 
 .isLogoing .addProjiect ,.user{
@@ -81,7 +86,7 @@ button:focus{
 	line-height: 10px;	
 	padding: 0.5px;
 	border-radius: 10px;
-	border: 1px solid red;
+	border: 1px solid  rgb(226, 58, 58);
 	background-color:white;
 }
 
@@ -110,7 +115,8 @@ button:focus{
 }
 
 .leftContent{
-	width: 360px;
+	/*width: 360px;*/
+	width: 0px;
 	height: 100%;
 	z-index: 98;
 	background-color:#eceaea;
@@ -139,7 +145,7 @@ button:focus{
 	position: absolute;
 	right: 10px;
 	top: 60px;
-	color: red;
+	color:  rgb(226, 58, 58);
 	padding: 2px 5px;
 	width: 60px;
 	cursor: pointer;
@@ -167,17 +173,111 @@ button:focus{
  .leftHead .collection{
 	float: right;
 	margin-right: 20px;
-	color: red;
+	color:  rgb(226, 58, 58);
 	
 }
  .leftHead .collection i{
  	color:#5c504e;
  }
  .leftHead .collection i:hover{
- 	color:red;
+	color:  rgb(226, 58, 58);
+
 	
  }
  
+ 	#index{
+		background:#2777bb url(../img/bg.jpg) no-repeat;
+		background-size: cover;
+	}
+	#index .head{
+		text-align: center;
+		
+		padding-top: 40px;
+	}
+	#index .head img{
+		width: 120px;
+		height: 50px;
+		background-size: cover;
+		margin-bottom: 10px;
+	}
+	#index .head h1{
+		
+		font-size: 40px;
+		color: white;
+		margin-bottom: 20px;
+		letter-spacing: 2px;
+	}
+	#index .head h5{
+		font-size: 20px;
+		color: white;
+		font-weight: 300;
+		letter-spacing: 1px;
+	}
+	.pic{
+        overflow: hidden;/*隐藏溢出*/
+        width: 1040px;
+        height: 450px;      
+      	margin-top: 40px;
+      	text-align: center;
+     	margin-left: auto;
+    	margin-right: auto;
+    	margin-bottom: 40px;
+    	box-shadow: 0px 4px 20px 2px;
+     
+    }
+    .pic ul li{
+        float: left;
+        height: 450px;
+        width: 60px;
+    }
+ 	.picContent{
+ 		position: relative;
+ 	}
+    .pic ul .picContent img{  
+    	width: 100%; 
+    	height: 450px;
+       
+    	
+    }
+    
+     .pic ul .picContent:nth-of-type(1){   
+     	width: 800px;  
+    	
+    } 
+  
+    .txt{
+      
+        background-color:#00aeef; 
+      
+        height: 450px;
+        width: 60px;     
+        writing-mode: tb-rl;
+		-webkit-writing-mode: vertical-rl;
+		layout-flow: vertical-ideographic;
+		position: absolute;
+		left: 0;
+		top: 0;
+
+    }
+    .txt p{
+       
+        float: left;
+        color: #fff;
+    }
+    .txt .p1{
+        letter-spacing: 1px;
+        font-size: 16px;
+     
+        width: 13px;
+        padding: 25px 25px 0px 20px;
+    }
+    .txt .iconfont{
+    	position: absolute;
+    	left: 15px;
+    	bottom: 10px;
+    	font-size: 28px;
+    }
+    
  /*左侧底部按钮*/
 .leftfooter{
 	position: absolute;
@@ -186,6 +286,7 @@ button:focus{
 	width: 360px;
 	height: 100px;
 	border-top: 1px solid #786c6c;
+	
 }
 
 .leftfooter li{
@@ -198,7 +299,7 @@ button:focus{
 	padding: 25px 35px;
 	background: #e6e2e1;
 	color: #69696b;
-	
+	display: inline-block;
 }
 .contents{
 	height: 100%;
@@ -211,7 +312,21 @@ button:focus{
 margin-bottom: 260px;
 }
 
-
+.selcetor{
+	float: left;
+	margin-top: 400px;
+	width: 100px;
+	height: 20px;
+	padding: 5px 2px;
+	border: 1px solid black;
+	background-color: #fdd755;
+	color: black;
+	margin-left: 650px;
+}
+.selcetor i{
+	padding: 10px 20px;
+	letter-spacing: 2px;
+}
 .contents ul li{
 	position: relative;
 	background-color: white;
@@ -223,7 +338,7 @@ margin-bottom: 260px;
 	position: absolute;
 	right: 10px;
 	bottom: 15px;
-	color: red;
+	color:  rgb(226, 58, 58);
 	padding:2px 5px;
 	width: 60px;
 	border-radius: 5px;
@@ -232,7 +347,7 @@ margin-bottom: 260px;
 .imgResponse{
 	margin-left: 30px;
 	
-	border: 1px solid red;
+	border: 1px solid  silver;
 	width: 80px;
 }
 .imgResponse img{
@@ -247,6 +362,12 @@ margin-bottom: 260px;
 	left: 120px;
 	top: 10px;
 }
+.information h3{
+	margin-top: 20px;
+	font-size: 20px;
+	letter-spacing: 4px;
+	color: silver;
+}
 .information .title{
 	width: 150px;
 	height: 36px;
@@ -260,7 +381,7 @@ margin-bottom: 260px;
 }
 .information .UserPrice{
 	margin-top: 10px;
-	color: red;
+	color:  rgb(226, 58, 58);
 	overflow: hidden;
 	font-size: 12px;
 }
@@ -293,6 +414,7 @@ margin-bottom: 260px;
 	bottom:0px;
 	background-color:snow ;
 	padding-top: 10px;
+	display: inline-block;
 }
 .bottom .text{
 	width: 200px;
@@ -300,7 +422,7 @@ margin-bottom: 260px;
 	color:#b7b7b7;
 }
 .bottom .text strong{
-	color: red;
+	color:  rgb(226, 58, 58);
 	padding: 0 2px;
 }
 .bottom .text p{
@@ -310,7 +432,7 @@ margin-bottom: 260px;
 	width: 100px;
 	font-size: 18px;
 	letter-spacing: 2px;	
-	background-color: red;
+	background-color:  rgb(226, 58, 58);
 	color: white;
 	position: absolute;
 	right: 10px;
@@ -319,7 +441,349 @@ margin-bottom: 260px;
 }
 
 
+/**/
+.alertBox{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 2;
+	background-color: rgba(0,0,0,.9);
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: none;
+}
+.alertBox .alertContent{
+	width: 1000px;
+	height: 600px;
+	background-color: white;
+	z-index: 3;
+	position: fixed;
+	left: 50%;
+	margin-left: -500px;
+	top: 80px;
+	border: 5px solid #1073c2;
+	border-radius: 5px;
+}
+.alertContent .alertHead{
+	width: 100%;
+	height: 60px;
+	background: #1073c2;
+	color: white;
+	
+}
+.alertContent .alertHead h3{
+	display: inline;
+	line-height: 60px;
+	font-size: 18px;
+	letter-spacing: 1px;
+	padding-left: 10px;
+}
+.alertContent .alertHead i{
+	float: right;
+	line-height: 60px;
+	font-size: 28px;
+	padding-right: 20px;
+	cursor: pointer;
+}
+.alertBody{
+	padding: 30px 30px;
+}
+.alert_t {
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid silver;
+	margin-bottom: 1px;
+}
+.alert_t span{
+	font-size: 15px;
+	font-weight: bold;
+	letter-spacing:2px;
+	padding: 15px 30px;
+	background:#ededed ;
+	margin-right: -50px;
+}
+.alert_t span i{
+	color: red;
+	margin-left: 5px;
+}
+.alert_t input{
+	margin-left: 80px;
+}
+.alert_t label{
+	margin-left: 10px;
+}
+.alert_w{
+	height:260px ;
+	border-bottom: 1px solid silver;
+	position: relative;
+}
+.alert_w span{
+	line-height: 260px;
+	font-size: 15px;
+	font-weight: bold;
+	letter-spacing:2px;
+	height: 260px;
+	width: 112px;
+	padding-left: 30px;
+	background:#ededed ;
+	display: inline-block;
+		
+}
+.alert_ws{	
+	position: absolute;
+	left: 160px;
+	top: 10px;
+}
+.alert_ws i{
+	color: silver;
+	padding-bottom: 25px;
+}
+.alert_ws ul{	
+	
+	padding-top: 20px;
+	height: 40px;
+	overflow: hidden;
+}
+.over_a{
+	height: 100px !important;
+	overflow:scroll !important;	
+	overflow-x: hidden !important;
+}
+.alert_ws ul li{
+	float: left;
+	margin-left: 5px;
+}
+/*.alert_ws h6{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+}*/
+.alert_ws img{
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: 1px solid red;
+	cursor: pointer;
+}
+.alert_hs{
+	display: inline;
+	position: absolute;
+	left: 160px;
+	top: 145px;
+	color: silver;
+}
+.alert_hs ul{
+	height: 40px;
+	overflow: hidden;
+	padding-top: 20px;
+}
+.over_b{
+	height: 70px !important;
+	overflow: scroll !important;
+	overflow-x: hidden !important;
+}
+.alert_hs img{
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: 1px solid red;
+	cursor: pointer;
+}
+.alert_hs ul li{
+	float: left;
+	margin-left: 5px;
+}
+.alertFoot{
+	text-align: center;
+}
+.alertFoot a{
+	padding: 15px 40px;
+	line-height: 30px;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 10px;
+	background-color: #0773c2;
+	margin-left: 10px;
+	border-radius: 5px;
+}
 /*覆盖样式*/
 .activeYellow{
 	background-color:#fda228 !important;
+}
+
+/*筛选页*/
+#Purchase .head{
+	width: 100%;
+	height: 80px;
+	background-image: url(../img/head.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+#Purchase .nav{
+	width: 100%;
+	height: 40px;
+	
+	background-color: skyblue;
+}
+#Purchase .nav div{
+	width: 1080px;
+	margin: 0 auto;
+}
+#Purchase .nav .left{
+	float: left;
+	
+}
+#Purchase .nav .right{
+	float: right;
+}
+#Purchase .nav ul li{
+	float: left;
+	padding: 10px 0px;
+}
+#Purchase .nav ul li a{
+	color: black;
+}
+#Purchase .content {
+margin-top: 30px;
+width: 1080px;	
+	
+}
+#Purchase .content .warp{
+	width: 230px;
+	height: 440px;
+	padding: 2px 10px;
+	border: 1px solid silver;
+	
+}
+#Purchase .content .warp :hover{	
+	/*border: 1px solid silver;*/
+	
+}
+#Purchase .content .warp_img img{
+	width: 100%;
+	background-position: center;
+	background-size: cover;
+	
+	
+}
+.warp_Price{
+	margin-top: 5px;
+	margin-bottom: 10px;	
+}
+.warp_Price h5{
+	color: silver;
+	font-size: 12px;
+}
+.warp_Price h4{
+	font-weight: bold;
+	color:  rgb(226, 58, 58);
+}
+.warp_t .warp_title{
+	font-size: 13px;
+	width: 230px;
+	height: 34px;
+	line-height: 18px;
+	overflow: hidden;
+}
+.warp_t .warp_ft{
+	font-size: 13px;
+	width: 230px;
+	height: 14px;
+	padding: 6px 0px;
+	overflow: hidden;
+	color: darkorange;
+}
+.warp .warp_eva{
+	padding: 4px 0px;
+	
+}
+.warp .warp_eva p {
+	color: silver;
+	font-size: 12px;
+}
+.warp .warp_eva p i{
+	color: darkturquoise;
+	padding: 0px 2px;
+}
+.warp .warp_label{
+
+}
+.warp .warp_label i{
+	font-size: 12px;
+	color: white;
+	background-color: rgb(226, 58, 58);
+	padding: 0px 3px;
+	border-radius: 3px;
+}
+.warp .warp_sle{
+	padding-top: 20px;
+}
+.warp .warp_sle span{
+	
+	border: 1px solid red;
+	padding: 5px 15px;
+}
+.warp .warp_sle span label{
+	padding-left: 2px;
+}
+/*对比栏*/
+.contrast{
+	position: fixed;
+	left: 50%;
+	bottom:20px;
+	height: 130px;
+	width: 900px;
+	margin-left:-450px;
+	border: 2px solid dodgerblue;
+}
+.contrast .cont_head{
+	height: 30px;
+	width: 100%;
+	background-color:dodgerblue ;
+	color: white;
+}
+.contrast .cont_head span{
+	height: 30px;
+	line-height: 30px;
+	margin-left: 10px;
+}
+.contrast .cont_head i{
+	padding: 5px ;
+	float: right;
+	margin-right: 10px;
+}
+.cont_warp .cont_img{
+	width: 60px;
+	height: 60px;
+	padding-top: 20px;
+	padding-left: 20px;
+	float: left;
+}
+.cont_warp li{
+	width: 200px;
+}
+.cont_warp .cont_img img{
+	width: 100%;
+}
+.cont_warp .cont_t{
+	float: right;
+	width: 100px;
+	
+}
+
+.cont_warp .cont_t{
+	display: inline;
+}
+.cont_warp .cont_t p{
+	padding-top: 20px;
+	font-size: 12px;
+	width: 140px;
+	overflow:hidden ;
+	height: 32px;
+	line-height: 16px;
+}
+.cont_price{
+	padding-top: 5px !important;
 }
