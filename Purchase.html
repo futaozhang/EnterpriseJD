@@ -18,265 +18,201 @@
     <![endif]-->
 <body id="Purchase">
 	<!--header-->
-	<div class="head">
+	<div class="head"></div>
 	
+	<div class="nav">
+		<div>
+			<ul class="left">
+				<li><a href="index.html">首页</a>></li>
+				<li><a href="Purchase.html">采购筛选</a></li>
+			</ul>
+			<ul class="right">
+				<li><a href="index.html">< 返回上一级</a></li>
+			</ul>
+		</div>
 	</div>
-<div class="nav">
-	<div>
-		<ul class="left">
-			<li><a href="">首页</a>></li>
-			<li><a href="">采购筛选</a></li>
-		</ul>
-		<ul class="right">
-			<li><a href="">< 返回上一级</a></li>
-		</ul>
-	</div>
-</div>
 	
 	<!--content-->
 	<div class="content">
-		<ul>
+		<ul id="content_warp">
+			<script type="text/template" id="j_warp">
+			{{~it:value:index}}
 			<li>
 				<div class="warp">
-					<div>
-						<i></i>
+					<div class="warp_right">
+						<i><img src="img/hot.png"/></i>
 					</div>
-					<div class="warp_img"><img src="img/text.jpg"/></div>
+					<div class="warp_img"><img src="{{=value.pic_img}}"/></div>
 					<div class="warp_Price">
-						<h5>京东价：￥5534.00</h5>
-						<h4>企业专享价：￥4480.00</h4>
+						<h5>京东价：￥{{=value.pic_jdPrice}}</h5>
+						<h4>企业专享价：￥{{=value.pic_userPrice}}</h4>
 						
 					</div>
 					
 					<div class="warp_t">
-						<p class="warp_title">Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>
-						<p class="warp_ft">入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐</p>
+						<p class="warp_title">{{=value.pic_title}}</p>
+						<p class="warp_ft">{{=value.pic_tips}}</p>
 					</div>
 					<div class="warp_eva">
-						<p>已有<i>13万+</i>人评价</p>
+						<p>已有<i>{{=value.pic_eva}}</i>人评价</p>
 					</div>
 					<div class="warp_label">
+						
+					{{?value.Pic_text}}	
 						<i>自营</i>						
+					{{?}}
+					
 					</div>
 					<div class="warp_sle">
-						<span>
-						<input type="checkbox" name="" id="11" value=""/><label for="11">加入对比</label>
+						<span class="addCompared">
+						<input type="checkbox" name="p_{{=index}}" id="p_{{=index}}" value=""/><label for="p_{{=index}}">加入对比</label>
 						</span>
 						<span class="addSelect">
-						<input type="checkbox" name="" id="12"  value=""/><label for="12">加入购物方案</label>
-						</span>
-						</div>
-					<div >
+						<input type="checkbox" name="t_{{=index}}" id="add_{{=index}}"  value=""/><label for="add_{{=index}}">加入购物方案</label>
+							<div class="add_pri">
+							
+								<ul>								
+									<a href=""><li>采购方案一</li></a>
+									
+									<a href=""><li class="addPro">+</li></a>
+								</ul>
+									<img src="img/down.png"/>
+								</div>
 						
+						</span>
+				
 					</div>
+				
+					
+					
 				</div>
 			</li>
-		
-			
+			{{~}}
+			</script>
 		</ul>
 	
-	
+	<div id="page" class="paging"></div>
+
 	</div>
 	
 	<!--菜单区域-->	
 	<div class="leftSelct">
 		<i class="bg"></i>
+		
 		<!--<div class="noLogoing">
 			<p>京东企业会员登陆更优惠！</p>			
 		</div>-->
+		
 		<div class="isLogoing">
-			<a class="user"><i class="iconfont icon-yonghu"></i></a>
-			<a>收藏方案</button>	
-			<a class="activeYellow"><i class="tipsNum">3</i>采购方案</a>					
-			<a class="addProjiect"><i class="iconfont icon-jia"></i></a>
+			<a class="user"><i class="iconfont ">&#xe522;</i></a>
+			<a href="javascript:;" >收藏方案</button>
+			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>采购方案</a>
+			<a href="javascript:;" data-src='2'><i class="tipsNum">3</i>采购方案</a>	
+			<a href="javascript:; "class="addProjiect"><i class="iconfont">&#xf018b;</i></a>
 		</div>
+		
 	</div>
 	
 	<!--leftProjiect-->
-	<div class="leftProjiect">
-		
+	<div class="leftProjiect" >
+			
 		<!--内容区域-->
-		<div class="leftContent">
+		<div class="leftContent" id="mianCont">
 			
-			<div class="leftHead">
-				<span class="text"><i class="iconfont icon-weibiaoti15"></i>采购方案一 </span>
-				<span class="collection"><i class="iconfont icon-xin"></i> 收藏</span>
+		<script type="text/x-dot-template" id="j_tmpl">
+		
+		<div class="leftHead">
+			
+				<span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}</span>
+				<span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>
 			</div>
-			
-			<div class="leftConte">
 				
+			<div class="leftConte">
+						
 				<div class="l_top">
-					<input type="checkbox" name="all" id="all" value="" /><label for="">全选</label>
+					<input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
 					<button>删除</button>
 				</div>
 				<!-----------------数据列表----------->
-				<div class="contents">
+			<div class="contents">
 				
-				<ul>
-					<li>
-						<div class="checkBox">
-						<input type="checkbox" name="all" id="jd001" value="" />
-						</div>	
-							<label for="jd001">
-								<div class="imgResponse">
-									<img src="img/text.jpg"/>
-								</div>
-								
-								<div class="information">
-									<p class="title">Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡 </p>
-									<p class="jdPrice">京东价：￥77990.00</p>
-									<p class="UserPrice">企业专享价：<strong>￥5459.00</strong> </p>
-								</div>
-								
-								<div class="input_num">
-									
-									<label for="" class="iconfont">&#xe641;</label>
-									<input type="text" name="" id="" value="1"/>
-									<label for="" class="iconfont">&#xe655;</label>
-									
-								</div>
-								
-								<button>删除</button>
-							</label>	
-							
-					</li>
-				<li>
-						<div class="checkBox">
-						<input type="checkbox" name="all" id="jd001" value="" />
-						</div>	
-							<label for="jd001">
-								<div class="imgResponse">
-									<img src="img/text.jpg"/>
-								</div>
-								
-								<div class="information">
-									<p class="title">Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡 </p>
-									<p class="jdPrice">京东价：￥77990.00</p>
-									<p class="UserPrice">企业专享价：<strong>￥5459.00</strong> </p>
-								</div>
-								
-								<div class="input_num">
-									
-									<label for="" class="iconfont">&#xe641;</label>
-									<input type="text" name="" id="" value="1"/>
-									<label for="" class="iconfont">&#xe655;</label>
-									
-								</div>
-								
-								<button>删除</button>
-							</label>	
-							
-					</li>
-						<li>
-						<div class="checkBox">
-						<input type="checkbox" name="all" id="jd001" value="" />
-						</div>	
-							<label for="jd001">
-								<div class="imgResponse">
-									<img src="img/text.jpg"/>
-								</div>
-								
-								<div class="information">
-									<p class="title">Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡 </p>
-									<p class="jdPrice">京东价：￥77990.00</p>
-									<p class="UserPrice">企业专享价：<strong>￥5459.00</strong> </p>
-								</div>
-								
-								<div class="input_num">
-									
-									<label for="" class="iconfont">&#xe641;</label>
-									<input type="text" name="" id="" value="1"/>
-									<label for="" class="iconfont">&#xe655;</label>
-									
-								</div>
-								
-								<button>删除</button>
-							</label>	
-							
-					</li>
-					<li>
-						<div class="checkBox">
-						<input type="checkbox" name="all" id="jd001" value="" />
-						</div>	
-							<label for="jd001">
-								<div class="imgResponse">
-									<img src="img/text.jpg"/>
-								</div>
-								
-								<div class="information">
-									<p class="title">Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡 </p>
-									<p class="jdPrice">京东价：￥77990.00</p>
-									<p class="UserPrice">企业专享价：<strong>￥5459.00</strong> </p>
-								</div>
-								
-								<div class="input_num">
-									
-									<label for="" class="iconfont">&#xe641;</label>
-									<input type="text" name="" id="" value="1"/>
-									<label for="" class="iconfont">&#xe655;</label>
-									
-								</div>
-								
-								<button>删除</button>
-							</label>	
-							
-					</li>
-					<li>
-						<div class="checkBox">
-						<input type="checkbox" name="all" id="jd001" value="" />
-						</div>	
-							<label for="jd001">
-								<div class="imgResponse">
-									<img src="img/text.jpg"/>
-								</div>
-								
-								<div class="information">
-									<p class="title">Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡 </p>
-									<p class="jdPrice">京东价：￥77990.00</p>
-									<p class="UserPrice">企业专享价：<strong>￥5459.00</strong> </p>
-								</div>
-								
-								<div class="input_num">
-									
-									<label for="" class="iconfont">&#xe641;</label>
-									<input type="text" name="" id="" value="1"/>
-									<label for="" class="iconfont">&#xe655;</label>
-									
-								</div>
-								
-								<button>删除</button>
-							</label>	
-							
-					</li>
+				<ul id="leftDate">
+					
+				
 			
-					
-					
-				</ul>
+				   
+				 {{~it.info:value:index}}
+					{{?index>0}}
+					<li>
+						<div class="checkBox">
+						<input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
+						</div>	
+							<label for="{{=index}}">
+								<div class="imgResponse">
+									<img src="{{=value.pic_img}}"/>
+								</div>
+								
+								<div class="information">
+									<p class="title">{{=value.pic_title}} </p>
+									<p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
+									<p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
+								</div>
+								
+								<div class="input_num">									
+									<label for="" class="iconfont reduce">&#xe641;</label>
+									<input type="text" name="" id="" value="{{=value.pic_value}}"/>
+									<label for="" class="iconfont add" onclick="">&#xe655;</label>
+									
+								</div>
+								
+								<button>删除</button>
+							</label>	
+							
+					</li>
+					  {{~}}
+					  
 				
-				
+            	{{??}}
+            		<li > 
+               			<div class="information">
+							<h3>暂无数据....</h3>
+						</div>
+            		</li>
+      		{{?}}
+      		 
+			</ul>
+		
+				</div>
+						
+	
+				<div class="bottom">
+					<div class="text">
+					
+						<p><strong id="number">3</strong>件商品</p>
+						<p>共计: <strong id="price">￥8887631.00</strong></p>
+						
+					</div>
+					<a href="">加入购物车</a>
 				</div>
 				
-					<div class="bottom">
-					<div class="text">
-						
-						<p><strong>3</strong>件商品</p>
-						<p>共计: <strong>￥8887631.00</strong></p>
-					
-					</div>
-						<a href="">加入购物车</a>
-					</div>
-				
 			</div>
-		
+					
 			<div class="leftfooter">
 				<ul>
-					<li><button>导出到本地</button></li>
-					<li><button>分享采购方案</button></li>
-					<li><button>对比采购方案</button></li>
+					<li><a>导出到本地</a></li>
+					<li><a>分享采购方案</a></li>
+					<li><a>对比采购方案</a></li>
 				</ul>
 			</div>
+		 	
+			
+	</script>
 		</div>
+				
 	</div>
+	
+	
+
 
 	<!--对比栏-->
 	<div class="contrast">
@@ -287,50 +223,120 @@
 		<div class="cont_warp">
 			
 			<ul>
+			
 				<li>
 					<div>
 						<div class="cont_img">
 							<img src="img/text.jpg"/>
 						</div>
-						<div class="cont_t">
+							<div class="cont_t">
 							<p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>
-						<p class="cont_price">
-							<span>￥5200.00</span>
-							<span> <a href="">删除</a></span>
-						</p>	
 							
-						</div>
+							<p class="cont_price">
+								<span>￥5200.00</span>
+								<span> <a href="">删除</a></span>
+							</p>	
+								
+							</div>
 					</div>
 				</li>
-				<li></li>
-				<li></li>	
-				<li></li>
+				<li>
+					<div>
+						<div class="cont_img">
+							<img src="img/text.jpg"/>
+						</div>
+							<div class="cont_t">
+							<p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>
+							
+							<p class="cont_price">
+								<span>￥5200.00</span>
+								<span> <a href="">删除</a></span>
+							</p>	
+								
+							</div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div class="cont_img">
+							<!--<img src="img/text.jpg"/>-->
+							<h3>3</h3>
+						</div>
+						<div class="cont_t">
+							<h4>你还可以继续添加</h4>
+							<!--<p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>-->
+							
+							<p class="cont_price">
+								<!--<span>￥5200.00</span>
+								<span> <a href="">删除</a></span>-->
+							</p>	
+								
+							</div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div class="cont_img">
+							<!--<img src="img/text.jpg"/>-->
+							<h3>4</h3>
+						</div>
+						<div class="cont_t">
+							<h4>你还可以继续添加</h4>
+							<!--<p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>-->
+							
+							<p class="cont_price">
+								<!--<span>￥5200.00</span>
+								<span> <a href="">删除</a></span>-->
+							</p>	
+								
+							</div>
+					</div>
+				</li>
+				
+				<li class="operat">
+					<a href="" class="compared_cont ">对比</a>
+					<a href="" class="clear_cont">清空对比栏</a>
+				</li>
+			
 			</ul>
 			
 		</div>
 		
 	</div>
+	<!--底部-->
+	<div id="foote">
+		<h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>	
+	</div>
 </body>
+<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/pru.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/page.js" type="text/javascript" charset="utf-8"></script>
+ <script id="interpolationtmpl" type="text/x-dot-template">
+        <div></div>
+        <div>dot框架</div>
+    </script>
+
 <script type="text/javascript">
 	
-
-
-$(".isLogoing button").click(function(){ 	
-
-	$(".leftSelct .bg").show()
-	$(".leftContent").animate({"width":"360px"})
-	$(".isLogoing").animate({"left":"360px"})
-
-})
- 
-$(".leftSelct .bg").click(function(){
+	//翻页
+	 $("#page").paging({
+            total:10000,//总页数
+            numberPage:10//展示页数可替代不用
+        }, function (msg) {//回调
+           alert(msg)
+        });
 	
-	$(".leftSelct .bg").hide()
-	$(".leftContent").animate({"width":"0px"})
-	$(".leftSelct div").animate({"left":"0px"})
-})
-//数据列-主页图
+		var j_warp = document.getElementById('j_warp').innerHTML;
+		$.getJSON("date/purdata.json",function(item,state,i){
+			
+		if(state=='success'){
 
+		document.getElementById('content_warp').innerHTML=doT.template(j_warp)(item);
+			
+		}else{
+		  alert(数据出错)	
+		}
+	})
 
 
 

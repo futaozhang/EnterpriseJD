@@ -6,32 +6,65 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Document</title>
 </head>
-<!-- unpkg -->
+<style type="text/css">
+	       body{
+            padding: 100px;
+        }
+        .paging button{
+            margin: 5px;
+            background: #237eff;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .paging span{
+            color: #237eff;
+        }
+        .paging button:active{
+            background: #6a9dff;
+        }
+        .paging .activity{
+            color:#ffffff;
+            background: #cccccc;
+        }
+        .paging .activity{
+            color:#ffffff;
+            background: #cccccc;
+        }
 
-<!-- cdnjs -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" ref="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>
-
+        /*展示结果*/
+        #callBack{
+            padding: 10px
+        }
+        #callBack span{
+            font-size: 30px;
+            color: red;
+        }
+        #callBack2{
+            padding: 10px
+        }
+        #callBack2 span{
+            font-size: 30px;
+            color: red;
+        }
+</style>
+<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/page.js" type="text/javascript" charset="utf-8"></script>
 <body>
-	
-	<video
-    id="my-player"
-    class="video-js"
-    controls
-    preload="auto"
-    poster="//vjs.zencdn.net/v/oceans.png"
-    data-setup='{}'>
-  <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
-  <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
-  <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
-  <p class="vjs-no-js">
-    To view this video please enable JavaScript, and consider upgrading to a
-    web browser that
-    <a href="http://videojs.com/html5-video-support/" target="_blank">
-      supports HTML5 video
-    </a>
-  </p>
-</video>
+	<div id="page" class="paging"></div>
+<div id="callBack">您点击的页码是第&nbsp;&nbsp;<span>1</span>&nbsp;&nbsp;页,可在回调函数中调用AJAX</div>
 
 </body>
+<script>
+    
+        $("#page").paging({
+            total:10000,
+            numberPage:10
+        }, function (msg) {//回调
+            $("#callBack span").text(msg)
+        });
+      
+
+</script>
 </html>

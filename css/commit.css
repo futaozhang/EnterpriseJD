@@ -29,6 +29,17 @@ button:active{
 button:focus{
 	outline: none;
 }
+#foote{
+	height: 60px;
+	line-height: 60px;
+	color: white;
+	width: 100%;
+	background:#0071c5 ;
+	text-align: center;
+}
+#foote h4{
+	font-weight: 200;
+}
 .content{
 	margin: 0 auto;
 	width: 1200px;
@@ -635,11 +646,10 @@ margin-bottom: 260px;
 #Purchase .nav{
 	width: 100%;
 	height: 40px;
-	
-	background-color: skyblue;
+	background-color:#cdecfd;
 }
 #Purchase .nav div{
-	width: 1080px;
+	width: 1260px;
 	margin: 0 auto;
 }
 #Purchase .nav .left{
@@ -658,15 +668,19 @@ margin-bottom: 260px;
 }
 #Purchase .content {
 margin-top: 30px;
-width: 1080px;	
-	
+width: 1260px;	
+margin-bottom: 50px;
 }
 #Purchase .content .warp{
-	width: 230px;
+	width: 220px;
 	height: 440px;
 	padding: 2px 10px;
 	border: 1px solid silver;
+	position: relative;
 	
+}
+#Purchase .content_warp li{
+	float: left;
 }
 #Purchase .content .warp :hover{	
 	/*border: 1px solid silver;*/
@@ -701,7 +715,7 @@ width: 1080px;
 .warp_t .warp_ft{
 	font-size: 13px;
 	width: 230px;
-	height: 14px;
+	height: 13px;
 	padding: 6px 0px;
 	overflow: hidden;
 	color: darkorange;
@@ -719,7 +733,7 @@ width: 1080px;
 	padding: 0px 2px;
 }
 .warp .warp_label{
-
+height: 20px;
 }
 .warp .warp_label i{
 	font-size: 12px;
@@ -732,9 +746,17 @@ width: 1080px;
 	padding-top: 20px;
 }
 .warp .warp_sle span{
-	
-	border: 1px solid red;
-	padding: 5px 15px;
+	display: inline-block;
+	border: 1px solid silver;
+	height: 30px;
+	width: 90px;
+	line-height: 30px;
+	text-align: center;
+}
+.warp .warp_sle .addSelect{
+	width: 120px;
+	border-left: 1px solid white !important;
+	color:rgb(226, 58, 58) ;
 }
 .warp .warp_sle span label{
 	padding-left: 2px;
@@ -743,11 +765,14 @@ width: 1080px;
 .contrast{
 	position: fixed;
 	left: 50%;
-	bottom:20px;
+	bottom:50px;
 	height: 130px;
-	width: 900px;
-	margin-left:-450px;
+	width: 1080px;
+	margin-left:-540px;
 	border: 2px solid dodgerblue;
+	background-color: white;
+	display: none;
+	
 }
 .contrast .cont_head{
 	height: 30px;
@@ -764,37 +789,156 @@ width: 1080px;
 	padding: 5px ;
 	float: right;
 	margin-right: 10px;
+	cursor: pointer;
 }
+
 .cont_warp .cont_img{
 	width: 60px;
 	height: 60px;
-	padding-top: 20px;
+	padding-top: 5px;
 	padding-left: 20px;
 	float: left;
 }
 .cont_warp li{
-	width: 200px;
+	float: left;
+	width: 240px;
+	border-right: 2px dotted #9ecd85;
+	height: 80px;
+	margin-top: 10px;
+	
 }
 .cont_warp .cont_img img{
 	width: 100%;
 }
+.cont_warp .cont_img h3{
+	color: silver;
+	font-size: 40px;
+}
+.cont_t h4{
+	color:silver ;
+	margin-left: -20px;
+	margin-top: 10px;
+}
 .cont_warp .cont_t{
-	float: right;
-	width: 100px;
-	
+	float: left;
+	width: 140px;
+	margin-left: 10px;
+
 }
 
 .cont_warp .cont_t{
 	display: inline;
 }
 .cont_warp .cont_t p{
-	padding-top: 20px;
+	padding-top: 5px;
 	font-size: 12px;
-	width: 140px;
 	overflow:hidden ;
 	height: 32px;
 	line-height: 16px;
 }
 .cont_price{
-	padding-top: 5px !important;
+	padding-top: 10px !important;
 }
+.cont_price span{
+	color:rgb(226, 58, 58) ;
+}
+.cont_price a{
+	float: right;
+	color:#0071c5;
+}
+
+#Purchase #content_warp li{
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+#content_warp {
+	
+	
+}
+#Purchase .warp_right i{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 40px;
+	height: 40px;
+}
+ .add_pri{
+ 	position: absolute;
+ 	right: 40px;
+ 	bottom: 60px;
+	display: none;
+ 	width: 100px;
+ }
+ .add_pri li{
+ 	height: 30px;
+ 	line-height: 30px;
+ 	width: 80px;
+ 	border-top: 1px solid #7d7d7d;
+ 	border-left: 1px solid #7d7d7d;
+ 	border-right: 1px solid #7d7d7d;
+ 	margin: 0px !important;
+ 	background-color: white;
+ 	text-align: center;
+ 	overflow: hidden;
+ 	color: #7d7d7d;
+  
+ }
+ .addPro{
+  	border-bottom: 1px solid #7d7d7d;
+  }
+.add_pri img{
+	position:absolute ;
+	right: 50.33px;
+	bottom: -10px;
+	background-color: white;
+}
+.operat{
+	width:80px !important;
+	border: none !important;
+	margin-left: 30px;
+}
+.compared_cont{
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: rgb(226, 58, 58);
+	color: white;
+	border-radius: 3px;
+	margin-top: 5px;
+	
+	display: block;
+}
+.clear_cont{
+	display: block;
+	padding-top: 15px;
+}
+/*分页*/
+#page{
+float: right;
+padding: 15px 0px;
+}
+     .paging button{
+            margin: 5px;
+            background: #237eff;
+            color: #fff;
+            padding: 6px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .paging span{
+            color: #237eff;
+        }
+        .paging button:active{
+            background: #6a9dff;
+        }
+        .paging .activity{
+            color:#ffffff;
+            background: #cccccc;
+        }
+        .paging .activity{
+            color:#ffffff;
+            background: #cccccc;
+        }
