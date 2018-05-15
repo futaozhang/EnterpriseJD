@@ -7,64 +7,27 @@
 	<title>Document</title>
 </head>
 <style type="text/css">
-	       body{
-            padding: 100px;
-        }
-        .paging button{
-            margin: 5px;
-            background: #237eff;
-            color: #fff;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-        }
-        .paging span{
-            color: #237eff;
-        }
-        .paging button:active{
-            background: #6a9dff;
-        }
-        .paging .activity{
-            color:#ffffff;
-            background: #cccccc;
-        }
-        .paging .activity{
-            color:#ffffff;
-            background: #cccccc;
-        }
+	.box{
+	 
+	
+	  behavior: url(css/ie-css3.htc); /* This lets IE know to call the script on all elements which get the 'box' class */
+}
+.main{
+	width: 200px;
+	height: 100px;
+	background-color: red;
+	border-radius: 15px;
+	
+}
 
-        /*展示结果*/
-        #callBack{
-            padding: 10px
-        }
-        #callBack span{
-            font-size: 30px;
-            color: red;
-        }
-        #callBack2{
-            padding: 10px
-        }
-        #callBack2 span{
-            font-size: 30px;
-            color: red;
-        }
 </style>
-<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/page.js" type="text/javascript" charset="utf-8"></script>
 <body>
-	<div id="page" class="paging"></div>
-<div id="callBack">您点击的页码是第&nbsp;&nbsp;<span>1</span>&nbsp;&nbsp;页,可在回调函数中调用AJAX</div>
-
+	
+	<div class="mains">
+		
+		<div class="main box">122</div>
+		
+		
+	</div>
 </body>
-<script>
-    
-        $("#page").paging({
-            total:10000,
-            numberPage:10
-        }, function (msg) {//回调
-            $("#callBack span").text(msg)
-        });
-      
-
-</script>
 </html>
