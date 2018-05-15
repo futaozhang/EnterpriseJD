@@ -56,18 +56,25 @@ button:focus{
 	width: 60px;
 }
 .isLogoing a{
+	height: 40px;
 	width: 40px;
+	line-height: 20px;
 	border-radius: 5px;
 	background-color: #1dafec;
 	margin-bottom: 5px;
 	text-align: center;
 	padding: 10px 5px;
+	
 	position: relative;
 	color: white;
 	cursor: pointer;	
 	display: inline-block;
 }
-
+.isLogoing a .iconfont{
+	line-height: 40px;
+	font-size: 18px;
+	margin-top: 40px;
+}
 .isLogoing .addProjiect ,.user{
 	/*padding: 15px 5px;*/
 }
@@ -217,11 +224,11 @@ button:focus{
         overflow: hidden;/*隐藏溢出*/
         width: 1040px;
         height: 450px;      
-      	margin-top: 40px;
+      	margin-top: 11.1%;
       	text-align: center;
      	margin-left: auto;
     	margin-right: auto;
-    	margin-bottom: 40px;
+    	margin-bottom: 50px;
     	box-shadow: 0px 4px 20px 2px;
      
     }
@@ -247,8 +254,7 @@ button:focus{
   
     .txt{
       
-        background-color:#00aeef; 
-      
+        background-color:#00aeef;  
         height: 450px;
         width: 60px;     
         writing-mode: tb-rl;
@@ -259,6 +265,11 @@ button:focus{
 		top: 0;
 
     }
+     .txt .iconfont{
+     	writing-mode: lr-tb;
+		-webkit-writing-mode: vertical-lr;
+		layout-flow: vertical-ideographic;
+     }
     .txt p{
        
         float: left;
@@ -295,8 +306,8 @@ button:focus{
 	float: left;		
 }
 
-.leftfooter li button{
-	padding: 25px 35px;
+.leftfooter li a{
+	padding: 25px 38px;
 	background: #e6e2e1;
 	color: #69696b;
 	display: inline-block;

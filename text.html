@@ -6,49 +6,32 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Document</title>
 </head>
+<!-- unpkg -->
+
+<!-- cdnjs -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" ref="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>
+
 <body>
-<ul class="kucunlist" id="ulList">                            
-    <script id="j-tmpl" type="text/template">
-        {{ if(it.length>0){ }}    
-            {{ for (var i = 0, l = it.length; i < l; i++) {}}
-            <li class="border-tb tbox" onclick="location.href='<%=basePath%>/query/stock/toQueryProductStock.action?piNo={{=it[i].pi_no}}'">
-                <div>
-                    <img src="<%=imgServerPath %>{{=it[i].pi_imgpath}}">
-                </div>
-                
-                <div class="arrow-right">
-                    <h5 class="ellipsis-t"><i>{{=it[i].pi_no}}</i>{{=it[i].pi_name}}</h5>
-                    <p>{{=it[i].ct_name}} {{=it[i].bd_name}}</p>
-                    <p><b>价格:￥{{=it[i].pi_retailprice}}</b> | <b>库存:{{=it[i].amount}}</b></p>
-                </div>
-            </li>
-            {{ } }}
-        {{ } else { }}
-        
-            <li class="border-tb tbox"> 
-                <h2>未检索到数据</h2>
-            </li>
-            
-        {{ } }}
-    </script>
-</ul>  
+	
+	<video
+    id="my-player"
+    class="video-js"
+    controls
+    preload="auto"
+    poster="//vjs.zencdn.net/v/oceans.png"
+    data-setup='{}'>
+  <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+  <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+  <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a
+    web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">
+      supports HTML5 video
+    </a>
+  </p>
+</video>
 
 </body>
-<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
-<script>
-	var data=[
-	{
-		"pi_name":"2323",
-		"pi_retailprice":"123"
-	},
-	{
-		"pi_name":"2323",
-		"pi_retailprice":"12312"
-	}
-	]
-	var tmpl = document.getElementById('j-tmpl').innerHTML;
-	document.getElementById('ulList').innerHTML=doT.template(tmpl)(data);
-</script>
-
 </html>
