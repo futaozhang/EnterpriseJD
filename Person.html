@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<meta name="renderer" content="webkit" />
 	<meta name="Keywords" content="JD"/>
-	<title>京东-中小企业采购工具</title>
+	<title>京东-采购产品对比</title>
 </head>
 	 
 <link rel="stylesheet" type="text/css" href="css/commit.css"/>
@@ -16,7 +16,7 @@
  <!--[if lt IE 9]>
        <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>  
     <![endif]-->
-<body id="Compared">
+<body id="Person">
 	<!--header-->
 	<div class="w_head"></div>
 	
@@ -25,7 +25,7 @@
 			<ul class="left">
 				<li><a href="index.html">首页</a>></li>
 				<li><a href="Purchase.html">采购筛选</a></li>
-				<li><a href="Compared.html">采购方案对比</a></li>
+				<li><a href="Compared.html">采购产品对比</a></li>
 			</ul>
 			<ul class="right">
 				<li><a href="Purchase.html">< 返回上一级</a></li>
@@ -35,106 +35,161 @@
 	
 	<!--content-->
 	
-	<div class="content"  >
-		
-			<div class="t_contes">
-				<a href="">导出到本地</a>
-				<a href="">分享采购方案</a>
-				<a href="" class="but_active">对比采购方案</a>
+	<div class="content ">
+		<div class="p_top">
+			<div class="p_user">
+				
+				<img src="img/user.png"/>
+				<p>昵称：<br />
+				adaddadaad公司
+				<a href="">退出</a>
+				</p>
+				
+			</div>
+			<div class="p_but">
+				<a href="" class="">当前采购方案</a>
+				<a href="" class="activeRightBut">方案收藏夹</a>
 			</div>
 			
-		<div class="w clearfix" id="warp_content" >	
+		</div>
 		
-		<script type="text/template" id="k_tempelate">
-        		
-		{{ for(var i=0, catlen=it.length; i<3; i++) { }}
-			
-			<div class="c_conte" >
+		<div class="p_warp clearfix">
+			<div class="left_warp">
 				
-				<div class="t_title">
-					<h4>采购方案一</h4>		
-				</div>	
-				<div class="t_price">
-					<div class="t_opreat">
-						<p class="slive">京东价：￥389525.00</p>
-						<p class="">企业专享价：<i class="jd_text">￥31500.00</i></p>
-					</div>
+				<ul>
+					<li><a href="" class="actvieLeft">采购方案一</a></li>
+					<li><a href="">采购方案一</a></li>
+					<li><a href="">采购方案一</a></li>
+					<li><a href="">采购方案一</a></li>
+					<li><a href="">采购方案一</a></li>
+					<li><a href="">采购方案一</a></li>
+					<li><a href="">采购方案一</a></li>
+				
 					
-					<div class="f_opreat">
-						<a href="" class="but_jd">加入购物车</a>
-						<a href=""  ><i class="iconfont">&#xe711;</i>收藏</a>
-					</div>
-					
+				</ul>
+			</div>
+			<div class="right_warp ">
+				
+				<div class="rt_top">
+					<a href="" class="but_jd">加入购物车</a>
+				<div class="price">
+					<p class="slive">京东价:￥00.00</p>
+					<p>企业专享价:</p>	
+					<p class="jdPrice">￥00.00</p>
 				</div>
-				<div class="t_conte">
-					
-				<table >
-					    <tbody>
-					     {{~it[i]['info']:item:indexT}}
+					<div class="right_but">
+						<a href="">导出到本地</a>
+						<a href="">对比采购方案</a>
+						<a href="">删除</a>
+						<a href="">分享</a>
+					</div>
+				</div>
+				
+				<div id="personTable">
+					<table >
+						<thead>
 							<tr>
-								<td>
-									<div class="ul_left">
-										<img src="img/text.jpg"/>
-										<!--右侧-->
-										<i class="tipsRight">
-										<img src="img/hot.png"/>
-										</i>
-									</div>
-									
-								</td>
-								<td>
-									<div class="ul_text">
-											<span class="office">日常办公</span>
-											<span>拯救者R720</span>
-											<span>15.6英寸</span>
-									</div>
-								</td>
-								<td>
-									<div class="ul_num">									
-										<label for="" class="iconfont reduce">&#xe641;</label>
-										<input type="text" name="" id="" value="1"/>
-										<label for="" class="iconfont add" >&#xe655;</label>	
-									</div>
-								</td>
-								
-								<td>
-									
-									<div class="ul_price">
-										<span>京东价:￥7799.00</span>
-										<span>企业专享价: <i class="jd_text">￥6399.00</i> </span>
-									</div>
-									
-								</td>
-								
-								<td>
-									<div class="ui_opret">
-										<a href="">替换</a>
-										<a href="">删除</a>
-									</div>
-								</td>
-								
+								<th><input type="checkbox" name="jd_2" id="jd_2" value=""/><label for="jd_2">全选</label></th>
+								<th>&nbsp;</th>
+								<th>商品</th>
+								<th>&nbsp;</th>
+								<th>数量</th>
+								<th>小计</th>
+								<th>用途</th>
+								<th>操作</th>
 							</tr>
+						</thead>
 						
-						{{~}}
+						<tbody>
+							<tr>
+								<td class="tb_check">
+									<input type="checkbox" name="" id="" value=""/><label for=""></label>
+								</td>
+								<td>
+									<div class="tb_img">
+										<img src="img/text.jpg"/>
+									</div>
+								</td>
+								<td>
+									<p class="tb_ct">联想(Lenovo)拯救者R720 15.6英寸大屏游戏笔记本电脑(i5-7300HQ 8G</p>
+								</td>
+								<td class="tb_catory">
+									<p>颜色：i5荣耀勋章版本 勋章版本</p>
+									<p>尺码：1</p>
+								</td>
+								<td>
+									<div class="t_num">									
+									<label for="" class="iconfont reduce">&#xe641;</label>
+									<input type="text" name="" id="" value="1"/>
+									<label for="" class="iconfont add" onclick="">&#xe655;</label>
+									
+								</div>
+								</td>
+								<td class="tb_price">
+									<p class="slive">京东价：￥7799.00</p>
+									<p>企业专享价：<i class="jd_price">￥7799.00</i></p>
+								</td>
+								<td >
+									<span class="designer">视觉设计</span>
+									<!--<span class="techology">技术研发</span>
+									<span class="portadle">商务便携</span>
+									<span class="manager">高层管理</span>
+									<span class="office">日常办公</span>-->
+								</td>
+								<td class="tb_opreat">
+									<a href="">删除</a>
+									<a href="">替换</a>
+								</td>
+							</tr>
+							
+								<tr>
+								<td class="tb_check">
+									<input type="checkbox" name="" id="" value=""/><label for=""></label>
+								</td>
+								<td>
+									<div class="tb_img">
+										<img src="img/text.jpg"/>
+									</div>
+								</td>
+								<td>
+									<p class="tb_ct">联想(Lenovo)拯救者R720 15.6英寸大屏游戏笔记本电脑(i5-7300HQ 8G</p>
+								</td>
+								<td class="tb_catory">
+									<p>颜色：i5荣耀勋章版本 勋章版本</p>
+									<p>尺码：1</p>
+								</td>
+								<td>
+									<div class="t_num">									
+									<label for="" class="iconfont reduce">&#xe641;</label>
+									<input type="text" name="" id="" value="1"/>
+									<label for="" class="iconfont add" onclick="">&#xe655;</label>
+									
+								</div>
+								</td>
+								<td class="tb_price">
+									<p class="slive">京东价：￥7799.00</p>
+									<p>企业专享价：<i class="jd_price">￥7799.00</i></p>
+								</td>
+								<td >
+									<span class="techology">技术研发</span>
+									
+								</td>
+								<td class="tb_opreat">
+									<a href="">删除</a>
+									<a href="">替换</a>
+								</td>
+							</tr>
 						</tbody>
 					</table>
-					
 				</div>
-		
-			</div>	
-			
-		 {{ } }}
-			
-	
-			
-		</script>
-				
-			
-	
 		</div>
+		</div>
+		
 		
 	
 	</div>
+	
+	
 	
 	
 	<!--菜单区域-->	
@@ -261,7 +316,4 @@
 	</div>
 </body>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/compared.js" type="text/javascript" charset="utf-8"></script>
-
-
 </html>

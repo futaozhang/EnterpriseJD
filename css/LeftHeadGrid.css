@@ -1,0 +1,41 @@
+body,div,a,img,p,form,h1,h2,h3,h4,h5,h6,input,textarea,ul,li,dt,dd,dl{margin:0;padding:0;}
+/*
+div .leftheadcss{
+	border:solid 1px red;
+}
+*/
+div .grittitle{
+	font-weight:bold;
+}
+div .outframecss{
+	text-align:center;
+	margin:0 auto;
+}
+table{
+    border-collapse: collapse;
+    border: none;
+    line-height:38px;
+}
+td{
+    border: solid #000 1px;
+    text-align:center;
+}
+.blue {
+	BORDER-RIGHT: #002200 2px solid; BORDER-TOP: #a6c1df 2px solid; BORDER-LEFT: #a6c1df 2px solid; COLOR: #ffffff; BACKGROUND-COLOR: #3a6ea5
+}
+.bluefirst{
+	BORDER-RIGHT: #002200 2px solid; BORDER-TOP: #a6c1df 2px solid; BORDER-LEFT: #a6c1df 2px solid; COLOR: #ffffff; BORDER-BOTTOM: #002200 1px solid; BACKGROUND-COLOR: #3a6ea5
+}
+.bluelast{
+	BORDER-RIGHT: #002200 2px solid; BORDER-TOP: #a6c1df 2px solid; BORDER-LEFT: #a6c1df 2px solid; COLOR: #ffffff; BORDER-BOTTOM: #002200 2px solid; BACKGROUND-COLOR: #3a6ea5
+}
+div .leftheadcss{
+	 float:left;
+}
+div .dataframecss{
+	float:left;
+  overflow: auto;
+  border:solid 1px blue;
+}
+div .innerdivcss{
+}

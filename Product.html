@@ -6,17 +6,19 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<meta name="renderer" content="webkit" />
 	<meta name="Keywords" content="JD"/>
-	<title>京东-中小企业采购工具</title>
+	<title>京东-采购产品对比</title>
 </head>
 	 
 <link rel="stylesheet" type="text/css" href="css/commit.css"/>
 <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+
  <!--[if lt IE 9]>
        <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>  
     <![endif]-->
-<body id="Compared">
+<body id="Product">
 	<!--header-->
 	<div class="w_head"></div>
 	
@@ -25,7 +27,7 @@
 			<ul class="left">
 				<li><a href="index.html">首页</a>></li>
 				<li><a href="Purchase.html">采购筛选</a></li>
-				<li><a href="Compared.html">采购方案对比</a></li>
+				<li><a href="Compared.html">采购产品对比</a></li>
 			</ul>
 			<ul class="right">
 				<li><a href="Purchase.html">< 返回上一级</a></li>
@@ -35,106 +37,110 @@
 	
 	<!--content-->
 	
-	<div class="content"  >
+	<div class="content">
 		
-			<div class="t_contes">
-				<a href="">导出到本地</a>
-				<a href="">分享采购方案</a>
-				<a href="" class="but_active">对比采购方案</a>
-			</div>
-			
-		<div class="w clearfix" id="warp_content" >	
-		
-		<script type="text/template" id="k_tempelate">
-        		
-		{{ for(var i=0, catlen=it.length; i<3; i++) { }}
-			
-			<div class="c_conte" >
-				
-				<div class="t_title">
-					<h4>采购方案一</h4>		
-				</div>	
-				<div class="t_price">
-					<div class="t_opreat">
-						<p class="slive">京东价：￥389525.00</p>
-						<p class="">企业专享价：<i class="jd_text">￥31500.00</i></p>
-					</div>
-					
-					<div class="f_opreat">
-						<a href="" class="but_jd">加入购物车</a>
-						<a href=""  ><i class="iconfont">&#xe711;</i>收藏</a>
-					</div>
-					
-				</div>
-				<div class="t_conte">
-					
-				<table >
-					    <tbody>
-					     {{~it[i]['info']:item:indexT}}
-							<tr>
-								<td>
-									<div class="ul_left">
-										<img src="img/text.jpg"/>
-										<!--右侧-->
-										<i class="tipsRight">
-										<img src="img/hot.png"/>
-										</i>
-									</div>
-									
-								</td>
-								<td>
-									<div class="ul_text">
-											<span class="office">日常办公</span>
-											<span>拯救者R720</span>
-											<span>15.6英寸</span>
-									</div>
-								</td>
-								<td>
-									<div class="ul_num">									
-										<label for="" class="iconfont reduce">&#xe641;</label>
-										<input type="text" name="" id="" value="1"/>
-										<label for="" class="iconfont add" >&#xe655;</label>	
-									</div>
-								</td>
-								
-								<td>
-									
-									<div class="ul_price">
-										<span>京东价:￥7799.00</span>
-										<span>企业专享价: <i class="jd_text">￥6399.00</i> </span>
-									</div>
-									
-								</td>
-								
-								<td>
-									<div class="ui_opret">
-										<a href="">替换</a>
-										<a href="">删除</a>
-									</div>
-								</td>
-								
-							</tr>
-						
-						{{~}}
-						</tbody>
-					</table>
-					
-				</div>
-		
-			</div>	
-			
-		 {{ } }}
-			
-	
-			
-		</script>
-				
-			
-	
+		<div id="ProductTable" class="clearfix">
+			<div class="left_li  ">
+			<ul>
+				<li class="t_one"></li>
+				<li>品牌及型号</li>
+				<li>颜色</li>
+				<li>重量</li>
+				<li>系统</li>
+				<li>CPU</li>
+				<li>内存</li>
+				<li>硬盘</li>
+				<li>显卡</li>
+				<li>尺寸</li>
+				<li>续航时间</li>
+				<li>分辨率</li>
+			</ul>
 		</div>
-		
+			<table >		
+			<tbody>
+				<tr>
+					<td>
+						<div class="pro_t">							
+						<div class="p_img">
+							<img src="img/text.jpg"/>
+						</div>
+						<p class="pro_text">联想(Lenovo)拯救者R720 15.6英寸大屏游戏联想(Lenovo)拯救者R720 15.6英寸大屏游戏笔记本电脑(i5-7300HQ 8G</p>
+						<p class="slive">京东价:￥7722.00</p>
+						<p>企业专享价:<i class="jd_text">￥7722.00</i> </p>
+						<a href="" class="but_jd">加入购物车</a>
+						<span><a href="" class="jd_text">删除</a></span>
+						</div>
+					</td>
+					<td>
+						<div class="pro_t">							
+						<div class="p_img">
+							<img src="img/addPro.png"/>
+						</div>
+						<p class="pro_text"></p>
+						<p class="slive"></p>
+						<p<i class="jd_text"></i> </p>
+						<!--<a href="" class="but_jd"></a>-->
+						<span><a href="" class="jd_text"></a></span>
+						</div>
+					</td>
+					
+				</tr>	
+				
+				<tr>
+					<td><p class="wid">联想(Lenovo)拯救者R720联想(Lenovo)拯救者R720联想(Lenovo)拯救者R720</p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p class="wid">黑色</p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p class="wid">2-2.25kg</p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+					<p class="wid">	Win 10 家庭中文版</p>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p class="wid">酷睿四核 i5-7300HQ</p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p class="wid">8GB</p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p class="wid">1T</p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p class="wid">独立显卡</p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p class="wid">15.6英寸</p></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p class="wid">2-5小时</p></td>
+					<td></td>
+				</tr>
+				<tr class="diffrent">
+					<td><p class="wid">1920×1080</p></td>
+					<td></td>
+				</tr>
+			</tbody>
+			
+			</table>
+			
+		</div>
 	
 	</div>
+	
+	
 	
 	
 	<!--菜单区域-->	
@@ -261,7 +267,8 @@
 	</div>
 </body>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/compared.js" type="text/javascript" charset="utf-8"></script>
 
-
+<script type="text/javascript">
+	
+</script>
 </html>

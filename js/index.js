@@ -53,12 +53,6 @@
 	//
 	
 	
-
-	 
-
-
-	
-
 	
 	var current=0;
 	var MainSet=setInterval(runder,4000);
@@ -85,6 +79,8 @@
   			window.clearInterval(MainSet);
 	});
 	//轮播方式
+	
+	$(".leftSelct").animate({"display":"none","z-index":"-1"},1200)
 	runder()
 	function runder(){
 		
