@@ -72,9 +72,9 @@
 							<div class="add_pri">
 							
 								<ul>								
-									<a href=""><li>采购方案一</li></a>
+									<a href="Person.html"><li>采购方案一</li></a>
 									
-									<a href=""><li class="addPro">+</li></a>
+									<a href="Person.html"><li class="addPro">+</li></a>
 								</ul>
 									<img src="img/down.png"/>
 								</div>
@@ -105,7 +105,7 @@
 		
 		<div class="isLogoing">
 			<a class="user"><i class="iconfont ">&#xe522;</i></a>
-			<a href="javascript:;" >收藏方案</button>
+			<a href="Compared.html" >收藏方案</button>
 			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>采购方案</a>
 			<a href="javascript:;" data-src='2'><i class="tipsNum">3</i>采购方案</a>	
 			<a href="javascript:; "class="addProjiect"><i class="iconfont">&#xf018b;</i></a>
@@ -123,7 +123,14 @@
 		
 		<div class="leftHead">
 			
-				<span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}</span>
+				<span class="text">
+					<i class="iconfont" >&#xe621;</i>{{=it.picname}}
+					<span class="changName">
+						<input type="text"  name="jd_3" id="jd_3" value="{{=it.picname}}"/>
+						<a href="">确定</a>
+					</span>
+				
+				</span>
 				<span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>
 			</div>
 				
@@ -142,7 +149,7 @@
 			
 				   
 				 {{~it.info:value:index}}
-					{{?index>0}}
+					{{?value!=null}}
 					<li>
 						<div class="checkBox">
 						<input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
@@ -185,7 +192,7 @@
 				</div>
 						
 	
-				<div class="bottom">
+				<div class="bottom Jd_footer">
 					<div class="text">
 					
 						<p><strong id="number">3</strong>件商品</p>
@@ -197,7 +204,7 @@
 				
 			</div>
 					
-			<div class="leftfooter">
+			<div class="leftfooter Jd_footer">
 				<ul>
 					<li><a>导出到本地</a></li>
 					<li><a>分享采购方案</a></li>
@@ -218,7 +225,7 @@
 	<div class="contrast">
 		<div class="cont_head">
 			<span>对比栏</span>
-			<i class="iconfont icon-guanbi"></i>
+			<i class="iconfont">&#xe635;</i>
 		</div>
 		<div class="cont_warp">
 			
@@ -294,7 +301,7 @@
 				</li>
 				
 				<li class="operat">
-					<a href="Product.html" class="compared_cont ">对比</a>
+					<a href="Product.html" class="compared_cont">对比</a>
 					<a href="" class="clear_cont">清空对比栏</a>
 				</li>
 			
@@ -336,9 +343,11 @@
 		}else{
 		  alert(数据出错)	
 		}
-	})
+	});
 
-
+	$("#mianCont").delegate(".text .iconfont","click",function(){
+		$(".changName").show()
+	});
 
 </script>
 </html>

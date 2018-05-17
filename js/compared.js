@@ -43,8 +43,7 @@ var compandDate=[
 	
 	document.getElementById('warp_content').innerHTML=doT.template(k_tmpl)(compandDate);
 
-	
-	$("#Compared").delegate(".ul_num .reduce",'click',function(){
+		$("#Compared").delegate(".ul_num .reduce",'click',function(){
 		
 		var nowData=$(this).parent().find("input[type='text']").prop("value");
 		
