@@ -1,9 +1,10 @@
 
 	//测试数据
-	var sourDate=[]
+	var sourDate={
+	"picname":"采购方案四"}
 	var leftDate1={
 
-	"picname":"采购方案一",
+	"picname":"自主采购方案",
 	"isLive":true,
 	"info":[
 	{
@@ -118,6 +119,7 @@
 			break;
 			case 3:
 				runBg(this)
+			setTimeout(function(){	$(".bottom").hide()},120)
 				document.getElementById('mianCont').innerHTML=doT.template(tmpl)(sourDate);
 			break;
 			
@@ -192,4 +194,8 @@
 		var nowData=$(this).parent().find("input[type='text']").prop("value");	
 		$(this).parent().find("input[type='text']").prop("value",parseInt(nowData)+1)
 		
+	});
+$("#mianCont").delegate(".noCheck","click",function(){
+		$(this).hide()
+		$(this).parent().find('.isCheck').css("display","block")
 	});

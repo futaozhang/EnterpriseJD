@@ -76,15 +76,16 @@ button:focus{
 	width: 60px;
 }
 .isLogoing a{
-	height: 30px;
+	height: 40px;
 	width: 40px;
+	font-size: 14px;
 	line-height: 15px;
 	border-radius: 5px;
 	background-color: #1dafec;
 	margin-bottom: 5px;
 	text-align: center;
-	padding: 10px 5px;
-	
+	padding: 15px 5px;
+	padding-bottom: 12px;
 	position: relative;
 	color: white;
 	cursor: pointer;	
@@ -227,9 +228,12 @@ button:focus{
 	color:  rgb(226, 58, 58);
 	
 }
+
+ 
  .leftHead .collection i{
- 	color:#5c504e;
- }
+	color: rgba(226,58,58) !important;	
+}
+
  .leftHead .collection i:hover{
 	color:  rgb(226, 58, 58);
 
@@ -508,7 +512,7 @@ margin-bottom: 300px;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	z-index: 2;
+	z-index: 9;
 	background-color: rgba(0,0,0,.9);
 	position: fixed;
 	left: 0;
@@ -1511,15 +1515,24 @@ padding: 20px;
 	background-color:#fff3c6;
 }
 #videos{
-	position: absolute;
+	position: fixed;
 	right: 0px;
 	bottom: 20px;
 	display: inline-block;
 }
 .c_collect{
 	color: rgba(226,58,58)!important;
+	
+}
+.f_opreat .changeRed{
+	display: none;
+	margin-top: 5px;
+	
 }
 
 .n_collect{
 		color: slategray;
+}
+ .leftHead .isCheck {
+display: none;
 }

@@ -24,7 +24,8 @@
 		<div>
 			<ul class="left">
 				<li><a href="index.html">首页</a>></li>
-				<li><a href="Purchase.html">采购筛选</a></li>
+				<li><a href="Purchase.html">采购筛选</a>></li>
+				<li><a href="Person.html">采购方案夹</a>></li>
 				<li><a href="Compared.html">采购方案对比</a></li>
 			</ul>
 			<ul class="right">
@@ -52,7 +53,7 @@
 			<div class="c_conte" >
 				
 				<div class="t_title">
-					<h4>采购方案一</h4>		
+					<h4>采购方案{{=it[i].id}}</h4>		
 				</div>	
 				<div class="t_price">
 					<div class="t_opreat">
@@ -62,8 +63,8 @@
 					
 					<div class="f_opreat">
 						<a href="" class="but_jd">加入购物车</a>
-						<!--<a href=""  ><i class="iconfont n_collect ">&#xe711;</i>收藏</a>-->
-						<a href=""  ><i class="iconfont c_collect ">&#xe663;</i>收藏</a>
+						<a href="javascript:;" class="changesky"><i class="iconfont n_collect ">&#xe711;</i>收藏</a>
+						<a href="javascript:;" class="changeRed"><i class="iconfont c_collect ">&#xe663;</i>收藏</a>
 					</div>
 					
 				</div>
@@ -107,7 +108,7 @@
 								
 								<td>
 									<div class="ui_opret">
-										<a href="">替换</a>
+										<a href="Purchase.html">替换</a>
 										<a href="">删除</a>
 									</div>
 								</td>
@@ -151,10 +152,10 @@
 		
 		<div class="isLogoing">
 			<a class="user"><i class="iconfont ">&#xe522;</i></a>
-			<a href="javascript:;" >收藏方案</button>
-			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>采购方案</a>
+			<a href="Person_1.html" >收藏方案</button>
+			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>自主采购方案</a>
 			<a href="javascript:;" data-src='2'><i class="tipsNum">3</i>采购方案</a>	
-			<a href="javascript:; "class="addProjiect"><i class="iconfont">&#xf018b;</i></a>
+			<a href="javascript:; "class="addProjiect" data-src='3'><i class="iconfont">&#xf018b;</i></a>
 		</div>
 		
 	</div>
@@ -169,9 +170,16 @@
 		
 		<div class="leftHead">
 			
-				<span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}</span>
-				<span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>
-			</div>
+				<span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}
+				<span class="changName">
+						<input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
+						<a href="">确定</a>
+					</span></span>
+			
+				<a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
+				<a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>
+			
+		</div>
 				
 			<div class="leftConte">
 						
@@ -235,7 +243,7 @@
 					<div class="text">
 					
 						<p><strong id="number">3</strong>件商品</p>
-						<p>共计: <strong id="price">￥8887631.00</strong></p>
+						<p>共计: <strong id="price">￥888731.01</strong></p>
 						
 					</div>
 					<a href="">加入购物车</a>
@@ -247,7 +255,7 @@
 				<ul>
 					<li><a>导出到本地</a></li>
 					<li><a>分享采购方案</a></li>
-					<li><a>对比采购方案</a></li>
+					<li><a href="Compared.html">对比采购方案</a></li>
 				</ul>
 			</div>
 		 	
@@ -267,5 +275,20 @@
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/compared.js" type="text/javascript" charset="utf-8"></script>
 
-
+<script type="text/javascript">
+	
+	$("#warp_content").delegate(".changesky","click",function(){
+		$(this).hide()
+		$(this).parent().find('.changeRed').css("display","block")
+	})
+	$("#warp_content").delegate(".changeRed","click",function(){
+		$(this).hide()
+		$(this).parent().find('.changesky').css("display","block")
+	})
+	$("#mianCont").delegate(".text .iconfont","click",function(){
+		$(".changName").show()
+	});
+	
+	
+</script>
 </html>

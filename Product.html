@@ -26,7 +26,7 @@
 		<div>
 			<ul class="left">
 				<li><a href="index.html">首页</a>></li>
-				<li><a href="Purchase.html">采购筛选</a></li>
+				<li><a href="Purchase.html">采购筛选</a>></li>
 				<li><a href="Compared.html">采购产品对比</a></li>
 			</ul>
 			<ul class="right">
@@ -74,7 +74,7 @@
 					<td>
 						<div class="pro_t">							
 						<div class="p_img">
-							<img src="img/addPro.png"/>
+							<a href="Purchase.html"><img src="img/addPro.png"/></a>
 						</div>
 						<p class="pro_text"></p>
 						<p class="slive"></p>
@@ -153,10 +153,10 @@
 		
 		<div class="isLogoing">
 			<a class="user"><i class="iconfont ">&#xe522;</i></a>
-			<a href="javascript:;" >收藏方案</button>
-			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>采购方案</a>
+			<a href="Person_1.html" >收藏方案</button>
+			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>自主采购方案</a>
 			<a href="javascript:;" data-src='2'><i class="tipsNum">3</i>采购方案</a>	
-			<a href="javascript:; "class="addProjiect"><i class="iconfont">&#xf018b;</i></a>
+			<a href="javascript:; "class="addProjiect" data-src='3'><i class="iconfont">&#xf018b;</i></a>
 		</div>
 		
 	</div>
@@ -171,8 +171,14 @@
 		
 		<div class="leftHead">
 			
-				<span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}</span>
-				<span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>
+				<span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}
+				<span class="changName">
+						<input type="text"  name="jd_3" id="jd_3" value="{{=it.picname}}" maxlength="6" placeholder="最多输入六位字符"/>
+						<a href="">确定</a>
+					</span></span>
+				<!--<span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>-->
+				<a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
+				<a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>
 			</div>
 				
 			<div class="leftConte">
@@ -237,7 +243,7 @@
 					<div class="text">
 					
 						<p><strong id="number">3</strong>件商品</p>
-						<p>共计: <strong id="price">￥8887631.00</strong></p>
+						<p>共计: <strong id="price">￥888761.01</strong></p>
 						
 					</div>
 					<a href="">加入购物车</a>
@@ -249,7 +255,7 @@
 				<ul>
 					<li><a>导出到本地</a></li>
 					<li><a>分享采购方案</a></li>
-					<li><a>对比采购方案</a></li>
+					<li><a href="Compared.html">对比采购方案</a></li>
 				</ul>
 			</div>
 		 	
@@ -269,6 +275,8 @@
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
-	
+	$("#mianCont").delegate(".text .iconfont","click",function(){
+		$(".changName").show()
+	});
 </script>
 </html>

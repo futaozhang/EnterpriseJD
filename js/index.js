@@ -39,7 +39,7 @@
 	
 	
 	//手风琴数据
-	 var j_run = document.getElementById('j_runBaner').innerHTML;
+	var j_run = document.getElementById('j_runBaner').innerHTML;
 	document.getElementById('mainList').innerHTML=doT.template(j_run)(runDate);
 	
 	

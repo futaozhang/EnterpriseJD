@@ -3,14 +3,14 @@
 
 var compandDate=[
 		{
-			"id":1,
+			"id":"一",
 			"info":[
 				{"id":11},
 				{"id":12}
 			]
 		},
 		{
-			"id":2,
+			"id":"二",
 			"info":[
 				{"id":21},
 				{"id":23},
@@ -18,7 +18,7 @@ var compandDate=[
 			]
 		},
 		{
-			"id":2,
+			"id":"三",
 			"info":[
 				{"id":21},
 				{"id":23},
