@@ -68,11 +68,11 @@
 						<input type="checkbox" name="p_{{=index}}" id="p_{{=index}}" value=""/><label for="p_{{=index}}">加入对比</label>
 						</span>
 						<span class="addSelect">
-						<input type="checkbox" name="t_{{=index}}" id="add_{{=index}}"  value=""/><label for="add_{{=index}}">加入购物方案</label>
+						<label for="add_{{=index}}">加入购物方案</label>
 							<div class="add_pri">
 							
 								<ul>								
-									<a href="Person.html"><li>采购方案一</li></a>
+									<!--<a href="Person.html"><li>采购方案一</li></a>-->
 									
 									<a href="Person.html"><li class="addPro">+</li></a>
 								</ul>
@@ -91,7 +91,7 @@
 			</script>
 		</ul>
 	
-	<div id="page" class="paging"></div>
+
 
 	</div>
 	
@@ -319,21 +319,11 @@
 </body>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/pru.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/page.js" type="text/javascript" charset="utf-8"></script>
- <script id="interpolationtmpl" type="text/x-dot-template">
-        <div></div>
-        <div>dot框架</div>
-    </script>
+ 
 
 <script type="text/javascript">
 	
-	//翻页
-	 $("#page").paging({
-            total:10000,//总页数
-            numberPage:10//展示页数可替代不用
-        }, function (msg) {//回调
-           alert(msg)
-        });
+	
 	var date= [
 	
 	{
