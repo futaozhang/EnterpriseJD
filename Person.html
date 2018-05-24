@@ -74,12 +74,19 @@
 					<p>企业专享价:</p>	
 					<p class="jdPrice">￥00.00</p>
 				</div>
+				<div class="addCollection">
+							<a href="javascript:;" class="c_isCheck"><i class="iconfont">&#xe711;</i>收藏</a>
+							<a href="javascript:;" class="c_noCheck"><i class="iconfont ">&#xe663;</i>收藏</a>
+					</div>
+				
 					<div class="right_but">
+						
 						<a href="">导出到本地</a>
 						<a href="Compared.html">对比采购方案</a>
 						<a href="">删除</a>
 						<a href="">分享</a>
 					</div>
+					
 				</div>
 				
 				<div id="personTable">
@@ -470,5 +477,46 @@
 	$("#mianCont").delegate(".text .iconfont","click",function(){
 		$(".changName").show()
 	});
+	
+	$(".c_isCheck").click(function(){
+		$(this).css("display",'none')
+		$(".c_noCheck").css("display",'block')
+	});
+	
+//	$("#jd_2").click(function(){
+//		$("#personTable tb_check input ")
+//	})
+		$("#jd_2").click(function(){
+
+		setTimeout(function(){
+			
+		if($("#jd_2").prop("checked")==true){
+			
+		$(".tb_check").find("input[type='checkbox']").prop("checked", true);	
+		}else{
+			
+		$(".tb_check").find("input[type='checkbox']").prop("checked", false);
+			
+		}
+	},4)
+	
+	});
+	
+	$(".tb_check input[type='checkbox']").click(function(){
+		
+			var checkbox=$(".tb_check input[type='checkbox']")
+			
+			$.each(checkbox, function(i,item) {
+				if($(item).prop("checked")==false){
+					
+				$("#jd_2").prop("checked", false)
+				
+				return false;
+					
+				}else{
+				$("#jd_2").prop("checked", true)
+				}
+			});
+		})
 </script>
 </html>

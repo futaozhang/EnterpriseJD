@@ -1304,6 +1304,7 @@ padding: 20px;
 	width: 100%;
 	background-color: #EEEEEE;
 	height:120px;
+	position: relative;
 }
 .rt_top .but_jd{
 	margin-top: 40px;
@@ -1336,7 +1337,7 @@ padding: 20px;
 }
 .right_but{
 	float: right;
-	margin-right: 20px;
+	margin-right: 10px;
 	margin-top: 75px;
 }
 .right_but a{
@@ -1367,6 +1368,9 @@ padding: 20px;
 	line-height: 30px;
 	background-color:#94c4e7;
 	color: white;
+}
+#personTable table thead th input{
+	margin-left: 10px;
 }
 #personTable table thead th{
 	border: none;
@@ -1499,7 +1503,6 @@ padding: 20px;
 #ProductTable table tr td{
 	border-bottom: 1px solid #d2d2d2;
 	border-right: 1px solid #d2d2d2;
-	
 	height: 30px;
 	
 }
@@ -1535,4 +1538,22 @@ padding: 20px;
 }
  .leftHead .isCheck {
 display: none;
+}
+.addCollection{
+position: absolute;
+right: 20px;
+top: 40px;
+}
+.addCollection a{
+	display: block;	
+	font-size: 14px;
+	color: rgb(226,58,58);
+}
+.addCollection a i{
+	font-size: 18px;
+	margin-right: 5px;
+	
+}
+.addCollection .c_noCheck{
+	display: none;
 }

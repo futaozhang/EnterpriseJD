@@ -400,5 +400,36 @@
 	$("#mianCont").delegate(".text .iconfont","click",function(){
 		$(".changName").show()
 	});
+		$("#jd_2").click(function(){
+
+		setTimeout(function(){
+			
+		if($("#jd_2").prop("checked")==true){
+			
+		$(".tb_check").find("input[type='checkbox']").prop("checked", true);	
+		}else{
+			
+		$(".tb_check").find("input[type='checkbox']").prop("checked", false);
+			
+		}
+	},4)
+	
+	});
+	$(".tb_check input[type='checkbox']").click(function(){
+		
+			var checkbox=$(".tb_check input[type='checkbox']")
+			
+			$.each(checkbox, function(i,item) {
+				if($(item).prop("checked")==false){
+					
+				$("#jd_2").prop("checked", false)
+				
+				return false;
+					
+				}else{
+				$("#jd_2").prop("checked", true)
+				}
+			});
+		})
 </script>
 </html>
