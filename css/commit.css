@@ -1106,7 +1106,7 @@ margin-top: 20px;
 	width: 90px;
 }
 .ul_num input{
-	width: 12px;
+	width: 16px;
 }
 .office{
 	background-color: #00aeef;
@@ -1140,7 +1140,7 @@ margin-top: 20px;
 }
  .t_conte .ul_price{
 	margin-top: 5px;
-	width: 70px;
+	width: 65px;
 }
 .ul_price span{
 	
@@ -1187,6 +1187,7 @@ border-collapse:collapse;
 }
 .ul_text span{
 font-size: 10px;
+height: 16px;
 text-align: left;
 display: inline-block;
 overflow: hidden;
@@ -1200,7 +1201,9 @@ overflow: hidden;
 .tipsRight img{
 	width: 25px;
 	
-	float: right;
+position: absolute;
+right: -5px;
+top: -3px;
 	margin-top: -20px;
 }
 
@@ -1528,7 +1531,7 @@ padding: 20px;
 	
 }
 .f_opreat .changeRed{
-	display: none;
+
 	margin-top: 5px;
 	
 }

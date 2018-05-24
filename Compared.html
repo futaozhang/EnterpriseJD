@@ -48,68 +48,89 @@
 		
 		<script type="text/template" id="k_tempelate">
         		
-		{{ for(var i=0, catlen=it.length; i<3; i++) { }}
+		{{ for(var i=0, catlen=it.length; i<catlen; i++) { }}
 			
 			<div class="c_conte" >
 				
 				<div class="t_title">
-					<h4>采购方案{{=it[i].id}}</h4>		
+					<h4>{{=it[i].name}}</h4>		
 				</div>	
 				<div class="t_price">
 					<div class="t_opreat">
-						<p class="slive">京东价：￥389525.00</p>
-						<p class="">企业专享价：<i class="jd_text">￥31500.00</i></p>
+						<p class="slive">京东价：￥{{=it[i].jdprice}}</p>
+						<p class="">企业专享价：<i class="jd_text">￥{{=it[i].eprice}}</i></p>
 					</div>
 					
 					<div class="f_opreat">
 						<a href="" class="but_jd">加入购物车</a>
+						{{? it[i].status==1 }}
 						<a href="javascript:;" class="changesky"><i class="iconfont n_collect ">&#xe711;</i>收藏</a>
+						
+					{{??}}
 						<a href="javascript:;" class="changeRed"><i class="iconfont c_collect ">&#xe663;</i>收藏</a>
-					</div>
+					{{?}}	
+				</div>
 					
 				</div>
 				<div class="t_conte ">
 					
 				<table >
 					    <tbody>
-					     {{~it[i]['info']:item:indexT}}
+					     {{~it[i]['goods_list']:item:indexT}}
 							<tr>
 								<td>
 									<div class="ul_left">
 										<img src="img/text.jpg"/>
-										<!--右侧-->
-										
+										<!--右侧-->				
 									</div>
 									
 								</td>
 								<td>
 									<div class="ul_text">
-											<span class="office">日常办公</span>
-											<span>拯救者R720</span>
-											<span>15.6英寸</span>
+										{{?item.sceneType=="日常办公"}}
+										<span class="office">日常办公</span>
+
+										{{??item.sceneType=="技术研发"}}
+										<span class="techology">技术研发</span>
+
+										{{??item.sceneType=="高层管理"}}
+										<span class="manager">高层管理</span>
+
+										{{??item.sceneType=="商务便携"}}
+										<span class="portadle">商务便携</span>
+										{{??}}
+										<span class="techology">技术研发</span>
+										{{?}}
+										<!--<span class="techology">技术研发</span>
+											<span class="portadle">商务便携</span>
+											<span class="manager">高层管理</span>
+											<span class="office">日常办公</span>-->
+											
+											<span>{{=item.name}}</span>
+											<span>{{=item.display}}</span>
 									</div>
 								</td>
 								<td>
 									<div class="ul_num">									
 										<label for="" class="iconfont reduce">&#xe656;</label>
-										<input type="text" name="" id="" value="1"/>
-										<label for="" class="iconfont add" >&#xe657;</label>	
+										<input type="text" name="" id="" value="{{=item.goodsnum}}"/>
+										<label for="" class="iconfont add">&#xe657;</label>	
 									</div>
 								</td>
 								
 								<td>
 									
 									<div class="ul_price">
-										<span>京东价:￥7799.00</span>
-										<span>企业专享价: <i class="jd_text">￥6399.00</i> </span>
+										<span>京东价:￥{{=item.jdprice}}</span>
+										<span>企业专享价: <i class="jd_text">￥{{=item.eprice}}</i> </span>
 									</div>
 									
 								</td>
 								
 								<td>
 									<div class="ui_opret">
-										<a href="Purchase.html">替换</a>
-										<a href="">删除</a>
+										<a href="index.html">替换</a>
+										<a href="javascript:;">删除</a>
 									</div>
 								</td>
 								<td>
@@ -273,18 +294,11 @@
 	</div>
 </body>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/compared.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/compared.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
 	
-	$("#warp_content").delegate(".changesky","click",function(){
-		$(this).hide()
-		$(this).parent().find('.changeRed').css("display","block")
-	})
-	$("#warp_content").delegate(".changeRed","click",function(){
-		$(this).hide()
-		$(this).parent().find('.changesky').css("display","block")
-	})
+
 	$("#mianCont").delegate(".text .iconfont","click",function(){
 		$(".changName").show()
 	});

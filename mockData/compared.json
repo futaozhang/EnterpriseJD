@@ -3,13 +3,17 @@
 		
 		"name":"采购方案一",
 		"status":2,
+		"jdprice":3455.00,
+		"eprice":2121.00,
 		"app_user_id":1,
 		"goods_list":[{
-		"		"jdprice":3455.00,
+				"jdprice":3455.00,
 				"name":"测试商品--笔记本1",
 				"eprice":2121.00,
 				"skuid":"199282828",
+				"imgsrc":"img/hot.png",
 				"goodsnum":2,
+				"sceneType":"日常办公",
 				"display":"15.6寸"
 
 			     },
@@ -18,7 +22,9 @@
 				"name":"测试商品--笔记本1",
 				"eprice":2221.00,
 				"skuid":"199282829",
+				"imgsrc":"",
 				"goodsnum":3,
+				"sceneType":"高层管理",
 				"display":"15.6寸"
 
 			     }]
@@ -26,7 +32,9 @@
 	{
 		
 		"name":"采购方案二",
-		"status":2,
+		"status":1,
+		"jdprice":3455.00,
+		"eprice":2121.00,
 		"app_user_id":1,
 		"goods_list":[{
 				"jdprice":3455.00,
@@ -34,6 +42,7 @@
 				"eprice":2121.00,
 				"skuid":"199282828",
 				"goodsnum":2,
+				"sceneType":"商务便携",
 				"display":"15.6寸"
 
 			     },
@@ -43,6 +52,7 @@
 				"eprice":2221.00,
 				"skuid":"199282829",
 				"goodsnum":3,
+				"sceneType":"技术研发",
 				"display":"15.6寸"
 
 			     }]
