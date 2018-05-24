@@ -19,3 +19,14 @@ $("#content_warp").delegate(".addCompared input","change",function(){
 	$(".contrast").show()
 	
 })
+
+// 数据渲染
+var j_warp = document.getElementById('j_warp').innerHTML;
+
+$.getJSON("./../mockData/purchase.json",function(item){
+	
+	document.getElementById('content_warp').innerHTML=doT.template(j_warp)(item);
+
+});
+ 
+

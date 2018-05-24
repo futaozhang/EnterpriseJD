@@ -40,25 +40,28 @@
 			<li>
 				<div class="warp">
 					<div class="warp_right">
-						<i><img src="img/hot.png"/></i>
+						<!-- 右上角图片 -->
+						{{?value.imgsrc!=''}}
+						<i><img src="{{=value.imgsrc}}"/></i>
+						{{?}}
 					</div>
-					<div class="warp_img"><img src="{{=value.pic_img}}"/></div>
+					<div class="warp_img"><img src="img/text.jpg"/></div>
 					<div class="warp_Price">
-						<h5>京东价：￥{{=value.pic_jdPrice}}</h5>
-						<h4>企业专享价：￥{{=value.pic_userPrice}}</h4>
+						<h5>京东价：￥{{=value.jdprice}}</h5>
+						<h4>企业专享价：￥{{=value.eprice}}</h4>
 						
 					</div>
 					
 					<div class="warp_t">
-						<p class="warp_title">{{=value.pic_title}}</p>
-						<p class="warp_ft">{{=value.pic_tips}}</p>
+						<p class="warp_title">{{=value.name}}</p>
+						<p class="warp_ft">{{=value.brandName}}</p>
 					</div>
 					<div class="warp_eva">
-						<p>已有<i>{{=value.pic_eva}}</i>人评价</p>
+						<p>已有<i>{{=value.commentcount}}</i>人评价</p>
 					</div>
 					<div class="warp_label">
 						
-					{{?value.Pic_text}}	
+					{{?value.isself}}	
 						<i>自营</i>						
 					{{?}}
 					
@@ -324,223 +327,7 @@
 <script type="text/javascript">
 	
 	
-	var date= [
-	
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":false,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":false,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	},
-	{
-		"pic_title":"Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显 ",
-		"pic_jdPrice":"5220.00",
-		"pic_userPrice":"4900.00",
-		"pic_img":"img/text.jpg",
-		"pic_tips":"入门级常青款！轻松体验Mac OS的高效与简洁，满足一天工作需要！更多Apple产品推荐",
-		"Pic_text":true,
-		"pic_eva":"13万+"
-		
-	}
-	
-	]
-//		var j_warp = document.getElementById('j_warp').innerHTML;
-//		$.getJSON("date/purdata.json",function(item,state,i){
-//			
-//		if(state=='success'){
-//
-//		document.getElementById('content_warp').innerHTML=doT.template(j_warp)(item);
-//			
-//		}else{
-//		  alert(数据出错)	
-//		}
-//	});
-var j_warp = document.getElementById('j_warp').innerHTML;
-document.getElementById('content_warp').innerHTML=doT.template(j_warp)(date);
+
 	
 	$("#mianCont").delegate(".text .iconfont","click",function(){
 		$(".changName").show()
