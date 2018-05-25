@@ -1,285 +1,277 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<meta name="renderer" content="webkit" />
-	<meta name="Keywords" content="JD"/>
-	
-	<title>京东-中小企业采购工具</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="renderer" content="webkit" />
+    <meta name="Keywords" content="JD" />
+
+    <title>京东-中小企业采购工具</title>
 </head>
 
-<link rel="stylesheet" type="text/css" href="css/commit.css"/>
-<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
-<link rel="stylesheet" type="text/css" href="css/video-js.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/commit.css" />
+<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="css/video-js.min.css" />
 
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/video.min.js" type="text/javascript" charset="utf-8"></script>
 
- <!--[if lt IE 9]>
+<!--[if lt IE 9]>
        <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>  
        <script src="js/videojs-ie8.min.js" type="text/javascript" charset="utf-8"></script>
        <script src="https://cdn.bootcss.com/html5media/1.1.8/html5media.js" type="text/javascript" charset="utf-8"></script>
 
     <![endif]-->
-    
+
 <body id="index">
-	<!--header-->
-	<div class="head">
-		<span><img src="img/jdLogo.png"/></span>
-		<span><img src="img/intelLogo.png"/></span>
-		<h1>为他们选购办公电脑？</h1>
-		<h5>精准定位采购需求，助您更快更好的确定采购，降低采购成本...</h5>
-	</div>
-	
-	<!--content-->
-	<div class="content">
-		
-		 <div class="pic ">
-        <ul id="mainList">
-        	
-        	<script type="text/template" id="j_runBaner">
-        		
-        	   {{ for (var i = 0, l = it.length; i < l; i++) {}}
-        	   	
-		            <li class="picContent" style="background-image: url({{=it[i].run_img}});">      
-		             
-		               <a href="javascript:;" >
-		                    <div class="txt">                  	
-		                        <p class="p1"> {{=it[i].run_title}}<i>{{=it[i].run_Entitle}}</i>
-		                        	<i class=" iconfont">{{=it[i].run_icon}}</i>
-		                        </p>
-		                    </div>
-		                  <a href="javascript:;" class="selcetor"><i>选购 ></i></a>
-		                </a>              
-		          
-		            </li>
-           	  {{ } }}
-            </script>
-  		
-           
-        </ul>
-        
+    <!--header-->
+    <div class="head">
+        <span><img src="img/jdLogo.png"/></span>
+        <span><img src="img/intelLogo.png"/></span>
+        <h1>为他们选购办公电脑？</h1>
+        <h5>精准定位采购需求，助您更快更好的确定采购，降低采购成本...</h5>
     </div>
-	
-	</div>
-	
-	<!--菜单区域-->	
-	<div class="leftSelct">
-		<i class="bg"></i>
-		
-		<div class="noLogoing">
-			<p>京东企业会员登陆更优惠！</p>			
-		</div>
-		
-		<div class="isLogoing">
-			<a class="user"><i class="iconfont ">&#xe522;</i></a>
-			<!--<a href="javascript:;" >收藏方案</button>
+
+    <!--content-->
+    <div class="content">
+
+        <div class="pic ">
+            <ul id="mainList">
+
+                <script type="text/template" id="j_runBaner">
+
+                    {{ for (var i = 0, l = it.length; i
+                    < l; i++) {}} <li class="picContent" style="background-image: url({{=it[i].run_img}});">
+
+                        <a href="javascript:;">
+                            <div class="txt">
+                                <p class="p1"> {{=it[i].run_title}}<i>{{=it[i].run_Entitle}}</i>
+                                    <i class=" iconfont">{{=it[i].run_icon}}</i>
+                                </p>
+                            </div>
+                            <a href="javascript:;" class="selcetor"><i>选购 ></i></a>
+                        </a>
+
+                        </li>
+                        {{ } }}
+                </script>
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!--菜单区域-->
+    <div class="leftSelct">
+        <i class="bg"></i>
+
+        <div class="noLogoing">
+            <p>京东企业会员登陆更优惠！</p>
+        </div>
+
+        <div class="isLogoing">
+            <a class="user"><i class="iconfont ">&#xe522;</i></a>
+            <!--<a href="javascript:;" >收藏方案</button>
 			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>采购方案</a>
 			<a href="javascript:;" data-src='2'><i class="tipsNum">3</i>采购方案</a>	
 			<a href="javascript:; "class="addProjiect"><i class="iconfont">&#xf018b;</i></a>-->
-		</div>
-		
-	</div>
-	
-	<!--leftProjiect-->
-	<div class="leftProjiect" >
-			
-		<!--内容区域-->
-		<div class="leftContent" id="mianCont">
-			
-		<script type="text/x-dot-template" id="j_tmpl">
-		
-		<div class="leftHead">
-			
-				<span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}</span>
-				<span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>
-			</div>
-				
-			<div class="leftConte">
-						
-				<div class="l_top">
-					<input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-					<button>删除</button>
-				</div>
-				<!-----------------数据列表----------->
-			<div class="contents">
-				
-				<ul id="leftDate">
-								   
-				 {{~it.info:value:index}}
-					{{?value!=null}}
-					<li>
-						<div class="checkBox">
-						<input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
-						</div>	
-							<label for="{{=index}}">
-								<div class="imgResponse">
-									<img src="{{=value.pic_img}}"/>
-								</div>
-								
-								<div class="information">
-									<p class="title">{{=value.pic_title}} </p>
-									<p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
-									<p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
-								</div>
-								
-								<div class="input_num">									
-									<label for="" class="iconfont reduce">&#xe641;</label>
-									<input type="text" name="" id="" value="{{=value.pic_value}}"/>
-									<label for="" class="iconfont add" onclick="">&#xe655;</label>
-									
-								</div>
-								
-								<button>删除</button>
-							</label>	
-							
-					</li>
-					  {{~}}
-					  
-				
-            	{{??}}
-            		<li > 
-               			<div class="information">
-							<h3>空空如也</h3>
-						</div>
-            		</li>
-      		{{?}}
-      		 
-			</ul>
-		
-				</div>
-						
-	
-			
-			</div>
-			<div class="bottom Jd_footer">
-					<div class="text">
-					
-						<p><strong id="number">3</strong>件商品</p>
-						<p>共计: <strong id="price">￥8887631.00</strong></p>
-						
-					</div>
-					<a href="">加入购物车</a>
-			</div>
-					
-			<div class="leftfooter Jd_footer">
-				<ul>
-					<li><a>导出到本地</a></li>
-					<li><a>分享采购方案</a></li>
-					<li><a href="Compared.html">对比采购方案</a></li>
-				</ul>
-			</div>
-		 	
-			
-	</script>
-		</div>
-				
-	</div>
-	
-		
-	<!--弹出框-->
-	<div class="alertBox">
-		<div class="alertContent">
-			
-			<div class="alertHead">
-				<h3>高层管理-采购标准筛选</h3>
-				<i class="iconfont" onclick="$('.alertBox').hide()">&#xe635;</i>
-			</div>
-			
-			<div class="alertBody">
-				<div class="alert_t">
-					<span>选购机型<i>*</i></span>
-					<input type="checkbox" name="noType" id="alert_1" value=""/><label for="alert_1">台式机(含一体机)</label>
-					<input type="checkbox" name="noType" id="alert_2" value=""/><label for="alert_2">笔记本电脑</label>
-				</div>
-				<div class="alert_t">
-					<span>单台预算<i>*</i></span>
-					<input type="checkbox" name="" id="alert_3" value=""/><label for="alert_3">3000元-5000yuan</label>
-					<input type="checkbox" name="" id="alert_4" value=""/><label for="alert_4">7000元以上</label>
-				</div>
-				<div class="alert_w">
-					<span>选择品牌</span>
-					<div class="alert_ws">
-						<i>笔记本</i>
-						<div id="alert_img_h">
-						<script type="text/template" id="alert_h">	
-							{{?it.length >7}}
-							<ul  class="over_a" >
-							{{??}}
-							<ul  >
-							{{?}}
-								{{ for (var i = 0, l = it.length; i < l; i++) {}}
-								<li><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png"/> </li>
-							 
-							 {{ } }}
-							
-							</ul>	
-							
-								
-							</script>
-						</div>
-					</div>
-					
-					<div class="alert_hs">
-						<i>台式机</i>
-						<div id="alert_img_hs">
-						<script type="text/template" id="alert_hs">	
-							{{?it.length >7}}
-							<ul  class="over_b" >
-							{{??}}
-							<ul  >
-							{{?}}
-								{{ for (var i = 0, l = it.length; i < l; i++) {}}
-								<li class="checkActive"><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png"/> </li>
-							 
-							 {{ } }}
-							
-							</ul>	
-							
-								
-							</script>
-							
-						</div>
-					</div>
-					
-				</div>
-				<div class="alert_t">
-					<span>计算能力<i>*</i></span>
-					<input type="checkbox" name="" id="alert_5" value=""/><label for="alert_5">快速图形处理(i5)</label>
-					<input type="checkbox" name="" id="alert_6" value=""/><label for="alert_6">强力显示+独显处理(i7)</label>
-				</div>
-			
-			</div>
-		
-			<div class="alertFoot">
-				<a href="">重制</a>
-				<a href="Purchase.html">提交</a>
-			</div>
-		
-		</div>
-			
-		
-		
-		
-		
-	</div>
-	<div id="videos">
-		<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered"
-		preload="auto" controls
-		width="300" height="160" align="middle" poster="img/Player.png"
-		data-setup='{"techOrder": ["html5", "flash", "other supported tech"]}'>
+        </div>
+
+    </div>
+
+    <!--leftProjiect-->
+    <div class="leftProjiect">
+
+        <!--内容区域-->
+        <div class="leftContent" id="mianCont">
+
+
+        </div>
+
+    </div>
+
+
+    <!--弹出框-->
+    <div class="alertBox">
+        <div class="alertContent">
+
+            <div class="alertHead">
+                <h3>高层管理-采购标准筛选</h3>
+                <i class="iconfont" onclick="$('.alertBox').hide()">&#xe635;</i>
+            </div>
+
+            <div class="alertBody">
+                <div class="alert_t">
+                    <span>选购机型<i>*</i></span>
+                    <input type="checkbox" name="noType" id="alert_1" value="" /><label for="alert_1">台式机(含一体机)</label>
+                    <input type="checkbox" name="noType" id="alert_2" value="" /><label for="alert_2">笔记本电脑</label>
+                </div>
+                <div class="alert_t">
+                    <span>单台预算<i>*</i></span>
+                    <input type="checkbox" name="" id="alert_3" value="" /><label for="alert_3">3000元-5000yuan</label>
+                    <input type="checkbox" name="" id="alert_4" value="" /><label for="alert_4">7000元以上</label>
+                </div>
+                <div class="alert_w">
+                    <span>选择品牌</span>
+                    <div class="alert_ws">
+                        <i>笔记本</i>
+                        <div id="alert_img_h">
+                            <script type="text/template" id="alert_h">
+                                {{?it.length >7}}
+                                <ul class="over_a">
+                                    {{??}}
+                                    <ul>
+                                        {{?}} {{ for (var i = 0, l = it.length; i
+                                        < l; i++) {}} <li><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
+
+                                            {{ } }}
+
+                                    </ul>
+
+
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="alert_hs">
+                        <i>台式机</i>
+                        <div id="alert_img_hs">
+                            <script type="text/template" id="alert_hs">
+                                {{?it.length >7}}
+                                <ul class="over_b">
+                                    {{??}}
+                                    <ul>
+                                        {{?}} {{ for (var i = 0, l = it.length; i
+                                        < l; i++) {}} <li class="checkActive"><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
+
+                                            {{ } }}
+
+                                    </ul>
+
+
+                            </script>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="alert_t">
+                    <span>计算能力<i>*</i></span>
+                    <input type="checkbox" name="" id="alert_5" value="" /><label for="alert_5">快速图形处理(i5)</label>
+                    <input type="checkbox" name="" id="alert_6" value="" /><label for="alert_6">强力显示+独显处理(i7)</label>
+                </div>
+
+            </div>
+
+            <div class="alertFoot">
+                <a href="">重制</a>
+                <a href="Purchase.html">提交</a>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+    <div id="videos">
+        <video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="300" height="160" align="middle" poster="img/Player.png" data-setup='{"techOrder": ["html5", "flash", "other supported tech"]}'>
 		<source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/>
 
 </video>
-	</div>
+    </div>
 </body>
+<script type="text/x-dot-template" id="j_tmpl">
+
+    <div class="leftHead">
+
+        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}</span>
+        <span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>
+    </div>
+
+    <div class="leftConte">
+
+        <div class="l_top">
+            <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
+            <button>删除</button>
+        </div>
+        <!-----------------数据列表----------->
+        <div class="contents">
+
+            <ul id="leftDate">
+
+                {{~it.info:value:index}} {{?value!=null}}
+                <li>
+                    <div class="checkBox">
+                        <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
+                    </div>
+                    <label for="{{=index}}">
+							<div class="imgResponse">
+								<img src="{{=value.pic_img}}"/>
+							</div>
+							
+							<div class="information">
+								<p class="title">{{=value.pic_title}} </p>
+								<p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
+								<p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
+							</div>
+							
+							<div class="input_num">									
+								<label for="" class="iconfont reduce">&#xe641;</label>
+                    <input type="text" name="" id="" value="{{=value.pic_value}}" />
+                    <label for="" class="iconfont add" onclick="">&#xe655;</label>
+
+        </div>
+
+        <button>删除</button>
+        </label>
+
+        </li>
+        {{~}} {{??}}
+        <li>
+            <div class="information">
+                <h3>空空如也</h3>
+            </div>
+        </li>
+        {{?}}
+
+        </ul>
+
+    </div>
+
+
+
+    </div>
+    <div class="bottom Jd_footer">
+        <div class="text">
+
+            <p><strong id="number">3</strong>件商品</p>
+            <p>共计: <strong id="price">￥8887631.00</strong></p>
+
+        </div>
+        <a href="">加入购物车</a>
+    </div>
+
+    <div class="leftfooter Jd_footer">
+        <ul>
+            <li><a>导出到本地</a></li>
+            <li><a>分享采购方案</a></li>
+            <li><a href="Compared.html">对比采购方案</a></li>
+        </ul>
+    </div>
+
+
+</script>
 
 <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	
 </script>
+
 </html>

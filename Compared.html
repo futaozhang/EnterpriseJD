@@ -1,310 +1,294 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<meta name="renderer" content="webkit" />
-	<meta name="Keywords" content="JD"/>
-	<title>京东-中小企业采购工具</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="renderer" content="webkit" />
+    <meta name="Keywords" content="JD" />
+    <title>京东-中小企业采购工具</title>
 </head>
-	 
-<link rel="stylesheet" type="text/css" href="css/commit.css"/>
-<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+
+<link rel="stylesheet" type="text/css" href="css/commit.css" />
+<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
- <!--[if lt IE 9]>
+<!--[if lt IE 9]>
        <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>  
     <![endif]-->
+
 <body id="Compared">
-	<!--header-->
-	<div class="w_head"></div>
-	
-	<div class="w_nav">
-		<div>
-			<ul class="left">
-				<li><a href="index.html">首页</a>></li>
-				<li><a href="Purchase.html">采购筛选</a>></li>
-				<li><a href="Person.html">采购方案夹</a>></li>
-				<li><a href="Compared.html">采购方案对比</a></li>
-			</ul>
-			<ul class="right">
-				<li><a href="Purchase.html">< 返回上一级</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<!--content-->
-	
-	<div class="content"  >
-		
-			<div class="t_contes">
-				<a href="">导出到本地</a>
-				<a href="">分享采购方案</a>
-				<a href="" class="but_active">对比采购方案</a>
-			</div>
-			
-		<div class="w clearfix" id="warp_content" >	
-		
-		<script type="text/template" id="k_tempelate">
-        		
-		{{ for(var i=0, catlen=it.length; i<catlen; i++) { }}
-			
-			<div class="c_conte" >
-				
-				<div class="t_title">
-					<h4>{{=it[i].name}}</h4>		
-				</div>	
-				<div class="t_price">
-					<div class="t_opreat">
-						<p class="slive">京东价：￥{{=it[i].jdprice}}</p>
-						<p class="">企业专享价：<i class="jd_text">￥{{=it[i].eprice}}</i></p>
-					</div>
-					
-					<div class="f_opreat">
-						<a href="" class="but_jd">加入购物车</a>
-						{{? it[i].status==1 }}
-						<a href="javascript:;" class="changesky"><i class="iconfont n_collect ">&#xe711;</i>收藏</a>
-						
-					{{??}}
-						<a href="javascript:;" class="changeRed"><i class="iconfont c_collect ">&#xe663;</i>收藏</a>
-					{{?}}	
-				</div>
-					
-				</div>
-				<div class="t_conte ">
-					
-				<table >
-					    <tbody>
-					     {{~it[i]['goods_list']:item:indexT}}
-							<tr>
-								<td>
-									<div class="ul_left">
-										<img src="img/text.jpg"/>
-										<!--右侧-->				
-									</div>
-									
-								</td>
-								<td>
-									<div class="ul_text">
-										{{?item.sceneType=="日常办公"}}
-										<span class="office">日常办公</span>
+    <!--header-->
+    <div class="w_head"></div>
 
-										{{??item.sceneType=="技术研发"}}
-										<span class="techology">技术研发</span>
+    <div class="w_nav">
+        <div>
+            <ul class="left">
+                <li><a href="index.html">首页</a>></li>
+                <li><a href="Purchase.html">采购筛选</a>></li>
+                <li><a href="Person.html">采购方案夹</a>></li>
+                <li><a href="Compared.html">采购方案对比</a></li>
+            </ul>
+            <ul class="right">
+                <li>
+                    <a href="Purchase.html">
+                        < 返回上一级</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-										{{??item.sceneType=="高层管理"}}
-										<span class="manager">高层管理</span>
+    <!--content-->
 
-										{{??item.sceneType=="商务便携"}}
-										<span class="portadle">商务便携</span>
-										{{??}}
-										<span class="techology">技术研发</span>
-										{{?}}
-										<!--<span class="techology">技术研发</span>
+    <div class="content">
+
+        <div class="t_contes">
+            <a href="">导出到本地</a>
+            <a href="">分享采购方案</a>
+            <a href="" class="but_active">对比采购方案</a>
+        </div>
+
+        <div class="w clearfix" id="warp_content">
+
+            <script type="text/template" id="k_tempelate">
+
+                {{ for(var i=0, catlen=it.length; i
+                <catlen; i++) { }} <div class="c_conte">
+
+                    <div class="t_title">
+                        <h4>{{=it[i].name}}</h4>
+                    </div>
+                    <div class="t_price">
+                        <div class="t_opreat">
+                            <p class="slive">京东价：￥{{=it[i].jdprice}}</p>
+                            <p class="">企业专享价：<i class="jd_text">￥{{=it[i].eprice}}</i></p>
+                        </div>
+
+                        <div class="f_opreat">
+                            <a href="" class="but_jd">加入购物车</a> {{? it[i].status==1 }}
+                            <a href="javascript:;" class="changesky"><i class="iconfont n_collect ">&#xe711;</i>收藏</a> {{??}}
+                            <a href="javascript:;" class="changeRed"><i class="iconfont c_collect ">&#xe663;</i>收藏</a> {{?}}
+                        </div>
+
+                    </div>
+                    <div class="t_conte ">
+
+                        <table>
+                            <tbody>
+                                {{~it[i]['goods_list']:item:indexT}}
+                                <tr>
+                                    <td>
+                                        <div class="ul_left">
+                                            <img src="img/text.jpg" />
+                                            <!--右侧-->
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="ul_text">
+                                            {{?item.sceneType=="日常办公"}}
+                                            <span class="office">日常办公</span> {{??item.sceneType=="技术研发"}}
+                                            <span class="techology">技术研发</span> {{??item.sceneType=="高层管理"}}
+                                            <span class="manager">高层管理</span> {{??item.sceneType=="商务便携"}}
+                                            <span class="portadle">商务便携</span> {{??}}
+                                            <span class="techology">技术研发</span> {{?}}
+                                            <!--<span class="techology">技术研发</span>
 											<span class="portadle">商务便携</span>
 											<span class="manager">高层管理</span>
 											<span class="office">日常办公</span>-->
-											
-											<span>{{=item.name}}</span>
-											<span>{{=item.display}}</span>
-									</div>
-								</td>
-								<td>
-									<div class="ul_num">									
-										<label for="" class="iconfont reduce">&#xe656;</label>
-										<input type="text" name="" id="" value="{{=item.goodsnum}}"/>
-										<label for="" class="iconfont add">&#xe657;</label>	
-									</div>
-								</td>
-								
-								<td>
-									
-									<div class="ul_price">
-										<span>京东价:￥{{=item.jdprice}}</span>
-										<span>企业专享价: <i class="jd_text">￥{{=item.eprice}}</i> </span>
-									</div>
-									
-								</td>
-								
-								<td>
-									<div class="ui_opret">
-										<a href="index.html">替换</a>
-										<a href="javascript:;">删除</a>
-									</div>
-								</td>
-								<td>
-									<i class="tipsRight">
+
+                                            <span>{{=item.name}}</span>
+                                            <span>{{=item.display}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="ul_num">
+                                            <label for="" class="iconfont reduce">&#xe656;</label>
+                                            <input type="text" name="" id="" value="{{=item.goodsnum}}" />
+                                            <label for="" class="iconfont add">&#xe657;</label>
+                                        </div>
+                                    </td>
+
+                                    <td>
+
+                                        <div class="ul_price">
+                                            <span>京东价:￥{{=item.jdprice}}</span>
+                                            <span>企业专享价: <i class="jd_text">￥{{=item.eprice}}</i> </span>
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+                                        <div class="ui_opret">
+                                            <a href="index.html">替换</a>
+                                            <a href="javascript:;">删除</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <i class="tipsRight">
 										<img src="img/hot.png"/>
 										</i>
-								</td>
-								
-							</tr>
-						
-						{{~}}
-						</tbody>
-					</table>
-					
-				</div>
-		
-			</div>	
-			
-		 {{ } }}
-			
-	
-			
-		</script>
-				
-			
-	
-		</div>
-		
-	
-	</div>
-	
-	
-	<!--菜单区域-->	
-	<div class="leftSelct">
-		<i class="bg"></i>
-		
-		<!--<div class="noLogoing">
+                                    </td>
+
+                                </tr>
+
+                                {{~}}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+        </div>
+
+        {{ } }}
+
+
+
+        </script>
+
+
+
+    </div>
+
+
+    </div>
+
+
+    <!--菜单区域-->
+    <div class="leftSelct">
+        <i class="bg"></i>
+
+        <!--<div class="noLogoing">
 			<p>京东企业会员登陆更优惠！</p>			
 		</div>-->
-		
-		<div class="isLogoing">
-			<a class="user"><i class="iconfont ">&#xe522;</i></a>
-			<a href="Person_1.html" >收藏方案</button>
-			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>自主采购方案</a>
-			<a href="javascript:;" data-src='2'><i class="tipsNum">3</i>采购方案</a>	
-			<a href="javascript:; "class="addProjiect" data-src='3'><i class="iconfont">&#xf018b;</i></a>
-		</div>
-		
-	</div>
-	
-	<!--leftProjiect-->
-	<div class="leftProjiect" >
-			
-		<!--内容区域-->
-		<div class="leftContent" id="mianCont">
-			
-		<script type="text/x-dot-template" id="j_tmpl">
-		
-		<div class="leftHead">
-			
-				<span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}
-				<span class="changName">
-						<input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
-						<a href="">确定</a>
-					</span></span>
-			
-				<a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
-				<a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>
-			
-		</div>
-				
-			<div class="leftConte">
-						
-				<div class="l_top">
-					<input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-					<button>删除</button>
-				</div>
-				<!-----------------数据列表----------->
-			<div class="contents">
-				
-				<ul id="leftDate">
-					
-				
-			
-				   
-				 {{~it.info:value:index}}
-					{{?index>0}}
-					<li>
-						<div class="checkBox">
-						<input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
-						</div>	
-							<label for="{{=index}}">
-								<div class="imgResponse">
-									<img src="{{=value.pic_img}}"/>
-								</div>
-								
-								<div class="information">
-									<p class="title">{{=value.pic_title}} </p>
-									<p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
-									<p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
-								</div>
-								
-								<div class="input_num">									
-									<label for="" class="iconfont reduce">&#xe641;</label>
-									<input type="text" name="" id="" value="{{=value.pic_value}}"/>
-									<label for="" class="iconfont add" onclick="">&#xe655;</label>
-									
-								</div>
-								
-								<button>删除</button>
-							</label>	
-							
-					</li>
-					  {{~}}
-					  
-				
-            	{{??}}
-            		<li > 
-               			<div class="information">
-							<h3>暂无数据....</h3>
-						</div>
-            		</li>
-      		{{?}}
-      		 
-			</ul>
-		
-				</div>
-						
-	
-				<div class="bottom Jd_footer">
-					<div class="text">
-					
-						<p><strong id="number">3</strong>件商品</p>
-						<p>共计: <strong id="price">￥888731.01</strong></p>
-						
-					</div>
-					<a href="">加入购物车</a>
-				</div>
-				
-			</div>
-					
-			<div class="leftfooter Jd_footer">
-				<ul>
-					<li><a>导出到本地</a></li>
-					<li><a>分享采购方案</a></li>
-					<li><a href="Compared.html">对比采购方案</a></li>
-				</ul>
-			</div>
-		 	
-			
-	</script>
-		</div>
-				
-	</div>
-	
-	
-		
-	<!--底部-->
-	<div id="foote">
-		<h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>	
-	</div>
+
+        <div class="isLogoing">
+            <a class="user"><i class="iconfont ">&#xe522;</i></a>
+            <a href="Person_1.html">收藏方案</a>
+            <a href="javascript:;" data-src="1"><i class="tipsNum">3</i>自主采购方案</a>
+            <a href="javascript:;" data-src="2"><i class="tipsNum">3</i>采购方案</a>
+            <a href="javascript:; " class="addProjiect" data-src="3"><i class="iconfont">&#xf018b;</i></a>
+        </div>
+
+    </div>
+
+    <!--leftProjiect-->
+    <div class="leftProjiect">
+
+        <!--内容区域-->
+        <div class="leftContent" id="mianCont">
+
+
+        </div>
+
+    </div>
+
+
+
+    <!--底部-->
+    <div id="foote">
+        <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
+    </div>
 </body>
+<script type="text/x-dot-template" id="j_tmpl">
+
+    <div class="leftHead">
+
+        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}
+    <span class="changName">
+            <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
+            <a href="">确定</a>
+        </span></span>
+
+        <a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
+        <a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>
+
+    </div>
+
+    <div class="leftConte">
+
+        <div class="l_top">
+            <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
+            <button>删除</button>
+        </div>
+        <!-----------------数据列表----------->
+        <div class="contents">
+
+            <ul id="leftDate">
+
+
+
+
+                {{~it.info:value:index}} {{?index>0}}
+                <li>
+                    <div class="checkBox">
+                        <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
+                    </div>
+                    <label for="{{=index}}">
+                    <div class="imgResponse">
+                        <img src="{{=value.pic_img}}"/>
+                    </div>
+                    
+                    <div class="information">
+                        <p class="title">{{=value.pic_title}} </p>
+                        <p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
+                        <p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
+                    </div>
+                    
+                    <div class="input_num">									
+                        <label for="" class="iconfont reduce">&#xe641;</label>
+                    <input type="text" name="" id="" value="{{=value.pic_value}}" />
+                    <label for="" class="iconfont add" onclick="">&#xe655;</label>
+
+        </div>
+
+        <button>删除</button>
+        </label>
+
+        </li>
+        {{~}} {{??}}
+        <li>
+            <div class="information">
+                <h3>暂无数据....</h3>
+            </div>
+        </li>
+        {{?}}
+
+        </ul>
+
+    </div>
+
+
+    <div class="bottom Jd_footer">
+        <div class="text">
+
+            <p><strong id="number">3</strong>件商品</p>
+            <p>共计: <strong id="price">￥888731.01</strong></p>
+
+        </div>
+        <a href="">加入购物车</a>
+    </div>
+
+    </div>
+
+    <div class="leftfooter Jd_footer">
+        <ul>
+            <li><a>导出到本地</a></li>
+            <li><a>分享采购方案</a></li>
+            <li><a href="Compared.html">对比采购方案</a></li>
+        </ul>
+    </div>
+
+
+</script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/compared.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
-	
-
-	$("#mianCont").delegate(".text .iconfont","click",function(){
-		$(".changName").show()
-	});
-	
-	
-	
-	
+    $("#mianCont").delegate(".text .iconfont", "click", function() {
+        $(".changName").show()
+    });
 </script>
+
 </html>
