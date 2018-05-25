@@ -270,31 +270,35 @@
 
 
 
-    <!--菜单区域-->
-    <div class="leftSelct">
-        <i class="bg"></i>
+    <div id="leftsider">
+        <!--菜单区域-->
+        <div class="leftSelct" id="left_w">
 
-        <!--<div class="noLogoing">
-			<p>京东企业会员登陆更优惠！</p>			
-		</div>-->
+            <script type="text/x-dot-template" id="leftTmp" charset="utf-8">
+                <i class="bg"></i> {{? !it.isloading}}
+                <div class="noLogoing">
+                    <p>京东企业会员登陆更优惠！</p>
+                </div>
+                {{??}}
+                <div class="isLogoing ">
 
-        <div class="isLogoing">
-            <a class="user"><i class="iconfont ">&#xe522;</i></a>
-            <a href="Person_1.html">收藏方案</button>
-			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>自主采购方案</a>
-            <a href="javascript:;" data-src='2'><i class="tipsNum">3</i>采购方案</a>
-            <a href="javascript:; " class="addProjiect" data-src='3'><i class="iconfont">&#xf018b;</i></a>
+                    <a class="user"><i class="iconfont ">&#xe522;</i></a>
+                    <a href="Person_1.html ">收藏方案</a> {{~it.list:item:index}}
+                    <a href="javascript:; " data-src="{{=index}} ">
+                        <i class="tipsNum">{{=item.content_list}}</i>{{=item.typeName}}</a> {{~}} {{?index
+                    <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+                </div>
+                {{?}}
+            </script>
+
         </div>
 
-    </div>
+        <!--leftProjiect-->
+        <div class="leftProjiect ">
+            <!--内容区域-->
+            <div class="leftContent " id="mianCont">
 
-    <!--leftProjiect-->
-    <div class="leftProjiect">
-
-        <!--内容区域-->
-        <div class="leftContent" id="mianCont">
-
-
+            </div>
         </div>
 
     </div>
@@ -337,7 +341,7 @@
                 {{~it.info:value:index}} {{?index>0}}
                 <li>
                     <div class="checkBox">
-                        <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
+                        <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" data-price="{{=value.pic_userPrice}}" />
                     </div>
                     <label for="{{=index}}">
                     <div class="imgResponse">
@@ -377,8 +381,8 @@
     <div class="bottom Jd_footer">
         <div class="text">
 
-            <p><strong id="number">3</strong>件商品</p>
-            <p>共计: <strong id="price">￥88831.01</strong></p>
+            <p><strong id="number">0</strong>件商品</p>
+            <p>共计: <strong id="price">￥0.00</strong></p>
 
         </div>
         <a href="">加入购物车</a>

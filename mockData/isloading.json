@@ -1,0 +1,21 @@
+{
+    "isloading": true,
+    "name": "张三",
+    "userId": 1313,
+    "list": [{
+            "typeName": "采购方案一",
+            "typeId": "1",
+            "content_list": 3
+        },
+        {
+            "typeName": "自主采购",
+            "typeId": "2",
+            "content_list": 4
+        },
+        {
+            "typeName": "自主采购",
+            "typeId": "2",
+            "content_list": 4
+        }
+    ]
+}

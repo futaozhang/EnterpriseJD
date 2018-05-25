@@ -165,32 +165,38 @@
 
 
 
+    <div id="leftsider">
+        <!--菜单区域-->
+        <div class="leftSelct" id="left_w">
 
-    <!--菜单区域-->
-    <div class="leftSelct">
-        <i class="bg"></i>
+            <script type="text/x-dot-template" id="leftTmp" charset="utf-8">
+                <i class="bg"></i> {{? !it.isloading}}
+                <div class="noLogoing">
+                    <p>京东企业会员登陆更优惠！</p>
+                </div>
+                {{??}}
+                <div class="isLogoing ">
 
-        <!--<div class="noLogoing">
-			<p>京东企业会员登陆更优惠！</p>			
-		</div>-->
+                    <a class="user"><i class="iconfont ">&#xe522;</i></a>
+                    <a href="Person_1.html ">收藏方案</a> {{~it.list:item:index}}
+                    <a href="javascript:; " data-src="{{=index}} ">
+                        <i class="tipsNum">{{=item.content_list}}</i>{{=item.typeName}}</a> {{~}} {{?index
+                    <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+                </div>
+                {{?}}
+            </script>
 
-        <div class="isLogoing">
-            <a class="user"><i class="iconfont ">&#xe522;</i></a>
-            <a href="Person_1.html">收藏方案</a>
-            <a href="javascript:;" data-src="1"><i class="tipsNum">3</i>自主采购方案</a>
-            <a href="javascript:;" data-src="2"><i class="tipsNum">4</i>采购方案</a>
-            <a href="javascript:; " data-src="3" class="addProjiect"><i class="iconfont">&#xf018b;</i></a>
+        </div>
+
+        <!--leftProjiect-->
+        <div class="leftProjiect ">
+            <!--内容区域-->
+            <div class="leftContent " id="mianCont">
+
+            </div>
         </div>
 
     </div>
-
-    <!--leftProjiect-->
-    <div class="leftProjiect">
-        <!--内容区域-->
-        <div class="leftContent" id="mianCont"> </div>
-    </div>
-
-
 
     <!--底部-->
     <div id="foote">
@@ -198,18 +204,19 @@
     </div>
 
 </body>
-<script type="text/x-dot-template" id="j_tmpl">
+<script type="text/x-dot-template" id="j_tmpl" charset="utf-8">
 
     <div class="leftHead">
 
         <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}
-	<span class="changName">
-			<input type="text"  name="jd_3" id="jd_3" value="{{=it.picname}}" maxlength="6" placeholder="最多输入六位字符"/>
-			<a href="">确定</a>
-		</span></span>
-        <!--<span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>-->
+    <span class="changName">
+            <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
+            <a href="">确定</a>
+        </span></span>
+
         <a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
         <a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>
+
     </div>
 
     <div class="leftConte">
@@ -226,24 +233,24 @@
 
 
 
-                {{~it.info:value:index}} {{?index>0}}
+                {{~it.info:value:index}} {{?index>-1}}
                 <li>
                     <div class="checkBox">
                         <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
                     </div>
                     <label for="{{=index}}">
-					<div class="imgResponse">
-						<img src="{{=value.pic_img}}"/>
-					</div>
-					
-					<div class="information">
-						<p class="title">{{=value.pic_title}} </p>
-						<p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
-						<p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
-					</div>
-					
-					<div class="input_num">									
-						<label for="" class="iconfont reduce">&#xe641;</label>
+                    <div class="imgResponse">
+                        <img src="{{=value.pic_img}}"/>
+                    </div>
+                    
+                    <div class="information">
+                        <p class="title">{{=value.pic_title}} </p>
+                        <p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
+                        <p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
+                    </div>
+                    
+                    <div class="input_num">									
+                        <label for="" class="iconfont reduce">&#xe641;</label>
                     <input type="text" name="" id="" value="{{=value.pic_value}}" />
                     <label for="" class="iconfont add" onclick="">&#xe655;</label>
 
@@ -289,49 +296,49 @@
 
 </script>
 
-<script type="text/javascript">
-    $("#mianCont").delegate(".text .iconfont", "click", function() {
-        $(".changName").show()
+<script type="text/javascript ">
+    $("#mianCont ").delegate(".text .iconfont ", "click ", function() {
+        $(".changName ").show()
     });
-    $(".c_isCheck").click(function() {
-        $(this).css("display", 'none')
-        $(".c_noCheck").css("display", 'block')
+    $(".c_isCheck ").click(function() {
+        $(this).css("display ", 'none')
+        $(".c_noCheck ").css("display ", 'block')
     });
-    $("#jd_2").click(function() {
+    $("#jd_2 ").click(function() {
 
         setTimeout(function() {
 
-            if ($("#jd_2").prop("checked") == true) {
+            if ($("#jd_2 ").prop("checked ") == true) {
 
-                $(".tb_check").find("input[type='checkbox']").prop("checked", true);
+                $(".tb_check ").find("input[type='checkbox' ] ").prop("checked ", true);
             } else {
 
-                $(".tb_check").find("input[type='checkbox']").prop("checked", false);
+                $(".tb_check ").find("input[type='checkbox' ] ").prop("checked ", false);
 
             }
         }, 4)
 
     });
 
-    $(".tb_check input[type='checkbox']").click(function() {
+    $(".tb_check input[type='checkbox' ] ").click(function() {
 
-        var checkbox = $(".tb_check input[type='checkbox']")
+        var checkbox = $(".tb_check input[type='checkbox' ] ")
 
         $.each(checkbox, function(i, item) {
-            if ($(item).prop("checked") == false) {
+            if ($(item).prop("checked ") == false) {
 
-                $("#jd_2").prop("checked", false)
+                $("#jd_2 ").prop("checked ", false)
 
                 return false;
 
             } else {
-                $("#jd_2").prop("checked", true)
+                $("#jd_2 ").prop("checked ", true)
             }
         });
     })
 </script>
 
-<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/main.js " type="text/javascript " charset="utf-8 "></script>
 
 
 

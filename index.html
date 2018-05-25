@@ -66,34 +66,39 @@
 
     </div>
 
-    <!--菜单区域-->
-    <div class="leftSelct">
-        <i class="bg"></i>
+    <div id="leftsider">
+        <!--菜单区域-->
+        <div class="leftSelct" id="left_w">
 
-        <div class="noLogoing">
-            <p>京东企业会员登陆更优惠！</p>
+            <script type="text/x-dot-template" id="leftTmp" charset="utf-8">
+                <i class="bg"></i> {{? !it.isloading}}
+                <div class="noLogoing">
+                    <p>京东企业会员登陆更优惠！</p>
+                </div>
+                {{??}}
+                <div class="isLogoing ">
+
+                    <a class="user"><i class="iconfont ">&#xe522;</i></a>
+                    <a href="Person_1.html ">收藏方案</a> {{~it.list:item:index}}
+                    <a href="javascript:; " data-src="{{=index}} ">
+                        <i class="tipsNum">{{=item.content_list}}</i>{{=item.typeName}}</a> {{~}} {{?index
+                    <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+                </div>
+                {{?}}
+            </script>
+
         </div>
 
-        <div class="isLogoing">
-            <a class="user"><i class="iconfont ">&#xe522;</i></a>
-            <!--<a href="javascript:;" >收藏方案</button>
-			<a href="javascript:;" data-src='1'><i class="tipsNum">3</i>采购方案</a>
-			<a href="javascript:;" data-src='2'><i class="tipsNum">3</i>采购方案</a>	
-			<a href="javascript:; "class="addProjiect"><i class="iconfont">&#xf018b;</i></a>-->
+        <!--leftProjiect-->
+        <div class="leftProjiect ">
+            <!--内容区域-->
+            <div class="leftContent " id="mianCont">
+
+            </div>
         </div>
 
     </div>
 
-    <!--leftProjiect-->
-    <div class="leftProjiect">
-
-        <!--内容区域-->
-        <div class="leftContent" id="mianCont">
-
-
-        </div>
-
-    </div>
 
 
     <!--弹出框-->

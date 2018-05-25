@@ -424,6 +424,7 @@ button:focus {
     background-color: white;
     padding-top: 5px;
     height: 100px;
+    margin-bottom: 5px;
 }
 
 .contents ul li button {

@@ -72,86 +72,66 @@ var leftDate1 = {
         }
     ]
 }
-var leftDate2 = {
-
-    "picname": "采购方案二",
-    "isLive": false,
-    "info": [{
-
-            "pic_title": "Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡 ",
-            "pic_jdPrice": "5220.00",
-            "pic_userPrice": "4900.00",
-            "pic_img": "img/text.jpg",
-            "pic_value": 4
 
 
-        },
 
-        {
-            "pic_title": "Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡 ",
-            "pic_jdPrice": "5220.00",
-            "pic_userPrice": "4900.00",
-            "pic_img": "img/text.jpg",
-            "pic_value": 3
+//左侧按钮判断
 
 
-        }
-    ]
-}
+
+var leftTmp = doT.template($("#leftTmp").text());
+// 左侧按钮数据请求
+$.getJSON("./../mockData/isloading.json", { "userId": 11 },
+
+    function(item) {
+
+        $("#left_w").html(leftTmp(item));
+
+    })
 
 
-//左侧按钮切换
-// var tmpl = document.getElementById('j_tmpl').innerHTML;
+//左侧数据切换
 
 var interText = doT.template($("#j_tmpl").text());
 
-
-$(".isLogoing a").click(function(item) {
-
-    switch (parseInt($(this).attr("data-src"))) {
-        case 1:
-            runBg(this)
-            $("#mianCont").html(interText(leftDate1));
-            // document.getElementById('mianCont').html() = doT.template(tmpl)(leftDate1);
-
-            break;
-        case 2:
-            runBg(this)
-            $("#mianCont").html(interText(leftDate2));
-            // document.getElementById('mianCont').innerHTML = doT.template(tmpl)(leftDate2);
-            break;
-        case 3:
-            runBg(this)
-            setTimeout(function() { $(".bottom").hide() }, 120)
-            $("#mianCont").html(interText(sourDate));
-            // document.getElementById('mianCont').innerHTML = doT.template(tmpl)(sourDate);
-            break;
+$("#leftsider").delegate(".isLogoing a", "click", function() {
 
 
-    }
+    runBg(this)
+    $.getJSON("./../mockData/leftData.json", { "userId": 11, "typeId": 233 },
+
+        function(item) {
+
+            $("#mianCont").html(interText(item));
 
 
+        })
+})
 
-});
 
+// 左侧弹出
 function runBg(th) {
+
 
     setTimeout(function() {
         $(".Jd_footer").fadeIn()
-    }, 100)
-
+    }, 300)
     $(".isLogoing a").removeClass("activeYellow")
     $(th).addClass("activeYellow")
     $(".leftSelct .bg").show()
     $(".leftContent").animate({ "width": "360px" })
     $(".isLogoing").animate({ "left": "360px" })
 }
-$(".leftSelct .bg").click(function() {
+// 关闭左侧
+$("#leftsider").delegate(".bg", "click", function() {
     $(".leftSelct .bg").hide()
     $(".Jd_footer").hide()
     $(".leftContent").animate({ "width": "0px" })
     $(".leftSelct div").animate({ "left": "0px" })
-});
+})
+
+
+
 //全选
 $("#mianCont").delegate("#all", "click", function() {
 
@@ -168,18 +148,45 @@ $("#mianCont").delegate("#all", "click", function() {
     }, 4)
 
 });
-//所有列表
+//所有列表&价格计算
 $("#mianCont").delegate(".checkBox input[type='checkbox']", "click", function() {
+    var current = 0;
+    var that = this
     var checkbox = $("#leftDate input[type='checkbox']")
+
+
+
     $.each(checkbox, function(i, item) {
+
         if ($(item).prop("checked") == false) {
+
             $(".l_top").find("input[type='checkbox']").prop("checked", false)
+
             return false;
         } else {
+
             $(".l_top").find("input[type='checkbox']").prop("checked", true)
+
         }
+
     });
+
+
+    $.each(checkbox, function(i, item) {
+
+        if ($(item).prop("checked") == true) {
+            current++
+            return false
+
+        } else {
+            console.log(this)
+        }
+
+    });
+    console.log(current)
 })
+
+// 价格计算
 
 
 //加减
