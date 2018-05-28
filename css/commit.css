@@ -82,7 +82,7 @@ button:focus {
 .isLogoing {
     position: fixed;
     left: 360px;
-    top: 40%;
+    top: 30%;
     width: 60px;
 }
 
@@ -814,18 +814,18 @@ button:focus {
 
 #Purchase .content .warp {
     width: 220px;
-    height: 440px;
+    height: 420px;
     padding: 2px 10px;
     border: 1px solid silver;
     position: relative;
 }
 
-#Purchase .content_warp li {
-    float: left;
+.jdAdd_2 {
+    border-bottom: 1px solid #7d7d7d;
 }
 
-#Purchase .content .warp :hover {
-    /*border: 1px solid silver;*/
+#Purchase .content_warp li {
+    float: left;
 }
 
 #Purchase .content .warp_img img {
@@ -893,7 +893,7 @@ button:focus {
 }
 
 .warp .warp_sle {
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 .warp .warp_sle span {
@@ -907,7 +907,7 @@ button:focus {
 
 .warp .warp_sle .addSelect {
     width: 120px;
-    border-left: 1px solid white !important;
+    /* border-left: 1px solid white !important; */
     color: rgb(226, 58, 58);
 }
 
@@ -1033,8 +1033,8 @@ button:focus {
 
 .add_pri {
     position: absolute;
-    right: 40px;
-    bottom: 60px;
+    right: 30px;
+    bottom: 50px;
     display: none;
     width: 100px;
 }
@@ -1042,7 +1042,7 @@ button:focus {
 .add_pri li {
     height: 30px;
     line-height: 30px;
-    width: 80px;
+    width: 100px;
     border-top: 1px solid #7d7d7d;
     border-left: 1px solid #7d7d7d;
     border-right: 1px solid #7d7d7d;
@@ -1059,7 +1059,7 @@ button:focus {
 
 .add_pri img {
     position: absolute;
-    right: 50.33px;
+    right: 40.33px;
     bottom: -10px;
     background-color: white;
 }
@@ -1746,4 +1746,47 @@ table {
 
 .addCollection .c_noCheck {
     display: none;
+}
+
+.tips {
+    position: fixed;
+    width: 240px;
+    height: 80px;
+    left: 50%;
+    top: 35%;
+    line-height: 80px;
+    margin-left: -125px;
+    text-align: center;
+    display: none;
+}
+
+.tips p {
+    position: fixed;
+    width: 240px;
+    height: 80px;
+    left: 50%;
+    top: 35%;
+    line-height: 80px;
+    margin-left: -125px;
+    background-color: #000000;
+    opacity: 0.5;
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+    filter: alpha(opacity=50);
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
+    border-radius: 10px;
+}
+
+.tips span {
+    position: fixed;
+    width: 240px;
+    height: 80px;
+    left: 50%;
+    top: 35%;
+    margin-left: -125px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: white;
+    z-index: 9;
+    opacity: 1;
 }

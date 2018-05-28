@@ -14,9 +14,33 @@ var leftTmp = doT.template($("#leftTmp").text());
 // 左侧按钮数据请求
 $.getJSON("./../mockData/isloading.json", { "userId": 11 },
 
-    function(item) {
 
+    function(item) {
+        var add_pri = '';
+        //数据渲染
         $("#left_w").html(leftTmp(item));
+
+        for (var i = 0; i < item.list.length; i++) {
+
+            add_pri += "<a href='javascript:;' data-typId=" + item.list[i].typeId + "><li class=" + 'jdAdd_' + [i] + ">" + item.list[i].typeName + "</li></a>"
+
+        }
+        var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
+            //购物方案延迟渲染
+        setTimeout(function() {
+
+            $(".add_pri ul").append(function(n) {
+                if (item.list.length >= 3) {
+                    return add_pri
+                } else {
+
+                    return add_pri + addp
+                }
+
+            })
+
+        }, 300)
+
 
 
     })
@@ -170,3 +194,37 @@ function GetRequest() {
     }
     return theRequest;
 }
+//加入方案提示
+function addTips(text) {
+    $(".tips span").text(text)
+    $(".tips").show()
+    setTimeout(function() {
+        $(".tips").fadeOut(800);
+    }, 1200)
+
+}
+
+//写cookies 
+
+function setCookie(name, value) {
+    var Days = 30;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+}
+
+//读取cookies 
+function getCookie(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+    if (arr = document.cookie.match(reg))
+
+        return unescape(arr[2]);
+    else
+        return null;
+}
+//删除cookies
+ 
+function delCookie(name) {    var exp = new Date(); //当前时间
+       
+    exp.setTime(exp.getTime() - 1);    var cval = getCookie(name);    if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();  }
