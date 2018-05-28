@@ -216,13 +216,14 @@
     <div class="leftHead">
 
         <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}
-			<span class="changName">
-					<input type="text"  name="jd_3" id="jd_3" value="{{=it.picname}}" maxlength="6" placeholder="最多输入六位字符"/>
-					<a href="">确定</a>
-				</span></span>
-        <!--<span class="collection"><i class="iconfont">&#xe711;</i> 收藏</span>-->
+    <span class="changName">
+            <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
+            <a href="">确定</a>
+        </span></span>
+
         <a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
         <a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>
+
     </div>
 
     <div class="leftConte">
@@ -239,24 +240,24 @@
 
 
 
-                {{~it.info:value:index}} {{?index>0}}
+                {{~it.info:value:index}} {{?index>-1}}
                 <li>
                     <div class="checkBox">
                         <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
                     </div>
                     <label for="{{=index}}">
-							<div class="imgResponse">
-								<img src="{{=value.pic_img}}"/>
-							</div>
-							
-							<div class="information">
-								<p class="title">{{=value.pic_title}} </p>
-								<p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
-								<p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
-							</div>
-							
-							<div class="input_num">									
-								<label for="" class="iconfont reduce">&#xe641;</label>
+                    <div class="imgResponse">
+                        <img src="{{=value.pic_img}}"/>
+                    </div>
+                    
+                    <div class="information">
+                        <p class="title">{{=value.pic_title}} </p>
+                        <p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
+                        <p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
+                    </div>
+                    
+                    <div class="input_num">									
+                        <label for="" class="iconfont reduce">&#xe641;</label>
                     <input type="text" name="" id="" value="{{=value.pic_value}}" />
                     <label for="" class="iconfont add" onclick="">&#xe655;</label>
 
@@ -282,8 +283,8 @@
     <div class="bottom Jd_footer">
         <div class="text">
 
-            <p><strong id="number">3</strong>件商品</p>
-            <p>共计: <strong id="price">￥888761.01</strong></p>
+            <p><strong id="number">0</strong>件商品</p>
+            <p>共计: <strong id="price">￥0.00</strong></p>
 
         </div>
         <a href="">加入购物车</a>

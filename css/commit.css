@@ -525,6 +525,10 @@ button:focus {
     display: none;
 }
 
+.Jd_footer li {
+    cursor: pointer;
+}
+
 .bottom .text {
     width: 200px;
     margin-left: 10px;
