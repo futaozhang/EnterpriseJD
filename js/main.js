@@ -1,6 +1,6 @@
 //测试数据
 var sourDate = {
-    "picname": "采购方案四"
+
 }
 
 
@@ -50,34 +50,55 @@ $.getJSON("./../mockData/isloading.json", { "userId": 11 },
 
 var interText = doT.template($("#j_tmpl").text());
 
-$("#leftsider").delegate(".isLogoing a", "click", function() {
-    var that = this
-    var sum = 0;
-    var num = 0;
-    // 切换底部动画函数
-    runBg(this)
+$("#leftsider").delegate(".isLogoing a", "click", function(obj) {
+        var that = this
+        var sum = 0;
+        var num = 0;
+        //是否为新添加
+        if ($(this).attr("data-src") == 3) {
+            addProgram()
+            return false
+        }
 
-    $.getJSON("./../mockData/leftData.json", { "userId": 11, "typeId": $(this).attr("data-src") },
+        // 切换底部动画函数
+        runBg(this)
 
-        function(item) {
+        $.getJSON("./../mockData/leftData.json", { "userId": 11, "typeId": $(this).attr("data-src") },
 
-            $("#mianCont").html(interText(item));
-            $.each(item.info, function(index, infoLIst) {
-                var picur = infoLIst.pic_userPrice * infoLIst.pic_value
+            function(item) {
 
-                sum += parseInt(picur)
-                num += parseInt(infoLIst.pic_value)
+                $("#mianCont").html(interText(item));
+
+                $.each(item.info, function(index, infoLIst) {
+                    var picur = infoLIst.pic_userPrice * infoLIst.pic_value
+
+                    sum += parseInt(picur)
+                    num += parseInt(infoLIst.pic_value)
+                })
+
+                $("#number").text(num)
+                $("#price").text(sum.toFixed(2))
+
             })
 
-            $("#number").text(num)
-            $("#price").text(sum.toFixed(2))
-
-        })
 
 
+    })
+    //新添加方案
 
-})
+function addProgram() {
+    var str = '<a href="javascript:;" data-src="2-1" class="addProgram"> 自主采购方案</a>'
 
+    $(".isLogoing ").append(str)
+    $("#mianCont").html(interText(sourDate));
+
+    if ($(".isLogoing .addProgram").length > 2) {
+        $(".addProjiect").remove()
+    }
+    $(".leftHead .text i").click();
+    runBg(this)
+
+}
 
 // 左侧弹出
 function runBg(th) {
@@ -225,6 +246,10 @@ function getCookie(name) {
 }
 //删除cookies
  
-function delCookie(name) {    var exp = new Date(); //当前时间
+function delCookie(name) {   
+    var exp = new Date(); //当前时间
        
-    exp.setTime(exp.getTime() - 1);    var cval = getCookie(name);    if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();  }
+    exp.setTime(exp.getTime() - 1);   
+    var cval = getCookie(name);   
+    if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString(); 
+}

@@ -63,6 +63,7 @@ button:focus {
 
 .leftSelct div {
     left: 0px;
+    z-index: 9;
 }
 
 .leftSelct .bg {
@@ -71,6 +72,7 @@ button:focus {
     position: fixed;
     left: 0px;
     top: 0;
+    z-index: 8;
     display: none;
     background-color: #000000;
     opacity: 0.5;

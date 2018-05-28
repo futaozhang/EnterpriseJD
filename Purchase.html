@@ -104,7 +104,7 @@
         <!--菜单区域-->
         <div class="leftSelct" id="left_w">
 
-            <script type="text/x-dot-template" id="leftTmp" charset="utf-8">
+            <script type="text/template" id="leftTmp" charset="utf-8">
                 <i class="bg"></i> {{? !it.isloading}}
                 <div class="noLogoing">
                     <p>京东企业会员登陆更优惠！</p>
@@ -113,8 +113,9 @@
                 <div class="isLogoing ">
 
                     <a class="user"><i class="iconfont ">&#xe522;</i></a>
-                    <a href="Person_1.html ">收藏方案</a> {{~it.list:item:index}}
-                    <a href="javascript:; " data-src="{{=index}} ">
+                    <a href="Person_1.html ">收藏方案</a>
+                    <a href="Person.html">采购方案</a> {{~it.list:item:index}}
+                    <a href="javascript:; " class="addProgram" data-src="{{=index}} ">
                         <i class="tipsNum">{{=item.content_list}}</i>{{=item.typeName}}</a> {{~}} {{?index
                     <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
                 </div>
@@ -240,11 +241,12 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}
+        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname==null?it.picname='自主采购方案':it.picname}}
         <span class="changName">
                 <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
-                <a href="">确定</a>
-            </span></span>
+                <a href="javascript:;">确定</a>
+            </span>
+        </span>
 
         <a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
         <a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>

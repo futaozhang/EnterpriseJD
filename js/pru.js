@@ -28,6 +28,8 @@ $("#Purchase").delegate("#content_warp li", "mouseleave", function() {
 })
 
 var ContrastArr = [];
+
+
 //加入对比
 $("#content_warp").delegate(".addCompared input", "click", function() {
 
@@ -40,7 +42,7 @@ $("#content_warp").delegate(".addCompared input", "click", function() {
 
         var skuId = $(this).attr("data-sku") //物品sku
 
-        var cksArr = ContrastArr.clearRepetition();
+
         //取消加入对比
         if ($(this).prop("checked") == false) {
 
@@ -51,6 +53,7 @@ $("#content_warp").delegate(".addCompared input", "click", function() {
         } else {
 
             ContrastArr.push(skuId)
+
             ContrastFuc(ContrastArr)
             setCookie("Contrast", ContrastArr)
         }
@@ -63,12 +66,12 @@ $("#content_warp").delegate(".addCompared input", "click", function() {
 
 
 function ContrastFuc(data) {
-    data == undefined ? data = getCookie("Contrast").split(',') : data = data;
 
+    data == undefined ? data = getCookie("Contrast").split(',') : data = data;
 
     if (data[0] !== '') {
 
-        $(".contrast").show()
+        $(".contrast").fadeIn()
 
     }
 
@@ -82,8 +85,6 @@ function ContrastFuc(data) {
     // 对比按钮拼接
     $(".compared_cont").attr("href", "Product.html?typeId=" + eval(data[0] == undefined ? 0 : data[0]) + "-" + eval(data[1] == undefined ? 0 : data[1]) + "-" + eval(data[2] == undefined ? 0 : data[2]) + "-" + eval(data[3] == undefined ? 0 : data[3]) + "")
 
-
-
     //相同数据默认加入选中
     var skuAdd = $("#content_warp").find("input[type=checkbox]");
 
@@ -95,17 +96,21 @@ function ContrastFuc(data) {
             switch ($(element).attr("data-sku")) {
                 case data[0]:
                     $(element).prop("checked", true)
+
                     break;
                 case data[1]:
                     $(element).prop("checked", true)
+
                     break;
 
                 case data[2]:
                     $(element).prop("checked", true)
+
                     break;
                 case data[3]:
 
                     $(element).prop("checked", true)
+
                     break;
                 default:
                     return false
@@ -119,6 +124,14 @@ function ContrastFuc(data) {
 
 
 }
+//清空对比栏
+$(".contrast").delegate(".clear_cont", "click", function() {
+
+    delCookie("Contrast")
+    ContrastArr = [];
+    $(".contrast").fadeOut()
+
+})
 
 
 //对比栏关闭按钮
@@ -151,4 +164,4 @@ Array.prototype.remove = function(val) {
     if (index > -1) {
         this.splice(index, 1);
     }
-};
+}
