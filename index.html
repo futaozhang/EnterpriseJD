@@ -105,93 +105,93 @@
     <!--弹出框-->
     <div class="alertBox">
         <div class="alertContent">
-
-            <div class="alertHead">
-                <h3>高层管理-采购标准筛选</h3>
-                <i class="iconfont" onclick="$('.alertBox').hide()">&#xe635;</i>
-            </div>
-
-            <div class="alertBody">
-                <div class="alert_t">
-                    <span>选购机型<i>*</i></span>
-                    <input type="checkbox" name="noType" id="alert_1" value="" /><label for="alert_1">台式机(含一体机)</label>
-                    <input type="checkbox" name="noType" id="alert_2" value="" /><label for="alert_2">笔记本电脑</label>
+            <div class="alertc">
+                <div class="alertHead">
+                    <h3>高层管理-采购标准筛选</h3>
+                    <i class="iconfont" onclick="hide()">&#xe635;</i>
                 </div>
-                <div class="alert_t">
-                    <span>单台预算<i>*</i></span>
-                    <input type="checkbox" name="" id="alert_3" value="" /><label for="alert_3">3000元-5000yuan</label>
-                    <input type="checkbox" name="" id="alert_4" value="" /><label for="alert_4">7000元以上</label>
-                </div>
-                <div class="alert_w">
-                    <span>选择品牌</span>
-                    <div class="alert_ws">
-                        <i>笔记本</i>
-                        <div id="alert_img_h">
-                            <script type="text/template" id="alert_h">
-                                {{?it.length >7}}
-                                <ul class="over_a">
-                                    {{??}}
-                                    <ul>
-                                        {{?}} {{ for (var i = 0, l = it.length; i
-                                        < l; i++) {}} <li><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
 
-                                            {{ } }}
+                <div class="alertBody">
+                    <div class="alert_t">
+                        <span>选购机型<i>*</i></span>
+                        <input type="checkbox" name="noType" id="alert_1" value="" /><label for="alert_1">台式机(含一体机)</label>
+                        <input type="checkbox" name="noType" id="alert_2" value="" /><label for="alert_2">笔记本电脑</label>
+                    </div>
+                    <div class="alert_t">
+                        <span>单台预算<i>*</i></span>
+                        <input type="checkbox" name="" id="alert_3" value="" /><label for="alert_3">3000元-5000yuan</label>
+                        <input type="checkbox" name="" id="alert_4" value="" /><label for="alert_4">7000元以上</label>
+                    </div>
+                    <div class="alert_w">
+                        <span>选择品牌</span>
+                        <div class="alert_ws">
+                            <i>笔记本</i>
+                            <div id="alert_img_h">
+                                <script type="text/template" id="alert_h">
+                                    {{?it.length >7}}
+                                    <ul class="over_a">
+                                        {{??}}
+                                        <ul>
+                                            {{?}} {{ for (var i = 0, l = it.length; i
+                                            < l; i++) {}} <li><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
 
-                                    </ul>
+                                                {{ } }}
+
+                                        </ul>
 
 
-                            </script>
+                                </script>
+                            </div>
                         </div>
+
+                        <div class="alert_hs">
+                            <i>台式机</i>
+                            <div id="alert_img_hs">
+                                <script type="text/template" id="alert_hs">
+                                    {{?it.length >7}}
+                                    <ul class="over_b">
+                                        {{??}}
+                                        <ul>
+                                            {{?}} {{ for (var i = 0, l = it.length; i
+                                            < l; i++) {}} <li class="checkActive"><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
+
+                                                {{ } }}
+
+                                        </ul>
+
+
+                                </script>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="alert_t">
+                        <span>计算能力<i>*</i></span>
+                        <input type="checkbox" name="" id="alert_5" value="" /><label for="alert_5">快速图形处理(i5)</label>
+                        <input type="checkbox" name="" id="alert_6" value="" /><label for="alert_6">强力显示+独显处理(i7)</label>
                     </div>
 
-                    <div class="alert_hs">
-                        <i>台式机</i>
-                        <div id="alert_img_hs">
-                            <script type="text/template" id="alert_hs">
-                                {{?it.length >7}}
-                                <ul class="over_b">
-                                    {{??}}
-                                    <ul>
-                                        {{?}} {{ for (var i = 0, l = it.length; i
-                                        < l; i++) {}} <li class="checkActive"><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
-
-                                            {{ } }}
-
-                                    </ul>
-
-
-                            </script>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="alert_t">
-                    <span>计算能力<i>*</i></span>
-                    <input type="checkbox" name="" id="alert_5" value="" /><label for="alert_5">快速图形处理(i5)</label>
-                    <input type="checkbox" name="" id="alert_6" value="" /><label for="alert_6">强力显示+独显处理(i7)</label>
                 </div>
 
-            </div>
+                <div class="alertFoot">
+                    <a href="">重制</a>
+                    <a href="Purchase.html">提交</a>
+                </div>
 
-            <div class="alertFoot">
-                <a href="">重制</a>
-                <a href="Purchase.html">提交</a>
             </div>
 
         </div>
-
-
-
+        <div id="videos">
+            <video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="300" height="160" align="middle" poster="img/Player.png" data-setup='{"techOrder": ["html5", "flash", "other supported tech"]}'>
+                <source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/>
+        
+        </video>
+        </div>
 
 
     </div>
-    <div id="videos">
-        <video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="300" height="160" align="middle" poster="img/Player.png" data-setup='{"techOrder": ["html5", "flash", "other supported tech"]}'>
-		<source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/>
 
-</video>
-    </div>
 </body>
 <script type="text/template" id="j_tmpl">
 
@@ -286,7 +286,6 @@
 <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    //alert(document.body.clientHeight)
 </script>
 
 </html>

@@ -98,10 +98,22 @@ function runder() {
 
 //首页弹框
 $("#mainList").delegate(".selcetor", 'click', function() {
+    alert(window.innerHeight)
+    if (window.innerHeight < 600) {
+        $(".alertBox .alertContent").css("top", '0px')
+        $("#index").css("overflow", "hidden")
+        $(".alertc").css({ "overflow": "scroll", "height": "550px" })
+    }
 
     $(".alertBox").show()
 });
 
+function hide() {
+    $("#index").css("overflow", "auto")
+    $(".alertc").css({ "overflow": "auto", "height": "600px" })
+    $(".alertBox .alertContent").css("top", '80px')
+    $(".alertBox").hide()
+}
 
 /**-------------IE 兼容-----------------------------*/
 // 首页  默认选框样式设置

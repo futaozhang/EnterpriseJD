@@ -61,105 +61,150 @@
                     <li>分辨率</li>
                 </ul>
             </div>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="pro_t">
-                                <div class="p_img">
-                                    <img src="img/text.jpg" />
+            <table id="warp_product">
+                <script type="text/template" id="j_product">
+                    <tbody>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <div class="pro_t">
+                                    <div class="p_img">
+                                        <img src="img/text.jpg" />
+                                    </div>
+                                    <p class="pro_text">{{=value.brandName}}</p>
+                                    <p class="slive">京东价:￥{{=value.jdprice.toFixed(2)}}</p>
+                                    <p>企业专享价:<i class="jd_text">￥{{=value.price.toFixed(2)}}</i> </p>
+                                    <a href="javascript:;" class="but_jd">加入方案</a>
+                                    <span><a href="javascript:;" data-sku="{{=value.skuid}}" class="jd_text">删除</a></span>
                                 </div>
-                                <p class="pro_text">联想(Lenovo)拯救者R720 15.6英寸大屏游戏联想(Lenovo)拯救者R720 15.6英寸大屏游戏笔记本电脑(i5-7300HQ 8G</p>
-                                <p class="slive">京东价:￥7722.00</p>
-                                <p>企业专享价:<i class="jd_text">￥7722.00</i> </p>
-                                <a href="" class="but_jd">加入方案</a>
-                                <span><a href="" class="jd_text">删除</a></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="pro_t">
-                                <div class="p_img">
-                                    <a href="Purchase.html"><img src="img/addPro.png" /></a>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                <div class="pro_t">
+                                    <div class="p_img">
+                                        <a href="Purchase.html"><img src="img/addPro.png" /></a>
+                                    </div>
+                                    <p class="pro_text"></p>
+                                    <p class="slive"></p>
+                                    <p><i class="jd_text"></i></p>
+
+                                    <!--<a href="" class="but_jd"></a>-->
+                                    <span><a href="" class="jd_text"></a></span>
                                 </div>
-                                <p class="pro_text"></p>
-                                <p class="slive"></p>
-                                <p><i class="jd_text"></i></p>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
 
-                                <!--<a href="" class="but_jd"></a>-->
-                                <span><a href="" class="jd_text"></a></span>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <p class="wid">联想(Lenovo)拯救者R720联想(Lenovo)拯救者R720联想(Lenovo)拯救者R720</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid">黑色</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid">2-2.25kg</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid"> Win 10 家庭中文版</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid">酷睿四核 i5-7300HQ</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid">8GB</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid">1T</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid">独立显卡</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid">15.6英寸</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="wid">2-5小时</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr class="diffrent">
-                        <td>
-                            <p class="wid">1920×1080</p>
-                        </td>
-                        <td></td>
-                    </tr>
-                </tbody>
-
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">{{=value.brandName}}</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr> {{~it:value:index}}
+                            <td>
+                                <p class="wid">{{=value.color}}</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">2-2.25kg</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">{{=value.system}}</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">酷睿四核 i5-7300HQ</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">8GB</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">1T</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">独立显卡</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr> {{~it:value:index}}
+                            <td>
+                                <p class="wid">15.6英寸</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">2-5小时</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                        <tr>
+                            {{~it:value:index}}
+                            <td>
+                                <p class="wid">1920×1080</p>
+                            </td>
+                            {{~}} {{?index
+                            <3}} <td>
+                                </td>
+                                {{??}} {{?}}
+                        </tr>
+                    </tbody>
+                </script>
             </table>
 
         </div>
@@ -301,7 +346,7 @@
 
 </script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="js/product.js"></script>
 <script type="text/javascript">
     $("#mianCont").delegate(".text .iconfont", "click", function() {
         $(".changName").show()
