@@ -33,39 +33,48 @@ var ContrastArr = [];
 //加入对比
 $("#content_warp").delegate(".addCompared input", "click", function() {
 
-        var cks = $("#content_warp").find("input[type=checkbox]:checked");
+    var cks = $("#content_warp").find("input[type=checkbox]:checked");
 
-        if (cks.length > 4) {
-            addTips("对比栏已满")
-            return false
-        }
+    if (cks.length > 4) {
+        addTips("对比栏已满")
+        return false
+    }
 
-        var skuId = $(this).attr("data-sku") //物品sku
-
-
-        //取消加入对比
-        if ($(this).prop("checked") == false) {
-
-            ContrastArr.remove($(this).attr("data-sku"))
-            ContrastFuc(ContrastArr)
-            setCookie("Contrast", ContrastArr)
-
-        } else {
-
-            ContrastArr.push(skuId)
-
-            ContrastFuc(ContrastArr)
-            setCookie("Contrast", ContrastArr)
-        }
+    var skuId = $(this).attr("data-sku") //物品sku
 
 
+    //取消加入对比
+    if ($(this).prop("checked") == false) {
+
+        ContrastArr.remove($(this).attr("data-sku"))
+        ContrastFuc(ContrastArr)
+        setCookie("Contrast", ContrastArr)
+
+    } else {
+
+        ContrastArr.push(skuId)
+
+        ContrastFuc(ContrastArr)
+        setCookie("Contrast", ContrastArr)
+    }
 
 
-    })
-    //对比栏目数据渲染
 
+
+})
+
+//对比栏目中删除
+$("#contrast_warp").delegate(".cont_price a", "click", function() {
+    $(this).attr("data-sku")
+    getCookie('Contrast')
+
+})
+
+//对比栏目数据渲染
+var url = './../mockData/contrast.json'
 
 function ContrastFuc(data) {
+
 
     data == undefined ? data = getCookie("Contrast").split(',') : data = data;
 
@@ -75,15 +84,30 @@ function ContrastFuc(data) {
 
     }
 
+
+
     if (data.length < 2) {
 
         $(".operat a").css("pointer-events", "none");
 
     } else {
+        url = './../mockData/text.json'
         $(".operat a").css("pointer-events", "link");
     }
+    var j_contrast = doT.template($("#j_Contrast").text());
+
+    $.getJSON(url, { "data": data },
+
+        function(item) {
+
+
+            $("#contrast_warp").html(j_contrast(item));
+
+
+        });
+
     // 对比按钮拼接
-    $(".compared_cont").attr("href", "Product.html?typeId=" + eval(data[0] == undefined ? 0 : data[0]) + "-" + eval(data[1] == undefined ? 0 : data[1]) + "-" + eval(data[2] == undefined ? 0 : data[2]) + "-" + eval(data[3] == undefined ? 0 : data[3]) + "")
+    // $(".compared_cont").attr("href", "Product.html?typeId=" + eval(data[0] == undefined ? 0 : data[0]) + "-" + eval(data[1] == undefined ? 0 : data[1]) + "-" + eval(data[2] == undefined ? 0 : data[2]) + "-" + eval(data[3] == undefined ? 0 : data[3]) + "")
 
     //相同数据默认加入选中
     var skuAdd = $("#content_warp").find("input[type=checkbox]");
@@ -121,6 +145,12 @@ function ContrastFuc(data) {
         }
 
     }
+
+
+}
+
+function redad() {
+
 
 
 }

@@ -25,14 +25,14 @@
     <div class="w_nav">
         <div>
             <ul class="left">
-                <li><a href="index.html">首页</a>></li>
-                <li><a href="Purchase.html">采购筛选</a>></li>
+                <li><a href="index.html">首页</a><i class="iconfont">&#xe60d;</i></li>
+                <li><a href="Purchase.html">采购筛选</a><i class="iconfont">&#xe60d;</i></li>
                 <li><a href="Compared.html">采购方案夹</a></li>
             </ul>
             <ul class="right">
                 <li>
                     <a href="Purchase.html">
-                        < 返回上一级</a>
+                        <i class="iconfont">&#xe675;</i> 返回上一级</a>
                 </li>
             </ul>
         </div>
@@ -167,7 +167,7 @@
         <!--菜单区域-->
         <div class="leftSelct" id="left_w">
 
-            <script type="text/x-dot-template" id="leftTmp" charset="utf-8">
+            <script type="text/template" id="leftTmp" charset="utf-8">
                 <i class="bg"></i> {{? !it.isloading}}
                 <div class="noLogoing">
                     <p>京东企业会员登陆更优惠！</p>
@@ -176,8 +176,9 @@
                 <div class="isLogoing ">
 
                     <a class="user"><i class="iconfont ">&#xe522;</i></a>
-                    <a href="Person_1.html ">收藏方案</a> {{~it.list:item:index}}
-                    <a href="javascript:; " data-src="{{=index}} ">
+                    <a href="Person_1.html ">收藏方案</a>
+                    <a href="Person.html">采购方案</a> {{~it.list:item:index}}
+                    <a href="javascript:; " class="addProgram" data-src="{{=index}} ">
                         <i class="tipsNum">{{=item.content_list}}</i>{{=item.typeName}}</a> {{~}} {{?index
                     <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
                 </div>
@@ -202,15 +203,16 @@
     </div>
 
 </body>
-<script type="text/x-dot-template" id="j_tmpl">
+<script type="text/template" id="j_tmpl">
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname}}
-    <span class="changName">
-            <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
-            <a href="">确定</a>
-        </span></span>
+        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname==null?it.picname='自主采购方案':it.picname}}
+        <span class="changName">
+                <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
+                <a href="javascript:;">确定</a>
+            </span>
+        </span>
 
         <a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
         <a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>
@@ -221,40 +223,36 @@
 
         <div class="l_top">
             <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button>删除</button>
+            <button data-typeId=''>删除</button>
         </div>
-        <!-----------------数据列表----------->
+
         <div class="contents">
 
             <ul id="leftDate">
-
-
-
-
                 {{~it.info:value:index}} {{?index>-1}}
                 <li>
                     <div class="checkBox">
                         <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
                     </div>
                     <label for="{{=index}}">
-                    <div class="imgResponse">
-                        <img src="{{=value.pic_img}}"/>
-                    </div>
-                    
-                    <div class="information">
-                        <p class="title">{{=value.pic_title}} </p>
-                        <p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
-                        <p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
-                    </div>
-                    
-                    <div class="input_num">									
-                        <label for="" class="iconfont reduce">&#xe641;</label>
+                        <div class="imgResponse">
+                            <img src="{{=value.pic_img}}"/>
+                        </div>
+                        
+                        <div class="information">
+                            <p class="title">{{=value.pic_title}} </p>
+                            <p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
+                            <p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
+                        </div>
+                        
+                        <div class="input_num">									
+                            <label for="" class="iconfont reduce">&#xe641;</label>
                     <input type="text" name="" id="" value="{{=value.pic_value}}" />
                     <label for="" class="iconfont add" onclick="">&#xe655;</label>
 
         </div>
 
-        <button>删除</button>
+        <button data-sku=''>删除</button>
         </label>
 
         </li>
@@ -288,6 +286,7 @@
             <li><a>导出到本地</a></li>
             <li><a>分享采购方案</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
+            <li><a href="Person.html">管理采购方案</a></li>
         </ul>
     </div>
 

@@ -25,12 +25,12 @@
     <div class="w_nav">
         <div>
             <ul class="left">
-                <li><a href="index.html">首页</a>></li>
+                <li><a href="index.html">首页</a><i class="iconfont">&#xe60d;</i></li>
                 <li><a href="Purchase.html">采购筛选</a></li>
             </ul>
             <ul class="right">
                 <li>
-                    <a href="index.html">
+                    <i class="iconfont">&#xe675;</i> <a href="index.html">
                          返回上一级</a>
                 </li>
             </ul>
@@ -145,81 +145,9 @@
         </div>
         <div class="cont_warp">
 
-            <ul>
+            <ul id="contrast_warp">
 
-                <li>
-                    <div>
-                        <div class="cont_img">
-                            <img src="img/text.jpg" />
-                        </div>
-                        <div class="cont_t">
-                            <p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>
 
-                            <p class="cont_price">
-                                <span>￥5200.00</span>
-                                <span> <a href="">删除</a></span>
-                            </p>
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="cont_img">
-                            <img src="img/text.jpg" />
-                        </div>
-                        <div class="cont_t">
-                            <p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>
-
-                            <p class="cont_price">
-                                <span>￥5200.00</span>
-                                <span> <a href="">删除</a></span>
-                            </p>
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="cont_img">
-                            <!--<img src="img/text.jpg"/>-->
-                            <h3>3</h3>
-                        </div>
-                        <div class="cont_t">
-                            <h4>你还可以继续添加</h4>
-                            <!--<p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>-->
-
-                            <p class="cont_price">
-                                <!--<span>￥5200.00</span>
-								<span> <a href="">删除</a></span>-->
-                            </p>
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div class="cont_img">
-                            <!--<img src="img/text.jpg"/>-->
-                            <h3>4</h3>
-                        </div>
-                        <div class="cont_t">
-                            <h4>你还可以继续添加</h4>
-                            <!--<p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>-->
-
-                            <p class="cont_price">
-                                <!--<span>￥5200.00</span>
-								<span> <a href="">删除</a></span>-->
-                            </p>
-
-                        </div>
-                    </div>
-                </li>
-
-                <li class="operat">
-                    <a href="" class="compared_cont" target="blank">对比</a>
-                    <a href="javascript:;" class="clear_cont">清空对比栏</a>
-                </li>
 
             </ul>
 
@@ -257,7 +185,7 @@
 
         <div class="l_top">
             <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button>删除</button>
+            <button data-typeId=''>删除</button>
         </div>
 
         <div class="contents">
@@ -286,7 +214,7 @@
 
         </div>
 
-        <button>删除</button>
+        <button data-sku=''>删除</button>
         </label>
 
         </li>
@@ -320,11 +248,42 @@
             <li><a>导出到本地</a></li>
             <li><a>分享采购方案</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
+            <li><a href="Person.html">管理采购方案</a></li>
         </ul>
     </div>
 
 
 </script>
+<script type="text/template" id="j_Contrast">
+    {{ for(var i=0;i
+    <4;i++){ }} <li>
+        <div>
+            <div class="cont_img">
+                {{? !it[i].imgsrc==''}}
+                <img src="img/text.jpg" /> {{??}}
+                <h3>{{=i+1}}</h3>
+                {{?}}
+            </div>
+            <div class="cont_t">
+                {{?it[i].brandName==''}}
+                <h4>你还可以继续添加</h4>{{??}}
+
+                <p>Lenovo/联想 拯救者-R720笔记本i7独显游戏显卡笔记本i7独显游戏显卡笔记本i7独显游戏显卡</p>
+                <p class="cont_price">
+                    <span>￥{{=it[i].eprice.toFixed(2)}}</span>
+                    <span> <a href="javascript:;" data-sku='{{=it[i].skuid}}'>删除</a></span>
+                </p>
+                {{?}}
+            </div>
+        </div>
+        </li>
+        {{ } }}
+        <li class="operat">
+            <a href="Product.html" class="compared_cont">对比</a>
+            <a href="javascript:;" class="clear_cont">清空对比栏</a>
+        </li>
+</script>
+
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/pru.js" type="text/javascript" charset="utf-8"></script>
 
