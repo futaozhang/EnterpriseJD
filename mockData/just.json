@@ -1,0 +1,134 @@
+[{
+        "attname": "内存",
+        "avlist": [{
+                "filtertype": 1,
+                "gaid": 4,
+                "id": 10,
+                "max": "",
+                "min": "",
+                "name": "16G",
+                "num": 10
+            },
+            {
+                "filtertype": 1,
+                "gaid": 4,
+                "id": 9,
+                "max": "",
+                "min": "",
+                "name": "8G",
+                "num": 9
+            }
+        ],
+        "categoryid": 1,
+        "filtername": "内存",
+        "id": 4,
+        "ischecked": 1,
+        "name": "内存",
+        "num": 4,
+        "status": 1
+    },
+    {
+        "attname": "显卡",
+        "avlist": [{
+            "filtertype": 1,
+            "gaid": 3,
+            "id": 8,
+            "max": "",
+            "min": "",
+            "name": "2G",
+            "num": 8
+        }],
+        "categoryid": 1,
+        "filtername": "显卡",
+        "id": 3,
+        "ischecked": 1,
+        "name": "显卡",
+        "num": 3,
+        "status": 1
+    },
+    {
+        "attname": "价格",
+        "avlist": [{
+                "filtertype": 2,
+                "gaid": 2,
+                "id": 7,
+                "max": "",
+                "min": 7000,
+                "name": "7000以上",
+                "num": 7
+            },
+            {
+                "filtertype": 2,
+                "gaid": 2,
+                "id": 6,
+                "max": 7000,
+                "min": 5000,
+                "name": "5000-7000",
+                "num": 6
+            },
+            {
+                "filtertype": 2,
+                "gaid": 2,
+                "id": 5,
+                "max": 4999,
+                "min": 3000,
+                "name": "3000-5000",
+                "num": 5
+            }
+        ],
+        "categoryid": 1,
+        "filtername": "单台预算",
+        "id": 2,
+        "ischecked": 1,
+        "name": "价格",
+        "num": 2,
+        "status": 1
+    },
+    {
+        "attname": "CPU",
+        "avlist": [{
+                "filtertype": 1,
+                "gaid": 1,
+                "id": 4,
+                "max": "",
+                "min": "",
+                "name": "i7",
+                "num": 4
+            },
+            {
+                "filtertype": 1,
+                "gaid": 1,
+                "id": 3,
+                "max": "",
+                "min": "",
+                "name": "i5",
+                "num": 3
+            },
+            {
+                "filtertype": 1,
+                "gaid": 1,
+                "id": 2,
+                "max": "",
+                "min": "",
+                "name": "i3",
+                "num": 2
+            },
+            {
+                "filtertype": 1,
+                "gaid": 1,
+                "id": 1,
+                "max": "",
+                "min": "",
+                "name": "奔腾",
+                "num": 1
+            }
+        ],
+        "categoryid": 1,
+        "filtername": "计算能力",
+        "id": 1,
+        "ischecked": 1,
+        "name": "CPU",
+        "num": 1,
+        "status": 1
+    }
+]

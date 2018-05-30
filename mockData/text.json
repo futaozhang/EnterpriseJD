@@ -1,5 +1,5 @@
 [{
-        "brandName": "联想",
+        "brandName": "联想笔记本",
         "color": "白",
         "salescount": 555,
         "commentcount": 2222,
@@ -59,7 +59,7 @@
         "status": 2
     },
     {
-        "brandName": "联想笔记本",
+        "brandName": "联想",
         "color": "褐色",
         "salescount": 555,
         "commentcount": 2222,

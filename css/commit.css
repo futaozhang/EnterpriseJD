@@ -83,6 +83,19 @@ button:focus {
     filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
 }
 
+.alertBox .bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0;
+    background-color: #000000;
+    opacity: 0.5;
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+    filter: alpha(opacity=50);
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
+}
+
 .isLogoing {
     position: fixed;
     left: 360px;
@@ -271,14 +284,8 @@ button:focus {
 
 #index .head {
     text-align: center;
-    padding-top: 20px
-}
-
-#index .head img {
-    /* width: 300px;
-    height: 80px;
-    background-size: cover; */
-    /* margin-bottom: 10px; */
+    padding-top: 20px;
+    margin-bottom: 40px;
 }
 
 #index .head h1 {
@@ -586,7 +593,7 @@ button:focus {
 
 .alertBox .alertContent {
     width: 1000px;
-    height: 600px;
+    /* height: 520px; */
     background-color: white;
     z-index: 3;
     position: fixed;
@@ -637,7 +644,10 @@ button:focus {
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 2px;
-    padding: 15px 30px;
+    width: 140px;
+    height: 50px;
+    text-align: center;
+    display: inline-block;
     background: #ededed;
     margin-right: -50px;
 }
@@ -660,18 +670,18 @@ button:focus {
 }
 
 .alert_w {
-    height: 260px;
+    height: 140px;
     border-bottom: 1px solid silver;
     position: relative;
 }
 
 .alert_w span {
-    line-height: 260px;
+    line-height: 140px;
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 2px;
-    height: 260px;
-    width: 112px;
+    height: 140px;
+    width: 110px;
     padding-left: 30px;
     background: #ededed;
     display: inline-block;
@@ -689,20 +699,26 @@ button:focus {
 }
 
 .alert_ws ul {
-    padding-top: 20px;
-    height: 40px;
+    /* padding-top: 20px; */
+    height: 160px;
+    width: 800px;
     overflow: hidden;
 }
 
 .over_a {
-    height: 100px !important;
+    height: 120px !important;
     overflow: scroll !important;
     overflow-x: hidden !important;
 }
 
 .alert_ws ul li {
     float: left;
-    margin-left: 5px;
+    margin: 5px;
+    border: 1px solid white;
+}
+
+.activeLi {
+    border: 1px solid rgb(226, 58, 58) !important;
 }
 
 
@@ -756,21 +772,20 @@ button:focus {
 
 .alertFoot {
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.alertFoot a {
-    /*padding: 15px 40px;*/
-    line-height: 30px;
+.alertFoot button {
     width: 120px;
-    height: 30px;
-    display: inline-block;
+    height: 35px;
     color: white;
     font-size: 16px;
     font-weight: bold;
+    margin-left: 25px;
     letter-spacing: 10px;
-    background-color: #878da0;
-    margin-left: 10px;
+    /* background-color: #878da0; */
     border-radius: 2px;
+    padding-left: 10px;
 }
 
 
@@ -1464,6 +1479,7 @@ table {
     background-color: white;
     float: left;
     padding: 20px;
+    display: none;
 }
 
 .clearfix {
@@ -1474,6 +1490,19 @@ table {
 .p_warp {
     height: 100%;
     background-color: #EEEEEE;
+}
+
+.p_warp h3 {
+    font-size: 30px;
+    text-align: center;
+    color: silver;
+    min-height: 200px;
+    margin-top: 100px;
+}
+
+.p_warp h3 a {
+    font-size: 20px;
+    color: #119ed1;
 }
 
 .rt_top {
@@ -1728,7 +1757,15 @@ table {
     position: fixed;
     right: 0px;
     bottom: 20px;
+    z-index: 9;
     display: inline-block;
+}
+
+#videos .iconfont {
+    color: white;
+    font-size: 25px;
+    background-color: #5c6275;
+    cursor: pointer;
 }
 
 .c_collect {
@@ -1764,9 +1801,10 @@ table {
     margin-right: 5px;
 }
 
-.addCollection .c_noCheck {
+
+/* .addCollection .c_noCheck {
     display: none;
-}
+} */
 
 .tips {
     position: fixed;

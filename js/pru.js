@@ -94,15 +94,16 @@ function ContrastFuc(data) {
         url = './../mockData/text.json'
         $(".operat a").css("pointer-events", "link");
     }
-    var j_contrast = doT.template($("#j_Contrast").text());
+    // var j_contrast = doT.template($("#j_Contrast").text());
+    var j_contrast = document.getElementById('j_Contrast').innerHTML;
 
     $.getJSON(url, { "data": data },
 
         function(item) {
 
 
-            $("#contrast_warp").html(j_contrast(item));
-
+            // $("#contrast_warp").html(j_contrast(item));
+            document.getElementById('contrast_warp').innerHTML = doT.template(j_contrast)(item);
 
         });
 

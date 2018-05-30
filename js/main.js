@@ -3,13 +3,12 @@ var sourDate = {
 
 }
 
-
-
+//用户名
+$("#userName").text(getCookie("Contrast"))
 
 //左侧按钮判断
 
-
-
+//var leftTmp = document.getElementById('leftTmp').innerHTML;
 var leftTmp = doT.template($("#leftTmp").text());
 // 左侧按钮数据请求
 $.getJSON("./../mockData/isloading.json", { "userId": 11 },
@@ -19,7 +18,7 @@ $.getJSON("./../mockData/isloading.json", { "userId": 11 },
         var add_pri = '';
         //数据渲染
         $("#left_w").html(leftTmp(item));
-
+        //document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
         for (var i = 0; i < item.list.length; i++) {
 
             add_pri += "<a href='javascript:;' data-typId=" + item.list[i].typeId + "><li class=" + 'jdAdd_' + [i] + ">" + item.list[i].typeName + "</li></a>"
@@ -48,7 +47,8 @@ $.getJSON("./../mockData/isloading.json", { "userId": 11 },
 
 //左侧数据切换
 
-var interText = doT.template($("#j_tmpl").text());
+// var interText = doT.template($("#j_tmpl").text());
+var interText = document.getElementById('j_tmpl').innerHTML;
 
 $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
         var that = this
@@ -67,8 +67,8 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
 
             function(item) {
 
-                $("#mianCont").html(interText(item));
-
+                // $("#mianCont").html(interText(item));
+                document.getElementById('mianCont').innerHTML = doT.template(interText)(item);
                 $.each(item.info, function(index, infoLIst) {
                     var picur = infoLIst.pic_userPrice * infoLIst.pic_value
 
@@ -90,12 +90,14 @@ function addProgram() {
     var str = '<a href="javascript:;" data-src="2-1" class="addProgram"> 自主采购方案</a>'
 
     $(".isLogoing ").append(str)
-    $("#mianCont").html(interText(sourDate));
+    var interTextd = document.getElementById('j_tmpl').innerHTML;
+    document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
 
     if ($(".isLogoing .addProgram").length > 2) {
         $(".addProjiect").remove()
     }
     $(".leftHead .text i").click();
+
     runBg(this)
 
 }
@@ -215,6 +217,7 @@ function GetRequest() {
     }
     return theRequest;
 }
+
 //加入方案提示
 function addTips(text) {
     $(".tips span").text(text)
@@ -245,11 +248,22 @@ function getCookie(name) {
         return null;
 }
 //删除cookies
- 
-function delCookie(name) {   
-    var exp = new Date(); //当前时间
-       
-    exp.setTime(exp.getTime() - 1);   
-    var cval = getCookie(name);   
-    if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString(); 
-}
+// function delCookie(name) {   
+//     var exp = new Date();   
+
+//     exp.setTime(exp.getTime() - 1);   
+//     var cval = getCookie(name);   
+
+//     if (cval != null) {
+//         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()
+//     }; 
+
+// }
+//数组内相加
+Array.prototype.sum = function() {
+    var result = 0;
+    for (var i = 0; i < this.length; i++) {
+        result += this[i];
+    }
+    return result;
+};

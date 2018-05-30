@@ -15,7 +15,7 @@
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
 <!--[if lt IE 9]>
-       <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>  
+       <script src="js/html5shiv.js"></script>  
     <![endif]-->
 
 <body id="Compared">
@@ -27,12 +27,12 @@
             <ul class="left">
                 <li><a href="index.html">首页</a><i class="iconfont">&#xe60d;</i></li>
                 <li><a href="Purchase.html">采购筛选</a><i class="iconfont">&#xe60d;</i></li>
-                <li><a href="Person.html">采购方案夹</a><i class="iconfont">&#xe60d;</i></li>
+                <li><a href="Person.html">方案夹</a><i class="iconfont">&#xe60d;</i></li>
                 <li><a href="Compared.html">采购方案对比</a></li>
             </ul>
             <ul class="right">
                 <li>
-                    <a href="Purchase.html">
+                    <a href="#" onclick="javascript:history.back(-1);">
                         <i class="iconfont">&#xe675;</i> 返回上一级</a>
                 </li>
             </ul>
@@ -61,8 +61,8 @@
                     </div>
                     <div class="t_price">
                         <div class="t_opreat">
-                            <p class="slive">京东价：￥{{=it[i].jdprice}}</p>
-                            <p class="">企业专享价：<i class="jd_text">￥{{=it[i].eprice}}</i></p>
+                            <p class="slive">京东价：￥0.00</p>
+                            <p class="">企业专享价：<i class="jd_text">￥0.00</i></p>
                         </div>
 
                         <div class="f_opreat">
@@ -100,7 +100,7 @@
                                     <td>
                                         <div class="ul_num">
                                             <label for="" class="iconfont reduce">&#xe656;</label>
-                                            <input type="text" name="" id="" value="{{=item.goodsnum}}" />
+                                            <input type="text" name="" id="" data-price={{=item.jdprice}} data-eprice={{=item.eprice}} value="{{=item.goodsnum}}" />
                                             <label for="" class="iconfont add">&#xe657;</label>
                                         </div>
                                     </td>
@@ -108,8 +108,8 @@
                                     <td>
 
                                         <div class="ul_price">
-                                            <span>京东价:￥{{=item.jdprice}}</span>
-                                            <span>企业专享价: <i class="jd_text">￥{{=item.eprice}}</i> </span>
+                                            <span>京东价:￥{{=item.jdprice.toFixed(2)}}</span>
+                                            <span>企业专享价: <i class="jd_text">￥{{=item.eprice.toFixed(2)}}</i> </span>
                                         </div>
 
                                     </td>

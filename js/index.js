@@ -2,32 +2,37 @@ var runDate = [{
         "run_img": "img/pc1.png",
         "run_title": "日常办公",
         "run_Entitle": "OFFICING",
-        "run_icon": "./img/rc35x34.png"
+        "run_icon": "./img/rc35x34.png",
+        "id": "1"
     },
     {
         "run_img": "img/pc2.png",
         "run_title": "高层管理",
         "run_Entitle": "MANAGER",
-        "run_icon": "./img/gc35x34.png"
+        "run_icon": "./img/gc35x34.png",
+        "id": "1"
     },
     {
         "run_img": "img/pc3.png",
         "run_title": "商务便携",
         "run_Entitle": "TECGNOLOGY",
-        "run_icon": "./img/sw35x34.png"
+        "run_icon": "./img/sw35x34.png",
+        "id": "1"
     },
     {
         "run_img": "img/pc4.png",
         "run_title": "技术研发",
         "run_Entitle": "TECGNOLOGY",
-        "run_icon": "./img/js35x34.png"
+        "run_icon": "./img/js35x34.png",
+        "id": "1"
     },
 
     {
         "run_img": "img/pc2.png",
         "run_title": "视觉设计",
         "run_Entitle": "DESIGNER",
-        "run_icon": "./img/sj35x34.png"
+        "run_icon": "./img/sj35x34.png",
+        "id": "1"
     }
 ]
 
@@ -37,14 +42,8 @@ var j_run = document.getElementById('j_runBaner').innerHTML;
 document.getElementById('mainList').innerHTML = doT.template(j_run)(runDate);
 
 
-//
-var alert_h = document.getElementById('alert_h').innerHTML;
-document.getElementById('alert_img_h').innerHTML = doT.template(alert_h)(runDate);
 
-var alert_hs = document.getElementById('alert_hs').innerHTML;
-document.getElementById('alert_img_hs').innerHTML = doT.template(alert_hs)(runDate);
 
-//
 
 
 
@@ -98,15 +97,69 @@ function runder() {
 
 //首页弹框
 $("#mainList").delegate(".selcetor", 'click', function() {
-    alert(window.innerHeight)
+
     if (window.innerHeight < 600) {
         $(".alertBox .alertContent").css("top", '0px')
         $("#index").css("overflow", "hidden")
-        $(".alertc").css({ "overflow": "scroll", "height": "550px" })
+        $(".alertc").css({ "overflow": "scroll", "height": "490px" })
     }
 
-    $(".alertBox").show()
+    alertTem($(this).attr("data-jum"))
+
 });
+
+$("#alert_t").delegate(".over_a li", "click", function() {
+    $(this).addClass("activeLi")
+})
+
+//数据提交
+$("#alert_t").delegate(".submit", "click", function() {
+
+    if (isCheck() == "") {
+
+        alert("请完成必选项目")
+    }
+    //window.location 
+})
+
+
+//选中判断
+function isCheck() {
+    var href = ""
+        //多选
+    $.each($(".alertBody").find("input[type='checkbox']"), function() {
+
+            if ($(this).prop("checked") != false) {
+
+                href = $(this).val()
+            }
+        })
+        //品牌
+    $.each($(".over_a").find("li"), function() {
+
+        if ($(this).hasClass("activeLi")) {
+
+            console.log($(this))
+        }
+    })
+
+
+    return href
+
+}
+
+//弹出框数据
+function alertTem(id) {
+    var alert_w = document.getElementById('alert_w').innerHTML;
+
+
+    $.getJSON("./../mockData/just.json", { "sceneid": id }, function(item) {
+        document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
+
+    })
+    $(".alertBox").show()
+}
+
 
 function hide() {
     $("#index").css("overflow", "auto")
