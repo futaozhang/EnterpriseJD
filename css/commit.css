@@ -392,9 +392,12 @@ button:focus {
     left: 0px;
     bottom: 0px;
     width: 360px;
+    background: #e6e2e1;
     /*height: 120px;*/
     border-top: 1px solid #786c6c;
 }
+
+.leftfooter ul {}
 
 .leftfooter li {
     width: 89px;

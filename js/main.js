@@ -11,7 +11,7 @@ $("#userName").text(getCookie("") == null ? "游客 " : (getCookie("")))
 //左侧按钮判断
 
 var leftTmp = document.getElementById('leftTmp').innerHTML;
-//var leftTmp = doT.template($("#leftTmp").text());
+
 
 
 // 左侧按钮数据请求
@@ -21,7 +21,8 @@ $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "stat
     function(item) {
         var add_pri = '';
         //数据渲染
-        // $("#left_w").html(leftTmp(item));
+
+
         document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
         for (var i = 0; i < item.length; i++) {
 
@@ -55,10 +56,9 @@ $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "stat
 var interText = document.getElementById('j_tmpl').innerHTML;
 $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
     var that = this
-    var sum = 0;
-    var num = 0;
+
     //是否为新添加
-    if ($(this).attr("data-src") == 0) {
+    if ($(this).attr("data-src") == 3) {
         addProgram()
         return false
     }
@@ -71,10 +71,13 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
 // 左侧数据
 
 function leftList(id) {
-    $.getJSON(baseUrl + "/procurement/getp", { "userId": 1, "id": id },
+    var sum = 0;
+    var num = 0;
+
+
+    $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userId": 1, "id": parseInt(id) },
 
         function(item) {
-
             // $("#mianCont").html(interText(item));
 
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
