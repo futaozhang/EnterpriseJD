@@ -3,8 +3,10 @@ var sourDate = {
 
 }
 
+var baseUrl = "http://192.168.1.247:8080"
+
 //用户名
-$("#userName").text(getCookie("Contrast"))
+$("#userName").text(getCookie("") == null ? "游客 " : (getCookie("")))
 
 //左侧按钮判断
 
@@ -279,9 +281,9 @@ function enshrine(typeId) {
     if (getCookie("pid") == null) {
         return false
     }
-    $.getJSON("", { typeId }, function(item) {
+    // $.getJSON("", { typeId }, function(item) {
 
-    })
+    // })
     return mesg
 }
 /*
@@ -310,8 +312,21 @@ function addPlan(typeId, skuId) {
     }
     skuId = "undefined" ? "" : skuId;
     var mesg;
-    $.getJSON("", { typeId, skuId }, function(item) {
+    // $.getJSON("", { typeId, skuId }, function(item) {
 
-    })
+    // })
     return mesg
+}
+//登陆调用
+function login() {
+    alert(3)
+    seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
+        login({
+            // firstCheck: false,
+            modal: true, //false跳转,true显示登录注册弹层
+            complete: function() {
+
+            }
+        })
+    })
 }

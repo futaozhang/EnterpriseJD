@@ -12,7 +12,7 @@ window.onload = function() {
         $(this).addClass("activeRightBut")
         var data = $(this).attr("data-jp")
         dataListChange(data)
-       
+
     })
 
 
@@ -26,7 +26,7 @@ function dataListChange(data) {
         $("#w_collection").hide()
         $("#w_person").show()
         Purchase(this)
-       
+
 
     } else {
         //收藏
@@ -56,11 +56,11 @@ $("#w_person").delegate(".left_warp a", "click",
         change($(this).attr("data-ju"))
 
     })
-    
+
 
 //左侧排列切换
 function change(changId) {
-  
+
     $("#w_person .left_warp a").removeClass("actvieLeft")
     $("#w_person .right_warp").css("display", "none")
     $("#w_person .left_warp .person_" + parseInt(changId) + "").addClass("actvieLeft")
@@ -73,7 +73,7 @@ function change(changId) {
 function Purchase() {
 
 
-    $.getJSON('http://192.168.1.26:8080/procurement/getplist?userid=1&status=1', function(item) {
+    $.getJSON(baseUrl + '/procurement/getplist', { "userid": 1, "status": 1 }, function(item) {
 
         if (item.lenght != 2) {
 
@@ -149,7 +149,7 @@ $("#w_person").delegate(".reduce", 'click', function(dom) {
 //加
 $("#w_person").delegate(".add", 'click', function() {
 
-    
+
     var nowData = $(this).parent().find("input[type='text']").prop("value");
 
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))

@@ -118,7 +118,7 @@
 
                     <div class="alertBody">
 
-                        <div class="alert_t">
+                        <div class="alert_t must">
                             <span>选购机型<i>*</i></span>
                             <input type="radio" name="noType" id="alert_1" value="2" /><label for="alert_1">台式机(含一体机)</label>
                             <input type="radio" name="noType" id="alert_2" value="3" /><label for="alert_2">笔记本电脑</label>
@@ -130,16 +130,17 @@
                                 <i></i>
                                 <div id="alert_img_h">
                                     <ul class="over_a">
-                                        <li data-id="22"><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
+                                        <li data-id="jdbid"><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         {{~it:value:index}}
+
                         <div class="alert_t">
                             <span>{{=value.attname}}
-                             {{? value.ischecked==1}}<i>*</i>{{??}}<i>&nbsp;</i>{{?}}
+                             {{? value.ischecked==1}}<i class="tem">*</i>{{??}}<i>&nbsp;</i>{{?}}
                             </span> {{? value.selecttype==1}} {{~value.avlist:item:j}}
                             <input type="radio" name="radio_{{=index}}" id="wert_{{=j}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{??}} {{~value.avlist:item:j}}
                             <input type="checkBox" name="" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{?}}
@@ -258,9 +259,8 @@
 
 
 </script>
-
-<script src="js/index.js?01" type="text/javascript" charset="utf-8"></script>
 <script src="js/main.js?02" type="text/javascript" charset="utf-8"></script>
+<script src="js/index.js?01" type="text/javascript" charset="utf-8"></script>
 
 
 

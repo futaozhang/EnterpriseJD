@@ -97,8 +97,10 @@ $("#mainList").delegate(".selcetor", 'click', function() {
         $("#index").css("overflow", "hidden")
         $(".alertc").css({ "overflow": "scroll", "height": "490px" })
     }
-
     alertTem($(this).attr("data-jum"))
+        //设置选择类目
+    setCookie("Type", $(this).siblings().find(".p1").text().trim().replace(/\s/g, ""))
+
 
 });
 
@@ -115,8 +117,19 @@ $("#alert_t").delegate(".submit", "click", function() {
         return false;
     } else {
         var addHref = isCheck().join("-")
-        console.log(addHref)
-            //window.location= 
+        setCookie("selcet", addHref)
+        window.location = "purchase.html"
+    }
+
+})
+
+//必选点击判断
+$("#alert_t").delegate(".must input", "click", function() {
+
+    if ($(this).prop("checked") != false) {
+        $(this).parent().addClass("re")
+    } else {
+        $(this).parent().removeClass("re")
     }
 
 })
@@ -144,28 +157,44 @@ function isCheck() {
         //单选
     $.each($(".alertBody").find("input[type='radio']"), function() {
 
-        if ($(this).prop("checked") != false) {
+            if ($(this).prop("checked") != false) {
 
-            href.push($(this).val())
+                href.push($(this).val())
+            }
+        })
+        //必选
+    $.each($(".alertBody").find(".must"), function() {
+
+        if ($(this).hasClass("re")) {
+
+
+        } else {
+            href = ""
         }
     })
-
-    //必选判断
 
     return href
 
 }
+var alert_w = document.getElementById('alert_w').innerHTML;
 
 //弹出框数据
 function alertTem(id) {
-    var alert_w = document.getElementById('alert_w').innerHTML;
 
 
+    // $.getJSON(baseUrl + "/getalist", { "sceneid": id }, function(item) {
     $.getJSON("./../mockData/just.json", { "sceneid": id }, function(item) {
-        document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
-
+        if (item.length != 0) {
+            document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
+            $(".alertBox").show()
+            $(".tem").parent().parent().addClass("must")
+        }
+        return false
     })
-    $(".alertBox").show()
+
+    //设置必选标识
+
+
 }
 
 
@@ -185,14 +214,6 @@ $.each($("#mainList li .txt"), function(i, item) {
     }
 });
 
-$('#checkLogin').bind('click', function() {
-    seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
-        login({
-            //firstCheck:false,
-            modal: true, //false跳转,true显示登录注册弹层
-            complete: function() {
-                alert('已登陆');
-            }
-        })
-    })
+$('#index').delegate(".noLogoing", 'click', function() {
+    login()
 });

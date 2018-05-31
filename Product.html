@@ -71,7 +71,7 @@
                                     <div class="p_img">
                                         <img src="img/text.jpg" />
                                     </div>
-                                    <p class="pro_text">{{=value.brandName}}</p>
+                                    <p class="pro_text">{{=value.name}}</p>
                                     <p class="slive">京东价:￥{{=value.jdprice.toFixed(2)}}</p>
                                     <p>企业专享价:<i class="jd_text">￥{{=value.price.toFixed(2)}}</i> </p>
                                     <a href="javascript:;" class="but_jd">加入方案</a>
@@ -107,7 +107,9 @@
                         </tr>
                         <tr> {{~it:value:index}}
                             <td>
-                                <p class="wid">{{=value.color}}</p>
+                                <p class="wid">
+                                    {{~value.attributelist:item:i}} {{?item.name=="color"}} {{=item.vals}} {{?}} {{~}}
+                                </p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -117,7 +119,7 @@
                         <tr>
                             {{~it:value:index}}
                             <td>
-                                <p class="wid">2-2.25kg</p>
+                                <p class="wid"> {{~value.attributelist:item:i}} {{?item.name=="重量"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -127,7 +129,7 @@
                         <tr>
                             {{~it:value:index}}
                             <td>
-                                <p class="wid">{{=value.system}}</p>
+                                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="系统"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -137,7 +139,7 @@
                         <tr>
                             {{~it:value:index}}
                             <td>
-                                <p class="wid">酷睿四核 i5-7300HQ</p>
+                                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="CPU"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -147,7 +149,7 @@
                         <tr>
                             {{~it:value:index}}
                             <td>
-                                <p class="wid">8GB</p>
+                                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="内存"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -157,7 +159,7 @@
                         <tr>
                             {{~it:value:index}}
                             <td>
-                                <p class="wid">1T</p>
+                                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="硬盘"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -167,7 +169,7 @@
                         <tr>
                             {{~it:value:index}}
                             <td>
-                                <p class="wid">独立显卡</p>
+                                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="显卡"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -176,7 +178,7 @@
                         </tr>
                         <tr> {{~it:value:index}}
                             <td>
-                                <p class="wid">15.6英寸</p>
+                                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="尺寸"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -186,7 +188,7 @@
                         <tr>
                             {{~it:value:index}}
                             <td>
-                                <p class="wid">2-5小时</p>
+                                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="续航时间"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
@@ -196,7 +198,7 @@
                         <tr>
                             {{~it:value:index}}
                             <td>
-                                <p class="wid">1920×1080</p>
+                                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="分辨率"}} {{=item.vals}} {{?}} {{~}}</p>
                             </td>
                             {{~}} {{?index
                             <3}} <td>
