@@ -267,3 +267,51 @@ Array.prototype.sum = function() {
     }
     return result;
 };
+/*****************API************************/
+/*
+ *收藏接口
+ *typeId 方案
+ *
+ */
+function enshrine(typeId) {
+    var mesg;
+    //是否登陆
+    if (getCookie("pid") == null) {
+        return false
+    }
+    $.getJSON("", { typeId }, function(item) {
+
+    })
+    return mesg
+}
+/*
+ *加入物品接口
+ *skuId 物品
+ *typId 方案
+ */
+// function addPlan(typeId, skuId) {
+//     var mesg;
+//     if (getCookie("pid") == null) {
+//         return false
+//     }
+//     $.getJSON("", {}, function(item) {
+
+//     })
+//     return mesg
+// }
+/*
+ *删除物品
+ *skuId 物品  可为空 
+ *typId 方案夹or收藏夹
+ */
+function addPlan(typeId, skuId) {
+    if (getCookie("pid") == null) {
+        return false
+    }
+    skuId = "undefined" ? "" : skuId;
+    var mesg;
+    $.getJSON("", { typeId, skuId }, function(item) {
+
+    })
+    return mesg
+}

@@ -19,10 +19,11 @@
                 "num": 9
             }
         ],
+        "selecttype": 1,
         "categoryid": 1,
         "filtername": "内存",
         "id": 4,
-        "ischecked": 1,
+        "ischecked": 2,
         "name": "内存",
         "num": 4,
         "status": 1
@@ -38,6 +39,7 @@
             "name": "2G",
             "num": 8
         }],
+        "selecttype": 2,
         "categoryid": 1,
         "filtername": "显卡",
         "id": 3,
@@ -76,6 +78,7 @@
                 "num": 5
             }
         ],
+        "selecttype": 1,
         "categoryid": 1,
         "filtername": "单台预算",
         "id": 2,
@@ -123,6 +126,7 @@
                 "num": 1
             }
         ],
+        "selecttype": 2,
         "categoryid": 1,
         "filtername": "计算能力",
         "id": 1,

@@ -41,12 +41,6 @@ var runDate = [{
 var j_run = document.getElementById('j_runBaner').innerHTML;
 document.getElementById('mainList').innerHTML = doT.template(j_run)(runDate);
 
-
-
-
-
-
-
 var current = 0;
 var MainSet = setInterval(runder, 4000);
 //主页滑动	
@@ -115,34 +109,48 @@ $("#alert_t").delegate(".over_a li", "click", function() {
 //数据提交
 $("#alert_t").delegate(".submit", "click", function() {
 
-    if (isCheck() == "") {
+    if (isCheck().length < 1) {
 
         alert("请完成必选项目")
+        return false;
+    } else {
+        var addHref = isCheck().join("-")
+        console.log(addHref)
+            //window.location= 
     }
-    //window.location 
+
 })
 
 
 //选中判断
 function isCheck() {
-    var href = ""
+    var href = []
         //多选
     $.each($(".alertBody").find("input[type='checkbox']"), function() {
 
             if ($(this).prop("checked") != false) {
 
-                href = $(this).val()
+                href.push($(this).val())
             }
         })
         //品牌
     $.each($(".over_a").find("li"), function() {
 
-        if ($(this).hasClass("activeLi")) {
+            if ($(this).hasClass("activeLi")) {
+                href.push($(this).attr("data-id"))
 
-            console.log($(this))
+            }
+        })
+        //单选
+    $.each($(".alertBody").find("input[type='radio']"), function() {
+
+        if ($(this).prop("checked") != false) {
+
+            href.push($(this).val())
         }
     })
 
+    //必选判断
 
     return href
 
@@ -175,4 +183,16 @@ $.each($("#mainList li .txt"), function(i, item) {
     if (i == 0) {
         $(this).css("background-color", '#7b7b83')
     }
+});
+
+$('#checkLogin').bind('click', function() {
+    seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
+        login({
+            //firstCheck:false,
+            modal: true, //false跳转,true显示登录注册弹层
+            complete: function() {
+                alert('已登陆');
+            }
+        })
+    })
 });
