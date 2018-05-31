@@ -6,15 +6,18 @@ var k_tmpl = document.getElementById('k_tempelate').innerHTML;
 
 // });
 
-$.getJSON("./../mockData/compared.json", function(item) {
+function comparedList() {
+    $.getJSON("./../mockData/compared.json", function(item) {
 
-    document.getElementById('warp_content').innerHTML = doT.template(k_tmpl)(item);
+        document.getElementById('warp_content').innerHTML = doT.template(k_tmpl)(item);
 
-    pricCom()
-});
+        pricCom()
+    });
 
+}
+comparedList();
 
-
+//减少
 $("#Compared").delegate(".ul_num .reduce", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
@@ -25,7 +28,7 @@ $("#Compared").delegate(".ul_num .reduce", 'click', function() {
     $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
 });
 
-
+//增加
 $("#Compared").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
@@ -33,7 +36,7 @@ $("#Compared").delegate(".add", 'click', function() {
 
 });
 
-
+//价格计算
 function pricCom() {
 
     $.each($(".c_conte"), function() {
@@ -56,3 +59,11 @@ function pricCom() {
 
     })
 }
+$("#warp_content").delegate(".n_collect", "click", function() {
+
+    if (enshrine($(this).attr("data-type")) != "") {
+        //更新数据
+        comparedList();
+    }
+
+});

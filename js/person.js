@@ -73,20 +73,18 @@ function change(changId) {
 function Purchase() {
 
 
-    $.getJSON(baseUrl + '/procurement/getplist', { "userid": 1, "status": 1 }, function(item) {
+    $.getJSON("http://192.168.1.247:8080/procurement/getplist?userid=1&status=1", function(item) {
+        console.log(item)
+        var j_persond = doT.template($("#j_person").text());
 
-        if (item.lenght != 2) {
+        $("#w_person").html(j_persond(item));
 
-            var j_persond = doT.template($("#j_person").text());
+        change(0)
 
-            $("#w_person").html(j_persond(item));
+        setTimeout(function() {
+            priceNun()
+        }, 5)
 
-            change(0)
-
-            setTimeout(function() {
-                priceNun()
-            }, 5)
-        }
 
     })
 
@@ -156,6 +154,15 @@ $("#w_person").delegate(".add", 'click', function() {
 
 
 });
+//收藏
+$("#w_person").delegate(".c_isCheck", "click", function() {
+    if (enshrine($(this).attr("data-type")) != "") {
+        //更新数据
+        Purchase()
+    }
+
+});
+
 
 
 // 价格计算

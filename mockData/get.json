@@ -1,0 +1,79 @@
+[{
+        "createtime": "",
+        "goods_list": [{
+                "createtime": "2018-05-25 01:27:35",
+                "goodsdetail": [{
+                    "color": "red "
+
+                }],
+                "goodsid": "111111111",
+                "goodsnum": 11,
+                "id": 29,
+                "pid": 15
+            },
+            {
+                "createtime": "2018-05-25 01:27:35",
+                "goodsdetail": [],
+                "goodsid": "222222",
+                "goodsnum": 5,
+                "id": 28,
+                "pid": 15
+            }
+        ],
+        "id": 15,
+        "message": "test",
+        "name": "采购方案14",
+        "status": 1,
+        "totalnum": "",
+        "totalprice": "",
+        "uid": 1,
+        "updatetime": ""
+    },
+    {
+        "createtime": "",
+        "goods_list": [{
+                "createtime": "2018-05-25 01:27:35",
+                "goodsdetail": [],
+                "goodsid": "111111111",
+                "goodsnum": 11,
+                "id": 27,
+                "pid": 14
+            },
+            {
+                "createtime": "2018-05-25 01:27:35",
+                "goodsdetail": [],
+                "goodsid": "222222",
+                "goodsnum": 5,
+                "id": 26,
+                "pid": 14
+            }
+        ],
+        "id": 14,
+        "message": "test",
+        "name": "采购方案14",
+        "status": 1,
+        "totalnum": "",
+        "totalprice": "",
+        "uid": 1,
+        "updatetime": ""
+    },
+    {
+        "createtime": "",
+        "goods_list": [{
+            "createtime": "2018-05-25 01:27:35",
+            "goodsdetail": [],
+            "goodsid": "222222",
+            "goodsnum": 5,
+            "id": 25,
+            "pid": 13
+        }],
+        "id": 13,
+        "message": "test",
+        "name": "采购方案13",
+        "status": 1,
+        "totalnum": "",
+        "totalprice": "",
+        "uid": 1,
+        "updatetime": ""
+    }
+]

@@ -10,20 +10,22 @@ $("#userName").text(getCookie("") == null ? "游客 " : (getCookie("")))
 
 //左侧按钮判断
 
-//var leftTmp = document.getElementById('leftTmp').innerHTML;
-var leftTmp = doT.template($("#leftTmp").text());
-// 左侧按钮数据请求
-$.getJSON("./../mockData/isloading.json", { "userId": 11 },
+var leftTmp = document.getElementById('leftTmp').innerHTML;
+//var leftTmp = doT.template($("#leftTmp").text());
 
+
+// 左侧按钮数据请求
+
+$.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "status": 1 },
 
     function(item) {
         var add_pri = '';
         //数据渲染
-        $("#left_w").html(leftTmp(item));
-        //document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
-        for (var i = 0; i < item.list.length; i++) {
+        // $("#left_w").html(leftTmp(item));
+        document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
+        for (var i = 0; i < item.length; i++) {
 
-            add_pri += "<a href='javascript:;' data-typId=" + item.list[i].typeId + "><li class=" + 'jdAdd_' + [i] + ">" + item.list[i].typeName + "</li></a>"
+            add_pri += "<a href='javascript:;' data-typId=" + item[i].id + "><li class=" + 'jdAdd_' + [i] + ">" + item[i].name + "</li></a>"
 
         }
         var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
@@ -31,7 +33,7 @@ $.getJSON("./../mockData/isloading.json", { "userId": 11 },
         setTimeout(function() {
 
             $(".add_pri ul").append(function(n) {
-                if (item.list.length >= 3) {
+                if (item.length >= 3) {
                     return add_pri
                 } else {
 
@@ -51,46 +53,48 @@ $.getJSON("./../mockData/isloading.json", { "userId": 11 },
 
 // var interText = doT.template($("#j_tmpl").text());
 var interText = document.getElementById('j_tmpl').innerHTML;
-
 $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
-        var that = this
-        var sum = 0;
-        var num = 0;
-        //是否为新添加
-        if ($(this).attr("data-src") == 3) {
-            addProgram()
-            return false
-        }
+    var that = this
+    var sum = 0;
+    var num = 0;
+    //是否为新添加
+    if ($(this).attr("data-src") == 0) {
+        addProgram()
+        return false
+    }
+    // 切换底部动画函数
+    runBg(this)
+        //左侧数据更新
+    leftList($(this).attr("data-src"))
+})
 
-        // 切换底部动画函数
-        runBg(this)
+// 左侧数据
 
-        $.getJSON("./../mockData/leftData.json", { "userId": 11, "typeId": $(this).attr("data-src") },
+function leftList(id) {
+    $.getJSON(baseUrl + "/procurement/getp", { "userId": 1, "id": id },
 
-            function(item) {
+        function(item) {
 
-                // $("#mianCont").html(interText(item));
-                document.getElementById('mianCont').innerHTML = doT.template(interText)(item);
-                $.each(item.info, function(index, infoLIst) {
-                    var picur = infoLIst.pic_userPrice * infoLIst.pic_value
+            // $("#mianCont").html(interText(item));
 
-                    sum += parseInt(picur)
-                    num += parseInt(infoLIst.pic_value)
-                })
+            document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
+            $.each(item[0].goods_list, function(index, infoLIst) {
+                //价格计算
+                var picur = infoLIst.pic_userPrice * infoLIst.pic_value
 
-                $("#number").text(num)
-                $("#price").text(sum.toFixed(2))
-
+                sum += parseInt(picur)
+                num += parseInt(infoLIst.pic_value)
             })
 
+            $("#number").text(num)
+            $("#price").text(sum.toFixed(2))
 
-
-    })
-    //新添加方案
+        })
+}
+//新添加方案
 
 function addProgram() {
     var str = '<a href="javascript:;" data-src="2-1" class="addProgram"> 自主采购方案</a>'
-
     $(".isLogoing ").append(str)
     var interTextd = document.getElementById('j_tmpl').innerHTML;
     document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
@@ -100,9 +104,11 @@ function addProgram() {
     }
     $(".leftHead .text i").click();
 
+
     runBg(this)
 
 }
+
 
 // 左侧弹出
 function runBg(th) {
@@ -164,9 +170,6 @@ $("#mianCont").delegate(".checkBox input[type='checkbox']", "click", function() 
 
     });
 
-
-
-
 })
 
 // 价格计算
@@ -180,17 +183,19 @@ $("#mianCont").delegate(".input_num .reduce", 'click', function(dom) {
     if (nowData < 2) {
         return false;
     }
+
     $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
     var redues = $("#price").text() - $(this).parent().parent().find("strong").text().substring(1)
     $("#price").text(parseInt(redues).toFixed(2))
     var price = $("#number").text()
     $("#number").text(parseInt(--price))
+
 });
+
 
 $("#mianCont").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
-
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
 
     var sum = parseInt($("#price").text()) +
@@ -201,9 +206,14 @@ $("#mianCont").delegate(".add", 'click', function() {
 });
 
 
-$("#mianCont").delegate(".noCheck", "click", function() {
-    $(this).hide()
-    $(this).parent().find('.isCheck').css("display", "block")
+
+//左侧收藏
+$("#mianCont").delegate(".collection", "click", function() {
+    if (enshrine($(this).attr("data-type")) != "") {
+        //更新左侧数据
+        leftList($(this).attr("data-src"))
+    }
+
 });
 
 // url  参数
@@ -278,54 +288,79 @@ Array.prototype.sum = function() {
 function enshrine(typeId) {
     var mesg;
     //是否登陆
-    if (getCookie("pid") == null) {
-        return false
-    }
-    // $.getJSON("", { typeId }, function(item) {
+    if (getCookie("userId") == null) {
 
-    // })
+        login()
+    }
+    $.post("/procurement/updatep", {}, function() {
+        mesg
+    }, json)
     return mesg
 }
 /*
  *加入物品接口
  *skuId 物品
  *typId 方案
+ *type 日常生活
  */
-// function addPlan(typeId, skuId) {
-//     var mesg;
-//     if (getCookie("pid") == null) {
-//         return false
-//     }
-//     $.getJSON("", {}, function(item) {
+function addPlan(typeId, skuId, type) {
 
-//     })
-//     return mesg
-// }
+    var mesg;
+    if (getCookie("userId") == null) {
+        login()
+    }
+    $.post("/procurement/updatep", {}, function() {
+        mesg
+    }, json)
+    return mesg
+}
 /*
  *删除物品
  *skuId 物品  可为空 
  *typId 方案夹or收藏夹
  */
-function addPlan(typeId, skuId) {
-    if (getCookie("pid") == null) {
-        return false
-    }
-    skuId = "undefined" ? "" : skuId;
+function removePlan(typeId, skuId) {
     var mesg;
-    // $.getJSON("", { typeId, skuId }, function(item) {
-
-    // })
+    if (getCookie("userId") == null) {
+        login()
+    }
+    $.post("/procurement/updatep", {}, function() {
+        mesg
+    }, json)
     return mesg
 }
+
+//新增采购方案
+function newAddColect(id, json) {
+
+    getCookie("userId")
+
+    $.post(baseUrl + "/procurement/addp", {}, function() {
+
+    }, json)
+
+}
+//更新采购方案
+function updataColect(id, json) {
+
+    $.post(baseUrl + "/procurement/updatep", {}, function() {
+
+    }, json)
+
+}
+
 //登陆调用
 function login() {
-    alert(3)
     seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
         login({
             // firstCheck: false,
             modal: true, //false跳转,true显示登录注册弹层
             complete: function() {
+                $.post(baseUrl + "/appuser/adduser", {}, function() {
 
+                    setCookie("userId")
+
+                }, json)
             }
         })
     })

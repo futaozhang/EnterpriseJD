@@ -39,9 +39,9 @@ function changec(changId) {
 function Collection() {
 
 
-    $.getJSON('http://192.168.1.26:8080/procurement/getplist?userid=1&status=1', function(item) {
-        console.log(item)
-            // if (item.lenght != 2) {
+    $.getJSON('http://192.168.1.247:8080/procurement/getplist?userid=1&status=1', function(item) {
+
+
         var j_persond = doT.template($("#j_person").text());
         $("#w_collection").html(j_persond(item));
 
@@ -49,9 +49,9 @@ function Collection() {
         $("#w_collection .right_but .pru").remove();
         changec(0)
         setTimeout(function() {
-                priceNunCollect()
-            }, 5)
-            // }
+            priceNunCollect()
+        }, 5)
+
 
     })
 
@@ -105,6 +105,7 @@ $("#w_collection").delegate(".reduce", 'click', function(dom) {
     var thisNum = $(this).parent().find("input[type='text']")
     $(thisNum).prop("value", parseInt(nowData) - 1);
     var price = $(fatherNode).siblings().find(".jd_price").text().substring(1)
+
 });
 
 //加

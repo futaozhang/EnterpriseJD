@@ -79,18 +79,17 @@
         <div class="leftSelct" id="left_w">
 
             <script type="text/template" id="leftTmp" charset="utf-8">
-                <i class="bg"></i> {{? !it.isloading}}
+                <i class="bg"></i> {{? it.lenght>0}}
                 <div class="noLogoing">
                     <p>京东企业会员登陆更优惠！</p>
                 </div>
                 {{??}}
                 <div class="isLogoing ">
-
                     <a class="user"><i class="iconfont ">&#xe522;</i></a>
-                    <a href="Person_1.html ">收藏方案</a>
-                    <a href="Person.html">采购方案</a> {{~it.list:item:index}}
-                    <a href="javascript:; " class="addProgram" data-src="{{=index}} ">
-                        <i class="tipsNum">{{=item.content_list}}</i>{{=item.typeName}}</a> {{~}} {{?index
+                    <a href="Person.html">收藏方案</a>
+                    <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
+                    <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
+                        <i class="tipsNum">{{=item.uid}}</i>{{=item.name}}</a> {{~}} {{?index
                     <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
                 </div>
                 {{?}}
@@ -138,7 +137,7 @@
             </div>
             <div class="addCollection">
                 {{?value.status==1}}
-                <a href="javascript:;" class="c_isCheck"><i class="iconfont">&#xe711;</i>收藏</a> {{??}}
+                <a href="javascript:;" class="c_isCheck" data-type="{{=value.id}}"><i class="iconfont">&#xe711;</i>收藏</a> {{??}}
 
                 <a href="javascript:;" class="c_noCheck"><i class="iconfont ">&#xe663;</i>收藏</a> {{?}}
             </div>
@@ -192,7 +191,7 @@
                             <div class="t_num">
                                 <label for="" class="iconfont reduce">&#xe656;</label>
                                 <input type="text" name="" id="" data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}} {{~}}" value="{{=item.goodsnum}}" />
-                                <label for="" class="iconfont add" onclick="">&#xe657;</label>
+                                <label for="" class="iconfont add">&#xe657;</label>
 
                             </div>
                         </td>
@@ -210,7 +209,7 @@
 
                         </td>
                         <td class="tb_opreat">
-                            <a href="javascript:;" data-sku="{{~item.goodsdetail:goods:j}} {{=goods.skuid}} {{~}}">删除</a>
+                            <a href="javascript:;" data-sku="{{~item.goodsdetail:goods:j}} {{=goods.goodsid}} {{~}}">删除</a>
                             <a href="Purchase.html">替换</a>
                         </td>
                     </tr>
@@ -229,15 +228,15 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.picname==null?it.picname='自主采购方案':it.picname}}
+        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='自主采购方案':it.name}}
         <span class="changName">
                 <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;">确定</a>
             </span>
         </span>
-
-        <a href="javascript:;" class="collection noCheck"><i class="iconfont ">&#xe711;</i>收藏</a>
-        <a href="javascript:;" class="collection isCheck "><i class="iconfont red ">&#xe663;</i>收藏</a>
+        {{?it.status==1}}
+        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont">&#xe711;</i>收藏</a>{{??}}
+        <a href="javascript:;" class="collection  "><i class="iconfont red ">&#xe663;</i>收藏</a>{{?}}
 
     </div>
 
@@ -245,7 +244,7 @@
 
         <div class="l_top">
             <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button data-typeId=''>删除</button>
+            <button data-typeId='{{=it.id}}'>删除</button>
         </div>
 
         <div class="contents">
@@ -265,8 +264,7 @@
                             <p class="title">{{=value.pic_title}} </p>
                             <p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
                             <p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
-                        </div>
-                        
+                        </div>           
                         <div class="input_num">									
                             <label for="" class="iconfont reduce">&#xe641;</label>
                     <input type="text" name="" id="" value="{{=value.pic_value}}" />
@@ -308,7 +306,7 @@
             <li><a>导出到本地</a></li>
             <li><a>分享采购方案</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
-            <li><a href="Person.html">管理采购方案</a></li>
+            <li><a href="Person.html?id=1">管理采购方案</a></li>
         </ul>
     </div>
 

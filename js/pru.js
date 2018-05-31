@@ -9,19 +9,14 @@ window.onload = function() {
     }
 }
 
-// 筛选数据渲染
+// 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
-
-// $.post("./../mockData/purchase.json", function(item) {
-
-//     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
-
-// }, "json");
-$.get("./../mockData/purchase.json", function(item) {
-
+getCookie("selcet") //cookie
+$.getJSON(baseUrl + "/goods/gettoplist", {}, function(item) {
     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
 
-}, "json");
+});
+
 
 //悬停加入购物方案显示
 $("#content_warp").delegate(".addSelect", "mouseenter", function() {
@@ -89,7 +84,7 @@ $(".contrast").delegate(".clear_cont", "click", function() {
 function addP() {
     var j_contrast = document.getElementById('j_Contrast').innerHTML;
 
-    $.getJSON("./../mockData/text.json", { "data": getCookie("Contrast") },
+    $.getJSON(baseUrl + "/goods/compare", { "data": getCookie("Contrast") },
         function(item) {
             document.getElementById('contrast_warp').innerHTML = doT.template(j_contrast)(item);
         });
@@ -126,20 +121,17 @@ $(".contrast .cont_head i").click(function() {
 
 //加入购物方案
 $("#content_warp").delegate(".add_pri ul a", "click", function() {
-    if (getCookie("pid") == null) {
-        alert("登陆")
+    if (getCookie("userId") == null) {
+        login()
         return false
     }
     var typeId = $(this).attr("data-typid") //购物方案Id
     var skuId = $(this).parent().attr("data-sku") //物品sku
+    getCookie("Type") //选择类  日常-技术
+        //加入采购方案
+    if (addPlan(typeId, skuId, getCookie("Type")) != "") {
 
-    $.getJSON("./../mockData/purchase.json", { "sku": skuId, "typeId": typeId },
-
-        function(item) {
-
-
-
-        });
+    }
 
 })
 
