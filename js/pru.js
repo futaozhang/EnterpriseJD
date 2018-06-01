@@ -11,8 +11,9 @@ window.onload = function() {
 
 // 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
+
 getCookie("selcet") //cookie
-$.getJSON(baseUrl + "/goods/gettoplist", {}, function(item) {
+$.getJSON(baseUrl + "/goods/gettoplist", { "avlist": 3 }, function(item) {
     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
 
 });
@@ -56,7 +57,6 @@ $("#content_warp").delegate(".addCompared input", "click", function() {
         }
         ContrastArr.push(skuId)
         setCookie("Contrast", ContrastArr)
-
         ContrastFuc()
     }
 
@@ -83,19 +83,24 @@ $(".contrast").delegate(".clear_cont", "click", function() {
 //对比栏目数据渲染
 function addP() {
     var j_contrast = document.getElementById('j_Contrast').innerHTML;
-
-    $.getJSON(baseUrl + "/goods/compare", { "data": getCookie("Contrast") },
+    //getCookie("Contrast")
+    $.getJSON(baseUrl + "/goods/compare", { "skulist": "5512841-5363894-5834183-5148309" },
         function(item) {
             document.getElementById('contrast_warp').innerHTML = doT.template(j_contrast)(item);
+            if (item != "") {
+                $(".contrast").fadeIn()
+            }
         });
 }
 
 //数据对比
 function ContrastFuc() {
-    $(".contrast").fadeIn()
+
+
     addP()
     var data = getCookie("Contrast").split(',')
-        //全局置空
+
+    //全局置空
     $("#content_warp").find("input[type=checkbox]").prop("checked", false)
         //页面相同数据默认加入选中
     var skuAdd = $("#content_warp").find("input[type=checkbox]");
@@ -121,12 +126,14 @@ $(".contrast .cont_head i").click(function() {
 
 //加入购物方案
 $("#content_warp").delegate(".add_pri ul a", "click", function() {
-    if (getCookie("userId") == null) {
-        login()
-        return false
-    }
+    // if (getCookie("userId") == null) {
+    //     login()
+    //     return false
+    // }
+
     var typeId = $(this).attr("data-typid") //购物方案Id
     var skuId = $(this).parent().attr("data-sku") //物品sku
+    alert(skuId)
     getCookie("Type") //选择类  日常-技术
         //加入采购方案
     if (addPlan(typeId, skuId, getCookie("Type")) != "") {

@@ -128,8 +128,10 @@ $("#alert_t").delegate(".must input", "click", function() {
 
     if ($(this).prop("checked") != false) {
         $(this).parent().addClass("re")
+        $(this).parent().removeClass("addBorder")
     } else {
         $(this).parent().removeClass("re")
+        $(this).parent().addClass("addBorder")
     }
 
 })
@@ -164,11 +166,8 @@ function isCheck() {
         })
         //必选
     $.each($(".alertBody").find(".must"), function() {
-
-        if ($(this).hasClass("re")) {
-
-
-        } else {
+        if ($(this).hasClass("re")) {} else {
+            $(this).addClass("addBorder")
             href = ""
         }
     })

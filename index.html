@@ -18,13 +18,12 @@
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
 <!--[if lt IE 9]>
-       <script src="js/html5shiv.js"></script>  
-        <script src="js/htmlmedia.js" type="text/javascript" charset="utf-8"></script>
-       <script src="js/videojs-ie8.min.js" type="text/javascript" charset="utf-8"></script>
-       <script src="js/video.min.js" type="text/javascript" charset="utf-8"></script>
+     <script src="js/requestIE.js"></script>
+    <script src="js/html5shiv.js">IE7_PNG_SUFFIX=".png";</script>  
+    <script src="js/htmlmedia.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/videojs-ie8.min.js" type="text/javascript" charset="utf-8"></script>
+    
     <![endif]-->
-
-<script src="js/sea.js"></script>
 
 
 
@@ -141,7 +140,7 @@
                             <span>{{=value.attname}}
                              {{? value.ischecked==1}}<i class="tem">*</i>{{??}}<i>&nbsp;</i>{{?}}
                             </span> {{? value.selecttype==1}} {{~value.avlist:item:j}}
-                            <input type="radio" name="radio_{{=index}}" id="wert_{{=j}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{??}} {{~value.avlist:item:j}}
+                            <input type="radio" name="radio_{{=index}}" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{??}} {{~value.avlist:item:j}}
                             <input type="checkBox" name="" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{?}}
                         </div>
                         {{~}}
@@ -176,7 +175,7 @@
         <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='自主采购方案':it.name}}
         <span class="changName">
                 <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
-                <a href="javascript:;">确定</a>
+                <a href="javascript:;"data-type="{{=it.id}}">确定</a>
             </span>
         </span>
         {{?it.status==1}}
@@ -195,29 +194,29 @@
         <div class="contents">
 
             <ul id="leftDate">
-                {{~it.info:value:index}} {{?index>-1}}
+                {{~it.goods_list:value:index}} {{?index>-1}}
                 <li>
                     <div class="checkBox">
                         <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
                     </div>
                     <label for="{{=index}}">
                         <div class="imgResponse">
-                            <img src="{{=value.pic_img}}"/>
+                            <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/>
                         </div>
                         
                         <div class="information">
-                            <p class="title">{{=value.pic_title}} </p>
-                            <p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
-                            <p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
+                            <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
+                            <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice}}{{~}}</p>
+                            <p class="UserPrice">企业专享价：<strong>￥{{~value.goodsdetail:item:j}}{{=item.eprice}}{{~}}</strong> </p>
                         </div>           
                         <div class="input_num">									
                             <label for="" class="iconfont reduce">&#xe641;</label>
-                    <input type="text" name="" id="" value="{{=value.pic_value}}" />
+                    <input type="text" name="" id="" value="{{=value.goodsnum}}" />
                     <label for="" class="iconfont add" onclick="">&#xe655;</label>
 
         </div>
 
-        <button data-sku=''>删除</button>
+        <button data-sku='{{~value.goodsdetail:item:j}}{{=item.id}}{{~}}'>删除</button>
         </label>
 
         </li>

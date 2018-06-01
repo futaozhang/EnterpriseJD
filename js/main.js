@@ -12,16 +12,14 @@ $("#userName").text(getCookie("") == null ? "游客 " : (getCookie("")))
 
 var leftTmp = document.getElementById('leftTmp').innerHTML;
 
-
-
 // 左侧按钮数据请求
 
 $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "status": 1 },
 
     function(item) {
+
         var add_pri = '';
         //数据渲染
-
 
         document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
         for (var i = 0; i < item.length; i++) {
@@ -46,8 +44,7 @@ $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "stat
         }, 300)
 
 
-
-    })
+    });
 
 
 //左侧数据切换
@@ -62,9 +59,12 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
         addProgram()
         return false
     }
+    if ($(this).attr("data-src") != 'undefined') {
+        runBg(this)
+    }
     // 切换底部动画函数
-    runBg(this)
-        //左侧数据更新
+
+    //左侧数据更新
     leftList($(this).attr("data-src"))
 })
 
@@ -75,19 +75,24 @@ function leftList(id) {
     var num = 0;
 
 
-    $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userId": 1, "id": parseInt(id) },
+    $.getJSON("http://192.168.1.247:8080/procurement/getp", { "id": id, "status": 1 },
 
         function(item) {
             // $("#mianCont").html(interText(item));
-
+            //  var priceList;
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
             $.each(item[0].goods_list, function(index, infoLIst) {
-                //价格计算
-                var picur = infoLIst.pic_userPrice * infoLIst.pic_value
+                //数量计算
 
-                sum += parseInt(picur)
-                num += parseInt(infoLIst.pic_value)
+                num += parseInt(infoLIst.goodsnum)
+                    //价格计算
+                $.each(infoLIst.goodsdetail, function(j, item) {
+                    var picur = item.eprice * infoLIst.goodsnum
+                    sum += parseInt(picur)
+                })
             })
+
+
 
             $("#number").text(num)
             $("#price").text(sum.toFixed(2))
@@ -106,7 +111,6 @@ function addProgram() {
         $(".addProjiect").remove()
     }
     $(".leftHead .text i").click();
-
 
     runBg(this)
 
@@ -152,6 +156,21 @@ $("#mianCont").delegate("#all", "click", function() {
     }, 4)
 
 });
+
+//全选删除
+$("#mianCont").delegate(".l_top button", "click", function() {
+    var deleate = [];
+    $.each($("#leftDate").find("input[type='checkbox']"), function(i, item) {
+        if ($(this).prop("checked") != false) {
+            deleate.push($(this).parent().parent().find("button").attr('data-sku'))
+        }
+    })
+    $("#all").prop("checked") != false ? deleate = $(this).attr("data-typeid") : deleate = deleate;
+
+
+
+});
+
 //所有列表
 $("#mianCont").delegate(".checkBox input[type='checkbox']", "click", function() {
     var current = 0;
@@ -208,8 +227,15 @@ $("#mianCont").delegate(".add", 'click', function() {
     $("#number").text(parseInt(++price))
 });
 
+//方案更名
+$("#mianCont").delegate(".changName a", "click", function() {
+    $(this).attr("data-type") //方案Id
+    $(this).siblings("input").val() //方案名称
 
-
+});
+$("#mianCont").delegate(".text .iconfont", "click", function() {
+    $(".changName").show()
+});
 //左侧收藏
 $("#mianCont").delegate(".collection", "click", function() {
     if (enshrine($(this).attr("data-type")) != "") {

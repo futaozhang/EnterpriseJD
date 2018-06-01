@@ -4,11 +4,13 @@
 
 
 
-var cookieDtae = "5512841-5363894"
-    //对比
+var cookieDtae = "5512841-5363894-5148309-5834183"
+
+
+//对比
 window.onload = function() {
 
-    var date = getCookie("Contrast").split(",").join("-")
+    // var date = getCookie("Contrast").split(",").join("-")
 
     //date.substring(1)  需要传递的参数
     var j_contrast = doT.template($("#j_product").text());

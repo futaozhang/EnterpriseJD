@@ -39,7 +39,7 @@ function changec(changId) {
 function Collection() {
 
 
-    $.getJSON('http://192.168.1.247:8080/procurement/getplist?userid=1&status=1', function(item) {
+    $.getJSON('http://192.168.1.247:8080/procurement/updatep?userid=1&status=1', function(item) {
 
 
         var j_persond = doT.template($("#j_person").text());

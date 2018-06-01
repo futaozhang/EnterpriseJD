@@ -861,6 +861,11 @@ button:focus {
     border-bottom: 1px solid #7d7d7d;
 }
 
+.addBorder {
+    border: 1px solid rgb(226, 58, 58);
+    color: rgb(226, 58, 58);
+}
+
 #Purchase .content_warp li {
     float: left;
 }
@@ -871,11 +876,6 @@ button:focus {
     background-size: cover;
 }
 
-.warp_Price {
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
 .warp_Price h5 {
     color: silver;
     font-size: 12px;
@@ -884,6 +884,7 @@ button:focus {
 .warp_Price h4 {
     font-weight: bold;
     color: rgb(226, 58, 58);
+    margin: 5px 0px;
 }
 
 .warp_t .warp_title {

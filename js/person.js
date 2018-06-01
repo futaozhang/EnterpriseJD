@@ -52,7 +52,6 @@ function GetRequest() {
 //采购
 $("#w_person").delegate(".left_warp a", "click",
     function(obj) {
-
         change($(this).attr("data-ju"))
 
     })
@@ -71,14 +70,14 @@ function change(changId) {
 
 //采购数据更新
 function Purchase() {
+    var j_person = document.getElementById('j_person').innerHTML;
 
+    $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "status": 1 }, function(item) {
 
-    $.getJSON("http://192.168.1.247:8080/procurement/getplist?userid=1&status=1", function(item) {
-        console.log(item)
-        var j_persond = doT.template($("#j_person").text());
+        // var j_persond = doT.template($("#j_person").text());
 
-        $("#w_person").html(j_persond(item));
-
+        //$("#w_person").html(j_persond(item));
+        document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
         change(0)
 
         setTimeout(function() {
@@ -93,19 +92,32 @@ function Purchase() {
 //全选
 
 $("#w_person").delegate("thead input[type='checkbox']", "click", function() {
-        var that = this
-        setTimeout(function() {
-            var cur = $(that).parent().parent().parent().parent()
-            if ($(that).prop("checked") == true) {
+    var that = this
+    setTimeout(function() {
+        var cur = $(that).parent().parent().parent().parent()
+        if ($(that).prop("checked") == true) {
 
-                $(cur).find(".tb_check input[type='checkbox']").prop("checked", true);
-            } else {
+            $(cur).find(".tb_check input[type='checkbox']").prop("checked", true);
+        } else {
 
-                $(cur).find(".tb_check input[type='checkbox']").prop("checked", false);
-            }
-        }, 4)
-    })
-    //
+            $(cur).find(".tb_check input[type='checkbox']").prop("checked", false);
+        }
+    }, 4)
+})
+
+//全选删除
+const newLocal = $("#w_person").delegate(".tableDe", "click", function() {
+    var deleate = [];
+    var that = this;
+    $.each($(this).siblings("table").find("table input[type='checkbox']"), function(i, item) {
+        if ($(this).prop("checked") != false) {
+            console.log($(this));
+            // deleate.push($(this).parent().parent().find("button").attr('data-sku'))
+        }
+    });
+    //  $("#all").prop("checked") != false ? deleate = $(this).attr("data-typeid") : deleate = deleate;
+    console.log(deleate);
+});
 
 
 //单选判断
@@ -140,6 +152,7 @@ $("#w_person").delegate(".reduce", 'click', function(dom) {
     $(thisNum).prop("value", parseInt(nowData) - 1);
 
     var price = $(fatherNode).siblings().find(".jd_price").text().substring(1)
+
 });
 
 
@@ -154,6 +167,7 @@ $("#w_person").delegate(".add", 'click', function() {
 
 
 });
+
 //收藏
 $("#w_person").delegate(".c_isCheck", "click", function() {
     if (enshrine($(this).attr("data-type")) != "") {
@@ -163,7 +177,13 @@ $("#w_person").delegate(".c_isCheck", "click", function() {
 
 });
 
-
+Array.prototype.sum = function() {
+    var result = 0;
+    for (var i = 0; i < this.length; i++) {
+        result += this[i];
+    }
+    return result;
+};
 
 // 价格计算
 function priceNun() {

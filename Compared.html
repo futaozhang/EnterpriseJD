@@ -15,7 +15,8 @@
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
 <!--[if lt IE 9]>
-       <script src="js/html5shiv.js"></script>  
+       <script src="js/html5shiv.js"></script> 
+        <script src="js/requestIE.js"></script> 
     <![endif]-->
 
 <body id="Compared">
@@ -80,7 +81,7 @@
                                 <tr>
                                     <td>
                                         <div class="ul_left">
-                                            <img src="img/text.jpg" />
+                                            <img src="{{~item.goodsdetail:goods:j}}{{=goods.thumbnail}}{{~}}" />
                                             <!--右侧-->
                                         </div>
 
@@ -93,14 +94,14 @@
                                             <span class="manager">高层管理</span> {{??item.sceneType=="商务便携"}}
                                             <span class="portadle">商务便携</span> {{??}}
                                             <span class="techology">技术研发</span> {{?}}
-                                            <span>{{=item.name}}</span>
-                                            <span>{{=item.display}}</span>
+                                            <span>{{~item.goodsdetail:goods:j}}{{=goods.name}}{{~}}</span>
+                                            <span>{{~item.goodsdetail:goods:j}}{{=goods.name}}{{~}}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="ul_num">
                                             <label for="" class="iconfont reduce">&#xe656;</label>
-                                            <input type="text" name="" id="" data-price={{=item.jdprice}} data-eprice={{=item.eprice}} value="{{=item.goodsnum}}" />
+                                            <input type="text" name="" id="" data-price="{{~item.goodsdetail:goods:j}}{{=goods.jdprice.toFixed(2)}}{{~}}" data-eprice="{{~item.goodsdetail:goods:j}}{{=goods.eprice.toFixed(2)}}{{~}}" value="{{=item.goodsnum}}" />
                                             <label for="" class="iconfont add">&#xe657;</label>
                                         </div>
                                     </td>
@@ -108,8 +109,9 @@
                                     <td>
 
                                         <div class="ul_price">
-                                            <span>京东价:￥{{=item.jdprice.toFixed(2)}}</span>
-                                            <span>企业专享价: <i class="jd_text">￥{{=item.eprice.toFixed(2)}}</i> </span>
+
+                                            <span>京东价:￥{{~item.goodsdetail:goods:j}}{{=goods.jdprice.toFixed(2)}}{{~}}</span>
+                                            <span>企业专享价: <i class="jd_text">￥{{~item.goodsdetail:goods:j}}{{=goods.eprice.toFixed(2)}}{{~}}</i> </span>
                                         </div>
 
                                     </td>
@@ -117,13 +119,14 @@
                                     <td>
                                         <div class="ui_opret">
                                             <a href="index.html">替换</a>
-                                            <a href="javascript:;">删除</a>
+                                            <a href="javascript:;" data-sku="{{~item.goodsdetail:goods:j}}{{=goods.id}}{{~}}">删除</a>
                                         </div>
                                     </td>
                                     <td>
+                                        {{?item.hot}}
                                         <i class="tipsRight">
 										<img src="img/hot.png"/>
-										</i>
+                                        </i> {{?}}
                                     </td>
 
                                 </tr>
@@ -197,7 +200,7 @@
         <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='自主采购方案':it.name}}
         <span class="changName">
                 <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
-                <a href="javascript:;">确定</a>
+                <a href="javascript:;"data-type="{{=it.id}}">确定</a>
             </span>
         </span>
         {{?it.status==1}}
@@ -216,29 +219,29 @@
         <div class="contents">
 
             <ul id="leftDate">
-                {{~it.info:value:index}} {{?index>-1}}
+                {{~it.goods_list:value:index}} {{?index>-1}}
                 <li>
                     <div class="checkBox">
                         <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
                     </div>
                     <label for="{{=index}}">
                         <div class="imgResponse">
-                            <img src="{{=value.pic_img}}"/>
+                            <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/>
                         </div>
                         
                         <div class="information">
-                            <p class="title">{{=value.pic_title}} </p>
-                            <p class="jdPrice">京东价：￥{{=value.pic_jdPrice}}</p>
-                            <p class="UserPrice">企业专享价：<strong>￥{{=value.pic_userPrice}}</strong> </p>
+                            <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
+                            <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice}}{{~}}</p>
+                            <p class="UserPrice">企业专享价：<strong>￥{{~value.goodsdetail:item:j}}{{=item.eprice}}{{~}}</strong> </p>
                         </div>           
                         <div class="input_num">									
                             <label for="" class="iconfont reduce">&#xe641;</label>
-                    <input type="text" name="" id="" value="{{=value.pic_value}}" />
+                    <input type="text" name="" id="" value="{{=value.goodsnum}}" />
                     <label for="" class="iconfont add" onclick="">&#xe655;</label>
 
         </div>
 
-        <button data-sku=''>删除</button>
+        <button data-sku='{{~value.goodsdetail:item:j}}{{=item.id}}{{~}}'>删除</button>
         </label>
 
         </li>
