@@ -1584,7 +1584,7 @@ table {
 }
 
 #personTable table thead th input {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 #personTable table thead th {
@@ -1604,6 +1604,16 @@ table {
 
 #personTable tbody tr td input {
     margin-left: 10px;
+}
+
+.labeW {
+    width: 20px;
+    height: 15px;
+}
+
+#personTable tbody tr .tb_check input {
+    width: 40px;
+    height: 15px;
 }
 
 #personTable .t_num label {

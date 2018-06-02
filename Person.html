@@ -157,7 +157,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th><input type="checkbox" name="jd_{{=index}}" id="jd_{{=index}}" value="" /><label for="jd_{{=index}}">全选</label></th>
+                        <th><input type="checkbox" class="labeW" data-type="{{=value.id}}" name="jd_{{=index}}" id="jd_{{=index}}" value="" /><label for="jd_{{=index}}">全选</label></th>
                         <th>&nbsp;</th>
                         <th>商品</th>
                         <th>&nbsp;</th>
@@ -172,7 +172,7 @@
                     {{~value.goods_list:item:i}}
                     <tr>
                         <td class="tb_check">
-                            <input type="checkbox" name="" id="jdS_{{=i}}" value="" /><label for="jdS_{{=i}}"></label>
+                            <input type="checkbox" name="" data-sku="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" id="jdS_{{=i}}" value="" /><label for="jdS_{{=i}}"></label>
                         </td>
                         <td>
                             <div class="tb_img">

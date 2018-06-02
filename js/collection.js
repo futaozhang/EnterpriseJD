@@ -39,9 +39,9 @@ function changec(changId) {
 function Collection() {
 
 
-    $.getJSON('http://192.168.1.247:8080/procurement/updatep?userid=1&status=1', function(item) {
+    $.getJSON('http://192.168.1.247:8080/procurement/getplist?userid=1&status=2', function(item) {
 
-
+        console.log(2)
         var j_persond = doT.template($("#j_person").text());
         $("#w_collection").html(j_persond(item));
 
@@ -51,7 +51,6 @@ function Collection() {
         setTimeout(function() {
             priceNunCollect()
         }, 5)
-
 
     })
 
@@ -116,6 +115,24 @@ $("#w_collection").delegate(".add", 'click', function() {
 
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
 
+
+});
+
+$("#w_collection").delegate(".tableDe", "click", function() {
+    var deleate = [];
+
+    var that = this
+
+    $.each($(this).parent().parent().parent().find("table .tb_check input[type='checkbox']"), function(i, item) {
+
+        if ($(this).prop("checked") != false) {
+
+            deleate.push($(this).attr("data-sku"))
+        }
+    })
+    $(this).parent().parent().siblings().find("table .labeW").prop("checked") != false ? deleate = $(this).attr("data-src") : deleate = deleate;
+
+    console.log(deleate)
 
 });
 

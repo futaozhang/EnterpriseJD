@@ -106,17 +106,22 @@ $("#w_person").delegate("thead input[type='checkbox']", "click", function() {
 })
 
 //全选删除
-const newLocal = $("#w_person").delegate(".tableDe", "click", function() {
+$("#w_person").delegate(".tableDe", "click", function() {
     var deleate = [];
-    var that = this;
-    $.each($(this).siblings("table").find("table input[type='checkbox']"), function(i, item) {
+
+    var that = this
+
+    $.each($(this).parent().parent().parent().find("table .tb_check input[type='checkbox']"), function(i, item) {
+
         if ($(this).prop("checked") != false) {
-            console.log($(this));
-            // deleate.push($(this).parent().parent().find("button").attr('data-sku'))
+
+            deleate.push($(this).attr("data-sku"))
         }
-    });
-    //  $("#all").prop("checked") != false ? deleate = $(this).attr("data-typeid") : deleate = deleate;
-    console.log(deleate);
+    })
+    $(this).parent().parent().siblings().find("table .labeW").prop("checked") != false ? deleate = $(this).attr("data-src") : deleate = deleate;
+
+    console.log(deleate)
+
 });
 
 
