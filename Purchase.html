@@ -105,22 +105,7 @@
         <!--菜单区域-->
         <div class="leftSelct" id="left_w">
 
-            <script type="text/template" id="leftTmp" charset="utf-8">
-                <i class="bg"></i> {{? it.lenght>0}}
-                <div class="noLogoing">
-                    <p>京东企业会员登陆更优惠！</p>
-                </div>
-                {{??}}
-                <div class="isLogoing ">
-                    <a class="user"><i class="iconfont ">&#xe522;</i></a>
-                    <a href="Person.html">收藏方案</a>
-                    <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
-                    <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
-                        <i class="tipsNum">{{=item.uid}}</i>{{=item.name}}</a> {{~}} {{?index
-                    <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
-                </div>
-                {{?}}
-            </script>
+         
 
         </div>
 
@@ -165,6 +150,23 @@
         <span>已加入购物方案一</span>
     </div>
 </body>
+<script type="text/template" id="leftTmp" >
+    <i class="bg"></i> {{? it.lenght>0}}
+    <div class="noLogoing">
+        <p>京东企业会员登陆更优惠！</p>
+    </div>
+    {{??}}
+    <div class="isLogoing ">
+        <a class="user"><i class="iconfont ">&#xe522;</i></a>
+        <a href="Person.html">收藏方案</a>
+        <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
+        <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
+            <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name}}</a> {{~}} {{?index
+        <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+    </div>
+    {{?}}
+</script>
+
 <script type="text/template" id="j_tmpl">
 
     <div class="leftHead">
@@ -194,7 +196,7 @@
                 {{~it.goods_list:value:index}} {{?index>-1}}
                 <li>
                     <div class="checkBox">
-                        <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
+                        <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" data-src="{{=value.id}}" value="" />
                     </div>
                     <label for="{{=index}}">
                         <div class="imgResponse">
@@ -212,8 +214,7 @@
                     <label for="" class="iconfont add" onclick="">&#xe655;</label>
 
         </div>
-
-        <button data-sku='{{~value.goodsdetail:item:j}}{{=item.id}}{{~}}'>删除</button>
+        <button class="ra_de" data-sku='{{=value.id}}' data-type="{{=it.id}}">删除</button>
         </label>
 
         </li>
@@ -253,6 +254,8 @@
 
 
 </script>
+
+
 <script type="text/template" id="j_Contrast">
     {{~it:value:index}}
     <li>

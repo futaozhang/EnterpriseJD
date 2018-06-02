@@ -2,16 +2,24 @@
 
 
 
+
 var k_tmpl = document.getElementById('k_tempelate').innerHTML;
 
 function comparedList() {
-    $.getJSON("http://192.168.1.247:8080/procurement/getplist?userid=1&status=1", function(item) {
+    $.ajax({
+        url: baseUrl + "/procurement/getplist",
+        data: { "userid": 1, "status": 1, },
+        cache: false,
+        success: function(item) {
+            $("#warp_content").empty()
+            document.getElementById('warp_content').innerHTML = doT.template(k_tmpl)(item);
+            pricCom()
+        }
 
-        document.getElementById('warp_content').innerHTML = doT.template(k_tmpl)(item);
+    })
 
-        pricCom()
-    });
 }
+
 comparedList();
 
 //减少
@@ -23,6 +31,7 @@ $("#Compared").delegate(".ul_num .reduce", 'click', function() {
         return false;
     }
     $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
+    pricCom()
 });
 
 //增加
@@ -30,6 +39,7 @@ $("#Compared").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
     $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) + 1)
+    pricCom()
 
 });
 
@@ -54,9 +64,21 @@ function pricCom() {
 }
 $("#warp_content").delegate(".n_collect", "click", function() {
 
-    if (enshrine($(this).attr("data-type")) != "") {
-        //更新数据
-        comparedList();
-    }
+    enshrine($(this).attr("data-type"))
+    
 
 });
+
+function removePlanC(typeId, skuId) {
+    $.ajax({
+    type: "GET",
+    contentType: "application/json",
+    url: baseUrl + "/procurement/delete",
+    data:{ "procurementId":typeId, "pitemlist":skuId,},
+    cache: false,
+    success: function(item) {
+        Purchase() 
+        leftBut()
+    }
+})
+}

@@ -15,7 +15,7 @@ var j_warp = document.getElementById('j_warp').innerHTML;
 getCookie("selcet") //cookie
 $.getJSON(baseUrl + "/goods/gettoplist", { "avlist": 3 }, function(item) {
     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
-
+    
 });
 
 
@@ -126,22 +126,35 @@ $(".contrast .cont_head i").click(function() {
 
 //加入购物方案
 $("#content_warp").delegate(".add_pri ul a", "click", function() {
-    // if (getCookie("userId") == null) {
-    //     login()
-    //     return false
-    // }
-
+   
     var typeId = $(this).attr("data-typid") //购物方案Id
     var skuId = $(this).parent().attr("data-sku") //物品sku
-    alert(skuId)
-    getCookie("Type") //选择类  日常-技术
-        //加入采购方案
-    if (addPlan(typeId, skuId, getCookie("Type")) != "") {
-
-    }
+    var tipsName= $(this).find("li").text() 
+    addPlan(typeId,skuId,getCookie("Type"),tipsName)
 
 })
+/*
+ *加入物品接口
+ *skuId 物品
+ *typId 方案
+ *type 日常生活
+ */
+function addPlan(typeId, skuId,type,tipsName) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurementItem/addpitem",
+        data:{ "pid":typeId, "goodsid":skuId,"message":type},
+        cache: true,
+        success: function(item) {
 
+            addTips("已加入"+tipsName)
+            leftBut()
+          
+          
+        }
+    })
+}
 
 //拓展数组去重复
 Array.prototype.clearRepetition = function() {    this.sort();    var result = [this[0]];    for (var i = 1; i < this.length; i++) {      if (this[i] !== result[result.length - 1]) {        result.push(this[i]);      }    }    return result;  }

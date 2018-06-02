@@ -1090,7 +1090,9 @@ button:focus {
     overflow: hidden;
     color: #7d7d7d;
 }
-
+.add_pri ul li:hover{
+    color:rgb(226, 58, 58);
+}
 .addPro {
     border-bottom: 1px solid #7d7d7d;
 }
@@ -1414,13 +1416,15 @@ table {
 }
 
 #Person .p_user p {
-    width: 300px;
+    width: 350px;
     padding-top: 20px;
+    color: #878ca0;
+    
 }
 
 #Person .p_user p a {
     float: right;
-    color: #bcd9ef;
+    color: #54aaea;
 }
 
 #Person .p_but a {
@@ -1561,7 +1565,12 @@ table {
     color: white;
     border-radius: 2px;
 }
-
+#userName{
+    color:#a57a39;
+    width:120px;
+    height:40px;
+    margin-left:5px;
+}
 #personTable table {
     width: 100%;
     text-align: left;

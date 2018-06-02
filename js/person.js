@@ -70,20 +70,18 @@ function change(changId) {
 
 //采购数据更新
 function Purchase() {
+    $.ajaxSetup({ cache: false });
     var j_person = document.getElementById('j_person').innerHTML;
-
     $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "status": 1 }, function(item) {
-
-        // var j_persond = doT.template($("#j_person").text());
-
-        //$("#w_person").html(j_persond(item));
-        document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
-        change(0)
-
-        setTimeout(function() {
-            priceNun()
-        }, 5)
-
+        if (item != "") {
+            document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
+            change(0)
+            setTimeout(function() {
+                priceNun()
+            }, 5)
+        } else {
+            return false
+        }
 
     })
 
@@ -106,24 +104,44 @@ $("#w_person").delegate("thead input[type='checkbox']", "click", function() {
 })
 
 //全选删除
+
 $("#w_person").delegate(".tableDe", "click", function() {
     var deleate = [];
+    var listId=[];
+    var that = this;
+    var typId= $(this).attr("data-src");
 
-    var that = this
+    if($(this).parent().parent().parent().find("table .labeW").prop("checked")!=true){     
+    
+        $.each($(this).parent().parent().parent().find("table .tb_check input[type='checkbox']"), function(i, item) {
+            if ($(this).prop("checked") != false) {      
+                deleate.push($(this).attr("data-sku"));
+                listId.push($(this).attr("sc-id"));              
+                $(this).parent().parent().remove();       
+               }          
+        })
 
-    $.each($(this).parent().parent().parent().find("table .tb_check input[type='checkbox']"), function(i, item) {
+    } else{
+        listId=[];  
+    }   
+  
+    removePlanP(typId, listId.join("-"))
 
-        if ($(this).prop("checked") != false) {
-
-            deleate.push($(this).attr("data-sku"))
-        }
-    })
-    $(this).parent().parent().siblings().find("table .labeW").prop("checked") != false ? deleate = $(this).attr("data-src") : deleate = deleate;
-
-    console.log(deleate)
 
 });
-
+function removePlanP(typeId, skuId) {
+    $.ajax({
+    type: "GET",
+    contentType: "application/json",
+    url: baseUrl + "/procurement/delete",
+    data:{ "procurementId":typeId, "pitemlist":skuId,},
+    cache: false,
+    success: function(item) {
+        Purchase() 
+        leftBut()
+    }
+})
+}
 
 //单选判断
 $("#w_person").delegate(".tb_check input[type='checkbox']", "click", function() {
@@ -156,10 +174,10 @@ $("#w_person").delegate(".reduce", 'click', function(dom) {
     var thisNum = $(this).parent().find("input[type='text']")
     $(thisNum).prop("value", parseInt(nowData) - 1);
 
-    var price = $(fatherNode).siblings().find(".jd_price").text().substring(1)
+    priceNun()
+    changListdataW($(this))
 
 });
-
 
 
 //加
@@ -169,18 +187,50 @@ $("#w_person").delegate(".add", 'click', function() {
     var nowData = $(this).parent().find("input[type='text']").prop("value");
 
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
-
+    changListdataW($(this))
+    priceNun()
 
 });
+//数量修改
+function changListdataW(obj){
+    $(obj).siblings("input").val();//num
+    $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id");//id
+    $(obj).attr("data-type");//type
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurementItem/updatepitem",
+        data:{ "id":skuid, "goodsnum":value},
+        cache: true,
+        success: function(item) {
+         
+        }
+    })
+ }
+
 
 //收藏
 $("#w_person").delegate(".c_isCheck", "click", function() {
-    if (enshrine($(this).attr("data-type")) != "") {
+    cnshrine($(this).attr("data-type"))
         //更新数据
-        Purchase()
-    }
-
 });
+//方案夹收藏
+function cnshrine(typeId) {
+    var msg;
+    $.ajax({
+        type: "POST",
+        url: baseUrl + "/procurement/updatep",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({ "id": parseInt(typeId), "status": 2, }),
+        success: function(jsonResult) {
+            Purchase()
+            setTimeout(leftBut(), 200)
+        }
+    })
+    return msg
+
+}
 
 Array.prototype.sum = function() {
     var result = 0;
@@ -195,7 +245,7 @@ function priceNun() {
 
     $.each($("#w_person .right_warp"), function() {
 
-        if ($(this).css("display") == "block") {
+    
             var jdprice = [];
             var eprice = [];
             $.each($(this).find(".t_num input"), function(item) {
@@ -205,6 +255,6 @@ function priceNun() {
             })
             $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
             $(this).find(".price .jdPrice").text("￥" + eprice.sum().toFixed(2))
-        }
+       
     })
 }

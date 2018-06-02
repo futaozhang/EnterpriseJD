@@ -46,7 +46,7 @@
             <div class="p_user">
 
                 <img src="img/user.png" />
-                <p>昵称：<br /><span id="userName"></span>
+                <p>昵称：<span id="userName"></span>
                     <a href="javascript:;">退出</a>
                 </p>
 
@@ -79,22 +79,7 @@
         <!--菜单区域-->
         <div class="leftSelct" id="left_w">
 
-            <script type="text/template" id="leftTmp" charset="utf-8">
-                <i class="bg"></i> {{? it.lenght>0}}
-                <div class="noLogoing">
-                    <p>京东企业会员登陆更优惠！</p>
-                </div>
-                {{??}}
-                <div class="isLogoing ">
-                    <a class="user"><i class="iconfont ">&#xe522;</i></a>
-                    <a href="Person.html">收藏方案</a>
-                    <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
-                    <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
-                        <i class="tipsNum">{{=item.uid}}</i>{{=item.name}}</a> {{~}} {{?index
-                    <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
-                </div>
-                {{?}}
-            </script>
+           
 
         </div>
 
@@ -114,6 +99,113 @@
     </div>
 
 </body>
+<script type="text/template" id="leftTmp" >
+    <i class="bg"></i> {{? it.lenght>0}}
+    <div class="noLogoing">
+        <p>京东企业会员登陆更优惠！</p>
+    </div>
+    {{??}}
+    <div class="isLogoing ">
+        <a class="user"><i class="iconfont ">&#xe522;</i></a>
+        <a href="Person.html">收藏方案</a>
+        <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
+        <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
+            <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name}}</a> {{~}} {{?index
+        <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+    </div>
+    {{?}}
+</script>
+
+<script type="text/template" id="j_tmpl">
+
+    <div class="leftHead">
+
+        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='自主采购方案':it.name}}
+        <span class="changName">
+                <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
+                <a href="javascript:;"data-type="{{=it.id}}">确定</a>
+            </span>
+        </span>
+        {{?it.status==1}}
+        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont">&#xe711;</i>收藏</a>{{??}}
+        <a href="javascript:;" class="collection  "><i class="iconfont red ">&#xe663;</i>收藏</a>{{?}}
+
+    </div>
+
+    <div class="leftConte">
+
+        <div class="l_top">
+            <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
+            <button data-typeId='{{=it.id}}'>删除</button>
+        </div>
+
+        <div class="contents">
+
+            <ul id="leftDate">
+                {{~it.goods_list:value:index}} {{?index>-1}}
+                <li>
+                    <div class="checkBox">
+                        <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" data-src="{{=value.id}}" value="" />
+                    </div>
+                    <label for="{{=index}}">
+                        <div class="imgResponse">
+                            <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/>
+                        </div>
+                        
+                        <div class="information">
+                            <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
+                            <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice}}{{~}}</p>
+                            <p class="UserPrice">企业专享价：<strong>￥{{~value.goodsdetail:item:j}}{{=item.eprice}}{{~}}</strong> </p>
+                        </div>           
+                        <div class="input_num">									
+                            <label for="" class="iconfont reduce">&#xe641;</label>
+                    <input type="text" name="" id="" value="{{=value.goodsnum}}" />
+                    <label for="" class="iconfont add" onclick="">&#xe655;</label>
+
+        </div>
+        <button class="ra_de" data-sku='{{=value.id}}' data-type="{{=it.id}}">删除</button>
+        </label>
+
+        </li>
+        {{~}} {{??}}
+        <li>
+            <div class="information">
+                <h3>暂无数据....</h3>
+            </div>
+        </li>
+        {{?}}
+
+        </ul>
+
+    </div>
+
+
+    <div class="bottom Jd_footer">
+        <div class="text">
+
+            <p><strong id="number">0</strong>件商品</p>
+            <p>共计: <strong id="price">￥0.00</strong></p>
+
+        </div>
+        <a href="">加入购物车</a>
+    </div>
+
+    </div>
+
+    <div class="leftfooter Jd_footer">
+        <ul>
+            <li><a>导出到本地</a></li>
+            <li><a>分享采购方案</a></li>
+            <li><a href="Compared.html">对比采购方案</a></li>
+            <li><a href="Person.html?id=1">管理采购方案</a></li>
+        </ul>
+    </div>
+
+
+</script>
+
+
+
 <script type="text/template" id="j_person">
 
     <div class="left_warp">
@@ -172,7 +264,7 @@
                     {{~value.goods_list:item:i}}
                     <tr>
                         <td class="tb_check">
-                            <input type="checkbox" name="" data-sku="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" id="jdS_{{=i}}" value="" /><label for="jdS_{{=i}}"></label>
+                            <input type="checkbox" name="" sc-id="{{=item.id}}" data-sku="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" id="jdS_{{=i}}" value="" /><label for="jdS_{{=i}}"></label>
                         </td>
                         <td>
                             <div class="tb_img">
@@ -190,10 +282,9 @@
                         </td>
                         <td>
                             <div class="t_num">
-                                <label for="" class="iconfont reduce">&#xe656;</label>
-                                <input type="text" name="" id="" data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}} {{~}}" value="{{=item.goodsnum}}" />
-                                <label for="" class="iconfont add">&#xe657;</label>
-
+                                <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe656;</label>
+                                <input type="text" name="text" id="" readonly data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}} {{~}}" value="{{=item.goodsnum}}" />
+                                <label for="" class="iconfont add" data-type="{{=item.id}}">&#xe657;</label>
                             </div>
                         </td>
                         <td class="tb_price">
@@ -227,94 +318,7 @@
     </div>
     {{~}}
 </script>
-<script type="text/template" id="j_tmpl">
 
-    <div class="leftHead">
-
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='自主采购方案':it.name}}
-        <span class="changName">
-                <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
-                <a href="javascript:;"data-type="{{=it.id}}">确定</a>
-            </span>
-        </span>
-        {{?it.status==1}}
-        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont">&#xe711;</i>收藏</a>{{??}}
-        <a href="javascript:;" class="collection  "><i class="iconfont red ">&#xe663;</i>收藏</a>{{?}}
-
-    </div>
-
-    <div class="leftConte">
-
-        <div class="l_top">
-            <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button data-typeId='{{=it.id}}'>删除</button>
-        </div>
-
-        <div class="contents">
-
-            <ul id="leftDate">
-                {{~it.goods_list:value:index}} {{?index>-1}}
-                <li>
-                    <div class="checkBox">
-                        <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" value="" />
-                    </div>
-                    <label for="{{=index}}">
-                        <div class="imgResponse">
-                            <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/>
-                        </div>
-                        
-                        <div class="information">
-                            <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
-                            <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice}}{{~}}</p>
-                            <p class="UserPrice">企业专享价：<strong>￥{{~value.goodsdetail:item:j}}{{=item.eprice}}{{~}}</strong> </p>
-                        </div>           
-                        <div class="input_num">									
-                            <label for="" class="iconfont reduce">&#xe641;</label>
-                    <input type="text" name="" id="" value="{{=value.goodsnum}}" />
-                    <label for="" class="iconfont add" onclick="">&#xe655;</label>
-
-        </div>
-
-        <button data-sku='{{~value.goodsdetail:item:j}}{{=item.id}}{{~}}'>删除</button>
-        </label>
-
-        </li>
-        {{~}} {{??}}
-        <li>
-            <div class="information">
-                <h3>暂无数据....</h3>
-            </div>
-        </li>
-        {{?}}
-
-        </ul>
-
-    </div>
-
-
-    <div class="bottom Jd_footer">
-        <div class="text">
-
-            <p><strong id="number">0</strong>件商品</p>
-            <p>共计: <strong id="price">￥0.00</strong></p>
-
-        </div>
-        <a href="">加入购物车</a>
-    </div>
-
-    </div>
-
-    <div class="leftfooter Jd_footer">
-        <ul>
-            <li><a>导出到本地</a></li>
-            <li><a>分享采购方案</a></li>
-            <li><a href="Compared.html">对比采购方案</a></li>
-            <li><a href="Person.html?id=1">管理采购方案</a></li>
-        </ul>
-    </div>
-
-
-</script>
 
 
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
