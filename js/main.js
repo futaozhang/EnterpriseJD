@@ -19,6 +19,7 @@ function GetRandomNum(Min, Max) {
     return (Min + Math.round(Rand * Range));
 }
 $.ajaxSetup({ cache: false });
+
 function leftBut() {
     var leftTmp = document.getElementById('leftTmp').innerHTML;
     $.ajax({
@@ -29,15 +30,15 @@ function leftBut() {
                 LeftDateList = item;
                 var add_pri = '';
                 //数据渲染
-               
+
                 document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
-              
-                for (var i = 0; i< item.length; i++) {
+
+                for (var i = 0; i < item.length; i++) {
                     add_pri += "<a href='javascript:;' data-typId=" + item[i].id + "><li class=" + 'jdAdd_' + [i] + ">" + item[i].name + "</li></a>"
                 }
 
                 var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
-                //增加购物方案延迟渲染
+                    //增加购物方案延迟渲染
                 setTimeout(function() {
                     $(".add_pri ul").html(function(n) {
                         if (item.length >= 3) {
@@ -83,7 +84,7 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
 
 // 左侧数据
 
-function leftList(id,fun) {
+function leftList(id, fun) {
     var sum = 0;
     var num = 0;
 
@@ -95,9 +96,9 @@ function leftList(id,fun) {
             //  var priceList;
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
-            if(fun!=undefined){
-               
-            setTimeout(fun,10) 
+            if (fun != undefined) {
+
+                setTimeout(fun, 10)
             }
             $.each(item[0].goods_list, function(index, infoLIst) {
                 //数量计算
@@ -129,9 +130,20 @@ function addProgram() {
     $(".leftHead .text i").click();
 
     runBg(this)
+    newAddColect()
 
 }
 
+//新增采购方案
+function newAddColect(id, json) {
+
+    //getCookie("userId")
+
+    $.post(baseUrl + "/procurement/addp", { "good_list": [], "status": 1, "uid": 1 }, function() {
+
+    }, json)
+
+}
 // 左侧弹出
 function runBg(th) {
 
@@ -178,38 +190,39 @@ $("#mianCont").delegate("#all", "click", function() {
 //全选删除
 $("#mianCont").delegate(".l_top button", "click", function() {
     var deleate = [];
-    var typeId=$(this).attr("data-typeid")
-    if( $("#all").prop("checked")!= true ){
-    $.each($("#leftDate").find("input[type='checkbox']"), function(i, item) {
-        if ($(this).prop("checked") != false) {
+    var typeId = $(this).attr("data-typeid")
+    if ($("#all").prop("checked") != true) {
+        $.each($("#leftDate").find("input[type='checkbox']"), function(i, item) {
+            if ($(this).prop("checked") != false) {
 
-            deleate.push($(this).parent().parent().find("button").attr('data-sku'))
-           
-            $(this).parent().parent().remove();  
-               
-        }
-         })
+                deleate.push($(this).parent().parent().find("button").attr('data-sku'))
 
-        }else{
-            deleate=[]
-        }
-        
-   removeList(typeId,deleate.join("-"))
+                $(this).parent().parent().remove();
 
-});
-    function removeList(typeId,deleate){
-       
-        $.ajax({
-            type: "GET",
-            contentType: "application/json",
-            url: baseUrl + "/procurement/delete",
-            data:{ "procurementId":typeId, "pitemlist":deleate,},
-            cache: false,
-            success: function(item) {
-             
             }
         })
+
+    } else {
+        deleate = []
     }
+
+    removeList(typeId, deleate.join("-"))
+
+});
+
+function removeList(typeId, deleate) {
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurement/delete",
+        data: { "procurementId": typeId, "pitemlist": deleate, },
+        cache: false,
+        success: function(item) {
+
+        }
+    })
+}
 
 //所有列表
 $("#mianCont").delegate(".checkBox input[type='checkbox']", "click", function() {
@@ -261,7 +274,7 @@ $("#mianCont").delegate(".add", 'click', function() {
     var nowData = $(this).parent().find("input[type='text']").prop("value");
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
     var sum = parseInt($("#price").text()) +
-    parseInt($(this).parent().parent().find("strong").text().substring(1))
+        parseInt($(this).parent().parent().find("strong").text().substring(1))
     $("#price").text(parseInt(sum).toFixed(2))
     var price = $("#number").text()
     $("#number").text(parseInt(++price))
@@ -272,31 +285,31 @@ $("#mianCont").delegate(".add", 'click', function() {
 $("#mianCont").delegate(".changName a", "click", function() {
     //方案Id
     //方案名称
-    var type=$(this).attr("data-type")
+    var type = $(this).attr("data-type")
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: baseUrl + "/procurement/updatep",
-        data:JSON.stringify({ "id":type, "name": $(this).siblings("input").val()}),
+        data: JSON.stringify({ "id": type, "name": $(this).siblings("input").val() }),
         cache: false,
         success: function(item) {
-            leftList(type,"close()");
+            leftList(type, "close()");
             leftBut();
             $(".changName").hide();
-          
-            
+
+
         }
     })
-   
+
 });
 //开启遮罩
-function close(){ 
+function close() {
     setTimeout(function() {
-    $(".Jd_footer").fadeIn();
-    $(".leftSelct .bg").show();
-    $(".isLogoing").animate({ "left": "360px" });
-},4)
-   
+        $(".Jd_footer").fadeIn();
+        $(".leftSelct .bg").show();
+        $(".isLogoing").animate({ "left": "360px" });
+    }, 4)
+
 }
 //名称修改展示
 $("#mianCont").delegate(".text .iconfont", "click", function() {
@@ -309,9 +322,9 @@ $("#mianCont").delegate(".collection", "click", function() {
 });
 
 //单个删除
-$("#mianCont").delegate("#leftDate li .ra_de", "click", function() {   
-  
-    removePland( $(this).attr("data-type"),$(this).attr("data-sku"),$(this))
+$("#mianCont").delegate("#leftDate li .ra_de", "click", function() {
+
+    removePland($(this).attr("data-type"), $(this).attr("data-sku"), $(this))
 });
 
 
@@ -395,50 +408,41 @@ function enshrine(typeId) {
 
 }
 //单个数据删除
-function removePland(typeId, skuId,obj) {
+function removePland(typeId, skuId, obj) {
 
     $.ajax({
-    type: "GET",
-    contentType: "application/json",
-    url: baseUrl + "/procurement/delete",
-    data:{ "procurementId":typeId, "pitemlist":skuId},
-    cache: false,
-    success: function(item) {
-      
-        leftList(typeId,"close()");//单个内容数据更新
-        leftBut(); //数据更新
-        $(obj).parent().parent().remove();//物理删除
-    }
-})
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurement/delete",
+        data: { "procurementId": typeId, "pitemlist": skuId },
+        cache: false,
+        success: function(item) {
+
+            leftList(typeId, "close()"); //单个内容数据更新
+            leftBut(); //数据更新
+            $(obj).parent().parent().remove(); //物理删除
+        }
+    })
 }
 
 //异步修改数据
-function changListdataL(obj){
-   
-     var value=$(obj).parent().find("input[type='text']").val();
-     var skuid =$(obj).parent().siblings("button").attr("data-sku");//id
+function changListdataL(obj) {
+
+    var value = $(obj).parent().find("input[type='text']").val();
+    var skuid = $(obj).parent().siblings("button").attr("data-sku"); //id
     $.ajax({
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/updatepitem",
-        data:{ "id":skuid, "goodsnum":value},
+        data: { "id": skuid, "goodsnum": value },
         cache: true,
         success: function(item) {
             leftList()
         }
     })
- }
-
-//新增采购方案
-function newAddColect(id, json) {
-
-    getCookie("userId")
-
-    $.post(baseUrl + "/procurement/addp", {}, function() {
-
-    }, json)
-
 }
+
+
 //更新采购方案
 
 

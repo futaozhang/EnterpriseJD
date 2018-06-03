@@ -107,40 +107,50 @@ $("#w_person").delegate("thead input[type='checkbox']", "click", function() {
 
 $("#w_person").delegate(".tableDe", "click", function() {
     var deleate = [];
-    var listId=[];
+    var listId = [];
     var that = this;
-    var typId= $(this).attr("data-src");
+    var typId = $(this).attr("data-src");
 
-    if($(this).parent().parent().parent().find("table .labeW").prop("checked")!=true){     
-    
+    if ($(this).parent().parent().parent().find("table .labeW").prop("checked") != true) {
+
         $.each($(this).parent().parent().parent().find("table .tb_check input[type='checkbox']"), function(i, item) {
-            if ($(this).prop("checked") != false) {      
+            if ($(this).prop("checked") != false) {
                 deleate.push($(this).attr("data-sku"));
-                listId.push($(this).attr("sc-id"));              
-                $(this).parent().parent().remove();       
-               }          
+                listId.push($(this).attr("sc-id"));
+                $(this).parent().parent().remove();
+            }
         })
 
-    } else{
-        listId=[];  
-    }   
-  
+    } else {
+        listId = [];
+    }
+
     removePlanP(typId, listId.join("-"))
 
 
 });
-function removePlanP(typeId, skuId) {
-    $.ajax({
-    type: "GET",
-    contentType: "application/json",
-    url: baseUrl + "/procurement/delete",
-    data:{ "procurementId":typeId, "pitemlist":skuId,},
-    cache: false,
-    success: function(item) {
-        Purchase() 
-        leftBut()
-    }
+
+//单选删除
+$("#w_person").delegate(".tb_opreat .tb_del", "click", function() {
+
+
+    removePlanP($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
 })
+
+
+function removePlanP(typeId, skuId, obj) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurement/delete",
+        data: { "procurementId": typeId, "pitemlist": skuId, },
+        cache: false,
+        success: function(item) {
+            Purchase()
+            leftBut()
+            $(this).parent().parent().remove();
+        }
+    })
 }
 
 //单选判断
@@ -192,21 +202,21 @@ $("#w_person").delegate(".add", 'click', function() {
 
 });
 //数量修改
-function changListdataW(obj){
-    $(obj).siblings("input").val();//num
-    $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id");//id
-    $(obj).attr("data-type");//type
+function changListdataW(obj) {
+    $(obj).siblings("input").val(); //num
+    $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id"); //id
+    $(obj).attr("data-type"); //type
     $.ajax({
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/updatepitem",
-        data:{ "id":skuid, "goodsnum":value},
+        data: { "id": skuid, "goodsnum": value },
         cache: true,
         success: function(item) {
-         
+
         }
     })
- }
+}
 
 
 //收藏
@@ -245,16 +255,16 @@ function priceNun() {
 
     $.each($("#w_person .right_warp"), function() {
 
-    
-            var jdprice = [];
-            var eprice = [];
-            $.each($(this).find(".t_num input"), function(item) {
-                jdprice.push($(this).val() * $(this).attr("data-price"))
-                eprice.push($(this).val() * $(this).attr("data-eprice"))
 
-            })
-            $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
-            $(this).find(".price .jdPrice").text("￥" + eprice.sum().toFixed(2))
-       
+        var jdprice = [];
+        var eprice = [];
+        $.each($(this).find(".t_num input"), function(item) {
+            jdprice.push($(this).val() * $(this).attr("data-price"))
+            eprice.push($(this).val() * $(this).attr("data-eprice"))
+
+        })
+        $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
+        $(this).find(".price .jdPrice").text("￥" + eprice.sum().toFixed(2))
+
     })
 }

@@ -20,7 +20,7 @@ function GetRequest() {
 $("#w_collection").delegate(".left_warp a", "click",
     function(obj) {
         changec($(this).attr("data-ju"))
-    
+
     })
 
 //左侧排列切换
@@ -45,18 +45,18 @@ function Collection() {
             document.getElementById('w_collection').innerHTML = doT.template(j_persond)(item);
             $("#w_collection .addCollection").remove();
             $("#w_collection .right_but .pru").remove();
-    
+
             changec(0)
             setTimeout(function() {
                 priceNunCollect()
             }, 5)
-    
+
         } else {
             return false
         }
-        
-      
-        
+
+
+
     })
 
 }
@@ -110,7 +110,7 @@ $("#w_collection").delegate(".reduce", 'click', function(dom) {
     $(thisNum).prop("value", parseInt(nowData) - 1);
 
     changListdata($(this))
-   
+
     priceNunCollect()
 });
 
@@ -120,60 +120,83 @@ $("#w_collection").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData));
-  
+
     changListdata($(this))
     priceNunCollect()
 
 });
 
 //异步修改数据
- function changListdata(obj){
-     var value= $(obj).siblings("input").val();//num
-    var skuid= $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id");//id
-   
+function changListdata(obj) {
+    var value = $(obj).siblings("input").val(); //num
+    var skuid = $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id"); //id
+
 
     $.ajax({
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/updatepitem",
-        data:{ "id":skuid, "goodsnum":value},
+        data: { "id": skuid, "goodsnum": value },
         cache: true,
         success: function(item) {
-         
+
         }
     })
 
 
- }
+}
 
 // 多选删除
 $("#w_collection").delegate(".tableDe", "click", function() {
     var deleate = [];
-    var listId=[];
+    var listId = [];
     var that = this;
-    var typId= $(this).attr("data-src");
+    var typId = $(this).attr("data-src");
 
-    if($(this).parent().parent().parent().find("table .labeW").prop("checked")!=true){     
-    
+    if ($(this).parent().parent().parent().find("table .labeW").prop("checked") != true) {
+
         $.each($(this).parent().parent().parent().find("table .tb_check input[type='checkbox']"), function(i, item) {
-            if ($(this).prop("checked") != false) {      
+            if ($(this).prop("checked") != false) {
                 deleate.push($(this).attr("data-sku"));
-                listId.push($(this).attr("sc-id"));  
-               
-                $(this).parent().parent().remove();       
-               }
-              
+                listId.push($(this).attr("sc-id"));
+
+                $(this).parent().parent().remove();
+            }
+
         })
 
-    } else{
-        listId=[]; 
-    }   
-  
-    removePlan(typId, listId.join("-"))
+    } else {
+        listId = [];
+    }
+
+    removePlanWC(typId, listId.join("-"))
 
 
 });
 
+//单选删除
+$("#w_collection").delegate(".tb_opreat .tb_del", "click", function() {
+
+
+    removePlanWC($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+
+})
+
+function removePlanWC(typeId, skuId, obj) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurement/delete",
+        data: { "procurementId": typeId, "pitemlist": skuId, },
+        cache: false,
+        success: function(item) {
+            Purchase()
+            leftBut()
+            $(this).parent().parent().remove();
+            Collection()
+        }
+    })
+}
 
 
 // 价格计算
@@ -181,16 +204,16 @@ function priceNunCollect() {
 
     $.each($("#w_collection .right_warp"), function() {
 
-    
-            var jdprice = [];
-            var eprice = [];
-            $.each($(this).find(".t_num input"), function(item) {
-                jdprice.push($(this).val() * $(this).attr("data-price"))
-                eprice.push($(this).val() * $(this).attr("data-eprice"))
 
-            })
-            $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
-            $(this).find(".price .jdPrice").text("￥" + eprice.sum().toFixed(2));
+        var jdprice = [];
+        var eprice = [];
+        $.each($(this).find(".t_num input"), function(item) {
+            jdprice.push($(this).val() * $(this).attr("data-price"))
+            eprice.push($(this).val() * $(this).attr("data-eprice"))
+
+        })
+        $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
+        $(this).find(".price .jdPrice").text("￥" + eprice.sum().toFixed(2));
 
     })
 }

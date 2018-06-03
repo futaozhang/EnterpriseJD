@@ -15,7 +15,7 @@ var j_warp = document.getElementById('j_warp').innerHTML;
 getCookie("selcet") //cookie
 $.getJSON(baseUrl + "/goods/gettoplist", { "avlist": 3 }, function(item) {
     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
-    
+
 });
 
 
@@ -82,9 +82,10 @@ $(".contrast").delegate(".clear_cont", "click", function() {
 
 //对比栏目数据渲染
 function addP() {
+    var date = getCookie("Contrast").split(",").join("-")
     var j_contrast = document.getElementById('j_Contrast').innerHTML;
     //getCookie("Contrast")
-    $.getJSON(baseUrl + "/goods/compare", { "skulist": "5512841-5363894-5834183-5148309" },
+    $.getJSON(baseUrl + "/goods/compare", { "skulist": date },
         function(item) {
             document.getElementById('contrast_warp').innerHTML = doT.template(j_contrast)(item);
             if (item != "") {
@@ -126,32 +127,32 @@ $(".contrast .cont_head i").click(function() {
 
 //加入购物方案
 $("#content_warp").delegate(".add_pri ul a", "click", function() {
-   
-    var typeId = $(this).attr("data-typid") //购物方案Id
-    var skuId = $(this).parent().attr("data-sku") //物品sku
-    var tipsName= $(this).find("li").text() 
-    addPlan(typeId,skuId,getCookie("Type"),tipsName)
 
-})
-/*
- *加入物品接口
- *skuId 物品
- *typId 方案
- *type 日常生活
- */
-function addPlan(typeId, skuId,type,tipsName) {
+        var typeId = $(this).attr("data-typid") //购物方案Id
+        var skuId = $(this).parent().attr("data-sku") //物品sku
+        var tipsName = $(this).find("li").text()
+        addPlan(typeId, skuId, getCookie("Type"), tipsName)
+
+    })
+    /*
+     *加入物品接口
+     *skuId 物品
+     *typId 方案
+     *type 日常生活
+     */
+function addPlan(typeId, skuId, type, tipsName) {
     $.ajax({
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/addpitem",
-        data:{ "pid":typeId, "goodsid":skuId,"message":type},
+        data: { "pid": typeId, "goodsid": skuId, "message": type },
         cache: true,
         success: function(item) {
 
-            addTips("已加入"+tipsName)
+            addTips("已加入" + tipsName)
             leftBut()
-          
-          
+
+
         }
     })
 }

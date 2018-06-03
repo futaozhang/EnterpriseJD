@@ -65,20 +65,28 @@ function pricCom() {
 $("#warp_content").delegate(".n_collect", "click", function() {
 
     enshrine($(this).attr("data-type"))
-    
+
 
 });
+//单选删除
+$("#warp_content").delegate(".ui_opret .com_del", "click", function() {
 
-function removePlanC(typeId, skuId) {
-    $.ajax({
-    type: "GET",
-    contentType: "application/json",
-    url: baseUrl + "/procurement/delete",
-    data:{ "procurementId":typeId, "pitemlist":skuId,},
-    cache: false,
-    success: function(item) {
-        Purchase() 
-        leftBut()
-    }
+
+    removePlanCom($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
 })
+
+
+function removePlanCom(typeId, skuId, obj) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurement/delete",
+        data: { "procurementId": typeId, "pitemlist": skuId, },
+        cache: false,
+        success: function(item) {
+            leftBut()
+            comparedList()
+            $(this).parent().parent().remove();
+        }
+    })
 }
