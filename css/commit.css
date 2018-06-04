@@ -1909,6 +1909,7 @@ table {
     margin-left: -125px;
     text-align: center;
     display: none;
+    z-index:999;
 }
 
 .tips p {
@@ -1924,6 +1925,7 @@ table {
     filter: progid: DXImageTransform.Microsoft.Alpha(opacity=60);
     filter: alpha(opacity=60);
     border-radius: 10px;
+    z-index:999;
 }
 
 .tips span {
@@ -1937,8 +1939,9 @@ table {
     font-size: 20px;
     letter-spacing: 2px;
     color: white;
-    z-index: 9;
+ 
     opacity: 1;
+    z-index:999;
 }
 
 

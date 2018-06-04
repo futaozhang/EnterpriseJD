@@ -100,7 +100,11 @@
             <button class="cancel" onclick="$('.confirmTips').hide()">取消</button>
         </div>
     </div>
-
+ <!-- tips -->
+ <div class="tips">
+        <p></p>
+        <span>已加入购物方案</span>
+    </div>
     <!--底部-->
     <div id="foote">
         <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
@@ -167,7 +171,7 @@
                         </div>           
                         <div class="input_num">									
                             <label for="" class="iconfont reduce">&#xe641;</label>
-                    <input type="text" name="" id="" value="{{=value.goodsnum}}" />
+                    <input type="text" name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
                     <label for="" class="iconfont add" onclick="">&#xe655;</label>
 
         </div>
@@ -195,7 +199,7 @@
             <p>共计: <strong id="price">￥0.00</strong></p>
 
         </div>
-        <a href="">加入购物车</a>
+        <a href="javscript:;" class="shoping">加入购物车</a>
     </div>
 
     </div>
@@ -291,7 +295,7 @@
                         <td>
                             <div class="t_num">
                                 <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe656;</label>
-                                <input type="text" name="text" id="" readonly data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}} {{~}}" value="{{=item.goodsnum}}" />
+                                <input type="text" name="text" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" readonly data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}} {{~}}" value="{{=item.goodsnum}}" />
                                 <label for="" class="iconfont add" data-type="{{=item.id}}">&#xe657;</label>
                             </div>
                         </td>

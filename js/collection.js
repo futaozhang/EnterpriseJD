@@ -230,3 +230,15 @@ function priceNunCollect() {
 
     })
 }
+//购物车
+$("#w_collection").delegate(".but_jd", "click", function() {
+    var num = [];
+    var id = [];
+    var raObj = $(this).parent().siblings("").find("tbody tr");
+    $.each($(raObj), function() {
+        num.push($(this).find(".t_num input").val())
+        id.push($(this).find(".t_num input").attr("id"))
+    })
+   
+     shoppingCart(num.join(","), id.join(","))
+});

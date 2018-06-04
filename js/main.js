@@ -90,18 +90,20 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
 function leftList(id, fun) {
     var sum = 0;
     var num = 0;
-
+  
     var interText = document.getElementById('j_tmpl').innerHTML;
     $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
 
         function(item) {
 
+            
+            if (fun != "undefined") {
+                
+              setTimeout(fun,200)
+
+            }
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
-            if (fun != undefined) {
-
-                setTimeout(fun, 10)
-            }
             $.each(item[0].goods_list, function(index, infoLIst) {
                 //数量计算
 
@@ -314,6 +316,7 @@ $("#mianCont").delegate(".changName a", "click", function() {
         success: function(item) {
             leftList(type, "close()");
             leftBut();
+   
             $(".changName").hide();
 
 
@@ -349,6 +352,7 @@ $("#mianCont").delegate(".collection", "click", function() {
 $("#mianCont").delegate("#leftDate li .ra_de", "click", function() {
 
     removePland($(this).attr("data-type"), $(this).attr("data-sku"), $(this))
+
 });
 
 
@@ -372,7 +376,7 @@ function addTips(text) {
     $(".tips").show()
     setTimeout(function() {
         $(".tips").fadeOut(800);
-    }, 1200)
+    }, 1300)
 
 }
 
@@ -441,10 +445,12 @@ function removePland(typeId, skuId, obj) {
         data: { "procurementId": typeId, "pitemlist": skuId },
         cache: false,
         success: function(item) {
-
+           
             leftList(typeId, "close()"); //单个内容数据更新
             leftBut(); //数据更新
             $(obj).parent().parent().remove(); //物理删除
+           
+           
         }
     })
 }
@@ -492,4 +498,44 @@ function setCookie(name, value) {
     var exp = new Date();
     exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
     document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+}
+
+$("#mianCont").delegate(".shoping", "click", function() {
+    var num = [];
+    var id = [];
+    var raObj = $(this).parent().siblings(".contents").find("li");
+    $.each($(raObj), function() {
+        num.push($(this).find(".input_num input").val())
+        id.push($(this).find(".input_num input").attr("sku-id"))
+    })
+
+    shoppingCart(num.join(","), id.join(","))
+});
+
+//加入购物车 widsList物品id  numsList数量
+function shoppingCart(widsList, numsList) {
+    // wids = skuid1, skuid2, skuid3 & nums = 1, 1, 1
+    console.log(widsList)
+    if(widsList==""||numsList==""){
+        addTips("当前无物品")
+        return false;
+        
+    }
+   
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "https://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action",
+        data: { "wids": widsList, "nums": numsList },
+        cache: false,
+        success: function(item) {
+
+            addTips("加入购物车成功")
+        },
+        error: function(item) {
+
+            addTips("加入购物车失败")
+        }
+    })
+
 }

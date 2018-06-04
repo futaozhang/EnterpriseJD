@@ -126,3 +126,15 @@ function changListdataCom(obj) {
         }
     })
 }
+//购物车
+$("#warp_content").delegate(".but_jd", "click", function() {
+    var num = [];
+    var id = [];
+    var raObj = $(this).parent().parent().siblings(".t_conte ").find("tbody tr");
+    $.each($(raObj), function() {
+        num.push($(this).find(".ul_num input").val())
+        id.push($(this).find(".ul_num input").attr("id"))
+    })
+      
+      shoppingCart(num.join(","), id.join(","))
+});
