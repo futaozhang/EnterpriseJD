@@ -134,8 +134,24 @@ $("#w_person").delegate(".tableDe", "click", function() {
 $("#w_person").delegate(".tb_opreat .tb_del", "click", function() {
 
 
-    removePlanP($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+        removePlanP($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+    })
+    //替换
+$("#w_person").delegate(".tb_opreat .replay", "click", function() {
+
+    replay($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+
 })
+
+function replay(typid, skId, obj) {
+    $(".confirmTips").show()
+    $(".sure").click(function() {
+
+        removePlanP(typid, skId, $(obj))
+
+        window.location = 'index.html'
+    })
+}
 
 
 function removePlanP(typeId, skuId, obj) {

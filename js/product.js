@@ -15,7 +15,19 @@ window.onload = function() {
 }
 
 function reload() {
+
     var date = getCookie("Contrast").split(",").join("-")
+
+    if (getCookie("userId") == null || getCookie("userId") == "") {
+
+        setTimeout(function() {
+            $(".add_pri ul").html(function(n) {
+                return "<a href='javascript:;'><li class='addPro'>+</li></a>"
+            })
+
+        }, 300)
+
+    }
 
     //date.substring(1)  需要传递的参数
     var j_contrast = doT.template($("#j_product").text());
@@ -39,6 +51,57 @@ Array.prototype.remove = function(val) {
     if (index > -1) {
         this.splice(index, 1);
     }
+}
+
+
+$("#ProductTable").delegate(".addSelect", "mouseenter", function() {
+
+    $(this).find(".add_pri").show()
+})
+$("#ProductTable").delegate(".pro_t", "mouseleave", function() {
+
+    $(this).find(".add_pri").hide()
+})
+
+//加入购物方案
+$("#ProductTable").delegate(".add_pri ul a", "click", function() {
+
+
+        var typeId = $(this).attr("data-typid") //购物方案Id
+        var skuId = $(this).parent().attr("data-sku") //物品sku
+        var tipsName = $(this).find("li").text()
+        if (typeId == undefined) {
+            addProgram()
+            return false
+        }
+        addPland(typeId, skuId, getCookie("Type"), tipsName)
+
+    })
+    //加入方案提示
+function addTips(text) {
+    $(".tips span").text(text)
+    $(".tips").show()
+    setTimeout(function() {
+        $(".tips").fadeOut(800);
+    }, 1200)
+
+}
+
+function addPland(typeId, skuId, type, tipsName) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurementItem/addpitem",
+        data: { "pid": typeId, "goodsid": skuId, "message": type },
+        cache: true,
+        success: function(item) {
+
+            addTips("已加入" + tipsName)
+            leftBut()
+
+
+        }
+    })
 }
 
 function setCookie(name, value) {
@@ -73,13 +136,6 @@ function diffrent() {
                 $(defred).parent().parent().addClass("diffrent")
             }
         }
-
-
-
-
-
-
-
     }
 
 }

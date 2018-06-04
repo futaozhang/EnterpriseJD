@@ -91,7 +91,10 @@
 
     </div>
 
-
+    <div class="tips">
+        <p></p>
+        <span>已加入购物方案</span>
+    </div>
 
     <!--底部-->
     <div id="foote">
@@ -101,7 +104,7 @@
 
 
 <script type="text/template" id="leftTmp">
-    <i class="bg"></i> {{? it.lenght>0}}
+    <i class="bg"></i> {{?it.length==0}}
     <div class="noLogoing">
         <p>京东企业会员登陆更优惠！</p>
     </div>
@@ -137,7 +140,7 @@
 
         <div class="l_top">
             <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button data-typeId='{{=it.id}}'>删除</button>
+            <button data-typeId='{{=it.id}}'>{{?it.goods_list.length==0}}删除方案{{??}}删除{{?}}</button>
         </div>
 
         <div class="contents">
@@ -217,8 +220,19 @@
                     <p class="pro_text">{{=value.name}}</p>
                     <p class="slive">京东价:￥{{=value.jdprice.toFixed(2)}}</p>
                     <p>企业专享价:<i class="jd_text">￥{{=value.price.toFixed(2)}}</i> </p>
-                    <a href="javascript:;" class="but_jd">加入方案</a>
-                    <span><a href="javascript:;" data-sku="{{=value.skuid}}" class="jd_text">删除</a></span>
+
+                    <span class="addSelect">
+						<label class="but_jd" for="add_{{=index}}">加入购物方案</label>
+							<div class="add_pri">
+							
+								<ul data-sku="{{=value.skuid}}">								
+								
+								</ul>
+									<img src="img/down.png"/>
+								</div>
+						
+						</span>
+                    <span class="delt"><a href="javascript:;" data-sku="{{=value.skuid}}" class="jd_text">删除</a></span>
                 </div>
             </td>
             {{~}} {{?index

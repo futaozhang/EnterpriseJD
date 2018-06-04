@@ -154,7 +154,7 @@
 
 </body>
 <script type="text/template" id="leftTmp">
-    <i class="bg"></i> {{? it.lenght>0}}
+    <i class="bg"></i> {{?it.length==0}}
     <div class="noLogoing">
         <p>京东企业会员登陆更优惠！</p>
     </div>
@@ -190,7 +190,7 @@
 
         <div class="l_top">
             <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button data-typeId='{{=it.id}}'>删除</button>
+            <button data-typeId='{{=it.id}}'>{{?it.goods_list.length==0}}删除方案{{??}}删除{{?}}</button>
         </div>
 
         <div class="contents">

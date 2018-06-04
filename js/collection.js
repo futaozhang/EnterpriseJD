@@ -181,6 +181,19 @@ $("#w_collection").delegate(".tb_opreat .tb_del", "click", function() {
     removePlanWC($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
 
 })
+$("#w_collection").delegate(".tb_opreat .replay", "click", function() {
+
+    replay($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+
+})
+
+function replay(typid, skId, obj) {
+    $(".confirmTips").show()
+    $(".sure").click(function() {
+        removePlanP(typid, skId, $(obj))
+        window.location = 'index.html'
+    })
+}
 
 function removePlanWC(typeId, skuId, obj) {
     $.ajax({

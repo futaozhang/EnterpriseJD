@@ -118,7 +118,7 @@
 
                                     <td>
                                         <div class="ui_opret">
-                                            <a href="index.html">替换</a>
+                                            <a href="javascript:;" class="com_rep" data-typid="{{=it[i].id}}" data-skid="{{=item.id}}">替换</a>
                                             <a href="javascript:;" class="com_del" data-typid="{{=it[i].id}}" data-skid="{{=item.id}}">删除</a>
                                         </div>
                                     </td>
@@ -171,14 +171,21 @@
 
     </div>
 
-
+    <div class="confirmTips">
+        <i class="bg"></i>
+        <div class="contentAlet">
+            <h3>替换方案会将该物品移除</h3>
+            <button data-type="" data-skuid="" class="sure">确定</button>
+            <button class="cancel" onclick="$('.confirmTips').hide()">取消</button>
+        </div>
+    </div>
     <!--底部-->
     <div id="foote">
         <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
     </div>
 </body>
 <script type="text/template" id="leftTmp">
-    <i class="bg"></i> {{? it.lenght>0}}
+    <i class="bg"></i> {{?it.length==0}}
     <div class="noLogoing">
         <p>京东企业会员登陆更优惠！</p>
     </div>
@@ -214,7 +221,7 @@
 
         <div class="l_top">
             <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button data-typeId='{{=it.id}}'>删除</button>
+            <button data-typeId='{{=it.id}}'>{{?it.goods_list.length==0}}删除方案{{??}}删除{{?}}</button>
         </div>
 
         <div class="contents">

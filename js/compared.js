@@ -75,8 +75,24 @@ $("#warp_content").delegate(".n_collect", "click", function() {
 $("#warp_content").delegate(".ui_opret .com_del", "click", function() {
 
 
-    removePlanCom($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+        removePlanCom($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+    })
+    //替换
+$("#warp_content").delegate(".ui_opret .com_rep", "click", function() {
+
+    replayCom($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+
 })
+
+function replayCom(typid, skId, obj) {
+    $(".confirmTips").show()
+    $(".sure").click(function() {
+
+        removePlanCom(typid, skId, $(obj))
+
+        window.location = 'index.html'
+    })
+}
 
 //物品删除
 function removePlanCom(typeId, skuId, obj) {

@@ -1,6 +1,6 @@
-//测试数据
-var sourDate = {}
-var LeftDateList;
+var sourDate = [] //未登录用户数据
+    //模拟用户Id
+setCookie("userId", "1")
 
 
 var baseUrl = "http://192.168.1.247:8080"
@@ -8,26 +8,31 @@ var baseUrl = "http://192.168.1.247:8080"
 //用户名
 $("#userName").text(getCookie("") == null ? "游客 " : (getCookie("")))
 
-//左侧按钮判断
-
-
-
 // 左侧按钮数据请求
-function GetRandomNum(Min, Max) {
-    var Range = Max - Min;
-    var Rand = Math.random();
-    return (Min + Math.round(Rand * Range));
-}
+
 $.ajaxSetup({ cache: false });
 
 function leftBut() {
     var leftTmp = document.getElementById('leftTmp').innerHTML;
+
+    if (getCookie("userId") == null || getCookie("userId") == "") {
+
+        document.getElementById('left_w').innerHTML = doT.template(leftTmp)(sourDate);
+        setTimeout(function() {
+            $(".add_pri ul").html(function(n) {
+                return "<a href='javascript:;'><li class='addPro'>+</li></a>"
+            })
+
+        }, 300)
+
+        return false;
+    }
     $.ajax({
             url: baseUrl + "/procurement/getplist",
-            data: { "userid": 1, "status": 1, },
+            data: { "userid": getCookie("userId"), "status": 1, },
             cache: false,
             success: function(item) {
-                LeftDateList = item;
+                // sourDate = item;
                 var add_pri = '';
                 //数据渲染
 
@@ -76,9 +81,6 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
     } else if ($(this).attr("data-src") != 'undefined') {
         runBg(this)
     }
-
-    // 切换底部动画函数
-
     //左侧数据更新
     leftList($(this).attr("data-src"))
 })
@@ -90,11 +92,10 @@ function leftList(id, fun) {
     var num = 0;
 
     var interText = document.getElementById('j_tmpl').innerHTML;
-    $.getJSON("http://192.168.1.247:8080/procurement/getp", { "id": id, "status": 1 },
+    $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
 
         function(item) {
-            // $("#mianCont").html(interText(item));
-            //  var priceList;
+
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
             if (fun != undefined) {
@@ -120,6 +121,12 @@ function leftList(id, fun) {
 //新添加方案
 
 function addProgram() {
+    if (getCookie("userId") == null || getCookie("userId") == "") {
+        alert("弹出登录")
+        return false
+    }
+
+
     var str = '<a href="javascript:;" data-src="2-1" class="addProgram">自主采购方案</a>'
     $(".isLogoing ").append(str)
     var interTextd = document.getElementById('j_tmpl').innerHTML;
@@ -139,12 +146,12 @@ function addProgram() {
 //新增采购方案
 function newAddColect(id, json) {
 
-    //getCookie("userId")
+
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: baseUrl + "/procurement/addp",
-        data: JSON.stringify({ "good_list": [], "status": 1, "uid": 1, "name": "新建采购" }),
+        data: JSON.stringify({ "good_list": [], "status": 1, "uid": getCookie("userId"), "name": "新建采购" }),
         cache: false,
         success: function(item) {
             leftBut()
@@ -323,6 +330,11 @@ function close() {
     }, 4)
 
 }
+
+$("#left_w").delegate(".noLogoing", "click", function() {
+    alert("按钮登陆")
+});
+
 //名称修改展示
 $("#mianCont").delegate(".text .iconfont", "click", function() {
     $(".changName").show()
@@ -455,7 +467,7 @@ function changListdataL(obj) {
 }
 
 
-//更新采购方案
+
 
 
 //登陆调用
@@ -473,4 +485,11 @@ function login() {
             }
         })
     })
+};
+
+function setCookie(name, value) {
+    var Days = 30;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }

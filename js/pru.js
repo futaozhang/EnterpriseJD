@@ -12,7 +12,8 @@ window.onload = function() {
 // 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
 
-getCookie("selcet") //cookie
+getCookie("selcet") //cookie  选择的删选条件
+
 $.getJSON(baseUrl + "/goods/gettoplist", { "avlist": 3 }, function(item) {
     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
 

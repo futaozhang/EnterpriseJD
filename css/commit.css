@@ -217,7 +217,7 @@ button:focus {
     float: right;
     color: rgb(226, 58, 58);
     padding: 2px 5px;
-    width: 60px;
+    width: 70px;
     margin-right: 10px;
     cursor: pointer;
     border-radius: 5px;
@@ -1059,8 +1059,6 @@ button:focus {
     margin-bottom: 10px;
 }
 
-#content_warp {}
-
 #Purchase .warp_right i {
     position: absolute;
     right: 0px;
@@ -1090,9 +1088,11 @@ button:focus {
     overflow: hidden;
     color: #7d7d7d;
 }
-.add_pri ul li:hover{
-    color:rgb(226, 58, 58);
+
+.add_pri ul li:hover {
+    color: rgb(226, 58, 58);
 }
+
 .addPro {
     border-bottom: 1px solid #7d7d7d;
 }
@@ -1419,7 +1419,6 @@ table {
     width: 350px;
     padding-top: 20px;
     color: #878ca0;
-    
 }
 
 #Person .p_user p a {
@@ -1565,12 +1564,14 @@ table {
     color: white;
     border-radius: 2px;
 }
-#userName{
-    color:#a57a39;
-    width:120px;
-    height:40px;
-    margin-left:5px;
+
+#userName {
+    color: #a57a39;
+    width: 120px;
+    height: 40px;
+    margin-left: 5px;
 }
+
 #personTable table {
     width: 100%;
     text-align: left;
@@ -1695,6 +1696,79 @@ table {
     background-color: #EEEEEE;
 }
 
+#ProductTable .addSelect img {
+    width: 15px;
+    height: 15px;
+}
+
+#ProductTable .add_pri {
+    left: 30px;
+    bottom: 55px;
+}
+
+.confirmTips {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    display: none;
+}
+
+.confirmTips .bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0;
+    z-index: 99;
+    background-color: #000000;
+    opacity: 0.5;
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+    filter: alpha(opacity=50);
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50);
+}
+
+.confirmTips .contentAlet {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    height: 200px;
+    width: 400px;
+    margin-left: -200px;
+    margin-top: -100px;
+    z-index: 100;
+    background-color: white;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.confirmTips h3 {
+    font-size: 30px;
+    margin-top: 60px;
+}
+
+.confirmTips button {
+    width: 80px;
+    height: 40px;
+    margin-top: 40px;
+    margin-right: 20px;
+    cursor: pointer;
+    color: snow;
+    letter-spacing: 4px;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+.confirmTips .sure {
+    background-color: #00aeef;
+}
+
+.confirmTips .cancel {
+    background-color: #b4b4b4;
+}
+
 
 /*对比*/
 
@@ -1723,11 +1797,17 @@ table {
     width: 240px;
     padding: 0px 20px;
     height: 300px;
+    position: relative;
 }
 
 .pro_t img {
-    width: 160px;
-    height: 140px;
+    width: 180px;
+    height: 160px;
+}
+
+.pro_t .delt {
+    float: right;
+    margin-top: 20px;
 }
 
 .p_img {
@@ -1747,23 +1827,13 @@ table {
     behavior: url(css/ie-css3.htc);
 }
 
-.pro_t span {
-    margin-left: 80px;
-}
-
-#ProductTable table {
-    /*border-collapse:10px;*/
-}
-
-#ProductTable table tr {}
-
 #ProductTable table tr td {
     border-bottom: 1px solid #d2d2d2;
     border-right: 1px solid #d2d2d2;
     height: 30px;
 }
 
-.wid {
+#warp_product .wid {
     width: 280px;
     height: 18px;
     text-align: center;

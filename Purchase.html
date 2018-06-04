@@ -51,7 +51,9 @@
                             {{?value.imgsrc}}
                             <i><img src="{{=value.imgsrc}}"/></i> {{?}}
                         </div>
-                        <div class="warp_img"><img src="{{=value.thumbnail}}" /></div>
+                        <div class="warp_img">
+                            <a href="https://item.jd.com/{{=value.skuid}}.html" target="_blank"> <img src="{{=value.thumbnail}}" /></a>
+                        </div>
                         <div class="warp_Price">
                             <h5>京东价：￥{{=value.jdprice.toFixed(2)}}</h5>
                             <h4>企业专享价：￥{{=value.eprice.toFixed(2)}}</h4>
@@ -147,11 +149,11 @@
     <!-- tips -->
     <div class="tips">
         <p></p>
-        <span>已加入购物方案一</span>
+        <span>已加入购物方案</span>
     </div>
 </body>
 <script type="text/template" id="leftTmp">
-    <i class="bg"></i> {{? it.lenght>0}}
+    <i class="bg"></i>{{?it.length==0}}
     <div class="noLogoing">
         <p>京东企业会员登陆更优惠！</p>
     </div>
@@ -187,7 +189,7 @@
 
         <div class="l_top">
             <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button data-typeId='{{=it.id}}'>删除</button>
+            <button data-typeId='{{=it.id}}'>{{?it.goods_list.length==0}}删除方案{{??}}删除{{?}}</button>
         </div>
 
         <div class="contents">
