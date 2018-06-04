@@ -1940,3 +1940,12 @@ table {
     z-index: 9;
     opacity: 1;
 }
+
+
+/* 禁用 */
+
+.cloShare {
+    background-color: #b4b4b4 !important;
+    color: #878da0 !important;
+    pointer-events: none !important;
+}
