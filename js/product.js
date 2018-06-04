@@ -15,9 +15,8 @@ window.onload = function() {
 }
 
 function reload() {
-
+    var j_contrastC = document.getElementById('j_productC').innerHTML;
     var date = getCookie("Contrast").split(",").join("-")
-
     if (getCookie("userId") == null || getCookie("userId") == "") {
 
         setTimeout(function() {
@@ -27,20 +26,22 @@ function reload() {
 
         }, 300)
 
-    }
+    } else {
 
-    //date.substring(1)  需要传递的参数
-    var j_contrast = doT.template($("#j_product").text());
+    };
+
+
 
     $.getJSON(baseUrl + '/goods/compare', { "skulist": date },
-        function(item) {
-            $("#warp_product").html(j_contrast(item));
-            diffrent()
+        function(json) {
+
+            document.getElementById('warp_product').innerHTML = doT.template(j_contrastC)(json);
+            diffrent();
         });
 }
+
 // 删除对比栏
 $("#ProductTable").delegate(".jd_text", "click", function() {
-
     var data = getCookie("Contrast").split(',');
     data.remove($(this).attr("data-sku"));
     setCookie("Contrast", data);

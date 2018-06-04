@@ -29,7 +29,7 @@ function leftBut() {
     }
     $.ajax({
             url: baseUrl + "/procurement/getplist",
-            data: { "userid": getCookie("userId"), "status": 1, },
+            data: { "userid": getCookie("userId"), "status": 1 },
             cache: false,
             success: function(item) {
                 // sourDate = item;
@@ -234,7 +234,7 @@ function removeList(typeId, deleate) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurement/delete",
-        data: { "procurementId": typeId, "pitemlist": deleate, },
+        data: { "procurementId": typeId, "pitemlist": deleate },
         cache: false,
         success: function(item) {
             leftBut()
@@ -423,7 +423,7 @@ function enshrine(typeId) {
         url: baseUrl + "/procurement/updatep",
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ "id": parseInt(typeId), "status": 2, }),
+        data: JSON.stringify({ "id": parseInt(typeId), "status": 2 }),
         success: function(jsonResult) {
             setTimeout(leftBut(), 200)
         }

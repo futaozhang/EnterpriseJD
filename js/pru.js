@@ -2,14 +2,18 @@
  * 数据筛选页
  */
 window.onload = function() {
-    //对比栏目cookie 存在数据
+        //对比栏目cookie 存在数据
 
-    if (getCookie("Contrast") != null) {
-        ContrastFuc()
+        if (getCookie("Contrast") != null) {
+            ContrastFuc()
+        }
+        //存在无筛选记录  回首页
+        if (getCookie("selcet") == null || getCookie("selcet") == "") {
+            window.location = "index.html"
+        }
+
     }
-}
-
-// 筛选后数据渲染
+    // 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
 
 getCookie("selcet") //cookie  选择的删选条件

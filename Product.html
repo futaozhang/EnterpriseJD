@@ -62,9 +62,10 @@
                     <li>分辨率</li>
                 </ul>
             </div>
-            <table id="warp_product">
+            <div id="warp_product">
 
-            </table>
+            </div>
+
 
         </div>
 
@@ -101,6 +102,165 @@
         <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
     </div>
 </body>
+
+<script type="text/template" id="j_productC">
+    <table>
+        <tbody>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <div class="pro_t">
+                        <div class="p_img">
+                            <img src="{{=value.thumbnail}}" />
+                        </div>
+                        <p class="pro_text">{{=value.name}}</p>
+                        <p class="slive">京东价:￥{{=value.jdprice.toFixed(2)}}</p>
+                        <p>企业专享价:<i class="jd_text">￥{{=value.price.toFixed(2)}}</i> </p>
+
+                        <span class="addSelect">
+						<label class="but_jd" for="add_{{=index}}">加入购物方案</label>
+							<div class="add_pri">
+							
+								<ul data-sku="{{=value.skuid}}">								
+								
+								</ul>
+									<img src="img/down.png"/>
+								</div>
+						
+						</span>
+                        <span class="delt"><a href="javascript:;" data-sku="{{=value.skuid}}" class="jd_text">删除</a></span>
+                    </div>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    <div class="pro_t">
+                        <div class="p_img">
+                            <a href="Purchase.html"><img src="img/addPro.png" /></a>
+                        </div>
+                        <p class="pro_text"></p>
+                        <p class="slive"></p>
+                        <p><i class="jd_text"></i></p>
+
+                        <!--<a href="" class="but_jd"></a>-->
+                        <span><a href="" class="jd_text"></a></span>
+                    </div>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid">{{=value.brandName}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr> {{~it:value:index}}
+                <td>
+                    <p class="wid">
+                        {{~value.attributelist:item:i}} {{?item.name=="color"}} {{=item.vals}} {{?}} {{~}}
+                    </p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid"> {{~value.attributelist:item:i}} {{?item.name=="重量"}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="系统"}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="CPU"}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="内存"}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="硬盘"}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="显卡"}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr> {{~it:value:index}}
+                <td>
+                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="尺寸"}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="续航时间"}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+            <tr>
+                {{~it:value:index}}
+                <td>
+                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="分辨率 "}} {{=item.vals}} {{?}} {{~}}</p>
+                </td>
+                {{~}} {{?index
+                <3}} <td>
+                    </td>
+                    {{??}} {{?}}
+            </tr>
+        </tbody>
+    </table>
+</script>
 
 
 <script type="text/template" id="leftTmp">
@@ -208,163 +368,9 @@
 
 </script>
 
-<script type="text/template" id="j_product">
-    <tbody>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <div class="pro_t">
-                    <div class="p_img">
-                        <img src="{{=value.thumbnail}}" />
-                    </div>
-                    <p class="pro_text">{{=value.name}}</p>
-                    <p class="slive">京东价:￥{{=value.jdprice.toFixed(2)}}</p>
-                    <p>企业专享价:<i class="jd_text">￥{{=value.price.toFixed(2)}}</i> </p>
 
-                    <span class="addSelect">
-						<label class="but_jd" for="add_{{=index}}">加入购物方案</label>
-							<div class="add_pri">
-							
-								<ul data-sku="{{=value.skuid}}">								
-								
-								</ul>
-									<img src="img/down.png"/>
-								</div>
-						
-						</span>
-                    <span class="delt"><a href="javascript:;" data-sku="{{=value.skuid}}" class="jd_text">删除</a></span>
-                </div>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                <div class="pro_t">
-                    <div class="p_img">
-                        <a href="Purchase.html"><img src="img/addPro.png" /></a>
-                    </div>
-                    <p class="pro_text"></p>
-                    <p class="slive"></p>
-                    <p><i class="jd_text"></i></p>
-
-                    <!--<a href="" class="but_jd"></a>-->
-                    <span><a href="" class="jd_text"></a></span>
-                </div>
-                </td>
-                {{??}} {{?}}
-        </tr>
-
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid">{{=value.brandName}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr> {{~it:value:index}}
-            <td>
-                <p class="wid">
-                    {{~value.attributelist:item:i}} {{?item.name=="color"}} {{=item.vals}} {{?}} {{~}}
-                </p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid"> {{~value.attributelist:item:i}} {{?item.name=="重量"}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="系统"}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="CPU"}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="内存"}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="硬盘"}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="显卡"}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr> {{~it:value:index}}
-            <td>
-                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="尺寸"}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="续航时间"}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-        <tr>
-            {{~it:value:index}}
-            <td>
-                <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="分辨率 "}} {{=item.vals}} {{?}} {{~}}</p>
-            </td>
-            {{~}} {{?index
-            <3}} <td>
-                </td>
-                {{??}} {{?}}
-        </tr>
-    </tbody>
-</script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+
 <script src="js/product.js"></script>
 
 

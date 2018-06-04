@@ -8,7 +8,7 @@ var k_tmpl = document.getElementById('k_tempelate').innerHTML;
 function comparedList() {
     $.ajax({
         url: baseUrl + "/procurement/getplist",
-        data: { "userid": 1, "status": 1, },
+        data: { "userid": 1, "status": 1 },
         cache: false,
         success: function(item) {
             $("#warp_content").empty()
@@ -100,7 +100,7 @@ function removePlanCom(typeId, skuId, obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurement/delete",
-        data: { "procurementId": typeId, "pitemlist": skuId, },
+        data: { "procurementId": typeId, "pitemlist": skuId },
         cache: false,
         success: function(item) {
             leftBut()

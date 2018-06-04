@@ -40,7 +40,7 @@ function changec(changId) {
 function Collection() {
 
     var j_persond = document.getElementById('j_person').innerHTML;
-    $.getJSON('http://192.168.1.247:8080/procurement/getplist?userid=1&status=2', function(item) {
+    $.getJSON(baseUrl + '/procurement/getplist', { "userid": 1, "status": 2 }, function(item) {
         if (item != "") {
             document.getElementById('w_collection').innerHTML = doT.template(j_persond)(item);
             $("#w_collection .addCollection").remove();
@@ -200,7 +200,7 @@ function removePlanWC(typeId, skuId, obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurement/delete",
-        data: { "procurementId": typeId, "pitemlist": skuId, },
+        data: { "procurementId": typeId, "pitemlist": skuId },
         cache: false,
         success: function(item) {
             Purchase()
