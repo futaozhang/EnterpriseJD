@@ -203,8 +203,8 @@ $("#w_person").delegate(".add", 'click', function() {
 });
 //数量修改
 function changListdataW(obj) {
-    $(obj).siblings("input").val(); //num
-    $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id"); //id
+    var value = $(obj).siblings("input").val(); //num
+    var skuid = $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id"); //id
     $(obj).attr("data-type"); //type
     $.ajax({
         type: "GET",

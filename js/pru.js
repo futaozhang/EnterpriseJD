@@ -131,6 +131,11 @@ $("#content_warp").delegate(".add_pri ul a", "click", function() {
         var typeId = $(this).attr("data-typid") //购物方案Id
         var skuId = $(this).parent().attr("data-sku") //物品sku
         var tipsName = $(this).find("li").text()
+        if (typeId == undefined) {
+            addProgram()
+            return false
+        }
+
         addPlan(typeId, skuId, getCookie("Type"), tipsName)
 
     })

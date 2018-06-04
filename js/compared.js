@@ -32,6 +32,7 @@ $("#Compared").delegate(".ul_num .reduce", 'click', function() {
     }
     $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
     pricCom()
+    changListdataCom($(this))
 });
 
 //增加
@@ -39,6 +40,7 @@ $("#Compared").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
     $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) + 1)
+    changListdataCom($(this))
     pricCom()
 
 });
@@ -62,6 +64,7 @@ function pricCom() {
 
     })
 }
+//收藏
 $("#warp_content").delegate(".n_collect", "click", function() {
 
     enshrine($(this).attr("data-type"))
@@ -75,7 +78,7 @@ $("#warp_content").delegate(".ui_opret .com_del", "click", function() {
     removePlanCom($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
 })
 
-
+//物品删除
 function removePlanCom(typeId, skuId, obj) {
     $.ajax({
         type: "GET",
@@ -87,6 +90,23 @@ function removePlanCom(typeId, skuId, obj) {
             leftBut()
             comparedList()
             $(this).parent().parent().remove();
+        }
+    })
+}
+
+//数量修改
+function changListdataCom(obj) {
+    var value = $(obj).siblings("input").val(); //num
+    var skuid = $(obj).attr("data-type");
+    //type
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurementItem/updatepitem",
+        data: { "id": skuid, "goodsnum": value },
+        cache: true,
+        success: function(item) {
+
         }
     })
 }

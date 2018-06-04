@@ -71,11 +71,12 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
     //是否为新添加
     if ($(this).attr("data-src") == 3) {
         addProgram()
+
         return false
-    }
-    if ($(this).attr("data-src") != 'undefined') {
+    } else if ($(this).attr("data-src") != 'undefined') {
         runBg(this)
     }
+
     // 切换底部动画函数
 
     //左侧数据更新
@@ -119,7 +120,7 @@ function leftList(id, fun) {
 //新添加方案
 
 function addProgram() {
-    var str = '<a href="javascript:;" data-src="2-1" class="addProgram"> 自主采购方案</a>'
+    var str = '<a href="javascript:;" data-src="2-1" class="addProgram">自主采购方案</a>'
     $(".isLogoing ").append(str)
     var interTextd = document.getElementById('j_tmpl').innerHTML;
     document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
@@ -128,9 +129,10 @@ function addProgram() {
         $(".addProjiect").remove()
     }
     $(".leftHead .text i").click();
-
-    runBg(this)
+    // $("#jd_3").prop("value", "自主采购方案")
+    //  runBg(this)
     newAddColect()
+
 
 }
 
@@ -138,10 +140,19 @@ function addProgram() {
 function newAddColect(id, json) {
 
     //getCookie("userId")
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: baseUrl + "/procurement/addp",
+        data: JSON.stringify({ "good_list": [], "status": 1, "uid": 1, "name": "新建采购" }),
+        cache: false,
+        success: function(item) {
+            leftBut()
 
-    $.post(baseUrl + "/procurement/addp", { "good_list": [], "status": 1, "uid": 1 }, function() {
 
-    }, json)
+        }
+    })
+
 
 }
 // 左侧弹出
@@ -219,7 +230,8 @@ function removeList(typeId, deleate) {
         data: { "procurementId": typeId, "pitemlist": deleate, },
         cache: false,
         success: function(item) {
-
+            leftBut()
+            closeOpen()
         }
     })
 }

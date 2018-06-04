@@ -105,7 +105,7 @@
         <!--菜单区域-->
         <div class="leftSelct" id="left_w">
 
-         
+
 
         </div>
 
@@ -150,7 +150,7 @@
         <span>已加入购物方案一</span>
     </div>
 </body>
-<script type="text/template" id="leftTmp" >
+<script type="text/template" id="leftTmp">
     <i class="bg"></i> {{? it.lenght>0}}
     <div class="noLogoing">
         <p>京东企业会员登陆更优惠！</p>
@@ -161,7 +161,7 @@
         <a href="Person.html">收藏方案</a>
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
-            <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name}}</a> {{~}} {{?index
+            <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name==""?item.name="新建采购":item.name}}</a> {{~}} {{?index
         <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
     </div>
     {{?}}
@@ -171,7 +171,7 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='自主采购方案':it.name}}
+        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==""?it.name='新建采购':it.name}}
         <span class="changName">
                 <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;"data-type="{{=it.id}}">确定</a>
