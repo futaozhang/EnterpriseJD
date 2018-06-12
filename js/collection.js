@@ -40,7 +40,10 @@ function changec(changId) {
 function Collection() {
 
     var j_persond = document.getElementById('j_person').innerHTML;
-    $.getJSON(baseUrl + '/procurement/getplist', { "userid": 1, "status": 2 }, function(item) {
+    $.getJSON(baseUrl + '/procurement/getplist', {
+        "userid": 1,
+        "status": 2
+    }, function(item) {
         if (item != "") {
             document.getElementById('w_collection').innerHTML = doT.template(j_persond)(item);
             $("#w_collection .addCollection").remove();
@@ -136,7 +139,10 @@ function changListdata(obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/updatepitem",
-        data: { "id": skuid, "goodsnum": value },
+        data: {
+            "id": skuid,
+            "goodsnum": value
+        },
         cache: true,
         success: function(item) {
 
@@ -200,7 +206,10 @@ function removePlanWC(typeId, skuId, obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurement/delete",
-        data: { "procurementId": typeId, "pitemlist": skuId },
+        data: {
+            "procurementId": typeId,
+            "pitemlist": skuId
+        },
         cache: false,
         success: function(item) {
             Purchase()
@@ -221,8 +230,13 @@ function priceNunCollect() {
         var jdprice = [];
         var eprice = [];
         $.each($(this).find(".t_num input"), function(item) {
+            if ($(this).val() * $(this).attr("data-eprice") == 0) {
+                eprice.push($(this).val() * $(this).attr("data-price"))
+            } else {
+                eprice.push($(this).val() * $(this).attr("data-eprice"))
+            }
             jdprice.push($(this).val() * $(this).attr("data-price"))
-            eprice.push($(this).val() * $(this).attr("data-eprice"))
+
 
         })
         $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
@@ -239,6 +253,6 @@ $("#w_collection").delegate(".but_jd", "click", function() {
         num.push($(this).find(".t_num input").val())
         id.push($(this).find(".t_num input").attr("id"))
     })
-   
-     shoppingCart(num.join(","), id.join(","))
+
+    shoppingCart(num.join(","), id.join(","))
 });

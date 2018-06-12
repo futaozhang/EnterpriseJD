@@ -73,6 +73,7 @@ function Purchase() {
     $.ajaxSetup({ cache: false });
     var j_person = document.getElementById('j_person').innerHTML;
     $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "status": 1 }, function(item) {
+
         if (item != "") {
             document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
             change(0)
@@ -275,15 +276,21 @@ function priceNun() {
         var jdprice = [];
         var eprice = [];
         $.each($(this).find(".t_num input"), function(item) {
+            if ($(this).val() * $(this).attr("data-eprice") == 0) {
+                eprice.push($(this).val() * $(this).attr("data-price"))
+            } else {
+                eprice.push($(this).val() * $(this).attr("data-eprice"))
+            }
             jdprice.push($(this).val() * $(this).attr("data-price"))
-            eprice.push($(this).val() * $(this).attr("data-eprice"))
 
         })
+
         $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
         $(this).find(".price .jdPrice").text("￥" + eprice.sum().toFixed(2))
 
     })
 }
+
 //购物车
 $("#w_person").delegate(".but_jd", "click", function() {
     var num = [];
@@ -293,6 +300,6 @@ $("#w_person").delegate(".but_jd", "click", function() {
         num.push($(this).find(".t_num input").val())
         id.push($(this).find(".t_num input").attr("id"))
     })
-   
-     shoppingCart(num.join(","), id.join(","))
+
+    shoppingCart(num.join(","), id.join(","))
 });

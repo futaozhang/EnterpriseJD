@@ -101,7 +101,7 @@
                                     <td>
                                         <div class="ul_num">
                                             <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe656;</label>
-                                            <input type="text" name="" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" data-price="{{~item.goodsdetail:goods:j}}{{=goods.jdprice.toFixed(2)}}{{~}}" data-eprice="{{~item.goodsdetail:goods:j}}{{=goods.eprice.toFixed(2)}}{{~}}" value="{{=item.goodsnum}}" />
+                                            <input type="text" name="" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" data-price="{{~item.goodsdetail:goods:j}}{{=goods.jdprice)}}{{~}}" data-eprice="{{~item.goodsdetail:goods:j}}{{=goods.eprice}}{{~}}" value="{{=item.goodsnum}}" />
                                             <label for="" data-type="{{=item.id}}" class="iconfont add">&#xe657;</label>
                                         </div>
                                     </td>
@@ -111,7 +111,8 @@
                                         <div class="ul_price">
 
                                             <span>京东价:￥{{~item.goodsdetail:goods:j}}{{=goods.jdprice.toFixed(2)}}{{~}}</span>
-                                            <span>企业专享价: <i class="jd_text">￥{{~item.goodsdetail:goods:j}}{{=goods.eprice.toFixed(2)}}{{~}}</i> </span>
+
+                                            <span>企业专享价: <i class="jd_text">￥{{~item.goodsdetail:goods:j}}{{=goods.eprice}}{{~}}</i> </span>
                                         </div>
 
                                     </td>
@@ -179,11 +180,11 @@
             <button class="cancel" onclick="$('.confirmTips').hide()">取消</button>
         </div>
     </div>
-     <!-- tips -->
-     <div class="tips">
-            <p></p>
-            <span>已加入购物方案</span>
-        </div>
+    <!-- tips -->
+    <div class="tips">
+        <p></p>
+        <span>已加入购物方案</span>
+    </div>
     <!--底部-->
     <div id="foote">
         <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
@@ -245,7 +246,11 @@
                         <div class="information">
                             <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
                             <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice}}{{~}}</p>
-                            <p class="UserPrice">企业专享价：<strong>￥{{~value.goodsdetail:item:j}}{{=item.eprice}}{{~}}</strong> </p>
+                            {{~value.goodsdetail:item:j}}
+                            {{?item.eprice!=""}}
+                            <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice}}</strong> </p>
+                            {{?}}
+                            {{~}}
                         </div>           
                         <div class="input_num">									
                             <label for="" class="iconfont reduce">&#xe641;</label>
@@ -296,6 +301,9 @@
 
 
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/compared.js" type="text/javascript" charset="utf-8"></script>
+
+</html> src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="./js/compared.js" type="text/javascript" charset="utf-8"></script>
 
 </html>

@@ -100,8 +100,8 @@
             <button class="cancel" onclick="$('.confirmTips').hide()">取消</button>
         </div>
     </div>
- <!-- tips -->
- <div class="tips">
+    <!-- tips -->
+    <div class="tips">
         <p></p>
         <span>已加入购物方案</span>
     </div>
@@ -167,7 +167,11 @@
                         <div class="information">
                             <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
                             <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice}}{{~}}</p>
-                            <p class="UserPrice">企业专享价：<strong>￥{{~value.goodsdetail:item:j}}{{=item.eprice}}{{~}}</strong> </p>
+                            {{~value.goodsdetail:item:j}}
+                            {{?item.eprice!=""}}
+                            <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice}}</strong> </p>
+                            {{?}}
+                            {{~}}
                         </div>           
                         <div class="input_num">									
                             <label for="" class="iconfont reduce">&#xe641;</label>
@@ -295,13 +299,16 @@
                         <td>
                             <div class="t_num">
                                 <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe656;</label>
-                                <input type="text" name="text" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" readonly data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}} {{~}}" value="{{=item.goodsnum}}" />
+                                <input type="text" name="text" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" readonly data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}} {{~}}" value="{{=item.goodsnum}}"
+                                />
                                 <label for="" class="iconfont add" data-type="{{=item.id}}">&#xe657;</label>
                             </div>
                         </td>
                         <td class="tb_price">
                             <p class="slive">京东价：{{~item.goodsdetail:goods:j}}￥{{=goods.jdprice.toFixed(2)}}{{~}}</p>
-                            <p>企业专享价：<i class="jd_price">{{~item.goodsdetail:goods:j}}￥{{=goods.eprice.toFixed(2)}}{{~}}</i></p>
+                            {{~item.goodsdetail:goods:j}} {{?goods.eprice!=""}}
+                            <p>企业专享价：<i class="jd_price">￥{{=goods.eprice.toFixed(2)}}</i></p>
+                            {{?}} {{~}}
 
                         </td>
                         <td>

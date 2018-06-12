@@ -39,7 +39,15 @@ var runDate = [{
 
 //手风琴数据
 var j_run = document.getElementById('j_runBaner').innerHTML;
-document.getElementById('mainList').innerHTML = doT.template(j_run)(runDate);
+
+$.getJSON(baseUrl + "scene/list", function(item) {
+    if (item.length != 0) {
+        document.getElementById('mainList').innerHTML = doT.template(j_run)(item);
+    }
+    document.getElementById('mainList').innerHTML = doT.template(j_run)(runDate);
+    return false
+})
+
 
 var current = 0;
 var MainSet = setInterval(runder, 4000);
@@ -181,8 +189,8 @@ var alert_w = document.getElementById('alert_w').innerHTML;
 function alertTem(id) {
 
 
-    // $.getJSON(baseUrl + "/getalist", { "sceneid": id }, function(item) {
-    $.getJSON("./../mockData/just.json", { "sceneid": id }, function(item) {
+     $.getJSON(baseUrl + "/getalist", { "sceneid": id }, function(item) {
+
         if (item.length != 0) {
             document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
             $(".alertBox").show()

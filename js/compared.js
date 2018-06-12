@@ -7,8 +7,11 @@ var k_tmpl = document.getElementById('k_tempelate').innerHTML;
 
 function comparedList() {
     $.ajax({
-        url: baseUrl + "/procurement/getplist",
-        data: { "userid": 1, "status": 1 },
+         url: baseUrl + "/procurement/getplist",
+        data: {
+            "userid": getCookie("userId"),
+            "status": 1
+        },
         cache: false,
         success: function(item) {
             $("#warp_content").empty()
@@ -54,7 +57,13 @@ function pricCom() {
         $.each($(this).find("table input"), function(item) {
 
             jdprice.push($(this).val() * $(this).attr("data-price"));
-            eprice.push($(this).val() * $(this).attr("data-eprice"))
+
+            if ($(this).val() * $(this).attr("data-eprice") == 0) {
+                eprice.push($(this).val() * $(this).attr("data-price"))
+            } else {
+                eprice.push($(this).val() * $(this).attr("data-eprice"))
+            }
+
 
         })
 
@@ -100,7 +109,10 @@ function removePlanCom(typeId, skuId, obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurement/delete",
-        data: { "procurementId": typeId, "pitemlist": skuId },
+        data: {
+            "procurementId": typeId,
+            "pitemlist": skuId
+        },
         cache: false,
         success: function(item) {
             leftBut()
@@ -119,7 +131,10 @@ function changListdataCom(obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/updatepitem",
-        data: { "id": skuid, "goodsnum": value },
+        data: {
+            "id": skuid,
+            "goodsnum": value
+        },
         cache: true,
         success: function(item) {
 
@@ -135,6 +150,6 @@ $("#warp_content").delegate(".but_jd", "click", function() {
         num.push($(this).find(".ul_num input").val())
         id.push($(this).find(".ul_num input").attr("id"))
     })
-      
-      shoppingCart(num.join(","), id.join(","))
+
+    shoppingCart(num.join(","), id.join(","))
 });

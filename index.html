@@ -113,7 +113,9 @@
                                 <i></i>
                                 <div id="alert_img_h">
                                     <ul class="over_a">
-                                        <li data-id="jdbid"><img src="//img13.360buyimg.com/popshop/jfs/t15472/277/1471067515/5874/3b3f67d1/5a533a0eNdb977d35.png" /> </li>
+                                        {{~it:value:index}} {{~value.brandlist:item:j}}
+                                        <li data-id="{{=item.id}}"><img src="{{=item.logo}}" alt="{{=item.name}}" /> </li>
+                                        {{~}} {{~}}
                                     </ul>
                                 </div>
                             </div>
@@ -208,8 +210,12 @@
                         
                         <div class="information">
                             <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
-                            <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice}}{{~}}</p>
-                            <p class="UserPrice">企业专享价：<strong>￥{{~value.goodsdetail:item:j}}{{=item.eprice}}{{~}}</strong> </p>
+                            <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice.toFixed(2)}}{{~}}</p>
+                            {{~value.goodsdetail:item:j}}
+                            {{?item.eprice!=""}}
+                            <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong> </p>
+                            {{?}}
+                            {{~}}
                         </div>           
                         <div class="input_num">									
                             <label for="" class="iconfont reduce">&#xe641;</label>
@@ -248,8 +254,9 @@
 
     <div class="leftfooter Jd_footer">
         <ul>
-            <li><a>导出到本地</a></li>
-            <li><a class="cloShare">分享采购方案</a></li>
+            <li><a href="javascript:;" class="export" data-pid="{{=value.pid}}">导出到本地</a></li>
+            <li>
+                <a class="cloShare"> 分享采购方案</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
             <li><a href="Person.html?id=1">管理采购方案</a></li>
         </ul>

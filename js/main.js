@@ -90,16 +90,14 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
 function leftList(id, fun) {
     var sum = 0;
     var num = 0;
-  
+    var jdsum = 0;
+    var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
     $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
-
         function(item) {
-
-            
             if (fun != "undefined") {
-                
-              setTimeout(fun,200)
+
+                setTimeout(fun, 200)
 
             }
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
@@ -107,12 +105,22 @@ function leftList(id, fun) {
             $.each(item[0].goods_list, function(index, infoLIst) {
                 //数量计算
 
-                num += parseInt(infoLIst.goodsnum)
-                    //价格计算
+                num += parseFloat(infoLIst.goodsnum)
+
+                //价格计算
                 $.each(infoLIst.goodsdetail, function(j, item) {
-                    var picur = item.eprice * infoLIst.goodsnum
-                    sum += parseInt(picur)
+
+                    picur = item.eprice * infoLIst.goodsnum
+
+                    if (item.eprice == "") {
+
+                        jdsum += item.jdprice * infoLIst.goodsnum;
+                    } else {
+                        sum += parseFloat(picur) + parseFloat(jdsum)
+                    }
+
                 })
+
             })
 
             $("#number").text(num)
@@ -268,7 +276,6 @@ $("#mianCont").delegate(".checkBox input[type='checkbox']", "click", function() 
 
 })
 
-// 价格计算
 
 
 //加减
@@ -316,7 +323,7 @@ $("#mianCont").delegate(".changName a", "click", function() {
         success: function(item) {
             leftList(type, "close()");
             leftBut();
-   
+
             $(".changName").hide();
 
 
@@ -354,7 +361,23 @@ $("#mianCont").delegate("#leftDate li .ra_de", "click", function() {
     removePland($(this).attr("data-type"), $(this).attr("data-sku"), $(this))
 
 });
+//导出
+$("#mianCont").delegate(".leftfooter  .export", "click", function() {
 
+
+    $.ajax({
+        type: "GET",
+        url: baseUrl + "/procurement/exprot",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({ "pid": $(this).attr("data-pid") }),
+
+        success: function(jsonResult) {
+
+        }
+    })
+
+});
 
 // url  参数
 function GetRequest() {
@@ -445,12 +468,12 @@ function removePland(typeId, skuId, obj) {
         data: { "procurementId": typeId, "pitemlist": skuId },
         cache: false,
         success: function(item) {
-           
+
             leftList(typeId, "close()"); //单个内容数据更新
             leftBut(); //数据更新
             $(obj).parent().parent().remove(); //物理删除
-           
-           
+
+
         }
     })
 }
@@ -516,17 +539,16 @@ $("#mianCont").delegate(".shoping", "click", function() {
 function shoppingCart(widsList, numsList) {
     // wids = skuid1, skuid2, skuid3 & nums = 1, 1, 1
     console.log(widsList)
-    if(widsList==""||numsList==""){
+    if (widsList == "" || numsList == "") {
         addTips("当前无物品")
         return false;
-        
+
     }
-   
+
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: "https://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action",
-        data: { "wids": widsList, "nums": numsList },
+        url: "https://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=" + widsList + "&nums=" + numsList + "",
         cache: false,
         success: function(item) {
 
