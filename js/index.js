@@ -233,7 +233,7 @@ function alertTem(id) {
 
 function hide() {
     $("#index").css("overflow", "auto")
-    $(".alertc").css({ "overflow": "auto", "height": "600px" })
+    $(".alertc").css({ "overflow": "auto", "height": "580px" })
     $(".alertBox .alertContent").css("top", '80px')
     $(".alertBox").hide()
 }
@@ -249,4 +249,4 @@ $.each($("#mainList li .txt"), function(i, item) {
 
 // $('#index').delegate(".noLogoing", 'click', function() {
 // //     login()
-// // });
+// // })

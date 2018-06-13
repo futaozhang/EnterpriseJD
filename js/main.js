@@ -94,7 +94,8 @@ function leftList(id, fun) {
     var jdsum = 0;
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
-    $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
+    // $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
+    $.getJSON("../mockData/leftData.json",
         function(item) {
             if (fun != "undefined") {
 
@@ -113,10 +114,14 @@ function leftList(id, fun) {
 
                     picur = item.eprice * infoLIst.goodsnum
 
-                    if (item.eprice != " ") {
-                        sum.push(item.jdprice * infoLIst.goodsnum)
-                    } else {
+                    if (item.eprice != "") {
                         sum.push(item.eprice * infoLIst.goodsnum)
+
+                    } else {
+
+                        sum.push(item.eprice * infoLIst.goodsnum)
+                        sum.push(item.jdprice * infoLIst.goodsnum)
+
                     }
 
                 })
