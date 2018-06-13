@@ -1,37 +1,37 @@
 var runDate = [{
-        "run_img": "img/pc1.png",
-        "run_title": "日常办公",
-        "run_Entitle": "OFFICING",
-        "run_icon": "./img/rc35x34.png",
-        "id": "1"
+        "thumbnail": "img/pc1.png",
+        "name": "日常办公",
+        // "run_Entitle": "OFFICING",
+        "icon": "./img/rc35x34.png",
+        "id": "5"
     },
     {
-        "run_img": "img/pc2.png",
-        "run_title": "高层管理",
-        "run_Entitle": "MANAGER",
-        "run_icon": "./img/gc35x34.png",
-        "id": "1"
+        "thumbnail": "img/pc2.png",
+        "name": "高层管理",
+        // "run_Entitle": "MANAGER",
+        "icon": "./img/gc35x34.png",
+        "id": "4"
     },
     {
-        "run_img": "img/pc3.png",
-        "run_title": "商务便携",
-        "run_Entitle": "TECGNOLOGY",
-        "run_icon": "./img/sw35x34.png",
-        "id": "1"
+        "thumbnail": "img/pc3.png",
+        "name": "商务便携",
+        // "run_Entitle": "TECGNOLOGY",
+        "icon": "./img/sw35x34.png",
+        "id": "2"
     },
     {
-        "run_img": "img/pc4.png",
-        "run_title": "技术研发",
-        "run_Entitle": "TECGNOLOGY",
-        "run_icon": "./img/js35x34.png",
-        "id": "1"
+        "thumbnail": "img/pc4.png",
+        "name": "技术研发",
+        // "run_Entitle": "TECGNOLOGY",
+        "icon": "./img/js35x34.png",
+        "id": "3"
     },
 
     {
-        "run_img": "img/pc2.png",
-        "run_title": "视觉设计",
-        "run_Entitle": "DESIGNER",
-        "run_icon": "./img/sj35x34.png",
+        "thumbnail": "img/pc2.png",
+        "name": "视觉设计",
+        // "run_Entitle": "DESIGNER",
+        "icon": "./img/sj35x34.png",
         "id": "1"
     }
 ]
@@ -40,9 +40,10 @@ var runDate = [{
 //手风琴数据
 var j_run = document.getElementById('j_runBaner').innerHTML;
 
-$.getJSON(baseUrl + "scene/list", function(item) {
+$.getJSON(baseUrl + "/scene/list", function(item) {
     if (item.length != 0) {
         document.getElementById('mainList').innerHTML = doT.template(j_run)(item);
+        return false
     }
     document.getElementById('mainList').innerHTML = doT.template(j_run)(runDate);
     return false
@@ -50,22 +51,23 @@ $.getJSON(baseUrl + "scene/list", function(item) {
 
 
 var current = 0;
-var MainSet = setInterval(runder, 4000);
+var MainSet = setInterval(runder, 5000);
 //主页滑动	
-$(".pic ul li").click(function(item) {
+$("#mainList").delegate("li", "click", function() {
 
-        //window.clearTimeout(MainSet)	
-        $(".pic .txt").css("background-color", '#b4b4b4');
-        $(this).find('.txt').css("background-color", '#7b7b83');
-        $(this).stop(true).animate({ width: "800px" }, 1000).siblings().stop(false).animate({ width: "60px" }, 1000);
+    $(".pic .txt").css("background-color", '#b4b4b4');
+    $(this).find('.txt').css("background-color", '#7b7b83');
+    $(this).stop(true).animate({ width: "800px" }, 1000).siblings().stop(false).animate({ width: "60px" }, 1000);
 
 
-    })
-    //定时轮播
+})
+
+
+//zhan
 
 $(".pic ul li").mouseleave(function() {
 
-    MainSet = setInterval(runder, 3000);
+    MainSet = setInterval(runder, 5000);
 
 });
 
@@ -118,78 +120,94 @@ $("#alert_t").delegate(".over_a li", "click", function() {
 
 //数据提交
 $("#alert_t").delegate(".submit", "click", function() {
+    var j = [];
+    $.each($(".alertBody").find(".must"), function(i) {
 
-    if (isCheck().length < 1) {
+        if (!$(this).hasClass("re")) {
+            isCheck()
+            j.push(i)
+        }
+    })
 
-        alert("请完成必选项目")
-        return false;
-    } else {
-        var addHref = isCheck().join("-")
-        setCookie("selcet", addHref)
-        window.location = "purchase.html"
-    }
-
+    junstrund(j)
 })
 
-//必选点击判断
+//页面跳转
+function junstrund(i) {
+
+    if (i == 0) {
+        window.location = "purchase.html"
+    } else {
+        alert("请完成必选项目")
+    }
+    //取avlist
+
+
+
+}
+//选中判断
+function isCheck() {
+    var href = []
+
+    //品牌
+    $.each($(".over_a").find("li"), function() {
+
+            if ($(this).hasClass("activeLi")) {
+                href.push($(this).attr("data-id"))
+            }
+
+        })
+        //必选
+    $.each($(".alertBody").find(".must"), function(i) {
+
+            if ($(this).hasClass("re")) {
+
+            } else {
+                $(this).addClass("addBorder")
+
+            }
+
+        })
+        //品牌
+    setCookie("categoryid", $('input[name="noType"]:checked').val())
+        //图标
+    setCookie("bidlist", href.join("-"))
+}
+
+
+//必选单个点击判断
 $("#alert_t").delegate(".must input", "click", function() {
 
     if ($(this).prop("checked") != false) {
         $(this).parent().addClass("re")
         $(this).parent().removeClass("addBorder")
+
+
     } else {
+
         $(this).parent().removeClass("re")
         $(this).parent().addClass("addBorder")
+
+
     }
+
+
 
 })
 
 
-//选中判断
-function isCheck() {
-    var href = []
-        //多选
-    $.each($(".alertBody").find("input[type='checkbox']"), function() {
 
-            if ($(this).prop("checked") != false) {
 
-                href.push($(this).val())
-            }
-        })
-        //品牌
-    $.each($(".over_a").find("li"), function() {
 
-            if ($(this).hasClass("activeLi")) {
-                href.push($(this).attr("data-id"))
 
-            }
-        })
-        //单选
-    $.each($(".alertBody").find("input[type='radio']"), function() {
 
-            if ($(this).prop("checked") != false) {
-
-                href.push($(this).val())
-            }
-        })
-        //必选
-    $.each($(".alertBody").find(".must"), function() {
-        if ($(this).hasClass("re")) {} else {
-            $(this).addClass("addBorder")
-            href = ""
-        }
-    })
-
-    return href
-
-}
 var alert_w = document.getElementById('alert_w').innerHTML;
 
 //弹出框数据
 function alertTem(id) {
 
 
-     $.getJSON(baseUrl + "/getalist", { "sceneid": id }, function(item) {
+    $.getJSON(baseUrl + "/goodsAttribute/getalist", { "sceneid": id }, function(item) {
 
         if (item.length != 0) {
             document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
@@ -221,6 +239,6 @@ $.each($("#mainList li .txt"), function(i, item) {
     }
 });
 
-$('#index').delegate(".noLogoing", 'click', function() {
-    login()
-});
+// $('#index').delegate(".noLogoing", 'click', function() {
+// //     login()
+// // });

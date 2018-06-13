@@ -17,14 +17,14 @@
 
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="http://misc.360buyimg.com/jdf/1.0.0/unit/base/1.0.0/base.js"></script>
 <!--[if lt IE 9]>
-     <script src="js/requestIE.js"></script>
-    <script src="js/html5shiv.js">IE7_PNG_SUFFIX=".png";</script>  
-    <script src="js/htmlmedia.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/videojs-ie8.min.js" type="text/javascript" charset="utf-8"></script>
-    
-    <![endif]-->
+<script src="js/requestIE.js"></script>
+<script src="js/html5shiv.js">IE7_PNG_SUFFIX = ".png";</script>
+<script src="js/htmlmedia.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/videojs-ie8.min.js" type="text/javascript" charset="utf-8"></script>
 
+<![endif]-->
 
 
 <body id="index">
@@ -45,12 +45,12 @@
                 <script type="text/template" id="j_runBaner">
 
                     {{ for (var i = 0, l = it.length; i
-                    < l; i++) {}} <li class="picContent" style="background-image: url({{=it[i].run_img}});">
+                    < l; i++) {}} <li class="picContent" style="background-image: url({{=it[i].thumbnail}});">
 
                         <a href="javascript:;">
                             <div class="txt">
-                                <p class="p1"> {{=it[i].run_title}}<i></i>
-                                    <i class=" iconfont"> <img src="{{=it[i].run_icon}}" alt=""> </i>
+                                <p class="p1"> {{=it[i].name}}<i></i>
+                                    <i class=" iconfont"> <img src="{{=it[i].icon}}" alt=""> </i>
                                 </p>
                             </div>
                             <a href="javascript:;" class="selcetor" data-jum="{{=it[i].id}}"><i>选购 ></i></a>
@@ -72,7 +72,6 @@
         <div class="leftSelct" id="left_w">
 
 
-
         </div>
 
         <!--leftProjiect-->
@@ -86,7 +85,6 @@
     </div>
 
 
-
     <!--弹出框-->
     <div class="alertBox">
         <i class="bg"></i>
@@ -95,7 +93,7 @@
             <div class="alertc" id="alert_t">
                 <script type="text/template" id="alert_w" charset="utf-8">
                     <div class="alertHead">
-                        <h3>高层管理-采购标准筛选</h3>
+                        <h3>采购标准筛选</h3>
                         <i class="iconfont" onclick="hide()">&#xe635;</i>
                     </div>
 
@@ -114,23 +112,22 @@
                                 <div id="alert_img_h">
                                     <ul class="over_a">
                                         {{~it:value:index}} {{~value.brandlist:item:j}}
-                                        <li data-id="{{=item.id}}"><img src="{{=item.logo}}" alt="{{=item.name}}" /> </li>
+                                        <li data-id="{{=item.id}}"><img src="{{=item.logo}}" alt="{{=item.name}}" /></li>
                                         {{~}} {{~}}
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-                        {{~it:value:index}}
-
+                        {{~it:value:index}} {{?value.filtername!=undefined}}
                         <div class="alert_t">
-                            <span>{{=value.attname}}
+                            <span>{{=value.filtername}}
                              {{? value.ischecked==1}}<i class="tem">*</i>{{??}}<i>&nbsp;</i>{{?}}
-                            </span> {{? value.selecttype==1}} {{~value.avlist:item:j}}
+                            </span> {{? value.selecttype==2}} {{~value.avlist:item:j}}
                             <input type="radio" name="radio_{{=index}}" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{??}} {{~value.avlist:item:j}}
                             <input type="checkBox" name="" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{?}}
                         </div>
-                        {{~}}
+                        {{?}} {{~}}
 
                     </div>
 
@@ -145,9 +142,9 @@
         <div id="videos">
             <i class="iconfont" onclick="$('#videos').hide()">&#xe635;</i>
             <video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="img/Player.png" data-setup='{"techOrder": ["html5", "flash", "other supported tech"]}'>
-            
-                <source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/>
-        
+
+            <source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/>
+
         </video>
         </div>
 
@@ -178,8 +175,8 @@
 
         <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='新建采购':it.name}}
         <span class="changName">
-                <input type="text"  name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
-                <a href="javascript:;"data-type="{{=it.id}}">确定</a>
+                <input type="text" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
+                <a href="javascript:;" data-type="{{=it.id}}">确定</a>
             </span>
         </span>
         {{?it.status==1}}
@@ -207,17 +204,17 @@
                         <div class="imgResponse">
                             <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/>
                         </div>
-                        
+
                         <div class="information">
                             <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
                             <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice.toFixed(2)}}{{~}}</p>
                             {{~value.goodsdetail:item:j}}
                             {{?item.eprice!=""}}
-                            <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong> </p>
+                            <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong></p>
                             {{?}}
                             {{~}}
-                        </div>           
-                        <div class="input_num">									
+                        </div>
+                        <div class="input_num">
                             <label for="" class="iconfont reduce">&#xe641;</label>
                     <input type="text" name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
                     <label for="" class="iconfont add" onclick="">&#xe655;</label>
@@ -255,8 +252,7 @@
     <div class="leftfooter Jd_footer">
         <ul>
             <li><a href="javascript:;" class="export" data-pid="{{=value.pid}}">导出到本地</a></li>
-            <li>
-                <a class="cloShare"> 分享采购方案</a></li>
+            <li><a class="cloShare"> 分享采购方案</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
             <li><a href="Person.html?id=1">管理采购方案</a></li>
         </ul>
@@ -267,7 +263,6 @@
 
 <script src="js/main.js?02" type="text/javascript" charset="utf-8"></script>
 <script src="js/index.js?01" type="text/javascript" charset="utf-8"></script>
-
 
 
 </html>

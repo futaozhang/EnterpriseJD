@@ -4,6 +4,7 @@ setCookie("userId", "1")
 
 
 var baseUrl = "http://192.168.1.247:8080"
+    //var baseUrl = "http://pre-admin.pcshop.jd.com"
 
 //用户名
 $("#userName").text(getCookie("") == null ? "游客 " : (getCookie("")))
@@ -342,7 +343,7 @@ function close() {
 }
 
 $("#left_w").delegate(".noLogoing", "click", function() {
-    alert("按钮登陆")
+    login()
 });
 
 //名称修改展示
@@ -532,7 +533,7 @@ $("#mianCont").delegate(".shoping", "click", function() {
         id.push($(this).find(".input_num input").attr("sku-id"))
     })
 
-    shoppingCart(num.join(","), id.join(","))
+    shoppingCart(id.join(","), num.join(","))
 });
 
 //加入购物车 widsList物品id  numsList数量
@@ -544,20 +545,27 @@ function shoppingCart(widsList, numsList) {
         return false;
 
     }
-
-    $.ajax({
-        type: "GET",
-        contentType: "application/json",
-        url: "https://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=" + widsList + "&nums=" + numsList + "",
-        cache: false,
-        success: function(item) {
-
-            addTips("加入购物车成功")
-        },
-        error: function(item) {
-
-            addTips("加入购物车失败")
-        }
-    })
+    var url = "https://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=" + widsList + "&nums=" + numsList + "";
+    window.open(url);
+    addTips("加入购物车成功")
+        // $.ajax({
+        //     type: "GET",
+        //     contentType: "application/json",
+        //     url: "https://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=" + widsList + "&nums=" + numsList + "",
+        //     cache: false,
+        //     success: function(item) {
+        //
+        //         addTips("加入购物车成功")
+        //     },
+        //     error: function(item) {
+        //
+        //         addTips("加入购物车失败")
+        //     }
+        // })
 
 }
+//导出采购方案
+$("#mianCont").delegate(".export", "click", function() {
+    window.location.href = baseUrl + "/procurementItem/export?pid=" + $(this).attr("data-pid") + ""
+    addTips("导出采购方案成功")
+})
