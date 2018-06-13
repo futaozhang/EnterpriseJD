@@ -7,7 +7,7 @@ var k_tmpl = document.getElementById('k_tempelate').innerHTML;
 
 function comparedList() {
     $.ajax({
-         url: baseUrl + "/procurement/getplist",
+        url: baseUrl + "/procurement/getplist",
         data: {
             "userid": getCookie("userId"),
             "status": 1

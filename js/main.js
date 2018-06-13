@@ -73,8 +73,8 @@ leftBut();
 
 $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
     var that = this
-
-    //是否为新添加
+    $(".selectorFile").hide()
+        //是否为新添加
     if ($(this).attr("data-src") == 3) {
         addProgram()
 
@@ -89,7 +89,7 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
 // 左侧数据
 
 function leftList(id, fun) {
-    var sum = 0;
+    var sum = [];
     var num = 0;
     var jdsum = 0;
     var picur = 0;
@@ -113,19 +113,19 @@ function leftList(id, fun) {
 
                     picur = item.eprice * infoLIst.goodsnum
 
-                    if (item.eprice == "") {
-
-                        jdsum += item.jdprice * infoLIst.goodsnum;
+                    if (item.eprice != " ") {
+                        sum.push(item.jdprice * infoLIst.goodsnum)
                     } else {
-                        sum += parseFloat(picur) + parseFloat(jdsum)
+                        sum.push(item.eprice * infoLIst.goodsnum)
                     }
 
                 })
 
             })
 
+
             $("#number").text(num)
-            $("#price").text(sum.toFixed(2))
+            $("#price").text(sum.sum().toFixed(2))
 
         })
 }
@@ -196,6 +196,7 @@ function closeOpen() {
     $(".Jd_footer").hide()
     $(".leftContent").animate({ "width": "0px" })
     $(".leftSelct div").animate({ "left": "0px" })
+    $(".selectorFile").hide()
 }
 
 
@@ -363,22 +364,22 @@ $("#mianCont").delegate("#leftDate li .ra_de", "click", function() {
 
 });
 //导出
-$("#mianCont").delegate(".leftfooter  .export", "click", function() {
+// $("#mianCont").delegate(".leftfooter  .export", "click", function() {
 
 
-    $.ajax({
-        type: "GET",
-        url: baseUrl + "/procurement/exprot",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify({ "pid": $(this).attr("data-pid") }),
+//     $.ajax({
+//         type: "GET",
+//         url: baseUrl + "/procurement/exprot",
+//         contentType: "application/json",
+//         dataType: "json",
+//         data: JSON.stringify({ "pid": $(this).attr("data-pid") }),
 
-        success: function(jsonResult) {
+//         success: function(jsonResult) {
 
-        }
-    })
+//         }
+//     })
 
-});
+// });
 
 // url  参数
 function GetRequest() {
@@ -564,8 +565,66 @@ function shoppingCart(widsList, numsList) {
         // })
 
 }
-//导出采购方案
+
 $("#mianCont").delegate(".export", "click", function() {
-    window.location.href = baseUrl + "/procurementItem/export?pid=" + $(this).attr("data-pid") + ""
+    $(".selectorFile").show()
+    var that = this
+
+    $("#execlDowload").attr("data-pid", $(this).attr("data-pid"))
+
+    html2canvas($("#leftDate"), {
+        useCORS: true,
+        allowTaint: true,
+        allowTaint: false,
+        onrendered: function(canvas) {
+            dataURL = canvas.toDataURL("image/png");
+            $("#imgDowload").attr('href', dataURL);
+            $("#imgDowload").attr('download', 'myjobdeer.png');
+        }
+
+    })
+
+})
+$("#imgDowload").click(function() {
+        $(".selectorFile").hide()
+    })
+    //导出采购方案
+$("#execlDowload").click(function() {
+    window.open(baseUrl + "/procurementItem/export?pid=" + $(this).attr("data-pid") + "");
     addTips("导出采购方案成功")
 })
+
+// ie
+function IEVersion() {
+    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+    var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
+    var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器  
+    var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+    if (isIE) {
+        var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+        reIE.test(userAgent);
+        var fIEVersion = parseFloat(RegExp["$1"]);
+        if (fIEVersion == 7) {
+            return 7;
+        } else if (fIEVersion == 8) {
+            return 8;
+        } else if (fIEVersion == 9) {
+            return 9;
+        } else if (fIEVersion == 10) {
+            return 10;
+        } else {
+            return 6; //IE版本<=7
+        }
+    } else if (isEdge) {
+        return 'edge'; //edge
+    } else if (isIE11) {
+        return 11; //IE11  
+    } else {
+        return -1; //不是ie浏览器
+    }
+}
+if (IEVersion() == -1) {
+    $("#imgDowload").text('图片下载')
+
+
+}

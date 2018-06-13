@@ -15,6 +15,7 @@
 
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/htmlToCanvas.js"></script>
 
 <!--[if lt IE 9]>
        <script src="js/html5shiv.js"></script>  
@@ -96,7 +97,18 @@
         <p></p>
         <span>已加入购物方案</span>
     </div>
+    <!-- 选择文件 -->
+    <div class="selectorFile">
 
+        <div class="head">
+            <h3>请选择需要的文件</h3>
+        </div>
+        <div>
+            <a href="" id="imgDowload">图片下载</a>
+            <a href="" id="execlDowload">Execl 下载</a>
+        </div>
+
+    </div>
     <!--底部-->
     <div id="foote">
         <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
@@ -363,8 +375,7 @@
 
     <div class="leftfooter Jd_footer">
         <ul>
-            <li><a>导出到本地</a></li>
-            <li><a class="cloShare">分享采购方案</a></li>
+            <li><a href="javascript:;" class="export" data-pid="{{=value.pid}}">导出到本地</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
             <li><a href="Person.html?id=1">管理采购方案</a></li>
         </ul>

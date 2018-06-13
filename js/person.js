@@ -130,6 +130,32 @@ $("#w_person").delegate(".tableDe", "click", function() {
 
 
 });
+//导出图片
+$("#Person").delegate(".exprotIMg", "click", function() {
+    var tableNum = $(this).attr("dataTable")
+    var name = $(this).attr("data-name")
+    $(".bg").show()
+    $(".selectorFile").show()
+    $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
+    $("#imgDowload").attr("data-name", name)
+    $("#imgDowload").attr("dataTable", tableNum)
+})
+
+
+$("#imgDowload").click(function() {
+    var tableNum = $(this).attr("dataTable")
+    var name = $(this).attr("data-name")
+    domtoimage.toBlob(document.getElementById("exportTbale_" + tableNum + ""))
+        .then(function(blob) {
+            window.saveAs(blob, '' + name + '.png');
+            $(".bg").hide()
+            $(".selectorFile").hide()
+        });
+})
+
+
+
+
 
 //单选删除
 $("#w_person").delegate(".tb_opreat .tb_del", "click", function() {

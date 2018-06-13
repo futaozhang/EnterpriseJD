@@ -14,6 +14,8 @@
 <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/htmlToCanvas.js"></script>
+<script src="js/htmlToCanvas.js"></script>
 <!--[if lt IE 9]>
        <script src="js/html5shiv.js"></script>  
         <script src="js/requestIE.js"></script>
@@ -43,7 +45,7 @@
         <ul id="content_warp">
 
             <script type="text/template" id="j_warp">
-                {{~it:value:index}}
+                {{? it!=""}} {{~it:value:index}}
                 <li>
                     <div class="warp">
                         <div class="warp_right">
@@ -56,10 +58,11 @@
                         </div>
                         <div class="warp_Price">
                             <h5>京东价：￥{{=value.jdprice.toFixed(2)}}</h5>
-                            {{?value.eprice!=""}}
-                            <h4>企业专享价：￥{{=value.eprice.toFixed(2)}}</h4>
+                            {{?value.eprice!=undefined}}
+                            <h4>企业专享价：￥{{=value.eprice}}</h4>
+                            {{??}}
+                            <h4>企业专享价：暂无</h4>
                             {{?}}
-
                         </div>
 
                         <div class="warp_t">
@@ -77,7 +80,7 @@
                         </div>
                         <div class="warp_sle">
                             <span class="addCompared">
-						<input type="checkbox" name="p_{{=index}}" data-sku="{{=value.skuid}}" id="p_{{=index}}" value="{{=value.jdprice.toFixed(2)}}"/><label for="p_{{=index}}">加入对比</label>
+						<input type="checkbox" name="p_{{=index}}" data-sku="{{=value.skuid}}" id="p_{{=index}}" value="{{=value.jdprice}}"/><label for="p_{{=index}}">加入对比</label>
 						</span>
                             <span class="addSelect">
 						<label for="add_{{=index}}">加入购物方案</label>
@@ -97,7 +100,12 @@
 
                     </div>
                 </li>
-                {{~}}
+                {{~}} {{??}}
+                <h2 class="moreTips">暂无筛选中商品，请回首页重新选择</h2>
+                {{?}}
+
+
+
             </script>
         </ul>
 
@@ -143,7 +151,18 @@
         </div>
 
     </div>
+    <!-- 选择文件 -->
+    <div class="selectorFile">
 
+        <div class="head">
+            <h3>请选择需要的文件</h3>
+        </div>
+        <div>
+            <a href="" id="imgDowload">图片下载</a>
+            <a href="" id="execlDowload">Execl 下载</a>
+        </div>
+
+    </div>
     <!--底部-->
     <div id="foote">
         <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
@@ -253,8 +272,7 @@
 
     <div class="leftfooter Jd_footer">
         <ul>
-            <li><a>导出到本地</a></li>
-            <li><a class="cloShare">分享采购方案</a></li>
+            <li><a href="javascript:;" class="export" data-pid="{{=value.pid}}">导出到本地</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
             <li><a href="Person.html?id=1">管理采购方案</a></li>
         </ul>

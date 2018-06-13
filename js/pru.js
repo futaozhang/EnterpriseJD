@@ -8,7 +8,7 @@ window.onload = function() {
             ContrastFuc()
         }
         //存在无筛选记录  回首页
-        if (getCookie("selcet") == null || getCookie("selcet") == "") {
+        if (getCookie("slectorType") == null || getCookie("slectorType") == "") {
             window.location = "index.html"
         }
 
@@ -16,9 +16,9 @@ window.onload = function() {
     // 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
 
-getCookie("selcet") //cookie  选择的删选条件
 
-$.getJSON(baseUrl + "/goods/gettoplist", { "avlist": 3 }, function(item) {
+
+$.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid"), "bidlist": getCookie("bidlist"), "avlist": getCookie("slectorType") }, function(item) {
     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
 
 });

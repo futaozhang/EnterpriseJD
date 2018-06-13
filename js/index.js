@@ -51,7 +51,7 @@ $.getJSON(baseUrl + "/scene/list", function(item) {
 
 
 var current = 0;
-var MainSet = setInterval(runder, 5000);
+var MainSet = setInterval(runder, 55000);
 //主页滑动	
 $("#mainList").delegate("li", "click", function() {
 
@@ -67,7 +67,7 @@ $("#mainList").delegate("li", "click", function() {
 
 $(".pic ul li").mouseleave(function() {
 
-    MainSet = setInterval(runder, 5000);
+    MainSet = setInterval(runder, 5500);
 
 });
 
@@ -122,9 +122,9 @@ $("#alert_t").delegate(".over_a li", "click", function() {
 $("#alert_t").delegate(".submit", "click", function() {
     var j = [];
     $.each($(".alertBody").find(".must"), function(i) {
-
+        isCheck()
         if (!$(this).hasClass("re")) {
-            isCheck()
+
             j.push(i)
         }
     })
@@ -140,16 +140,13 @@ function junstrund(i) {
     } else {
         alert("请完成必选项目")
     }
-    //取avlist
-
-
 
 }
 //选中判断
 function isCheck() {
     var href = []
-
-    //品牌
+    var slectorType = []
+        //品牌
     $.each($(".over_a").find("li"), function() {
 
             if ($(this).hasClass("activeLi")) {
@@ -160,18 +157,29 @@ function isCheck() {
         //必选
     $.each($(".alertBody").find(".must"), function(i) {
 
-            if ($(this).hasClass("re")) {
+        if ($(this).hasClass("re")) {
 
-            } else {
-                $(this).addClass("addBorder")
+        } else {
+            $(this).addClass("addBorder")
 
-            }
+        }
 
-        })
-        //品牌
+    })
+
+    //品牌
     setCookie("categoryid", $('input[name="noType"]:checked').val())
         //图标
+    href.length != 0 ? href = href : href.push(" ")
     setCookie("bidlist", href.join("-"))
+        //
+    $.each($(".alertBody").find(".alist input"), function(i) {
+
+        if ($(this).prop("checked") == true) {
+            slectorType.push($(this).val())
+        }
+
+    })
+    setCookie("slectorType", slectorType.join("-"))
 }
 
 

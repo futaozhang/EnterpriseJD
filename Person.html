@@ -14,6 +14,10 @@
 <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/domtoImg.js"></script>
+<script src="js/filesave.js"></script>
+<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+
 <!--[if lt IE 9]>
        <script src="js/html5shiv.js"></script>  
         <script src="js/requestIE.js"></script>
@@ -77,6 +81,7 @@
 
     <div id="leftsider">
         <!--菜单区域-->
+
         <div class="leftSelct" id="left_w">
 
 
@@ -104,6 +109,18 @@
     <div class="tips">
         <p></p>
         <span>已加入购物方案</span>
+    </div>
+    <!-- 选择文件 -->
+    <div class="selectorFile">
+
+        <div class="head">
+            <h3>请选择需要的文件</h3>
+        </div>
+        <div>
+            <a href="javascript:;" id="imgDowload">图片下载</a>
+            <a href="" id="execlDowload">Execl 下载</a>
+        </div>
+
     </div>
     <!--底部-->
     <div id="foote">
@@ -210,8 +227,7 @@
 
     <div class="leftfooter Jd_footer">
         <ul>
-            <li><a>导出到本地</a></li>
-            <li><a class="cloShare">分享采购方案</a></li>
+            <li><a href="javascript:;" class="export" data-pid="{{=value.pid}}">导出到本地</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
             <li><a href="Person.html?id=1">管理采购方案</a></li>
         </ul>
@@ -253,19 +269,21 @@
 
             <div class="right_but">
 
-                <a href="javascript:;">导出到本地</a>
+                <a href="javascript:;" class="exprotIMg" data-name="{{=value.name}}" {{~value.goods_list:list:k}} datatable="{{=list.pid}}" {{~}}>导出到本地</a>
                 <a href="Compared.html" class="pru">对比采购方案</a>
                 <a href="javascript:;" class="tableDe" data-src="{{=value.id}}">{{?value.goods_list.length==0}}删除方案{{??}}删除{{?}}</a>
-                <a href="javascript:;" class="cloShare">分享</a>
+
             </div>
 
         </div>
 
         <div id="personTable">
-            <table>
+
+            <table {{~value.goods_list:list:k}} id="exportTbale_{{=list.pid}}" {{~}}>
+
                 <thead>
                     <tr>
-                        <th><input type="checkbox" class="labeW" data-type="{{=value.id}}" name="jd_{{=index}}" id="jd_{{=index}}" value="" /><label for="jd_{{=index}}">全选</label></th>
+                        <th><input type="checkbox" class="labeW " data-type="{{=value.id}} " name="jd_{{=index}} " id="jd_{{=index}} " value=" " /><label for="jd_{{=index}} ">全选</label></th>
                         <th>&nbsp;</th>
                         <th>商品</th>
                         <th>&nbsp;</th>
@@ -279,51 +297,51 @@
                 <tbody>
                     {{~value.goods_list:item:i}}
                     <tr>
-                        <td class="tb_check">
-                            <input type="checkbox" name="" sc-id="{{=item.id}}" data-sku="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" id="jdS_{{=i}}" value="" /><label for="jdS_{{=i}}"></label>
+                        <td class="tb_check ">
+                            <input type="checkbox" name=" " sc-id="{{=item.id}} " data-sku="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}} " id="jdS_{{=i}} " value="" /><label for="jdS_{{=i}} "></label>
                         </td>
                         <td>
-                            <div class="tb_img">
-                                <img src="img/text.jpg" />
+                            <div class="tb_img ">
+                                <img src="img/text.jpg " />
                             </div>
                         </td>
                         <td>
-                            <p class="tb_ct">
+                            <p class="tb_ct ">
                                 {{~item.goodsdetail:goods:j}} {{=goods.name}} {{~}}
                             </p>
                         </td>
-                        <td class="tb_catory">
+                        <td class="tb_catory ">
                             <p>颜色： {{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p>
                             <p>尺码：{{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p>
                         </td>
                         <td>
-                            <div class="t_num">
-                                <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe656;</label>
-                                <input type="text" name="text" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" readonly data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}} {{~}}" value="{{=item.goodsnum}}"
-                                />
-                                <label for="" class="iconfont add" data-type="{{=item.id}}">&#xe657;</label>
+                            <div class="t_num ">
+                                <label for=" " class="iconfont reduce " data-type="{{=item.id}} ">&#xe656;</label>
+                                <input type="text " name="text " id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}} " readonly data-price=" {{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}} " data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}}
+                {{~}} " value="{{=item.goodsnum}} " />
+                                <label for=" " class="iconfont add " data-type="{{=item.id}} ">&#xe657;</label>
                             </div>
                         </td>
-                        <td class="tb_price">
-                            <p class="slive">京东价：{{~item.goodsdetail:goods:j}}￥{{=goods.jdprice.toFixed(2)}}{{~}}</p>
+                        <td class="tb_price ">
+                            <p class="slive ">京东价：{{~item.goodsdetail:goods:j}}￥{{=goods.jdprice.toFixed(2)}}{{~}}</p>
                             {{~item.goodsdetail:goods:j}} {{?goods.eprice!=""}}
-                            <p>企业专享价：<i class="jd_price">￥{{=goods.eprice.toFixed(2)}}</i></p>
+                            <p>企业专享价：<i class="jd_price ">￥{{=goods.eprice}}</i></p>
                             {{?}} {{~}}
 
                         </td>
                         <td>
-                            {{?item.sceneType=="日常办公"}}
-                            <span class="office">日常办公</span> {{??item.sceneType=="技术研发"}}
-                            <span class="techology">技术研发</span> {{??item.sceneType=="高层管理"}}
-                            <span class="manager">高层管理</span> {{??item.sceneType=="商务便携"}}
-                            <span class="portadle">商务便携</span> {{??}}
-                            <span class="techology">技术研发</span> {{?}}
+                            {{?item.sceneType=="日常办公 "}}
+                            <span class="office ">日常办公</span> {{??item.sceneType=="技术研发 "}}
+                            <span class="techology ">技术研发</span> {{??item.sceneType=="高层管理 "}}
+                            <span class="manager ">高层管理</span> {{??item.sceneType=="商务便携 "}}
+                            <span class="portadle ">商务便携</span> {{??}}
+                            <span class="techology ">技术研发</span> {{?}}
 
 
                         </td>
-                        <td class="tb_opreat">
-                            <a href="javascript:;" class="tb_del" data-typid="{{=value.id}}" data-skid="{{=item.id}}">删除</a>
-                            <a href="javascript:;" class="replay" data-typid="{{=value.id}}" data-skid="{{=item.id}}">替换</a>
+                        <td class="tb_opreat ">
+                            <a href="javascript:; " class="tb_del " data-typid="{{=value.id}} " data-skid="{{=item.id}} ">删除</a>
+                            <a href="javascript:; " class="replay " data-typid="{{=value.id}} " data-skid="{{=item.id}} ">替换</a>
                         </td>
                     </tr>
 
@@ -340,8 +358,8 @@
 
 
 
-<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/person.js"></script>
-<script src="js/collection.js"></script>
+<script src="js/main.js " type="text/javascript " charset="utf-8 "></script>
+<script src="js/person.js "></script>
+<script src="js/collection.js "></script>
 
 </html>
