@@ -72,7 +72,7 @@ function change(changId) {
 function Purchase() {
     $.ajaxSetup({ cache: false });
     var j_person = document.getElementById('j_person').innerHTML;
-    $.getJSON("http://192.168.1.247:8080/procurement/getplist", { "userid": 1, "status": 1 }, function(item) {
+    $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userId"), "status": 1 }, function(item) {
 
         if (item != "") {
             document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
