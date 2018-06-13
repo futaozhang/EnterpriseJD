@@ -94,8 +94,8 @@ function leftList(id, fun) {
     var jdsum = 0;
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
-    // $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
-    $.getJSON("../mockData/leftData.json",
+    $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
+
         function(item) {
             if (fun != "undefined") {
 

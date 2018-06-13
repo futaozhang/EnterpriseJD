@@ -2,7 +2,7 @@
  * 采购
  */
 
-
+var baseUrl = "http://192.168.1.247:8080"
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)
@@ -329,3 +329,13 @@ $("#w_person").delegate(".but_jd", "click", function() {
 
     shoppingCart(num.join(","), id.join(","))
 });
+
+function getCookie(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+    if (arr = document.cookie.match(reg))
+
+        return unescape(arr[2]);
+    else
+        return null;
+}
