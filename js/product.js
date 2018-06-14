@@ -36,6 +36,14 @@ function reload() {
         function(json) {
 
             document.getElementById('warp_product').innerHTML = doT.template(j_contrastC)(json);
+            $.each(json[0].attributelist, function(i, item) {
+
+                $(".left_li ul ").append(function() {
+
+                    return "<li>" + item.name + "</li>"
+                })
+
+            })
             diffrent();
         });
 }

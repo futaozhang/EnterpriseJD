@@ -50,17 +50,7 @@
             <div class="left_li  ">
                 <ul>
                     <li class="t_one"></li>
-                    <li>品牌及型号</li>
-                    <li>颜色</li>
-                    <li>重量</li>
-                    <li>系统</li>
-                    <li>CPU</li>
-                    <li>内存</li>
-                    <li>硬盘</li>
-                    <li>显卡</li>
-                    <li>尺寸</li>
-                    <li>续航时间</li>
-                    <li>分辨率</li>
+
                 </ul>
             </div>
             <div id="warp_product">
@@ -161,116 +151,18 @@
                     {{??}} {{?}}
             </tr>
 
+
+            {{~value.attributelist:item:k}}
             <tr>
                 {{~it:value:index}}
                 <td>
-                    <p class="wid">{{=value.brandName}}</p>
+                    <p class="wid">{{=value.attributelist[k].vals}}</p>
                 </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
+                {{~}}
+
             </tr>
-            <tr> {{~it:value:index}}
-                <td>
-                    <p class="wid">
-                        {{~value.attributelist:item:i}} {{?item.name=="color"}} {{=item.vals}} {{?}} {{~}}
-                    </p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr>
-                {{~it:value:index}}
-                <td>
-                    <p class="wid"> {{~value.attributelist:item:i}} {{?item.name=="重量"}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr>
-                {{~it:value:index}}
-                <td>
-                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="系统"}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr>
-                {{~it:value:index}}
-                <td>
-                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="CPU"}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr>
-                {{~it:value:index}}
-                <td>
-                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="内存"}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr>
-                {{~it:value:index}}
-                <td>
-                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="硬盘"}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr>
-                {{~it:value:index}}
-                <td>
-                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="显卡"}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr> {{~it:value:index}}
-                <td>
-                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="尺寸"}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr>
-                {{~it:value:index}}
-                <td>
-                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="续航时间"}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
-            <tr>
-                {{~it:value:index}}
-                <td>
-                    <p class="wid">{{~value.attributelist:item:i}} {{?item.name=="分辨率 "}} {{=item.vals}} {{?}} {{~}}</p>
-                </td>
-                {{~}} {{?index
-                <3}} <td>
-                    </td>
-                    {{??}} {{?}}
-            </tr>
+            {{~}}
+
         </tbody>
     </table>
 </script>
