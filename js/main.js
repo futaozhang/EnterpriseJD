@@ -1,13 +1,13 @@
 var sourDate = [] //未登录用户数据
     //模拟用户Id
-    //setCookie("userId", "1")
+setCookie("userId", "1")
 
 
 var baseUrl = "http://192.168.1.247:8080"
     //var baseUrl = "http://pre-admin.pcshop.jd.com"
 
 //用户名
-$("#userName").text(getCookieCores("pin") == null ? "游客 " : (getCookieCores("pin")))
+$("#userName").text(getCookieCores("unick") == null ? "游客 " : (getCookieCores("unick")))
 
 // 左侧按钮数据请求
 

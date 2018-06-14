@@ -140,7 +140,15 @@ $("#Person").delegate(".exprotIMg", "click", function() {
     $("#imgDowload").attr("data-name", name)
     $("#imgDowload").attr("dataTable", tableNum)
 })
+$("#reset").click(function() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if (keys) {
+        for (var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+    window.location.href = "index.html"
 
+})
 
 $("#imgDowload").click(function() {
     var tableNum = $(this).attr("dataTable")
