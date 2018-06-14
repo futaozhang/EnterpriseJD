@@ -1,13 +1,13 @@
 var sourDate = [] //未登录用户数据
     //模拟用户Id
-setCookie("userId", "1")
+    //setCookie("userId", "1")
 
 
 var baseUrl = "http://192.168.1.247:8080"
     //var baseUrl = "http://pre-admin.pcshop.jd.com"
 
 //用户名
-$("#userName").text(getCookie("") == null ? "游客 " : (getCookie("")))
+$("#userName").text(getCookieCores("pin") == null ? "游客 " : (getCookieCores("pin")))
 
 // 左侧按钮数据请求
 
@@ -632,4 +632,17 @@ if (IEVersion() == -1) {
     $("#imgDowload").text('图片下载')
 
 
+}
+
+function getCookieCores(c_name) {
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=")
+        if (c_start != -1) {
+            c_start = c_start + c_name.length + 1
+            c_end = document.cookie.indexOf(";", c_start)
+            if (c_end == -1) c_end = document.cookie.length
+            return unescape(document.cookie.substring(c_start, c_end))
+        }
+    }
+    return ""
 }
