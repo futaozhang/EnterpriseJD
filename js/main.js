@@ -9,6 +9,17 @@ var baseUrl = "http://192.168.1.247:8080"
 //用户名
 $("#userName").text(getCookieCores("unick") == null ? "游客 " : (getCookieCores("unick")))
 
+
+
+window.onload = function() {
+
+    //存在无用户  回首页
+    if (getCookieCores("pin") == null || getCookieCores("pin") == "") {
+        window.location = "index.html"
+    }
+
+}
+
 // 左侧按钮数据请求
 
 $.ajaxSetup({ cache: false });
