@@ -114,11 +114,19 @@ $("#mainList").delegate(".selcetor", 'click', function() {
 
 });
 
-$("#alert_t").delegate(".over_a li", "click", function() {
-    $(this).addClass("activeLi")
+$("#alert_t").delegate(".reset", "click", function() {
+    $(".over_a li").removeClass("activeLi")
+    $.each($(".alertBody").find("input"), function(i) {
+
+        $(this).prop("checked", false)
+
+    })
 })
 
-//数据提交
+$("#alert_t").delegate(".over_a li", "click", function() {
+        $(this).addClass("activeLi")
+    })
+    //数据提交
 $("#alert_t").delegate(".submit", "click", function() {
     var j = [];
     $.each($(".alertBody").find(".must"), function(i) {
