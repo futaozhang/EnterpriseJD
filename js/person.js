@@ -4,7 +4,7 @@
 
 var baseUrl = "http://192.168.1.247:8080"
 window.onload = function() {
-    // 
+
     dataListChange(GetRequest("id").id)
 
     $(".p_but a").click(function() {
@@ -15,6 +15,10 @@ window.onload = function() {
 
     })
 
+    //无userId  请求登陆
+    if (getCookie("userId") == null || getCookie("userId") == "") {
+        window.location = "index.html"
+    }
 
 }
 
