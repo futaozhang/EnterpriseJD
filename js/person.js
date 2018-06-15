@@ -3,8 +3,9 @@
  */
 
 var baseUrl = "http://192.168.1.247:8080"
+    // var baseUrl = "http://pre-admin.pcshop.jd.com"
 window.onload = function() {
-
+    // 
     dataListChange(GetRequest("id").id)
 
     $(".p_but a").click(function() {
@@ -15,11 +16,10 @@ window.onload = function() {
 
     })
 
-    //无userId  请求登陆
-    if (getCookie("userId") == null || getCookie("userId") == "") {
-        window.location = "index.html"
-    }
-
+    // 不存在用户  回首页
+    // if (getCookieCores("unick") == null || getCookieCores("unick") == "") {
+    //     window.location = "index.html"
+    // }
 }
 
 function dataListChange(data) {
@@ -76,7 +76,7 @@ function change(changId) {
 function Purchase() {
     $.ajaxSetup({ cache: false });
     var j_person = document.getElementById('j_person').innerHTML;
-    $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userId"), "status": 1 }, function(item) {
+    $.getJSON(baseUrl + "/procurement/getplist", { "userid": 1, "status": 1 }, function(item) {
 
         if (item != "") {
             document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
@@ -144,6 +144,7 @@ $("#Person").delegate(".exprotIMg", "click", function() {
     $("#imgDowload").attr("data-name", name)
     $("#imgDowload").attr("dataTable", tableNum)
 })
+
 $("#reset").click(function() {
     var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
     if (keys) {
@@ -198,7 +199,7 @@ function removePlanP(typeId, skuId, obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurement/delete",
-        data: { "procurementId": typeId, "pitemlist": skuId },
+        data: { "procurementId": parseInt(typeId.toString()), "pitemlist": parseInt(skuId.toString()) },
         cache: false,
         success: function(item) {
             Purchase()
@@ -265,7 +266,7 @@ function changListdataW(obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/updatepitem",
-        data: { "id": skuid, "goodsnum": value },
+        data: JSON.stringify({ "id": skuid, "goodsnum": value }),
         cache: true,
         success: function(item) {
 
@@ -341,13 +342,3 @@ $("#w_person").delegate(".but_jd", "click", function() {
 
     shoppingCart(num.join(","), id.join(","))
 });
-
-function getCookie(name) {
-    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-
-    if (arr = document.cookie.match(reg))
-
-        return unescape(arr[2]);
-    else
-        return null;
-}

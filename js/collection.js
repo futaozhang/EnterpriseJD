@@ -122,6 +122,7 @@ $("#w_collection").delegate(".reduce", 'click', function(dom) {
 $("#w_collection").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
+    
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData));
 
     changListdata($(this))

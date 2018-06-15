@@ -6,6 +6,7 @@
 var k_tmpl = document.getElementById('k_tempelate').innerHTML;
 
 function comparedList() {
+
     $.ajax({
         url: baseUrl + "/procurement/getplist",
         data: {
@@ -75,8 +76,23 @@ function pricCom() {
 }
 //收藏
 $("#warp_content").delegate(".n_collect", "click", function() {
-
-    enshrine($(this).attr("data-type"))
+ 
+ 
+ var   typeId = $(this).attr("data-type")
+      
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "/procurement/updatep",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({ "id": parseInt(typeId), "status": 2 }),
+            success: function(jsonResult) {
+                setTimeout(leftBut(), 200)
+               
+            }
+        })
+      //物理删除
+        $(this).parent().parent().parent().parent().remove();
 
 
 });

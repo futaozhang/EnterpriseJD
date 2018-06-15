@@ -166,8 +166,9 @@
 
     </div>
 </body>
+
 <script type="text/template" id="leftTmp">
-    <i class="bg"></i> {{?it.length==0}}
+    <i class="bg"></i> {{?it.id==-1}}
     <div class="noLogoing">
         <p>京东企业会员登陆更优惠！</p>
     </div>
@@ -203,13 +204,13 @@
 
         <div class="l_top">
             <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
-            <button data-typeId='{{=it.id}}'>{{?it.goods_list.length==0}}删除方案{{??}}删除{{?}}</button>
+            <button data-typeId='{{=it.id}}'>删除</button>
         </div>
 
         <div class="contents">
 
             <ul id="leftDate">
-                {{~it.goods_list:value:index}} {{?index>-1}}
+                {{~it.goods_list:value:index}} {{?index!=-1}}
                 <li>
                     <div class="checkBox">
                         <input type="checkbox" name="jd_{{=index}}" id="{{=index}}" data-src="{{=value.id}}" value="" />
@@ -265,7 +266,7 @@
 
     <div class="leftfooter Jd_footer">
         <ul>
-            <li><a href="javascript:;" class="export" data-pid="{{=value.pid}}">导出到本地</a></li>
+            <li><a href="javascript:;" class="export" data-pid="{{=it.id}}">导出到本地</a></li>
             <li><a href="Compared.html">对比采购方案</a></li>
             <li><a href="Person.html?id=1">管理采购方案</a></li>
         </ul>
@@ -274,7 +275,7 @@
 
 </script>
 
-<script src="js/main.js?02" type="text/javascript" charset="utf-8"></script>
+<script src="js/main.js?03" type="text/javascript" charset="utf-8"></script>
 <script src="js/index.js?01" type="text/javascript" charset="utf-8"></script>
 
 

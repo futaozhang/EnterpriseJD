@@ -114,19 +114,11 @@ $("#mainList").delegate(".selcetor", 'click', function() {
 
 });
 
-$("#alert_t").delegate(".reset", "click", function() {
-    $(".over_a li").removeClass("activeLi")
-    $.each($(".alertBody").find("input"), function(i) {
-
-        $(this).prop("checked", false)
-
-    })
+$("#alert_t").delegate(".over_a li", "click", function() {
+    $(this).addClass("activeLi")
 })
 
-$("#alert_t").delegate(".over_a li", "click", function() {
-        $(this).addClass("activeLi")
-    })
-    //数据提交
+//数据提交
 $("#alert_t").delegate(".submit", "click", function() {
     var j = [];
     $.each($(".alertBody").find(".must"), function(i) {
@@ -144,7 +136,7 @@ $("#alert_t").delegate(".submit", "click", function() {
 function junstrund(i) {
 
     if (i == 0) {
-        window.location = "purchase.html"
+        window.location = "Purchase.html"
     } else {
         alert("请完成必选项目")
     }
@@ -177,7 +169,7 @@ function isCheck() {
     //品牌
     setCookie("categoryid", $('input[name="noType"]:checked').val())
         //图标
-    href.length != 0 ? href = href : href.push(" ")
+    href.length != 0 ? href = href : href.push("")
     setCookie("bidlist", href.join("-"))
         //
     $.each($(".alertBody").find(".alist input"), function(i) {
@@ -241,7 +233,7 @@ function alertTem(id) {
 
 function hide() {
     $("#index").css("overflow", "auto")
-    $(".alertc").css({ "overflow": "auto", "height": "580px" })
+    $(".alertc").css({ "overflow": "auto", "height": "600px" })
     $(".alertBox .alertContent").css("top", '80px')
     $(".alertBox").hide()
 }
@@ -255,6 +247,14 @@ $.each($("#mainList li .txt"), function(i, item) {
     }
 });
 
+$("#alert_t").delegate(".reset", "click", function() {
+    $(".over_a li").removeClass("activeLi")
+    $.each($(".alertBody").find("input"), function(i) {
+
+        $(this).prop("checked", false)
+
+    })
+})
 // $('#index').delegate(".noLogoing", 'click', function() {
 // //     login()
-// // })
+// // });

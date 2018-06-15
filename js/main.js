@@ -1,24 +1,15 @@
-var sourDate = [] //未登录用户数据
+var sourDate = { "id": -1 }
+    //未登录用户数据
     //模拟用户Id
 setCookie("userId", "1")
 
 
+//var baseUrl = "http://localhost:8080"
+//     var baseUrl = "http://pre-admin.pcshop.jd.com"
 var baseUrl = "http://192.168.1.247:8080"
-    //var baseUrl = "http://pre-admin.pcshop.jd.com"
-
-//用户名
-$("#userName").text(getCookieCores("unick") == null ? "游客 " : (getCookieCores("unick")))
-
-
-
-window.onload = function() {
-
-    //存在无用户  回首页
-    if (getCookieCores("pin") == null || getCookieCores("pin") == "") {
-        window.location = "index.html"
-    }
-
-}
+    //用户名
+var userName = "游客"
+$("#userName").text(getCookieCores("unick") == null ? unescape(userName) : unescape((getCookieCores("unick"))))
 
 // 左侧按钮数据请求
 
@@ -30,6 +21,7 @@ function leftBut() {
     if (getCookie("userId") == null || getCookie("userId") == "") {
 
         document.getElementById('left_w').innerHTML = doT.template(leftTmp)(sourDate);
+
         setTimeout(function() {
             $(".add_pri ul").html(function(n) {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"
@@ -106,7 +98,6 @@ function leftList(id, fun) {
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
     $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
-
         function(item) {
             if (fun != "undefined") {
 
@@ -125,14 +116,10 @@ function leftList(id, fun) {
 
                     picur = item.eprice * infoLIst.goodsnum
 
-                    if (item.eprice != "") {
-                        sum.push(item.eprice * infoLIst.goodsnum)
-
-                    } else {
-
-                        sum.push(item.eprice * infoLIst.goodsnum)
+                    if (item.eprice != " ") {
                         sum.push(item.jdprice * infoLIst.goodsnum)
-
+                    } else {
+                        sum.push(item.eprice * infoLIst.goodsnum)
                     }
 
                 })
@@ -149,7 +136,7 @@ function leftList(id, fun) {
 
 function addProgram() {
     if (getCookie("userId") == null || getCookie("userId") == "") {
-        alert("弹出登录")
+        alert("请先登录")
         return false
     }
 
@@ -434,6 +421,7 @@ function getCookie(name) {
     else
         return null;
 }
+
 //删除cookies
 // function delCookie(name) {   
 //     var exp = new Date();   
@@ -524,11 +512,11 @@ function login() {
             // firstCheck: false,
             modal: true, //false跳转,true显示登录注册弹层
             complete: function() {
-                $.post(baseUrl + "/appuser/adduser", {}, function() {
+                $.post(baseUrl + "/appuser/adduser", {}, function(i) {
 
-                    setCookie("userId")
+                    setCookie("userId", i.id);
 
-                }, json)
+                })
             }
         })
     })
