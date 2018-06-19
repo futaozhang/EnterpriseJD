@@ -82,7 +82,8 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
         addProgram()
 
         return false
-    } else if ($(this).attr("data-src") != 'undefined') {
+    } else if ($(this).attr("data-src") != undefined) {
+
         runBg(this)
     }
     //左侧数据更新
@@ -178,7 +179,6 @@ function newAddColect(id, json) {
 }
 // 左侧弹出
 function runBg(th) {
-
 
     setTimeout(function() {
         $(".Jd_footer").fadeIn()

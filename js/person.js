@@ -71,11 +71,11 @@ function change(changId) {
 
     priceNun()
 }
-
+var j_person = document.getElementById('j_person').innerHTML;
 //采购数据更新
 function Purchase() {
     $.ajaxSetup({ cache: false });
-    var j_person = document.getElementById('j_person').innerHTML;
+
     $.getJSON(baseUrl + "/procurement/getplist", { "userid": 1, "status": 1 }, function(item) {
 
         if (item != "") {
@@ -145,16 +145,6 @@ $("#Person").delegate(".exprotIMg", "click", function() {
     $("#imgDowload").attr("dataTable", tableNum)
 })
 
-$("#reset").click(function() {
-    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-    if (keys) {
-        for (var i = keys.length; i--;)
-            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
-    }
-    window.location.href = "index.html"
-
-})
-
 $("#imgDowload").click(function() {
     var tableNum = $(this).attr("dataTable")
     var name = $(this).attr("data-name")
@@ -168,6 +158,20 @@ $("#imgDowload").click(function() {
 
 
 
+$("#reset").click(function() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if (keys) {
+        for (var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+    window.location.href = "index.html"
+
+})
+
+
+
+
+
 
 
 //单选删除
@@ -175,6 +179,7 @@ $("#w_person").delegate(".tb_opreat .tb_del", "click", function() {
 
 
         removePlanP($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+
     })
     //替换
 $("#w_person").delegate(".tb_opreat .replay", "click", function() {
@@ -195,11 +200,19 @@ function replay(typid, skId, obj) {
 
 
 function removePlanP(typeId, skuId, obj) {
+
+    var typeIds = parseInt(typeId.toString())
+    var skuIds = parseInt(skuId.toString())
+
+    skuIds == NaN ? skuIds = " " : skuIds = skuIds;
+
+    alert(skuIds)
+
     $.ajax({
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurement/delete",
-        data: { "procurementId": parseInt(typeId.toString()), "pitemlist": parseInt(skuId.toString()) },
+        data: { "procurementId": typeIds, "pitemlist": skuIds },
         cache: false,
         success: function(item) {
             Purchase()

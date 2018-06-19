@@ -118,8 +118,8 @@
                         </div>
                         <p class="pro_text">{{=value.name}}</p>
                         <p class="slive">京东价:￥{{=value.jdprice.toFixed(2)}}</p>
-                        {{?value.price!=""}}
-                        <p>企业专享价:<i class="jd_text">￥{{=value.price}}</i> </p>
+                        {{?value.eprice!=""}}
+                        <p>企业专享价:<i class="jd_text">￥{{=value.eprice.toFixed(2)}}</i> </p>
                         {{?}}
                         <span class="addSelect">
 						<label class="but_jd" for="add_{{=index}}">加入购物方案</label>
@@ -158,6 +158,7 @@
                 {{~it:value:index}}
                 <td>
                     <p class="wid">{{=value.attributelist[k].vals}}</p>
+
                 </td>
                 {{~}}
 

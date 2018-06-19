@@ -122,7 +122,7 @@ $("#w_collection").delegate(".reduce", 'click', function(dom) {
 $("#w_collection").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
-    
+
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData));
 
     changListdata($(this))
@@ -215,7 +215,7 @@ function removePlanWC(typeId, skuId, obj) {
         success: function(item) {
             Purchase()
             leftBut()
-            $(this).parent().parent().remove();
+            $(obj).parent().parent().remove();
             Collection()
         }
     })

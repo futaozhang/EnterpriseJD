@@ -51,34 +51,21 @@ $.getJSON(baseUrl + "/scene/list", function(item) {
 
 
 var current = 0;
-var MainSet = setInterval(runder, 55000);
+
 //主页滑动	
-$("#mainList").delegate("li", "click", function() {
+$("#mainList").delegate("li", "mouseenter", function() {
 
     $(".pic .txt").css("background-color", '#b4b4b4');
     $(this).find('.txt').css("background-color", '#7b7b83');
     $(this).stop(true).animate({ width: "800px" }, 1000).siblings().stop(false).animate({ width: "60px" }, 1000);
 
-
 })
 
 
-//zhan
-
-$(".pic ul li").mouseleave(function() {
-
-    MainSet = setInterval(runder, 5500);
-
-});
-
-$(".pic ul li").mouseenter(function() {
-
-    window.clearInterval(MainSet);
-});
 //轮播方式
 
 $(".leftSelct").animate({ "display": "none", "z-index": "-1" }, 1200)
-runder()
+
 
 function runder() {
 
@@ -115,7 +102,14 @@ $("#mainList").delegate(".selcetor", 'click', function() {
 });
 
 $("#alert_t").delegate(".over_a li", "click", function() {
-    $(this).addClass("activeLi")
+    if ($(this).hasClass("activeLi")) {
+        $(this).removeClass("activeLi")
+        $(this).find("img").css("opacity", 1);
+    } else {
+        $(this).addClass("activeLi")
+        $(this).find("img").css("opacity", 0.4);
+    }
+
 })
 
 //数据提交
@@ -200,12 +194,7 @@ $("#alert_t").delegate(".must input", "click", function() {
     }
 
 
-
 })
-
-
-
-
 
 
 
@@ -255,6 +244,3 @@ $("#alert_t").delegate(".reset", "click", function() {
 
     })
 })
-// $('#index').delegate(".noLogoing", 'click', function() {
-// //     login()
-// // });

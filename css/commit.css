@@ -332,6 +332,8 @@ button:focus {
     float: left;
     height: 450px;
     width: 60px;
+    background-size: cover;
+    cursor: pointer;
 }
 
 .picContent {
@@ -341,6 +343,7 @@ button:focus {
 .pic ul .picContent img {
     width: 100%;
     height: 450px;
+    background-size: cover;
 }
 
 .pic ul .picContent:nth-of-type(1) {
@@ -403,8 +406,6 @@ button:focus {
     border-top: 1px solid #786c6c;
 }
 
-.leftfooter ul {}
-
 .leftfooter li {
     width: 89px;
     border-right: 1px solid #786c6c;
@@ -441,7 +442,7 @@ button:focus {
 
 .contents ul li button {
     position: absolute;
-    right: 10px;
+    right: 20px;
     bottom: 15px;
     color: rgb(226, 58, 58);
     padding: 2px 5px;
@@ -464,7 +465,7 @@ button:focus {
 }
 
 .information {
-    width: 180px;
+    width: 160px;
     position: absolute;
     left: 120px;
     top: 10px;
@@ -509,7 +510,7 @@ button:focus {
 .input_num {
     width: 80px;
     position: absolute;
-    right: -9px;
+    right: 0px;
     bottom: 45px;
 }
 
@@ -670,7 +671,7 @@ button:focus {
 }
 
 .alert_w {
-    height: 140px;
+    height: 180px;
     border-bottom: 1px solid silver;
     position: relative;
 }
@@ -680,7 +681,7 @@ button:focus {
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 2px;
-    height: 140px;
+    height: 180px;
     width: 110px;
     padding-left: 30px;
     background: #ededed;
@@ -706,9 +707,7 @@ button:focus {
 }
 
 .over_a {
-    height: 120px !important;
-    overflow: scroll !important;
-    overflow-x: hidden !important;
+    height: 160px !important;
 }
 
 .alert_ws ul li {
