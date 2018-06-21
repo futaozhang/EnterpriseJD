@@ -40,7 +40,7 @@ $("#Compared").delegate(".ul_num .reduce", 'click', function() {
 });
 
 //增加
-$("#Compared").delegate(".add", 'click', function() {
+$("#Compared").delegate(".ul_num .add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
     $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) + 1)

@@ -28,15 +28,15 @@
     <div class="w_nav">
         <div>
             <ul class="left">
-                <li><a href="index.html">首页</a><i class="iconfont">&#xe60d;</i></li>
-                <li><a href="Purchase.html">采购筛选</a><i class="iconfont">&#xe60d;</i></li>
-                <li><a href="Person.html">方案夹</a><i class="iconfont">&#xe60d;</i></li>
+                <li><a href="index.html">首页</a><i class="iconfont">&#xe63f;</i></li>
+                <li><a href="Purchase.html">采购筛选</a><i class="iconfont">&#xe63f;</i></li>
+                <li><a href="Person.html">方案夹</a><i class="iconfont">&#xe63f;</i></li>
                 <li><a href="Compared.html">采购方案对比</a></li>
             </ul>
             <ul class="right">
                 <li>
                     <a href="#" onclick="javascript:history.back(-1);">
-                        <i class="iconfont">&#xe675;</i> 返回上一级</a>
+                        <i class="iconfont">&#xe640;</i> 返回上一级</a>
                 </li>
             </ul>
         </div>
@@ -69,7 +69,7 @@
 
                         <div class="f_opreat">
                             <a href="javascript:;" class="but_jd" data-type="{{=it[i].id}}">加入购物车</a> {{? it[i].status==1 }}
-                            <a href="javascript:;" class="changesky"><i class="iconfont n_collect" data-type="{{=it[i].id}}">&#xe711;</i>收藏</a> {{??}}
+                            <a href="javascript:;" class="changesky"><i class="iconfont n_collect" data-type="{{=it[i].id}}"></i>加入收藏</a> {{??}}
                             <a href="javascript:;" class="changeRed"><i class="iconfont c_collect">&#xe663;</i>收藏</a> {{?}}
                         </div>
 
@@ -101,9 +101,9 @@
                                     </td>
                                     <td>
                                         <div class="ul_num">
-                                            <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe656;</label>
+                                            <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe688;</label>
                                             <input type="text" name="" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" data-price="{{~item.goodsdetail:goods:j}}{{=goods.jdprice}}{{~}}" data-eprice="{{~item.goodsdetail:goods:j}}{{=goods.eprice}}{{~}}" value="{{=item.goodsnum}}" />
-                                            <label for="" data-type="{{=item.id}}" class="iconfont add">&#xe657;</label>
+                                            <label for="" data-type="{{=item.id}}" class="iconfont add">&#xe689;</label>
                                         </div>
                                     </td>
 
@@ -209,7 +209,7 @@
     </div>
     {{??}}
     <div class="isLogoing ">
-        <a class="user"><i class="iconfont ">&#xe522;</i></a>
+        <a class="user"><i class="iconfont ">&#xe611;</i></a>
         <a href="Person.html">收藏方案</a>
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
@@ -223,14 +223,14 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='新建采购':it.name}}
+        <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name='新建采购':it.name}}
         <span class="changName">
                 <input type="text" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;" data-type="{{=it.id}}">确定</a>
             </span>
         </span>
         {{?it.status==1}}
-        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont">&#xe711;</i>收藏</a>{{??}}
+        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont"></i>加入收藏</a>{{??}}
         <a href="javascript:;" class="collection  "><i class="iconfont red ">&#xe663;</i>收藏</a>{{?}}
 
     </div>
@@ -265,9 +265,9 @@
                             {{~}}
                         </div>
                         <div class="input_num">
-                            <label for="" class="iconfont reduce">&#xe641;</label>
+                            <label for="" class="iconfont reduce">&#xe617;</label>
                     <input type="text" name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
-                    <label for="" class="iconfont add" onclick="">&#xe655;</label>
+                    <label for="" class="iconfont add" onclick="">&#xe616;</label>
 
         </div>
         <button class="ra_de" data-sku='{{=value.id}}' data-type="{{=it.id}}">删除</button>
@@ -309,6 +309,8 @@
 
 
 </script>
+
+
 
 
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>

@@ -24,7 +24,7 @@ function reload() {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"
             })
 
-        }, 300)
+        }, 40)
 
     } else {
 
@@ -34,16 +34,19 @@ function reload() {
 
     $.getJSON(baseUrl + '/goods/compare', { "skulist": date },
         function(json) {
-
+            $(".checkLi").empty();
             document.getElementById('warp_product').innerHTML = doT.template(j_contrastC)(json);
+
             $.each(json[0].attributelist, function(i, item) {
 
-                $(".left_li ul ").append(function() {
+                $(".left_li .checkLi").append(function() {
 
                     return "<li>" + item.name + "</li>"
                 })
 
             })
+
+
             diffrent();
         });
 }
@@ -148,3 +151,14 @@ function diffrent() {
     }
 
 }
+$("body").append(function() {
+    return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
+
+        '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="img/Player.png" >'
+
+    +'<source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/> </video></div>'
+});
+
+$("#videos .iconfont").click(function(){
+    $("#videos").hide()
+})

@@ -17,10 +17,8 @@
 
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="http://misc.360buyimg.com/jdf/1.0.0/unit/base/1.0.0/base.js"></script>
-<script src="js/domtoImg.js"></script>
+<!-- <script type="text/javascript" src="http://misc.360buyimg.com/jdf/1.0.0/unit/base/1.0.0/base.js"></script> -->
 <script src="js/htmlToCanvas.js"></script>
-<script src="js/filesave.js"></script>
 <!--[if lt IE 9]>
 <script src="js/requestIE.js"></script>
 <script src="js/html5shiv.js">IE7_PNG_SUFFIX = ".png";</script>
@@ -32,11 +30,8 @@
 
 <body id="index">
     <!--header-->
-    <div class="head">
-        <span><img src="img/logo.png"/></span>
-
-        <h1>为他们选购办公电脑？</h1>
-        <h5>精准定位采购需求，助您更快更好的确定采购，降低采购成本...</h5>
+    <div class="headIndex">
+    
     </div>
 
     <!--content-->
@@ -56,7 +51,7 @@
                                     <i class=" iconfont"> <img src="{{=it[i].icon}}" alt=""> </i>
                                 </p>
                             </div>
-                            <a href="javascript:;" class="selcetor" data-jum="{{=it[i].id}}"><i>选购 ></i></a>
+                            <a href="javascript:;" class="selcetorText" data-jum="{{=it[i].id}}"><i>选购 ></i></a>
                         </a>
 
                         </li>
@@ -97,7 +92,7 @@
                 <script type="text/template" id="alert_w" charset="utf-8">
                     <div class="alertHead">
                         <h3>采购标准筛选</h3>
-                        <i class="iconfont" onclick="hide()">&#xe635;</i>
+                        <i class="iconfont" onclick="hide()">&#xe606;</i>
                     </div>
 
                     <div class="alertBody">
@@ -142,14 +137,7 @@
             </div>
 
         </div>
-        <!-- <div id="videos">
-            <i class="iconfont" onclick="$('#videos').hide()">&#xe635;</i>
-            <video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="img/Player.png" data-setup='{"techOrder": ["html5", "flash", "other supported tech"]}'>
-
-            <source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/>
-
-        </video>
-        </div> -->
+        <!-- -->
 
 
     </div>
@@ -174,7 +162,7 @@
     </div>
     {{??}}
     <div class="isLogoing ">
-        <a class="user"><i class="iconfont ">&#xe522;</i></a>
+        <a class="user"><i class="iconfont ">&#xe611;</i></a>
         <a href="Person.html">收藏方案</a>
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
@@ -188,14 +176,14 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='新建采购':it.name}}
+        <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name='新建采购':it.name}}
         <span class="changName">
                 <input type="text" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;" data-type="{{=it.id}}">确定</a>
             </span>
         </span>
         {{?it.status==1}}
-        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont">&#xe711;</i>收藏</a>{{??}}
+        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont"></i>加入收藏</a>{{??}}
         <a href="javascript:;" class="collection  "><i class="iconfont red ">&#xe663;</i>收藏</a>{{?}}
 
     </div>
@@ -230,9 +218,9 @@
                             {{~}}
                         </div>
                         <div class="input_num">
-                            <label for="" class="iconfont reduce">&#xe641;</label>
+                            <label for="" class="iconfont reduce">&#xe617;</label>
                     <input type="text" name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
-                    <label for="" class="iconfont add" onclick="">&#xe655;</label>
+                    <label for="" class="iconfont add" onclick="">&#xe616;</label>
 
         </div>
         <button class="ra_de" data-sku='{{=value.id}}' data-type="{{=it.id}}">删除</button>
@@ -275,8 +263,8 @@
 
 </script>
 
-<script src="js/main.js?03" type="text/javascript" charset="utf-8"></script>
-<script src="js/index.js?01" type="text/javascript" charset="utf-8"></script>
+<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
 
 
 </html>

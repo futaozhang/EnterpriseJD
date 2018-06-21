@@ -40,13 +40,13 @@ function changec(changId) {
 function Collection() {
 
     var j_persond = document.getElementById('j_person').innerHTML;
-    $.getJSON(baseUrl + '/procurement/getplist', {
-        "userid": 1,
-        "status": 2
+    $.getJSON(baseUrl + '/procurementBak/getplist', {
+        "userid": getCookie("userid"),
+        "status": 1
     }, function(item) {
         if (item != "") {
             document.getElementById('w_collection').innerHTML = doT.template(j_persond)(item);
-            $("#w_collection .addCollection").remove();
+            $("#w_collection .addCollection a").remove();
             $("#w_collection .right_but .pru").remove();
 
             changec(0)
@@ -139,7 +139,7 @@ function changListdata(obj) {
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: baseUrl + "/procurementItem/updatepitem",
+        url: baseUrl + "/procurementBakItem/updatepitem",
         data: {
             "id": skuid,
             "goodsnum": value
@@ -203,20 +203,22 @@ function replay(typid, skId, obj) {
 }
 
 function removePlanWC(typeId, skuId, obj) {
+    var typeIds = parseInt(typeId.toString())
+    var skuIds = parseInt(skuId.toString())
+
+    skuIds == NaN ? skuIds = " " : skuIds = skuIds;
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: baseUrl + "/procurement/delete",
+        url: baseUrl + "/procurementBak/delete",
         data: {
-            "procurementId": typeId,
-            "pitemlist": skuId
+            "procurementId": typeIds,
+            "pitemlist": skuIds
         },
         cache: false,
         success: function(item) {
-            Purchase()
-            leftBut()
             $(obj).parent().parent().remove();
-            Collection()
+
         }
     })
 }

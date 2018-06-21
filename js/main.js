@@ -15,6 +15,7 @@ $("#userName").text(getCookieCores("unick") == null ? unescape(userName) : unesc
 
 $.ajaxSetup({ cache: false });
 
+
 function leftBut() {
     var leftTmp = document.getElementById('leftTmp').innerHTML;
 
@@ -445,7 +446,7 @@ Array.prototype.sum = function() {
 /*****************API************************/
 /*
  * 左侧收藏收藏接口
- *typeId 方案
+ *typeId 方案POST 
  *
  */
 function enshrine(typeId) {
@@ -453,10 +454,10 @@ function enshrine(typeId) {
 
     $.ajax({
         type: "POST",
-        url: baseUrl + "/procurement/updatep",
+        url: baseUrl + "/procurementBak/updatep",
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ "id": parseInt(typeId), "status": 2 }),
+        data: JSON.stringify({ "id": parseInt(typeId) }),
         success: function(jsonResult) {
             setTimeout(leftBut(), 200)
         }
@@ -576,21 +577,11 @@ $("#mianCont").delegate(".export", "click", function() {
 
     $("#execlDowload").attr("data-pid", $(this).attr("data-pid"))
 
-    html2canvas($("#leftDate"), {
-        useCORS: true,
-        allowTaint: true,
-        allowTaint: false,
-        onrendered: function(canvas) {
-            dataURL = canvas.toDataURL("image/png");
-            $("#imgDowload").attr('href', dataURL);
-            $("#imgDowload").attr('download', 'myjobdeer.png');
-        }
-
-    })
+  
 
 })
-$("#imgDowload").click(function() {
-        $(".selectorFile").hide()
+$("#index #imgDowload").click(function() {
+        window.location.href = "Person.html?id=1"
     })
     //导出采购方案
 $("#execlDowload").click(function() {
@@ -644,4 +635,29 @@ function getCookieCores(c_name) {
         }
     }
     return null
+}
+
+
+
+$.ajax({
+    type: "GET",
+    contentType: "application/json",
+    url: baseUrl + "/homepageAd/list",
+    cache: false,
+    success: function(item) {
+        $(".w_head").prepend(function(){ return "<img src="+item[1].imageurl+">"})
+      //  $(".headIndex").prepend(function(){ return "<img src="+item[2].imageurl+">"})
+        $(".headIndex").css("background","url("+item[2].imageurl+")")
+
+
+        $("body").prepend(function() {
+            return '<div id="topImg"><img src='+item[0].imageurl+'>'+  
+            '<i class="iconfont" onclick="closeTop(this)">&#xe606;</i></div>'
+        });
+       
+
+    }
+})
+function closeTop(obj){
+    $("#topImg").hide()
 }

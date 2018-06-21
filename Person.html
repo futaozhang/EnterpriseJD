@@ -14,10 +14,10 @@
 <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
 <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/doT.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="http://misc.360buyimg.com/jdf/1.0.0/unit/base/1.0.0/base.js"></script>
-<script src="js/domtoImg.js"></script>
-<script src="js/filesave.js"></script>
+<!-- <script type="text/javascript" src="http://misc.360buyimg.com/jdf/1.0.0/unit/base/1.0.0/base.js"></script> -->
+<script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.min.js"></script>
 <script src="js/html2canvas.js"></script>
+<script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
 
 <!--[if lt IE 9]>
        <script src="js/html5shiv.js"></script>
@@ -26,19 +26,19 @@
 
 <body id="Person">
     <!--header-->
-    <div class="w_head"></div>
+    <div class="w_head"> </div>
 
     <div class="w_nav">
         <div>
             <ul class="left">
-                <li><a href="index.html">首页</a><i class="iconfont">&#xe60d;</i></li>
-                <li><a href="Purchase.html">采购筛选</a><i class="iconfont">&#xe60d;</i></li>
-                <li><a href="Compared.html">方案夹</a></li>
+                <li><a href="index.html">首页</a><i class="iconfont">&#xe63f;</i></li>
+                <li><a href="Purchase.html">采购筛选</a><i class="iconfont">&#xe63f;</i></li>
+                <li><a href="Compared.html" class="noepage">方案夹</a></li>
             </ul>
             <ul class="right">
                 <li>
                     <a href="#" onclick="javascript:history.back(-1);">
-                        <i class="iconfont">&#xe675;</i> 返回上一级</a>
+                        <i class="iconfont">&#xe640;</i> 返回上一级</a>
                 </li>
             </ul>
         </div>
@@ -49,7 +49,6 @@
     <div class="content ">
         <div class="p_top">
             <div class="p_user">
-
                 <img src="img/user.png" />
                 <p>昵称：<span id="userName"></span>
                     <a href="javascript:;" id="reset">退出</a>
@@ -90,9 +89,9 @@
         </div>
 
         <!--leftProjiect-->
-        <div class="leftProjiect ">
+        <div class="leftProjiect">
             <!--内容区域-->
-            <div class="leftContent " id="mianCont">
+            <div class="leftContent" id="mianCont">
 
             </div>
         </div>
@@ -118,7 +117,7 @@
             <h3>请选择需要的文件</h3>
         </div>
         <div>
-            <a href="javascript:;" id="imgDowload">图片下载</a>
+            <a href="javascript:;" id="imgDowload"  target="_self">IE下无法下载图片</a>
             <a href="" id="execlDowload">Execl 下载</a>
         </div>
 
@@ -129,14 +128,14 @@
     </div>
 
 </body>
-<script type="text/template" id="leftTmp" charset="UTF-8">
+<script type="text/template" id="leftTmp">
     <i class="bg"></i> {{?it.id==-1}}
     <div class="noLogoing">
         <p>京东企业会员登陆更优惠！</p>
     </div>
     {{??}}
     <div class="isLogoing">
-        <a class="user"><i class="iconfont ">&#xe522;</i></a>
+        <a class="user"><i class="iconfont ">&#xe611;</i></a>
         <a href="Person.html">收藏方案</a>
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
@@ -150,15 +149,15 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='新建采购':it.name}}
+        <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name='新建采购':it.name}}
         <span class="changName">
                 <input type="text" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;" data-type="{{=it.id}}">确定</a>
             </span>
         </span>
         {{?it.status==1}}
-        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont">&#xe711;</i>收藏</a>{{??}}
-        <a href="javascript:;" class="collection  "><i class="iconfont red ">&#xe663;</i>收藏</a>{{?}}
+        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont"></i>加入收藏</a>{{??}}
+        <a href="javascript:;" class="collection  "><i class="iconfont red ">&#xe663;</i>加入收藏</a>{{?}}
 
     </div>
 
@@ -192,9 +191,9 @@
                             {{~}}
                         </div>
                         <div class="input_num">
-                            <label for="" class="iconfont reduce">&#xe641;</label>
+                            <label for="" class="iconfont reduce">&#xe617;</label>
                     <input type="text" name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
-                    <label for="" class="iconfont add" onclick="">&#xe655;</label>
+                    <label for="" class="iconfont add" onclick="">&#xe616;</label>
 
         </div>
         <button class="ra_de" data-sku='{{=value.id}}' data-type="{{=it.id}}">删除</button>
@@ -239,7 +238,7 @@
 
 
 
-<script type="text/template " id="j_person" charset="UTF-8">
+<script type="text/template" id="j_person">
 
     <div class="left_warp">
 
@@ -263,7 +262,7 @@
             </div>
             <div class="addCollection">
                 {{?value.status==1}}
-                <a href="javascript:; " class="c_isCheck" data-type="{{=value.id}}"><i class="iconfont">&#xe711;</i>收藏</a> {{??}}
+                <a href="javascript:; " class="c_isCheck" data-type="{{=value.id}}"><i class="iconfont"></i>加入收藏</a> {{??}}
 
                 <a href="javascript:; " class="c_noCheck"><i class="iconfont">&#xe663;</i>收藏</a> {{?}}
             </div>
@@ -317,10 +316,10 @@
                         </td>
                         <td>
                             <div class="t_num">
-                                <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe656;</label>
+                                <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe688;</label>
                                 <input type="text" name="text" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}} " readonly data-price="{{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}}
                     {{~}}" value="{{=item.goodsnum}}" />
-                                <label for="" class="iconfont add" data-type="{{=item.id}}">&#xe657;</label>
+                                <label for="" class="iconfont add" data-type="{{=item.id}}">&#xe689;</label>
                             </div>
                         </td>
                         <td class="tb_price">
@@ -342,7 +341,7 @@
                         </td>
                         <td class="tb_opreat">
                             <a href="javascript:; " class="tb_del " data-typid="{{=value.id}} " data-skid="{{=item.id}} ">删除</a>
-                            <a href="javascript:; " class="replay " data-typid="{{=value.id}} " data-skid="{{=item.id}} ">替换</a>
+                            <!-- <a href="javascript:; " class="replay " data-typid="{{=value.id}} " data-skid="{{=item.id}} ">替换</a> -->
                         </td>
                     </tr>
 
@@ -359,8 +358,8 @@
 
 
 
-<script src="js/main.js?03" type="text/javascript " charset="utf-8"></script>
-<script src="js/person.js" type="text/javascript " charset="utf-8"></script>
-<script src="js/collection.js" type="text/javascript " charset="utf-8"></script>
+<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/person.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/collection.js" type="text/javascript" charset="utf-8"></script>
 
 </html>

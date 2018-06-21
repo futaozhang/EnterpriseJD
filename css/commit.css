@@ -50,6 +50,7 @@ button:focus {
     background: #62687b;
     text-align: center;
     margin-top: 40px;
+    padding-bottom: 20px;
 }
 
 #foote h4 {
@@ -60,7 +61,7 @@ button:focus {
     margin: 0 auto;
     width: 1250px;
     position: relative;
-    min-height: 700px;
+    min-height: 680px;
 }
 
 .leftSelct div {
@@ -284,31 +285,18 @@ button:focus {
 }
 
 #index {
-    background: #eaeaea url(../img/body.png) no-repeat;
-    background-size: cover;
+    background: #eaeaea;
+  
 }
 
-#index .head {
+#index .headIndex {
     text-align: center;
-    padding-top: 20px;
-    margin-bottom: 40px;
+    background-size: cover;
+    width:100%;
+    height:250px;
 }
 
-#index .head h1 {
-    font-size: 40px;
-    color: white;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-    font-weight: 200;
-    margin-left: 40px;
-}
 
-#index .head h5 {
-    font-size: 20px;
-    color: white;
-    font-weight: 300;
-    letter-spacing: 1px;
-}
 
 #index .content {
     overflow: hidden;
@@ -320,9 +308,9 @@ button:focus {
     /*隐藏溢出*/
     width: 1040px;
     height: 450px;
-    margin-top: 90px;
     text-align: center;
     margin-left: auto;
+    margin-top:60px;
     margin-right: auto;
     margin-bottom: 50px;
     box-shadow: 0px 4px 20px 2px;
@@ -520,7 +508,7 @@ button:focus {
 }
 
 .input_num label {
-    font-weight: bold;
+  
     cursor: pointer;
 }
 
@@ -800,15 +788,19 @@ button:focus {
 .w_head {
     width: 100%;
     height: 120px;
-    background-image: url(../img/banner.png);
+   
+}
+.w_head img{
+    width: 100%;
     background-size: cover;
     background-position: center;
+    height: 120px;
 }
 
 .w_nav {
     width: 100%;
-    height: 40px;
-    background-color: #d5dfe8;
+    height: 50px;
+    background-color: #7b7b83;
 }
 
 .w_nav div {
@@ -826,17 +818,28 @@ button:focus {
 
 .w_nav ul li {
     float: left;
-    padding: 10px 0px;
 }
 
 .w_nav ul li .iconfont {
     font-size: 12px;
-    padding-left: 10px;
-    padding-right: 2px;
+    padding-left: 0px;
+    padding-right: 10px;
+    color: #eaeaea;
 }
 
 .w_nav ul li a {
-    color: black;
+    color: #eaeaea;
+    font-size: 16px;
+    line-height: 45px;
+    margin-right: 10px;
+}
+
+.noepage {
+    color: snow !important;
+}
+
+.w_nav ul li a:hover {
+    color: white !important;
 }
 
 #Purchase .content {
@@ -967,7 +970,7 @@ button:focus {
 .contrast .cont_head {
     height: 30px;
     width: 100%;
-    background-color: #878ca0;
+    background-color: #7B7B83;
     color: white;
 }
 
@@ -998,7 +1001,7 @@ button:focus {
 .cont_warp li {
     float: left;
     width: 240px;
-    border-right: 2px dotted #9ecd85;
+    border-right: 2px dotted #7b7b83;
     height: 80px;
     margin-top: 10px;
 }
@@ -1121,6 +1124,7 @@ button:focus {
 .clear_cont {
     display: block;
     padding-top: 15px;
+
 }
 
 
@@ -1444,7 +1448,7 @@ table {
 
 .left_warp {
     width: 160px;
-    height: 700px;
+    height: 680px;
     background-color: #eeeeee;
     float: left;
 }
@@ -1463,7 +1467,7 @@ table {
     height: 40px;
     display: inline-block;
     line-height: 40px;
-    background-color: #b6c1cc;
+    background-color: #7b7b83;
     text-align: center;
     border-radius: 3px;
     color: white;
@@ -1478,7 +1482,7 @@ table {
 
 .right_warp {
     width: 1060px;
-    min-height: 700px;
+    /* min-height: 700px; */
     background-color: white;
     float: left;
     padding: 20px;
@@ -1586,7 +1590,7 @@ table {
 #personTable thead {
     height: 30px;
     line-height: 30px;
-    background-color: #878ca0;
+    background-color: #7b7b83;
     color: white;
 }
 
@@ -1611,6 +1615,7 @@ table {
 
 #personTable tbody tr td input {
     margin-left: 10px;
+    background-color: #eeeeee;
 }
 
 .labeW {
@@ -1623,9 +1628,7 @@ table {
     height: 15px;
 }
 
-#personTable .t_num label {
-    font-size: 20px;
-}
+
 
 .tb_ct {
     width: 240px;
@@ -1690,7 +1693,7 @@ table {
 .left_li {
     width: 80px;
     height: 100%;
-    background-color: #EEEEEE;
+    background-color: #DDDDDD;
 }
 
 #ProductTable .addSelect img {
@@ -1840,7 +1843,7 @@ table {
 }
 
 .diffrent {
-    background-color: #fff3c6;
+    background-color: silver;
 }
 
 #videos {
@@ -1856,6 +1859,10 @@ table {
     font-size: 25px;
     background-color: #5c6275;
     cursor: pointer;
+    position:fixed;
+    right:10px;
+    bottom:250px;
+    opacity:0.5;
 }
 
 .c_collect {
@@ -1978,4 +1985,34 @@ table {
     font-size: 18px;
     margin-top: 40px;
     margin-bottom: 30px;
+}
+#topImg{
+    width:100%;
+    height:80px;
+}
+#topImg img{
+    width:100%;
+    background-size:cover;
+    height:80px;
+}
+#topImg .iconfont{
+    cursor:pointer;
+    position:relative;
+    right:-95%;
+    top:-60px;
+    font-size:22px;
+    color:snow;
+    opacity:0.4;
+    background-color:rgb(45,45,45);
+}
+#index .selcetorText i{
+    font-size:20px;
+    float:left;
+    margin-left:680px;
+    background-color:rgb(123,123,131);
+    color:snow;
+    width:120px;
+    height:40px;
+    line-height:40px;
+   
 }

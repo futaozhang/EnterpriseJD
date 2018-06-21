@@ -208,3 +208,15 @@ function delCookie(name) {   
     }; 
 
 }
+
+$("body").prepend(function() {
+    return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
+
+        '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="img/Player.png" >'
+
+    +'<source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/> </video></div>'
+});
+
+$("#videos .iconfont").click(function(){
+    $("#videos").hide()
+})

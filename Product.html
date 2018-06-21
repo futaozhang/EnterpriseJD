@@ -30,14 +30,14 @@
     <div class="w_nav">
         <div>
             <ul class="left">
-                <li><a href="index.html">首页</a><i class="iconfont">&#xe60d;</i></li>
-                <li><a href="Purchase.html">采购筛选</a><i class="iconfont">&#xe60d;</i></li>
-                <li><a href="Compared.html">采购产品对比</a></li>
+                <li><a href="index.html">首页</a><i class="iconfont">&#xe63f;</i></li>
+                <li><a href="Purchase.html">采购筛选</a><i class="iconfont">&#xe63f;</i></li>
+                <li><a href="Compared.html" class="noepage">采购产品对比</a></li>
             </ul>
             <ul class="right">
                 <li>
-                    <a href="Purchase.html">
-                        <i class="iconfont">&#xe675;</i> 返回上一级</a>
+                    <a href="#" onclick="javascript:history.back(-1);">
+                        <i class="iconfont">&#xe640;</i>返回上一级</a>
                 </li>
             </ul>
         </div>
@@ -48,10 +48,12 @@
     <div class="content">
 
         <div id="ProductTable" class="clearfix">
-            <div class="left_li  ">
+            <div class="left_li">
                 <ul>
                     <li class="t_one"></li>
+                </ul>
 
+                <ul class="checkLi">
                 </ul>
             </div>
             <div id="warp_product">
@@ -152,16 +154,13 @@
                     {{??}} {{?}}
             </tr>
 
-
             {{~value.attributelist:item:k}}
             <tr>
                 {{~it:value:index}}
                 <td>
                     <p class="wid">{{=value.attributelist[k].vals}}</p>
-
                 </td>
                 {{~}}
-
             </tr>
             {{~}}
 
@@ -177,7 +176,7 @@
     </div>
     {{??}}
     <div class="isLogoing ">
-        <a class="user"><i class="iconfont ">&#xe522;</i></a>
+        <a class="user"><i class="iconfont ">&#xe611;</i></a>
         <a href="Person.html">收藏方案</a>
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
@@ -191,7 +190,7 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe621;</i>{{=it.name==null?it.name='新建采购':it.name}}
+        <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name='新建采购':it.name}}
         <span class="changName">
                 <input type="text" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;" data-type="{{=it.id}}">确定</a>
@@ -233,9 +232,9 @@
                             {{~}}
                         </div>
                         <div class="input_num">
-                            <label for="" class="iconfont reduce">&#xe641;</label>
+                            <label for="" class="iconfont reduce">&#xe617;</label>
                     <input type="text" name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
-                    <label for="" class="iconfont add" onclick="">&#xe655;</label>
+                    <label for="" class="iconfont add" onclick="">&#xe616;</label>
 
         </div>
         <button class="ra_de" data-sku='{{=value.id}}' data-type="{{=it.id}}">删除</button>

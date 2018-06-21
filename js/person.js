@@ -76,7 +76,7 @@ var j_person = document.getElementById('j_person').innerHTML;
 function Purchase() {
     $.ajaxSetup({ cache: false });
 
-    $.getJSON(baseUrl + "/procurement/getplist", { "userid": 1, "status": 1 }, function(item) {
+    $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userid"), "status": 1 }, function(item) {
 
         if (item != "") {
             document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
@@ -143,17 +143,32 @@ $("#Person").delegate(".exprotIMg", "click", function() {
     $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
     $("#imgDowload").attr("data-name", name)
     $("#imgDowload").attr("dataTable", tableNum)
+    var fatherNode = $(this).parent().parent().parent()
+    html2canvas($(fatherNode), {
+        useCORS: true,
+        allowTaint: true,
+        allowTaint: false,
+        onrendered: function(canvas) {
+            var ctx = canvas.getContext("2d");
+            ctx.font = "20px Georgia";
+            ctx.fillText(name, 500, 60);
+            // canvas.toBlob(function(blob) {
+            //     window.saveAs(blob, '' + name + '.png');
+            // })
+            dataURL = canvas.toDataURL("image/png");
+            $("#imgDowload").attr('href', dataURL);
+            $("#imgDowload").attr('download', '' + name + '.png');
+              $("#imgDowload").attr('href', dataURL);
+
+        }
+
+    })
 })
 
 $("#imgDowload").click(function() {
-    var tableNum = $(this).attr("dataTable")
-    var name = $(this).attr("data-name")
-    domtoimage.toBlob(document.getElementById("exportTbale_" + tableNum + ""))
-        .then(function(blob) {
-            window.saveAs(blob, '' + name + '.png');
-            $(".bg").hide()
-            $(".selectorFile").hide()
-        });
+    $(".bg").hide()
+    $(".selectorFile").hide()
+       
 })
 
 
@@ -164,6 +179,7 @@ $("#reset").click(function() {
         for (var i = keys.length; i--;)
             document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
     }
+
     window.location.href = "index.html"
 
 })
@@ -205,8 +221,6 @@ function removePlanP(typeId, skuId, obj) {
     var skuIds = parseInt(skuId.toString())
 
     skuIds == NaN ? skuIds = " " : skuIds = skuIds;
-
-    alert(skuIds)
 
     $.ajax({
         type: "GET",
@@ -279,7 +293,7 @@ function changListdataW(obj) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/updatepitem",
-        data: JSON.stringify({ "id": skuid, "goodsnum": value }),
+        data: { "id": skuid, "goodsnum": value },
         cache: true,
         success: function(item) {
 
@@ -298,17 +312,14 @@ function cnshrine(typeId) {
     var msg;
     $.ajax({
         type: "POST",
-        url: baseUrl + "/procurement/updatep",
+        url: baseUrl + "/procurementBak/addp?pid=" + typeId,
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ "id": parseInt(typeId), "status": 2 }),
         success: function(jsonResult) {
-            Purchase()
             setTimeout(leftBut(), 200)
         }
     })
     return msg
-
 }
 
 Array.prototype.sum = function() {
@@ -355,3 +366,14 @@ $("#w_person").delegate(".but_jd", "click", function() {
 
     shoppingCart(num.join(","), id.join(","))
 });
+$("body").append(function() {
+    return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
+
+        '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="img/Player.png" >'
+
+    +'<source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/> </video></div>'
+});
+
+$("#videos .iconfont").click(function(){
+    $("#videos").hide()
+})
