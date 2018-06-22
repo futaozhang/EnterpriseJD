@@ -135,12 +135,12 @@ $("#w_person").delegate(".tableDe", "click", function() {
 
 });
 //导出图片
-$("#Person").delegate(".exprotIMg", "click", function() {
+$("#w_person").delegate(".exprotIMg", "click", function() {
     var tableNum = $(this).attr("dataTable")
     var name = $(this).attr("data-name")
     $(".bg").show()
     $(".selectorFile").show()
-    $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
+    $("#execlDowload").attr("data-pid", $(this).attr("datatable"))  
     $("#imgDowload").attr("data-name", name)
     $("#imgDowload").attr("dataTable", tableNum)
     var fatherNode = $(this).parent().parent().parent()
@@ -150,7 +150,7 @@ $("#Person").delegate(".exprotIMg", "click", function() {
         allowTaint: false,
         onrendered: function(canvas) {
             var ctx = canvas.getContext("2d");
-            ctx.font = "20px Georgia";
+            ctx.font = "20px";
             ctx.fillText(name, 500, 60);
             // canvas.toBlob(function(blob) {
             //     window.saveAs(blob, '' + name + '.png');
@@ -158,7 +158,7 @@ $("#Person").delegate(".exprotIMg", "click", function() {
             dataURL = canvas.toDataURL("image/png");
             $("#imgDowload").attr('href', dataURL);
             $("#imgDowload").attr('download', '' + name + '.png');
-              $("#imgDowload").attr('href', dataURL);
+             $("#imgDowload").attr('href', dataURL);
 
         }
 
@@ -217,8 +217,8 @@ function replay(typid, skId, obj) {
 
 function removePlanP(typeId, skuId, obj) {
 
-    var typeIds = parseInt(typeId.toString())
-    var skuIds = parseInt(skuId.toString())
+    var typeIds = typeId.toString()
+    var skuIds = skuId.toString()
 
     skuIds == NaN ? skuIds = " " : skuIds = skuIds;
 
@@ -232,6 +232,7 @@ function removePlanP(typeId, skuId, obj) {
             Purchase()
             leftBut()
             $(this).parent().parent().remove();
+            addTips("已删除")
         }
     })
 }
@@ -307,6 +308,8 @@ $("#w_person").delegate(".c_isCheck", "click", function() {
     cnshrine($(this).attr("data-type"))
         //更新数据
 });
+
+
 //方案夹收藏
 function cnshrine(typeId) {
     var msg;
@@ -317,6 +320,7 @@ function cnshrine(typeId) {
         dataType: "json",
         success: function(jsonResult) {
             setTimeout(leftBut(), 200)
+            addTips("已加入收藏方案")
         }
     })
     return msg
@@ -366,13 +370,27 @@ $("#w_person").delegate(".but_jd", "click", function() {
 
     shoppingCart(num.join(","), id.join(","))
 });
-$("body").append(function() {
-    return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
 
-        '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="img/Player.png" >'
+$.ajax({
+    type: "GET",
+    contentType: "application/json",
+    url: baseUrl + "/scene/list",
+    cache: false,
+    success: function(item) {
+        var that=this
+       if(item[0].videourl!=""||item[0].videourl!=null){
+        $("body").append(function() {
+            return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
+        
+                '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="'+item[0].videoimg+'" >'
+        
+            +'<source src="'+item[0].videourl+'" type="video/mp4"/> </video></div>'
+        });
+    }
+    }
+    })
 
-    +'<source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/> </video></div>'
-});
+
 
 $("#videos .iconfont").click(function(){
     $("#videos").hide()

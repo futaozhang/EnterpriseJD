@@ -17,7 +17,6 @@
 <!-- <script type="text/javascript" src="http://misc.360buyimg.com/jdf/1.0.0/unit/base/1.0.0/base.js"></script> -->
 <script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.min.js"></script>
 <script src="js/html2canvas.js"></script>
-<script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
 
 <!--[if lt IE 9]>
        <script src="js/html5shiv.js"></script>
@@ -38,7 +37,7 @@
             <ul class="right">
                 <li>
                     <a href="#" onclick="javascript:history.back(-1);">
-                        <i class="iconfont">&#xe640;</i> 返回上一级</a>
+                        <i class="iconfont">&#xe640;</i>返回上一级</a>
                 </li>
             </ul>
         </div>
@@ -57,15 +56,15 @@
             </div>
             <div class="p_but">
                 <!-- activeRightBut -->
-                <a href="javascript:;" data-jp="1" class="pur">采购方案夹</a>
-                <a href="javascript:;" data-jp="2" class="collec">方案收藏夹</a>
+                <a href="javascript:;" data-jp="1" class="pur">采购方案</a>
+                <a href="javascript:;" data-jp="2" class="collec">收藏方案</a>
             </div>
 
         </div>
         <!-- w_person -->
         <div class="p_warp clearfix" id="w_person">
 
-            <h3>暂无数据 <a href="Purchase.html"> 去添加</a></h3>
+            <h3>暂无数据 <a href="Purchase.html">去添加</a></h3>
 
         </div>
         <!-- w_collection-->
@@ -117,8 +116,8 @@
             <h3>请选择需要的文件</h3>
         </div>
         <div>
-            <a href="javascript:;" id="imgDowload"  target="_self">IE下无法下载图片</a>
-            <a href="" id="execlDowload">Execl 下载</a>
+            <a href="javascript:;" id="imgDowload" target="_self">IE下无法下载图片</a>
+            <a href="" id="execlDowload" data-a="">Execl 下载</a>
         </div>
 
     </div>
@@ -131,7 +130,10 @@
 <script type="text/template" id="leftTmp">
     <i class="bg"></i> {{?it.id==-1}}
     <div class="noLogoing">
-        <p>京东企业会员登陆更优惠！</p>
+        <div>
+            <p>京东企业会员登陆更优惠！</p>
+            <img src="./img/user.png" alt="">
+        </div>
     </div>
     {{??}}
     <div class="isLogoing">
@@ -164,7 +166,7 @@
     <div class="leftConte">
 
         <div class="l_top">
-            <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
+            <input type="checkbox" name="all" id="all" value=""/><label for="all">全选</label>
             <button data-typeId='{{=it.id}}'>删除</button>
         </div>
 
@@ -255,11 +257,21 @@
 
         <div class="rt_top">
             <a href="javascript:; " data-src="{{=value.id}}" class="but_jd">加入购物车</a>
-            <div class="price ">
-                <p class="slive ">京东价:￥00.00</p>
+            <div class="price">
+                <p class="slive">京东价:￥00.00</p>
                 <p>企业专享价:</p>
                 <p class="jdPrice">￥00.00</p>
             </div>
+            {{?value.typename==2}}
+            <div class="warpName">
+                <i class="iconfont">&#xe738;修改名称</i>
+                <div class="inputName">
+                    <input type="text" name="" maxlength="6" id="{{=value.id}}" />
+                    <lable><button class="inputNameSub">确定</button><button class="inputNameCance">取消</button></lable>
+                </div>
+            </div>
+            {{?}}
+
             <div class="addCollection">
                 {{?value.status==1}}
                 <a href="javascript:; " class="c_isCheck" data-type="{{=value.id}}"><i class="iconfont"></i>加入收藏</a> {{??}}
@@ -280,10 +292,14 @@
         <div id="personTable">
 
             <table {{~value.goods_list:list:k}} id="exportTbale_{{=list.pid}}" {{~}}>
-
+                {{?value.goods_list.length ==0}}
+                <div class="Nolist ">
+                    <h3>暂无数据....</h3>
+                </div> {{?}}
                 <thead>
+                    {{?value.goods_list.length !=0}}
                     <tr>
-                        <th><input type="checkbox" class="labeW " data-type="{{=value.id}} " name="jd_{{=index}} " id="jd_{{=index}} " value=" " /><label for="jd_{{=index}} ">全选</label></th>
+                        <th><input type="checkbox" class="labeW" data-type="{{=value.id}}" name="jd_{{=index}}" id="jd_{{=index}}" value=" " /><label for="jd_{{=index}}">全选</label></th>
                         <th>&nbsp;</th>
                         <th>商品</th>
                         <th>&nbsp;</th>
@@ -292,17 +308,18 @@
                         <th>用途</th>
                         <th>操作</th>
                     </tr>
+                    {{?}}
                 </thead>
-
+                {{~value.goods_list:item:i}}
                 <tbody>
-                    {{~value.goods_list:item:i}}
+
                     <tr>
-                        <td class="tb_check ">
-                            <input type="checkbox" name=" " sc-id="{{=item.id}} " data-sku="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}} " id="jdS_{{=i}} " value=" " /><label for="jdS_{{=i}} "></label>
+                        <td class="tb_check">
+                            <input type="checkbox" name=" " sc-id="{{=item.id}}" data-sku="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" id="jdS_{{=i}}" value=" " /><label for="jdS_{{=i}}"></label>
                         </td>
                         <td>
                             <div class="tb_img">
-                                <img src="img/text.jpg " />
+                                <img src=" {{~item.goodsdetail:goods:j}} {{=goods.thumbnail}} {{~}} " />
                             </div>
                         </td>
                         <td>
@@ -316,31 +333,31 @@
                         </td>
                         <td>
                             <div class="t_num">
-                                <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe688;</label>
-                                <input type="text" name="text" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}} " readonly data-price="{{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}}
+                                <label for=" " class="iconfont reduce" data-type="{{=item.id}}">&#xe688;</label>
+                                <input type="text" name="text" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" readonly data-price="{{~item.goodsdetail:goods:j}} {{=goods.jdprice}} {{~}}" data-eprice="{{~item.goodsdetail:goods:j}} {{=goods.eprice}}
                     {{~}}" value="{{=item.goodsnum}}" />
-                                <label for="" class="iconfont add" data-type="{{=item.id}}">&#xe689;</label>
+                                <label for=" " class="iconfont add" data-type="{{=item.id}}">&#xe689;</label>
                             </div>
                         </td>
                         <td class="tb_price">
-                            <p class="slive ">京东价：{{~item.goodsdetail:goods:j}}￥{{=goods.jdprice.toFixed(2)}}{{~}}</p>
-                            {{~item.goodsdetail:goods:j}} {{?goods.eprice!=""}}
-                            <p>企业专享价：<i class="jd_price ">￥{{=goods.eprice}}</i></p>
+                            <p class="slive">京东价：{{~item.goodsdetail:goods:j}}￥{{=goods.jdprice.toFixed(2)}}{{~}}</p>
+                            {{~item.goodsdetail:goods:j}} {{?goods.eprice!=" "}}
+                            <p>企业专享价：<i class="jd_price">￥{{=goods.eprice}}</i></p>
                             {{?}} {{~}}
 
                         </td>
                         <td>
-                            {{?item.message=="日常办公 "}}
-                            <span class="office ">日常办公</span> {{??item.message=="技术研发 "}}
-                            <span class="techology ">技术研发</span> {{??item.message=="高层管理 "}}
-                            <span class="manager ">高层管理</span> {{??item.message=="商务便携 "}}
-                            <span class="portadle ">商务便携</span> {{??}}
-                            <span class="techology ">技术研发</span> {{?}}
+                            {{?item.message=="日常办公"}}
+                            <span class="office">日常办公</span> {{??item.message=="技术研发"}}
+                            <span class="techology">技术研发</span> {{??item.message=="高层管理"}}
+                            <span class="manager">高层管理</span> {{??item.message=="商务便携"}}
+                            <span class="portadle">商务便携</span> {{??}}
+                            <span class="techology">技术研发</span> {{?}}
 
 
                         </td>
                         <td class="tb_opreat">
-                            <a href="javascript:; " class="tb_del " data-typid="{{=value.id}} " data-skid="{{=item.id}} ">删除</a>
+                            <a href="javascript:;" class="tb_del" data-typid="{{=value.id}}" data-skid="{{=item.id}}">删除</a>
                             <!-- <a href="javascript:; " class="replay " data-typid="{{=value.id}} " data-skid="{{=item.id}} ">替换</a> -->
                         </td>
                     </tr>
@@ -358,8 +375,8 @@
 
 
 
-<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/person.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/collection.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/main.js " type="text/javascript" charset="utf-8"></script>
+<script src="js/person.js " type="text/javascript" charset="utf-8"></script>
+<script src="js/collection.js " type="text/javascript" charset="utf-8"></script>
 
 </html>

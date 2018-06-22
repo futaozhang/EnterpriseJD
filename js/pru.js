@@ -209,14 +209,24 @@ function delCookie(name) {   
 
 }
 
-$("body").prepend(function() {
-    return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
+$.ajax({
+    type: "GET",
+    contentType: "application/json",
+    url: baseUrl + "/scene/list",
+    cache: false,
+    success: function(item) {
+        var that=this
+        if(item[0].videourl!=""||item[0].videourl!=null){
+        $("body").append(function() {
+            return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
+        
+                '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="'+item[0].videoimg+'" >'
+        
+            +'<source src="'+item[0].videourl+'" type="video/mp4"/> </video></div>'
+        })
+    }
+    }
+    })
 
-        '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="img/Player.png" >'
 
-    +'<source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4"/> </video></div>'
-});
-
-$("#videos .iconfont").click(function(){
-    $("#videos").hide()
-})
+ 

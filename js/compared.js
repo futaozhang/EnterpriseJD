@@ -134,6 +134,7 @@ function removePlanCom(typeId, skuId, obj) {
             leftBut()
             comparedList()
             $(this).parent().parent().remove();
+          
         }
     })
 }
@@ -169,3 +170,24 @@ $("#warp_content").delegate(".but_jd", "click", function() {
 
     shoppingCart(num.join(","), id.join(","))
 });
+$.ajax({
+    type: "GET",
+    contentType: "application/json",
+    url: baseUrl + "/scene/list",
+    cache: false,
+    success: function(item) {
+        var that=this
+        if(item[0].videourl!=""||item[0].videourl!=null){
+        $("body").append(function() {
+            return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
+        
+                '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="'+item[0].videoimg+'" >'
+        
+            +'<source src="'+item[0].videourl+'" type="video/mp4"/> </video></div>'
+        })
+    }
+    }
+    })
+
+
+
