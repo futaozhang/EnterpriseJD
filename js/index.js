@@ -43,6 +43,8 @@ var j_run = document.getElementById('j_runBaner').innerHTML;
 $.getJSON(baseUrl + "/scene/list", function(item) {
     if (item.length != 0) {
         document.getElementById('mainList').innerHTML = doT.template(j_run)(item);
+        
+        runder()
         return false
     }
     document.getElementById('mainList').innerHTML = doT.template(j_run)(runDate);
@@ -65,7 +67,6 @@ $("#mainList").delegate("li", "mouseenter", function() {
 //轮播方式
 
 $(".leftSelct").animate({ "display": "none", "z-index": "-1" }, 1200)
-
 
 function runder() {
 
@@ -238,6 +239,7 @@ $.each($("#mainList li .txt"), function(i, item) {
 
 $("#alert_t").delegate(".reset", "click", function() {
     $(".over_a li").removeClass("activeLi")
+    $(".over_a li").find("img").css("opacity", 1);
     $.each($(".alertBody").find("input"), function(i) {
 
         $(this).prop("checked", false)

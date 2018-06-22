@@ -309,7 +309,10 @@ button:focus {
     width: 100%;
     height: 250px;
 }
-
+#index .headIndex img{
+    width: 100%;
+  
+}
 #index .content {
     overflow: hidden;
     min-height: 0;

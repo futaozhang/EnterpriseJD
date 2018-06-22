@@ -307,7 +307,6 @@ $("#mianCont").delegate(".input_num .reduce", 'click', function(dom) {
 
 
 $("#mianCont").delegate(".add", 'click', function() {
-
     var nowData = $(this).parent().find("input[type='text']").prop("value");
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
     var sum = parseInt($("#price").text()) +
@@ -641,9 +640,9 @@ $.ajax({
                 $(".w_head").prepend(function() { return "<img src=" + that.imageurl+ ">" })
                 break;
                 case 3:
-                   $(".headIndex").css("background", "url("+this.imageurl+")")
-                   $(".headIndex").css("background-size","contain")
-                   $(".headIndex").css("background-repeat","no-repeat")
+                var that=this
+                $(".headIndex").prepend(function() { return "<img src=" + that.imageurl+ ">" })
+              
                 break;
             }
            

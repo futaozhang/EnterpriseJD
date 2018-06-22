@@ -38,14 +38,15 @@ function changec(changId) {
 //方案名称
 $("#w_collection").delegate(".warpName .iconfont", "click",function(){
     $(this).hide();
-$(this).siblings(".inputName").show();
+    $(this).siblings(".inputName").show();
 
 })
 
 $("#w_collection").delegate(".warpName .inputNameCance", "click",function(){
-    $(this).parent().parent().hide();
-    $(this).parent().parent().siblings(".iconfont").show();
+    $(".inputName").hide();
+    $(".warpName .iconfont").show();
 } )
+
 //名称修改
 $("#w_collection").delegate(".warpName .inputNameSub", "click",function(){
     var userName= $(this).parent().siblings("input").val()
