@@ -140,7 +140,7 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
     var name = $(this).attr("data-name")
     $(".bg").show()
     $(".selectorFile").show()
-    $("#execlDowload").attr("data-pid", $(this).attr("datatable"))  
+    $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
     $("#imgDowload").attr("data-name", name)
     $("#imgDowload").attr("dataTable", tableNum)
     var fatherNode = $(this).parent().parent().parent()
@@ -158,7 +158,7 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
             dataURL = canvas.toDataURL("image/png");
             $("#imgDowload").attr('href', dataURL);
             $("#imgDowload").attr('download', '' + name + '.png');
-             $("#imgDowload").attr('href', dataURL);
+            $("#imgDowload").attr('href', dataURL);
 
         }
 
@@ -168,7 +168,7 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
 $("#imgDowload").click(function() {
     $(".bg").hide()
     $(".selectorFile").hide()
-       
+
 })
 
 
@@ -221,7 +221,7 @@ function removePlanP(typeId, skuId, obj) {
     var skuIds = skuId.toString()
 
     skuIds == NaN ? skuIds = " " : skuIds = skuIds;
-
+    isCheckAdd(typeIds, 1)
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -277,7 +277,6 @@ $("#w_person").delegate(".reduce", 'click', function(dom) {
 //加
 $("#w_person").delegate(".add", 'click', function() {
 
-
     var nowData = $(this).parent().find("input[type='text']").prop("value");
 
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
@@ -307,23 +306,26 @@ function changListdataW(obj) {
 $("#w_person").delegate(".c_isCheck", "click", function() {
     cnshrine($(this).attr("data-type"))
         //更新数据
+
 });
 
 
 //方案夹收藏
 function cnshrine(typeId) {
-    var msg;
+
+    isCheckAdd(typeId, 2)
     $.ajax({
         type: "POST",
         url: baseUrl + "/procurementBak/addp?pid=" + typeId,
         contentType: "application/json",
         dataType: "json",
         success: function(jsonResult) {
+            Purchase()
             setTimeout(leftBut(), 200)
             addTips("已加入收藏方案")
         }
     })
-    return msg
+
 }
 
 Array.prototype.sum = function() {
@@ -377,21 +379,21 @@ $.ajax({
     url: baseUrl + "/scene/list",
     cache: false,
     success: function(item) {
-        var that=this
-       if(item[0].videourl!=""||item[0].videourl!=null){
-        $("body").append(function() {
-            return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
-        
-                '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="'+item[0].videoimg+'" >'
-        
-            +'<source src="'+item[0].videourl+'" type="video/mp4"/> </video></div>'
-        });
+        var that = this
+        if (item[0].videourl != "" || item[0].videourl != null) {
+            $("body").append(function() {
+                return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
+
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
+
+                +'<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
+            });
+        }
     }
-    }
-    })
+})
 
 
 
-$("#videos .iconfont").click(function(){
+$("#videos .iconfont").click(function() {
     $("#videos").hide()
 })

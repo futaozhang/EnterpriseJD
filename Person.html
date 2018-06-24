@@ -157,16 +157,16 @@
                 <a href="javascript:;" data-type="{{=it.id}}">确定</a>
             </span>
         </span>
-        {{?it.status==1}}
+        {{?it.collecttype==1}}
         <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont"></i>加入收藏</a>{{??}}
-        <a href="javascript:;" class="collection  "><i class="iconfont red ">&#xe663;</i>加入收藏</a>{{?}}
+        <a href="javascript:;" class="collection ischeck"><i class="iconfont red"></i>已收藏</a>{{?}}
 
     </div>
 
     <div class="leftConte">
 
         <div class="l_top">
-            <input type="checkbox" name="all" id="all" value=""/><label for="all">全选</label>
+            <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label>
             <button data-typeId='{{=it.id}}'>删除</button>
         </div>
 
@@ -273,10 +273,10 @@
             {{?}}
 
             <div class="addCollection">
-                {{?value.status==1}}
+                {{?value.collecttype==1}}
                 <a href="javascript:; " class="c_isCheck" data-type="{{=value.id}}"><i class="iconfont"></i>加入收藏</a> {{??}}
 
-                <a href="javascript:; " class="c_noCheck"><i class="iconfont">&#xe663;</i>收藏</a> {{?}}
+                <a href="javascript:; " class="c_noCheck"><i class="iconfont"></i>已收藏</a> {{?}}
             </div>
 
             <div class="right_but">

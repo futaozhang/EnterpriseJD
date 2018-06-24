@@ -9,16 +9,17 @@ setCookie("userId", "1")
 var baseUrl = "http://192.168.1.247:8080"
 
 
-    //用户名
+//用户名
 var userName = "游客"
 $("#userName").text(getCookieCores("unick") == null ? unescape(userName) : unescape((getCookieCores("unick"))))
 
 //存储是否被收藏的采购
-var judgment=[];
+var judgment = [];
 
 // 左侧按钮数据请求
 
 $.ajaxSetup({ cache: false });
+
 function leftBut() {
     var leftTmp = document.getElementById('leftTmp').innerHTML;
 
@@ -256,6 +257,7 @@ function removeList(typeId, deleate) {
         data: { "procurementId": typeId, "pitemlist": deleate },
         cache: false,
         success: function(item) {
+            isCheckAdd(typeId, 1)
             leftBut()
             closeOpen()
         }
@@ -358,11 +360,14 @@ $("#mianCont").delegate(".text .iconfont", "click", function() {
     $(".changName").show()
 });
 //左侧收藏
-$("#mianCont").delegate(".collection", "click", function() {
+$("#mianCont").delegate(".nockeck", "click", function() {
     enshrine($(this).attr("data-type"))
     closeOpen()
 });
 
+$("#mianCont").delegate(".ischeck", "click", function() {
+    addTips("已收藏该方案")
+});
 //单个删除
 $("#mianCont").delegate("#leftDate li .ra_de", "click", function() {
 
@@ -438,7 +443,7 @@ Array.prototype.sum = function() {
  */
 function enshrine(typeId) {
 
-   
+
     $.ajax({
         type: "POST",
         url: baseUrl + "/procurementBak/updatep",
@@ -446,13 +451,24 @@ function enshrine(typeId) {
         dataType: "json",
         data: JSON.stringify({ "id": parseInt(typeId) }),
         success: function(jsonResult) {
+            isCheckAdd(typeId, 2)
             setTimeout(leftBut(), 200)
-           
-           
-           
+
         }
+    });
+
+}
+
+//修改是否被修改状态
+function isCheckAdd(typeId, state) {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: baseUrl + "/procurement/updatep",
+        data: JSON.stringify({ "id": typeId, "collecttype": state }),
+        cache: false,
+        success: function(item) {}
     })
-  
 
 }
 //单个数据删除
@@ -465,6 +481,7 @@ function removePland(typeId, skuId, obj) {
         data: { "procurementId": typeId, "pitemlist": skuId },
         cache: false,
         success: function(item) {
+            isCheckAdd(typeId, 1)
             closeOpen()
             leftList(typeId, "close()"); //单个内容数据更新
             leftBut(); //数据更新
@@ -488,7 +505,7 @@ function changListdataL(obj) {
         data: { "id": skuid, "goodsnum": value },
         cache: true,
         success: function(item) {
-
+            //   isCheckAdd(typeId, 1)
         }
     })
 }
@@ -545,7 +562,7 @@ function shoppingCart(widsList, numsList) {
     var url = "https://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=" + widsList + "&nums=" + numsList + "";
     window.open(url);
     addTips("加入购物车成功")
-     
+
 
 }
 
@@ -563,15 +580,15 @@ $("#index #imgDowload").click(function() {
     })
     //导出采购方案
 $("#execlDowload").click(function() {
-   
-    if( $(this).attr("data-w")!=undefined){
-         //收藏
+
+    if ($(this).attr("data-w") != undefined) {
+        //收藏
         window.open(baseUrl + "/procurementBakItem/export?pid=" + $(this).attr("data-pid") + "");
-    }else{
+    } else {
         window.open(baseUrl + "/procurementItem/export?pid=" + $(this).attr("data-pid") + "");
     }
     addTips("导出采购方案成功")
-    
+
 })
 
 // ie
@@ -629,34 +646,34 @@ $.ajax({
     cache: false,
     success: function(item) {
         var CollecImg;
-        $.each(item,function(i,list){
-          
-            switch(list.type){
+        $.each(item, function(i, list) {
+
+            switch (list.type) {
                 case 1:
-                CollecImg=this
-                break;
+                    CollecImg = this
+                    break;
                 case 2:
-                var that=this
-                $(".w_head").prepend(function() { return "<img src=" + that.imageurl+ ">" })
-                break;
+                    var that = this
+                    $(".w_head").prepend(function() { return "<img src=" + that.imageurl + ">" })
+                    break;
                 case 3:
-                var that=this
-                $(".headIndex").prepend(function() { return "<img src=" + that.imageurl+ ">" })
-              
-                break;
+                    var that = this
+                    $(".headIndex").prepend(function() { return "<img src=" + that.imageurl + ">" })
+
+                    break;
             }
-           
-         
+
+
         })
 
         $("body").prepend(function() {
-                var html= '<div id="topImg">  <a href='+CollecImg.url+'> <img  src='+CollecImg.imageurl+'></a>' +
-                          '<i class="iconfont" onclick="closeTop(this)">&#xe606;</i></div>';
-                         if(CollecImg!=""||CollecImg!=null){
+            var html = '<div id="topImg">  <a href=' + CollecImg.url + '> <img  src=' + CollecImg.imageurl + '></a>' +
+                '<i class="iconfont" onclick="closeTop(this)">&#xe606;</i></div>';
+            if (CollecImg != "" || CollecImg != null) {
 
-                            return html
-                         }
-             });
+                return html
+            }
+        });
 
     }
 })
@@ -665,7 +682,7 @@ function closeTop(obj) {
     $("#topImg").hide()
 }
 
-$("body").delegate("#videos .iconfont","click",function(){
+$("body").delegate("#videos .iconfont", "click", function() {
     $("#videos").hide()
 
- })
+})
