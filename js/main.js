@@ -580,9 +580,8 @@ function shoppingCart(widsList, numsList) {
 $("#mianCont").delegate(".export", "click", function() {
     $(".selectorFile").show()
     var that = this
-
     $("#execlDowload").attr("data-pid", $(this).attr("data-pid"))
-
+    $("#imgDowload").text("前往方案夹下载图片")
 
 
 });
