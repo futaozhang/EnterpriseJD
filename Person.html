@@ -330,8 +330,8 @@
                             </p>
                         </td>
                         <td class="tb_catory">
-                            <p>颜色： {{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p>
-                            <p>尺码：{{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p>
+                            <p>{{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p>
+                            <p>{{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p>
                         </td>
                         <td>
                             <div class="t_num">
@@ -344,7 +344,7 @@
                         <td class="tb_price">
                             <p class="slive">京东价：{{~item.goodsdetail:goods:j}}￥{{=goods.jdprice.toFixed(2)}}{{~}}</p>
                             {{~item.goodsdetail:goods:j}} {{?goods.eprice!=" "}}
-                            <p>企业专享价：<i class="jd_price">￥{{=goods.eprice}}</i></p>
+                            <p>企业专享价：<i class="jd_price">￥{{=goods.eprice.toFixed(2)}}</i></p>
                             {{?}} {{~}}
 
                         </td>

@@ -140,6 +140,7 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
     var tableNum = $(this).attr("dataTable")
     var name = $(this).attr("data-name")
     $(".bg").show()
+    $("#imgDowload").text("正在生成图片")
     $(".selectorFile").show()
     $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
     $("#imgDowload").attr("data-name", name)
@@ -151,15 +152,21 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
         allowTaint: false,
         onrendered: function(canvas) {
             var ctx = canvas.getContext("2d");
-            ctx.font = "20px";
-            ctx.fillText(name, 500, 60);
-            // canvas.toBlob(function(blob) {
-            //     window.saveAs(blob, '' + name + '.png');
-            // })
+            ctx.fillStyle = "#EEEEEE";
+            ctx.fillRect(40, 20, 160, 100);
+            ctx.fillRect(620, 80, 460, 50);
+            ctx.font = "14px microsoft yahei";
+            ctx.rect(40, 30, 150, 90);
+            ctx.stroke();
+            ctx.fillStyle = "black";
+            ctx.fillText("方案名称：", 80, 72);
+            ctx.font = "bold 16px microsoft iconfont";
+            ctx.fillStyle = "rgb(226,58,58)";
+            ctx.fillText(name, 80, 100);
             dataURL = canvas.toDataURL("image/png");
             $("#imgDowload").attr('href', dataURL);
             $("#imgDowload").attr('download', '' + name + '.png');
-            $("#imgDowload").attr('href', dataURL);
+            $("#imgDowload").text("图片下载")
 
         }
 
@@ -208,9 +215,7 @@ $("#w_person").delegate(".tb_opreat .replay", "click", function() {
 function replay(typid, skId, obj) {
     $(".confirmTips").show()
     $(".sure").click(function() {
-
         removePlanP(typid, skId, $(obj))
-
         window.location = 'index.html'
     })
 }
@@ -233,8 +238,9 @@ function removePlanP(typeId, skuId, obj) {
         success: function(item) {
             Purchase()
             leftBut()
-            $(this).parent().parent().remove();
+            $(obj).parent().parent().remove();
             addTips("已删除")
+            moClick(typeId)
         }
     })
 }
@@ -325,8 +331,22 @@ function cnshrine(typeId) {
             Purchase()
             setTimeout(leftBut(), 200)
             addTips("已加入收藏方案")
+            moClick(typeId)
         }
     })
+
+}
+
+//模拟点击
+function moClick(type) {
+    setTimeout(function() {
+        $(".left_warp a").each(function() {
+            var that = this
+            if (parseInt($(this).attr("data-src")) == parseInt(type)) {
+                $(this).click();
+            }
+        })
+    }, 300)
 
 }
 

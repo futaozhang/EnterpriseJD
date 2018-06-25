@@ -322,7 +322,7 @@ button:focus {
 .pic {
     overflow: hidden;
     /*隐藏溢出*/
-    width: 1040px;
+    /* width: 1040px; */
     height: 450px;
     text-align: center;
     margin-left: auto;
@@ -640,6 +640,7 @@ button:focus {
 .alert_t {
     height: 50px;
     line-height: 50px;
+    border: 1px solid white;
     border-bottom: 1px solid silver;
     margin-bottom: 1px;
 }
@@ -716,11 +717,11 @@ button:focus {
 .alert_ws ul li {
     float: left;
     margin: 5px;
-    border: 1px solid white;
+    border: 2px solid white;
 }
 
 .activeLi {
-    border: 1px solid rgb(226, 58, 58) !important;
+    border: 2px solid #b7b7b7 !important;
 }
 
 
@@ -839,11 +840,11 @@ button:focus {
     font-size: 12px;
     padding-left: 0px;
     padding-right: 10px;
-    color: #eaeaea;
+    color: #d2d2d2;
 }
 
 .w_nav ul li a {
-    color: #eaeaea;
+    color: #d2d2d2;
     font-size: 16px;
     line-height: 45px;
     margin-right: 10px;
@@ -1901,7 +1902,7 @@ table {
     cursor: pointer;
     position: fixed;
     right: 10px;
-    bottom: 250px;
+    bottom: 260px;
     opacity: 0.5;
 }
 
@@ -2052,7 +2053,8 @@ table {
 #index .selcetorText i {
     font-size: 20px;
     float: left;
-    margin-left: 680px;
+    margin-left: 650px;
+    margin-top: 400px;
     background-color: rgb(123, 123, 131);
     color: snow;
     width: 120px;

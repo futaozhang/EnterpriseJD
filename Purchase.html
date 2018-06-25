@@ -55,10 +55,10 @@
                         <div class="warp_right">
                             <!-- 右上角图片 -->
                             {{?value.imgsrc}}
-                            <i><img src="{{=value.imgsrc}}"/></i> {{?}}
+                            <i><img src="{{=value.imgsrc}}" /></i> {{?}}
                         </div>
                         <div class="warp_img">
-                            <a href="https://item.jd.com/{{=value.skuid}}.html" target="_blank"> <img src="{{=value.thumbnail}}" /></a>
+                            <a href="https://item.jd.com/{{=value.skuid}}.html" target="_blank"> <img src="{{=value.thumbnail}}" title="{{=value.name}}" /></a>
                         </div>
                         <div class="warp_Price">
                             <h5>京东价：￥{{=value.jdprice.toFixed(2)}}</h5>

@@ -29,37 +29,37 @@ function changec(changId) {
 
     $("#w_collection .left_warp a").removeClass("actvieLeft")
     $("#w_collection .right_warp").css("display", "none")
-    $("#w_collection .left_warp .person_" + parseInt(changId) +"").addClass("actvieLeft")
+    $("#w_collection .left_warp .person_" + parseInt(changId) + "").addClass("actvieLeft")
     $("#w_collection .person_" + parseInt(changId) + "").css("display", "block")
 
     priceNunCollect()
 }
 
 //方案名称
-$("#w_collection").delegate(".warpName .iconfont", "click",function(){
+$("#w_collection").delegate(".warpName .iconfont", "click", function() {
     $(this).hide();
     $(this).siblings(".inputName").show();
 
 })
 
-$("#w_collection").delegate(".warpName .inputNameCance", "click",function(){
+$("#w_collection").delegate(".warpName .inputNameCance", "click", function() {
     $(".inputName").hide();
     $(".warpName .iconfont").show();
-} )
+})
 
 //名称修改
-$("#w_collection").delegate(".warpName .inputNameSub", "click",function(){
-    var userName= $(this).parent().siblings("input").val()
-    var typId= $(this).parent().siblings("input").attr("id")
-  
+$("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
+    var userName = $(this).parent().siblings("input").val()
+    var typId = $(this).parent().siblings("input").attr("id")
+
     $(this).parent().parent().hide();
     $(this).parent().parent().siblings(".iconfont").show();
-   
+
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: baseUrl + "/procurementBak/updatep",
-        data: JSON.stringify({ "id": typId, "name":userName }),
+        data: JSON.stringify({ "id": typId, "name": userName }),
         cache: false,
         success: function(item) {
             Collection()
@@ -68,7 +68,7 @@ $("#w_collection").delegate(".warpName .inputNameSub", "click",function(){
     })
 
 
-} )
+})
 
 //收藏数据
 function Collection() {
@@ -179,44 +179,49 @@ function changListdata(obj) {
             "goodsnum": value
         },
         cache: true,
-        success: function(item) {
-        }
+        success: function(item) {}
     })
 
 
 }
 //导出图片
 $("#w_collection").delegate(".exprotIMg", "click", function() {
-    var tableNum = $(this).attr("dataTable")
-    var name = $(this).attr("data-name")
-    $(".bg").show()
-    $(".selectorFile").show()
-    $("#execlDowload").attr("data-pid", $(this).attr("datatable"))  
-    $("#execlDowload").attr("data-w", 1)  
-    $("#imgDowload").attr("data-name", name)
-    $("#imgDowload").attr("dataTable", tableNum)
-    var fatherNode = $(this).parent().parent().parent()
-    html2canvas($(fatherNode), {
-        useCORS: true,
-        allowTaint: true,
-        allowTaint: false,
-        onrendered: function(canvas) {
-            var ctx = canvas.getContext("2d");
-            ctx.font = "20px";
-            ctx.fillText(name, 500, 60);
-            // canvas.toBlob(function(blob) {
-            //     window.saveAs(blob, '' + name + '.png');
-            // })
-            dataURL = canvas.toDataURL("image/png");
-            $("#imgDowload").attr('href', dataURL);
-            $("#imgDowload").attr('download', '' + name + '.png');
-              $("#imgDowload").attr('href', dataURL);
+        var tableNum = $(this).attr("dataTable")
+        var name = $(this).attr("data-name")
+        $(".bg").show()
+        $(".selectorFile").show()
+        $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
+        $("#execlDowload").attr("data-w", 1)
+        $("#imgDowload").attr("data-name", name)
+        $("#imgDowload").attr("dataTable", tableNum)
+        var fatherNode = $(this).parent().parent().parent()
+        html2canvas($(fatherNode), {
+            useCORS: true,
+            allowTaint: true,
+            allowTaint: false,
+            onrendered: function(canvas) {
+                var ctx = canvas.getContext("2d");
+                ctx.fillStyle = "#EEEEEE";
+                ctx.fillRect(40, 20, 160, 100);
+                ctx.fillRect(620, 80, 460, 50);
+                ctx.font = "14px microsoft yahei";
+                ctx.rect(40, 30, 150, 90);
+                ctx.stroke();
+                ctx.fillStyle = "black";
+                ctx.fillText("方案名称：", 80, 72);
+                ctx.font = "bold 16px microsoft iconfont";
+                ctx.fillStyle = "rgb(226,58,58)";
+                ctx.fillText(name, 80, 100);
+                dataURL = canvas.toDataURL("image/png");
+                $("#imgDowload").attr('href', dataURL);
+                $("#imgDowload").attr('download', '' + name + '.png');
+                $("#imgDowload").attr('href', dataURL);
+                $("#imgDowload").text("图片下载")
+            }
 
-        }
-
+        })
     })
-})
-// 多选删除
+    // 多选删除
 $("#w_collection").delegate(".tableDe", "click", function() {
     var deleate = [];
     var listId = [];
@@ -248,10 +253,10 @@ $("#w_collection").delegate(".tableDe", "click", function() {
 $("#w_collection").delegate(".tb_opreat .tb_del", "click", function() {
 
 
-    removePlanWC($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+        removePlanWC($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
 
-})
-//替换
+    })
+    //替换
 $("#w_collection").delegate(".tb_opreat .replay", "click", function() {
 
     replay($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
@@ -281,7 +286,9 @@ function removePlanWC(typeId, skuId, obj) {
         },
         cache: false,
         success: function(item) {
-            Collection()
+            if (skuId == "") {
+                Collection()
+            }
             $(obj).parent().parent().remove();
             addTips("已删除")
         }

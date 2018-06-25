@@ -124,11 +124,6 @@ function leftList(id, fun) {
     var interText = document.getElementById('j_tmpl').innerHTML;
     $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
         function(item) {
-            if (fun != "undefined") {
-
-                // setTimeout(fun, 200)
-
-            }
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
             $.each(item[0].goods_list, function(index, infoLIst) {
@@ -146,26 +141,21 @@ function leftList(id, fun) {
                     } else {
                         sum.push(item.eprice * infoLIst.goodsnum)
                     }
-
                 })
-
             })
-
-
             $("#number").text(num)
             $("#price").text(sum.sum().toFixed(2))
 
-        })
+        });
 }
+
 //新添加方案
 
 function addProgram() {
     if (getCookie("userId") == null || getCookie("userId") == "") {
         alert("请先登录")
         return false
-    }
-
-
+    };
     var str = '<a href="javascript:;" data-src="2-1" class="addProgram">自主采购方案</a>'
     $(".isLogoing ").append(str)
     var interTextd = document.getElementById('j_tmpl').innerHTML;
@@ -178,14 +168,11 @@ function addProgram() {
     // $("#jd_3").prop("value", "自主采购方案")
     //  runBg(this)
     newAddColect()
+};
 
-
-}
 
 //新增采购方案
 function newAddColect(id, json) {
-
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -194,13 +181,12 @@ function newAddColect(id, json) {
         cache: false,
         success: function(item) {
             leftBut()
-
-
         }
     })
 
 
-}
+};
+
 // 左侧弹出
 function runBg(th) {
 
@@ -213,6 +199,7 @@ function runBg(th) {
     $(".leftContent").animate({ "width": "360px" })
     $(".isLogoing").animate({ "left": "360px" })
 }
+
 // 关闭左侧
 $("#leftsider").delegate(".bg", "click", function() {
     closeOpen()
@@ -238,7 +225,6 @@ $("#mianCont").delegate("#all", "click", function() {
         } else {
 
             $(".contents").find("input[type='checkbox']").prop("checked", false);
-
         }
     }, 4)
 
@@ -251,11 +237,8 @@ $("#mianCont").delegate(".l_top button", "click", function() {
     if ($("#all").prop("checked") != true) {
         $.each($("#leftDate").find("input[type='checkbox']"), function(i, item) {
             if ($(this).prop("checked") != false) {
-
                 deleate.push($(this).parent().parent().find("button").attr('data-sku'))
-
                 $(this).parent().parent().remove();
-
             }
         })
 
@@ -268,7 +251,7 @@ $("#mianCont").delegate(".l_top button", "click", function() {
 });
 
 function removeList(typeId, deleate) {
-
+    isCheckAdd(typeId, 1)
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -276,8 +259,9 @@ function removeList(typeId, deleate) {
         data: { "procurementId": typeId, "pitemlist": deleate },
         cache: false,
         success: function(item) {
-            isCheckAdd(typeId, 1)
-            leftBut()
+            leftBut();
+            leftList(typeId)
+                // close();
             closeOpen()
         }
     })
@@ -305,7 +289,6 @@ $("#mianCont").delegate(".checkBox input[type='checkbox']", "click", function() 
     });
 
 })
-
 
 
 //加减
@@ -352,21 +335,29 @@ $("#mianCont").delegate(".changName a", "click", function() {
         success: function(item) {
             leftList(type);
             leftBut();
-            closeOpen()
+            close(type);
             $(".changName").hide();
-
-
         }
     })
 
 });
+
 //开启遮罩
-function close() {
+function close(type) {
+
     setTimeout(function() {
         $(".Jd_footer").fadeIn();
         $(".leftSelct .bg").show();
         $(".isLogoing").animate({ "left": "360px" });
-    }, 4)
+        $(".addProgram").each(function() {
+            var that = this
+            if (parseInt($(this).attr("data-src")) == parseInt(type)) {
+
+                $(this).addClass("activeYellow")
+            }
+        })
+
+    }, 405)
 
 }
 
@@ -378,15 +369,18 @@ $("#left_w").delegate(".noLogoing", "click", function() {
 $("#mianCont").delegate(".text .iconfont", "click", function() {
     $(".changName").show()
 });
+
 //左侧收藏
 $("#mianCont").delegate(".nockeck", "click", function() {
     enshrine($(this).attr("data-type"))
-    closeOpen()
+
+
 });
 
 $("#mianCont").delegate(".ischeck", "click", function() {
     addTips("已收藏该方案")
 });
+
 //单个删除
 $("#mianCont").delegate("#leftDate li .ra_de", "click", function() {
 
@@ -461,7 +455,7 @@ Array.prototype.sum = function() {
  *
  */
 function enshrine(typeId) {
-
+    isCheckAdd(typeId, 2)
 
     $.ajax({
         type: "POST",
@@ -470,9 +464,9 @@ function enshrine(typeId) {
         dataType: "json",
         data: JSON.stringify({ "id": parseInt(typeId) }),
         success: function(jsonResult) {
-            isCheckAdd(typeId, 2)
             setTimeout(leftBut(), 200)
-
+            leftList(typeId)
+            close(typeId)
         }
     });
 
@@ -493,6 +487,7 @@ function isCheckAdd(typeId, state) {
 //单个数据删除
 function removePland(typeId, skuId, obj) {
 
+    isCheckAdd(typeId, 1)
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -500,15 +495,13 @@ function removePland(typeId, skuId, obj) {
         data: { "procurementId": typeId, "pitemlist": skuId },
         cache: false,
         success: function(item) {
-            isCheckAdd(typeId, 1)
-            closeOpen()
-            leftList(typeId, "close()"); //单个内容数据更新
+            leftList(typeId);
             leftBut(); //数据更新
             $(obj).parent().parent().remove(); //物理删除
-
-
+            close(typeId)
         }
     })
+
 }
 
 //异步修改数据
@@ -531,8 +524,6 @@ function changListdataL(obj) {
 
 
 
-
-
 //登陆调用
 function login() {
     seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
@@ -549,6 +540,7 @@ function login() {
         })
     })
 };
+
 
 function setCookie(name, value) {
     var Days = 30;
@@ -593,11 +585,13 @@ $("#mianCont").delegate(".export", "click", function() {
 
 
 
-})
+});
+
 $("#index #imgDowload").click(function() {
-        window.location.href = "Person.html?id=1"
-    })
-    //导出采购方案
+    window.location.href = "Person.html?id=1"
+})
+
+//导出采购方案
 $("#execlDowload").click(function() {
 
     if ($(this).attr("data-w") != undefined) {
@@ -654,7 +648,7 @@ function getCookieCores(c_name) {
         }
     }
     return null
-}
+};
 
 
 
