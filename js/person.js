@@ -1,7 +1,7 @@
 /**
  * 采购
  */
-
+var noData = [];
 var baseUrl = "http://192.168.1.247:8080"
     // var baseUrl = "http://pre-admin.pcshop.jd.com"
 window.onload = function() {
@@ -78,13 +78,14 @@ function Purchase() {
 
     $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userid"), "status": 1 }, function(item) {
 
-        if (item != "") {
+        if (item.length != 0) {
             document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
             change(0)
             setTimeout(function() {
                 priceNun()
             }, 5)
         } else {
+            document.getElementById('w_person').innerHTML = doT.template(j_person)(noData);
             return false
         }
 
@@ -222,6 +223,7 @@ function removePlanP(typeId, skuId, obj) {
 
     skuIds == NaN ? skuIds = " " : skuIds = skuIds;
     isCheckAdd(typeIds, 1)
+
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -340,8 +342,6 @@ Array.prototype.sum = function() {
 function priceNun() {
 
     $.each($("#w_person .right_warp"), function() {
-
-
         var jdprice = [];
         var eprice = [];
         $.each($(this).find(".t_num input"), function(item) {

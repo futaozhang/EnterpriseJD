@@ -16,6 +16,25 @@ $("#userName").text(getCookieCores("unick") == null ? unescape(userName) : unesc
 //存储是否被收藏的采购
 var judgment = [];
 
+$.ajax({
+    type: "POST",
+    contentType: "application/json",
+    url: baseUrl + "/scene/list",
+    timeout: 3000,
+    cache: false,
+    success: function(item) {},
+    error: function(request, status, error) {
+        if (error == 'timeout' || error == "null") {
+            alert('服务响应超时')
+        }
+        if (status == 408 || status == 500) {
+            alert('服务数据出错')
+        }
+    }
+})
+
+
+
 // 左侧按钮数据请求
 
 $.ajaxSetup({ cache: false });
