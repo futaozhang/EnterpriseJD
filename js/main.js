@@ -106,6 +106,7 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
         addProgram()
 
         return false
+
     } else if ($(this).attr("data-src") != undefined) {
 
         runBg(this)
@@ -158,15 +159,17 @@ function addProgram() {
     };
     var str = '<a href="javascript:;" data-src="2-1" class="addProgram">自主采购方案</a>'
     $(".isLogoing ").append(str)
+
     var interTextd = document.getElementById('j_tmpl').innerHTML;
     document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
 
     if ($(".isLogoing .addProgram").length > 2) {
         $(".addProjiect").remove()
     }
-    $(".leftHead .text i").click();
-    // $("#jd_3").prop("value", "自主采购方案")
-    //  runBg(this)
+    if ($("#mianCont").css("width") != "0px") {
+        closeOpen()
+    }
+
     newAddColect()
 };
 
@@ -181,6 +184,11 @@ function newAddColect(id, json) {
         cache: false,
         success: function(item) {
             leftBut()
+            try {
+                Purchase()
+            } catch (error) {
+
+            }
         }
     })
 
@@ -261,8 +269,12 @@ function removeList(typeId, deleate) {
         success: function(item) {
             leftBut();
             leftList(typeId)
-                // close();
-            closeOpen()
+            closeOpen();
+            try {
+                Purchase()
+            } catch (error) {
+
+            }
         }
     })
 }
@@ -337,6 +349,11 @@ $("#mianCont").delegate(".changName a", "click", function() {
             leftBut();
             close(type);
             $(".changName").hide();
+            try {
+                Purchase()
+            } catch (error) {
+
+            }
         }
     })
 
@@ -466,7 +483,13 @@ function enshrine(typeId) {
         success: function(jsonResult) {
             setTimeout(leftBut(), 200)
             leftList(typeId)
-            close(typeId)
+            close(typeId);
+            try {
+                Purchase();
+                cnshrine(typeId, 2);
+            } catch (error) {
+
+            }
         }
     });
 
@@ -498,7 +521,12 @@ function removePland(typeId, skuId, obj) {
             leftList(typeId);
             leftBut(); //数据更新
             $(obj).parent().parent().remove(); //物理删除
-            close(typeId)
+            close(typeId);
+            try {
+                Purchase()
+            } catch (error) {
+
+            }
         }
     })
 
@@ -518,6 +546,11 @@ function changListdataL(obj) {
         cache: true,
         success: function(item) {
             //   isCheckAdd(typeId, 1)
+            try {
+                Purchase()
+            } catch (error) {
+
+            }
         }
     })
 }

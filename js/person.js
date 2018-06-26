@@ -319,7 +319,7 @@ $("#w_person").delegate(".c_isCheck", "click", function() {
 
 
 //方案夹收藏
-function cnshrine(typeId) {
+function cnshrine(typeId, list) {
 
     isCheckAdd(typeId, 2)
     $.ajax({
@@ -331,7 +331,14 @@ function cnshrine(typeId) {
             Purchase()
             setTimeout(leftBut(), 200)
             addTips("已加入收藏方案")
-            moClick(typeId)
+            moClick(typeId);
+            try {
+                if (list != null) {
+                    Collection();
+                }
+            } catch (error) {
+
+            }
         }
     })
 
