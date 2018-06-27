@@ -163,24 +163,49 @@ $("#w_collection").delegate(".add", 'click', function() {
 
     changListdata($(this))
     priceNunCollect()
-
 });
-
 //收藏方案  回滚到采购方案
 
 $("#w_collection").delegate(".addpro", 'click', function() {
 
     if ($("#leftsider .isLogoing .addProgram ").length > 5) {
+        $(".confirmTips .sure").attr("date-type", $(this).attr("data-id"))
+        $(".selectRep").empty();
+        $.each($("#leftsider .isLogoing .addProgram"), function(i, item) {
+            var that = this
+            $(".selectRep").append(function() {
+                return '<input type="radio" name="tr" data-src="' + $(that).attr("data-src") + '" id="jdRep_' + i + '"> <label for="jdRep_' + i + '"> ' + $.trim($(that).text()).slice(1) + '</label>'
+            })
+        })
+        $(".confirmTips").show()
 
         return false;
+
     }
 
     recoverP($(this).attr("data-id"))
 
 });
 
+$(".confirmTips .sure").click(function() {
+    var pid = $(this).parent().find(".selectRep input");
+    var slectePid;
+    $.each(pid, function() {
 
-function recoverP(coolectId, pid) {
+        if ($(this).prop("checked") == true) {
+
+            slectePid = $(this).attr("data-src")
+        }
+    })
+    if (slectePid == undefined) {
+        alert("请选择其中一个")
+        return false;
+    }
+    recoverP($(this).attr("date-type"), slectePid, 2)
+})
+
+
+function recoverP(coolectId, pid, rcp) {
     pid == null ? pid = "" : pid = pid;
     $.ajax({
         type: "GET",
@@ -188,11 +213,19 @@ function recoverP(coolectId, pid) {
         url: baseUrl + "/procurement/recoverP",
         data: {
             "pbid": coolectId,
-            "pid": pid
+            "pid": $.trim(pid)
         },
         cache: true,
         success: function(item) {
             leftBut()
+            try {
+                if (rcp == 2) {
+                    $(".confirmTips").hide()
+                }
+            } catch (error) {
+
+            }
+
         }
     })
 }
@@ -202,8 +235,6 @@ function recoverP(coolectId, pid) {
 function changListdata(obj) {
     var value = $(obj).siblings("input").val(); //num
     var skuid = $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id"); //id
-
-
     $.ajax({
         type: "GET",
         contentType: "application/json",
