@@ -63,7 +63,7 @@ $("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
         cache: false,
         success: function(item) {
             Collection()
-            leftBut()
+                // leftBut()
         }
     })
 
@@ -78,18 +78,20 @@ function Collection() {
         "userid": getCookie("userid"),
         "status": 1
     }, function(item) {
-        if (item != "") {
+
+        if (item.length != 0) {
             document.getElementById('w_collection').innerHTML = doT.template(j_persond)(item);
+
             $("#w_collection .addCollection a").remove();
             $("#w_collection .right_but .pru").remove();
-
+            $("#w_collection .right_but .addpro").show()
             changec(0)
             setTimeout(function() {
                 priceNunCollect()
             }, 5)
 
         } else {
-            return false
+            document.getElementById('w_collection').innerHTML = doT.template(j_persond)(noData);
         }
 
 
@@ -286,7 +288,7 @@ function removePlanWC(typeId, skuId, obj) {
         },
         cache: false,
         success: function(item) {
-            if (skuId == "") {
+            if (skuIds == "") {
                 Collection()
             }
             $(obj).parent().parent().remove();

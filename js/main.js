@@ -74,7 +74,7 @@ function leftBut() {
                     //增加购物方案延迟渲染
                 setTimeout(function() {
                     $(".add_pri ul").html(function(n) {
-                        if (item.length >= 3) {
+                        if (item.length > 6) {
                             return add_pri
                         } else {
                             return add_pri + addp
@@ -575,10 +575,11 @@ function login() {
 };
 
 
-function setCookie(name, value) {
+function setCookie(name, value, time) {
+
     var Days = 30;
     var exp = new Date();
-    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    exp.setTime(exp.getTime() + Days * 3 * 60 * 60 * 1000);
     document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
@@ -729,5 +730,5 @@ function closeTop(obj) {
 
 $("body").delegate("#videos .iconfont", "click", function() {
     $("#videos").hide()
-
+    setCookie("videoH", 1)
 })

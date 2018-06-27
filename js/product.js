@@ -156,6 +156,13 @@ $.ajax({
     contentType: "application/json",
     url: baseUrl + "/scene/list",
     cache: false,
+    beforeSend: function() {
+        getCookie("videoH") == null ? setCookie("videoH", "") : getCookie("videoH") = getCookie("videoH");
+        if (getCookie("videoH") != "") {
+
+            return false
+        }
+    },
     success: function(item) {
         var that = this
         if (item[0].videourl != "" || item[0].videourl != null) {
@@ -168,10 +175,4 @@ $.ajax({
             });
         }
     }
-})
-
-
-
-$("#videos .iconfont").click(function() {
-    $("#videos").hide()
 })

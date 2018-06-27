@@ -76,11 +76,11 @@ function pricCom() {
 }
 //收藏
 $("#warp_content").delegate(".n_collect", "click", function() {
- 
- 
- var   typeId = $(this).attr("data-type")
-      
-        $.ajax({
+
+
+    var typeId = $(this).attr("data-type")
+
+    $.ajax({
             type: "POST",
             url: baseUrl + "/procurement/updatep",
             contentType: "application/json",
@@ -88,11 +88,11 @@ $("#warp_content").delegate(".n_collect", "click", function() {
             data: JSON.stringify({ "id": parseInt(typeId), "status": 2 }),
             success: function(jsonResult) {
                 setTimeout(leftBut(), 200)
-               
+
             }
         })
-      //物理删除
-        $(this).parent().parent().parent().parent().remove();
+        //物理删除
+    $(this).parent().parent().parent().parent().remove();
 
 
 });
@@ -134,7 +134,7 @@ function removePlanCom(typeId, skuId, obj) {
             leftBut()
             comparedList()
             $(this).parent().parent().remove();
-          
+
         }
     })
 }
@@ -175,19 +175,23 @@ $.ajax({
     contentType: "application/json",
     url: baseUrl + "/scene/list",
     cache: false,
+    beforeSend: function() {
+        getCookie("videoH") == null ? setCookie("videoH", "") : getCookie("videoH") = getCookie("videoH");
+        if (getCookie("videoH") != "") {
+
+            return false
+        }
+    },
     success: function(item) {
-        var that=this
-        if(item[0].videourl!=""||item[0].videourl!=null){
-        $("body").append(function() {
-            return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
-        
-                '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="'+item[0].videoimg+'" >'
-        
-            +'<source src="'+item[0].videourl+'" type="video/mp4"/> </video></div>'
-        })
+        var that = this
+        if (item[0].videourl != "" || item[0].videourl != null) {
+            $("body").append(function() {
+                return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
+
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
+
+                +'<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
+            })
+        }
     }
-    }
-    })
-
-
-
+})

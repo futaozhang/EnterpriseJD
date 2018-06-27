@@ -60,8 +60,9 @@ $("#mainList").delegate(".selcetor", 'click', function() {
         $(".alertc").css({ "overflow": "scroll", "height": "490px" })
     }
     alertTem($(this).attr("data-jum"))
-        //设置选择类目
-    setCookie("Type", $(this).siblings().find(".p1").text().trim().replace(/\s/g, ""))
+
+    //设置选择类目
+    setCookie("Type", $(this).find(".p1").text().trim().replace(/\s/g, ""))
 
 
 });

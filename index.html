@@ -166,7 +166,7 @@
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
             <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name==""?item.name="新建采购":item.name}}</a> {{~}} {{?index
-        <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+        <5}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
     </div>
     {{?}}
 </script>
@@ -204,7 +204,7 @@
                     </div>
                     <label for="{{=index}}">
                         <div class="imgResponse">
-                            <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/>
+                            <a href="https://item.jd.com/{{=value.goodsid}}.html" target="_blank">  <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/></a>
                         </div>
 
                         <div class="information">

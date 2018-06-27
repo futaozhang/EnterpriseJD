@@ -106,7 +106,7 @@ button:focus {
 .isLogoing {
     position: fixed;
     left: 360px;
-    top: 30%;
+    top: 15%;
     width: 60px;
 }
 
@@ -2060,4 +2060,8 @@ table {
     width: 120px;
     height: 40px;
     line-height: 40px;
+}
+
+.right_but .addpro {
+    display: none;
 }

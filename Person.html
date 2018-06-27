@@ -144,7 +144,7 @@
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
             <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name==""?item.name="新建采购":item.name}}</a> {{~}} {{?index
-        <2}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+        <5}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
     </div>
     {{?}}
 </script>
@@ -182,7 +182,7 @@
                     </div>
                     <label for="{{=index}}">
                         <div class="imgResponse">
-                            <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/>
+                            <a href="https://item.jd.com/{{=value.goodsid}}.html" title="{{=value.name}}" target="_blank">     <img src="{{~value.goodsdetail:item:j}}{{=item.thumbnail}}{{~}}"/></a>
                         </div>
 
                         <div class="information">
@@ -285,6 +285,7 @@
 
                 <a href="javascript:;" class="exprotIMg" data-name="{{=value.name}}" {{~value.goods_list:list:k}} datatable="{{=list.pid}}" {{~}}>导出到本地</a>
                 <a href="Compared.html" class="pru">对比采购方案</a>
+                <a href="javascript:;" class="addpro" data-id="{{=value.id}}">添加到采购</a>
                 <a href="javascript:;" class="tableDe" data-src="{{=value.id}}">{{?value.goods_list.length==0}}删除方案{{??}}删除{{?}}</a>
 
             </div>
@@ -321,7 +322,7 @@
                         </td>
                         <td>
                             <div class="tb_img">
-                                <img src=" {{~item.goodsdetail:goods:j}} {{=goods.thumbnail}} {{~}} " />
+                                <a href="https://item.jd.com/{{=item.goodsid}}.html" target="_blank"> <img src="{{~item.goodsdetail:goods:j}} {{=goods.thumbnail}} {{~}} " /></a>
                             </div>
                         </td>
                         <td>
@@ -349,13 +350,12 @@
 
                         </td>
                         <td>
-                            {{?item.message=="日常办公"}}
-                            <span class="office">日常办公</span> {{??item.message=="技术研发"}}
+                            {{?item.message=="行政办公"}}
+                            <span class="office">行政办公</span> {{??item.message=="技术研发"}}
                             <span class="techology">技术研发</span> {{??item.message=="高层管理"}}
                             <span class="manager">高层管理</span> {{??item.message=="商务便携"}}
                             <span class="portadle">商务便携</span> {{??}}
-                            <span class="techology">技术研发</span> {{?}}
-
+                            <span class="techology">视觉设计</span> {{?}}
 
                         </td>
                         <td class="tb_opreat">
