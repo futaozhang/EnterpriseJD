@@ -166,6 +166,38 @@ $("#w_collection").delegate(".add", 'click', function() {
 
 });
 
+//收藏方案  回滚到采购方案
+
+$("#w_collection").delegate(".addpro", 'click', function() {
+
+    if ($("#leftsider .isLogoing .addProgram ").length > 5) {
+
+        return false;
+    }
+
+    recoverP($(this).attr("data-id"))
+
+});
+
+
+function recoverP(coolectId, pid) {
+    pid == null ? pid = "" : pid = pid;
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurement/recoverP",
+        data: {
+            "pbid": coolectId,
+            "pid": pid
+        },
+        cache: true,
+        success: function(item) {
+            leftBut()
+        }
+    })
+}
+
+
 //异步修改数据
 function changListdata(obj) {
     var value = $(obj).siblings("input").val(); //num

@@ -36,7 +36,6 @@ $("#Purchase").delegate("#content_warp li", "mouseleave", function() {
 
 var ContrastArr = [];
 
-
 //加入对比
 $("#content_warp").delegate(".addCompared input", "click", function() {
     var cks = $("#content_warp").find("input[type=checkbox]:checked");
@@ -182,7 +181,7 @@ Array.prototype.remove = function(val) {
 function setCookie(name, value) {
     var Days = 30;
     var exp = new Date();
-    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    exp.setTime(exp.getTime() + Days * 2 * 60 * 60 * 1000);
     document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
@@ -215,7 +214,9 @@ $.ajax({
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {
-        getCookie("videoH") == null ? setCookie("videoH", "") : getCookie("videoH") = getCookie("videoH");
+        var videoH = getCookie("videoH");
+        videoH == null ? setCookie("videoH", " ") : videoH = videoH;
+
         if (getCookie("videoH") != "") {
 
             return false

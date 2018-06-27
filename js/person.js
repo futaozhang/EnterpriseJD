@@ -407,9 +407,8 @@ $.ajax({
     cache: false,
     beforeSend: function() {
         var videoH = getCookie("videoH");
-        videoH == null ? setCookie("videoH", "") : videoH = videoH;
+        videoH == null ? setCookie("videoH", " ") : videoH = videoH;
         if (getCookie("videoH") != "") {
-
             return false
         }
     },

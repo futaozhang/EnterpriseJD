@@ -72,9 +72,16 @@ function leftBut() {
 
                 var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
                     //增加购物方案延迟渲染
+                if (item.length > 3) {
+                    $(".isLogoing").css("top", "20%");
+                } else if (item.length > 5) {
+                    $(".isLogoing").css("top", "15%");
+                }
                 setTimeout(function() {
+
                     $(".add_pri ul").html(function(n) {
-                        if (item.length > 6) {
+                        if (item.length > 5) {
+
                             return add_pri
                         } else {
                             return add_pri + addp
@@ -163,7 +170,7 @@ function addProgram() {
     var interTextd = document.getElementById('j_tmpl').innerHTML;
     document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
 
-    if ($(".isLogoing .addProgram").length > 2) {
+    if ($(".isLogoing .addProgram").length > 5) {
         $(".addProjiect").remove()
     }
     if ($("#mianCont").css("width") != "0px") {
@@ -444,18 +451,19 @@ function getCookie(name) {
         return null;
 }
 
-//删除cookies
-// function delCookie(name) {   
-//     var exp = new Date();   
+//
 
-//     exp.setTime(exp.getTime() - 1);   
-//     var cval = getCookie(name);   
+function delCookie(name) {   
+    var exp = new Date();   
 
-//     if (cval != null) {
-//         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()
-//     }; 
+    exp.setTime(exp.getTime() - 1);   
+    var cval = getCookie(name);   
 
-// }
+    if (cval != null) {
+        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()
+    }; 
+
+}
 //数组内相加
 Array.prototype.sum = function() {
     var result = 0;
@@ -667,7 +675,9 @@ function IEVersion() {
     }
 }
 if (IEVersion() == -1) {
-    $("#imgDowload").text('图片下载')
+    $("#imgDowload").text('图片下载');
+} else {
+
 }
 
 function getCookieCores(c_name) {

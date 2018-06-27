@@ -176,9 +176,9 @@ $.ajax({
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {
-        getCookie("videoH") == null ? setCookie("videoH", "") : getCookie("videoH") = getCookie("videoH");
+        var videoH = getCookie("videoH");
+        videoH == null ? setCookie("videoH", " ") : videoH = videoH;
         if (getCookie("videoH") != "") {
-
             return false
         }
     },
