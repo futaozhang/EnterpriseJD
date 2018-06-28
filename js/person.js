@@ -232,11 +232,14 @@ function recpAlert(ArrList) {
 
         function(item) {
             document.getElementById('recpList').innerHTML = doT.template(recpListTem)(item);
-
+            $(".tempelateD .r_head").animate({ height: "0px" }, 500);
+            $(".alertFoot").hide()
+            $(".openSlect").show()
+            $(".closeSlect").hide()
         });
 }
 
-$("#recpHead").delegate(".submit", "click", function() {
+$(".tempelateD").delegate(".submit", "click", function() {
 
     isCheck()
     if ($("#recpHead .must").hasClass("addBorder")) {
@@ -244,7 +247,20 @@ $("#recpHead").delegate(".submit", "click", function() {
     } else {
         recpAlert(isCheck())
     }
+})
+$("#retunRcp").delegate(".openSlect", "click", function() {
 
+    $(".tempelateD .r_head").animate({ height: "300px" }, 500);
+    $(".alertFoot").show()
+    $(this).hide()
+    $(".closeSlect").show()
+
+})
+$("#retunRcp").delegate(".closeSlect", "click", function() {
+    $(".tempelateD .r_head").animate({ height: "0px" }, 500);
+    $(".alertFoot").hide()
+    $(".openSlect").show()
+    $(this).hide()
 
 })
 
