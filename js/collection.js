@@ -317,24 +317,32 @@ $("#w_collection").delegate(".tableDe", "click", function() {
 //单选删除
 $("#w_collection").delegate(".tb_opreat .tb_del", "click", function() {
 
-
         removePlanWC($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
-
     })
     //替换
+
+
+var recpPro = document.getElementById('recpPro').innerHTML;
+//替换
 $("#w_collection").delegate(".tb_opreat .replay", "click", function() {
 
-    replay($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+    $("body").css("overflow", "hidden")
+    $(".r_body .typeText").attr("data-type", $(this).attr("data-typid"))
+    $(".r_body .typeText").attr("data-message", $(this).attr("data-message"))
+    $(".typeText").attr("data-deskuId", $(this).attr("data-skid"))
+    $(".r_body .typeText").text($(this).parent().siblings(".titleText").text())
+    $(".typeText").attr("data-col", 2)
+    $.getJSON(baseUrl + "/goodsAttribute/getalist", { "sceneid": $(this).attr("data-message") }, function(json) {
+        document.getElementById('recpHead').innerHTML = doT.template(recpPro)(json);
+        $("#retunRcp").show()
+    })
+
+
 
 })
 
-function replay(typid, skId, obj) {
-    $(".confirmTips").show()
-    $(".sure").click(function() {
-        removePlanP(typid, skId, $(obj))
-        window.location = 'index.html'
-    })
-}
+
+
 
 function removePlanWC(typeId, skuId, obj) {
     var typeIds = typeId.toString()

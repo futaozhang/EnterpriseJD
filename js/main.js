@@ -396,7 +396,7 @@ $("#mianCont").delegate(".text .iconfont", "click", function() {
 
 //左侧收藏
 $("#mianCont").delegate(".nockeck", "click", function() {
-    enshrine($(this).attr("data-type"))
+    enshrine($(this).attr("data-type"), $(this).attr("data_p"))
 
 
 });
@@ -479,7 +479,7 @@ Array.prototype.sum = function() {
  *
  *
  */
-function enshrine(typeId) {
+function enshrine(typeId, list) {
     isCheckAdd(typeId, 2)
 
     $.ajax({
@@ -493,13 +493,40 @@ function enshrine(typeId) {
             leftList(typeId)
             close(typeId);
             try {
+                cnshrine(typeId, list)
                 Purchase();
-                cnshrine(typeId, 2);
             } catch (error) {
 
             }
         }
     });
+
+}
+
+function cnshrine(typeId, list) {
+
+    isCheckAdd(typeId, 2)
+    $.ajax({
+        type: "POST",
+        url: baseUrl + "/procurementBak/addp?pid=" + typeId,
+        contentType: "application/json",
+        dataType: "json",
+        success: function(jsonResult) {
+
+            setTimeout(leftBut(), 200)
+            addTips("已加入收藏方案")
+
+            try {
+                if (list != undefined) {
+                    Purchase()
+                    moClick(typeId);
+                    Collection();
+                }
+            } catch (error) {
+
+            }
+        }
+    })
 
 }
 
@@ -721,7 +748,6 @@ $.ajax({
                     break;
             }
 
-
         })
 
         $("body").prepend(function() {
@@ -743,5 +769,5 @@ function closeTop(obj) {
 
 $("body").delegate("#videos .iconfont", "click", function() {
     $("#videos").hide()
-    setCookie("videoH", 1, 3)
+    setCookie("videoH", 1, 0.5)
 })

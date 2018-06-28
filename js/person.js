@@ -201,24 +201,183 @@ $("#reset").click(function() {
 $("#w_person").delegate(".tb_opreat .tb_del", "click", function() {
 
 
-        removePlanP($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+    removePlanP($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
 
-    })
-    //替换
+})
+var recpPro = document.getElementById('recpPro').innerHTML;
+//替换
 $("#w_person").delegate(".tb_opreat .replay", "click", function() {
+    $(".typeText").removeAttr("data-col")
+    $("body").css("overflow", "hidden")
+    $(".r_body .typeText").attr("data-type", $(this).attr("data-typid"))
+    $(".r_body .typeText").attr("data-message", $(this).attr("data-message"))
+    $(".typeText").attr("data-deskuId", $(this).attr("data-skid"))
+    $(".r_body .typeText").text($(this).parent().siblings(".titleText").text())
 
-    replay($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+    $.getJSON(baseUrl + "/goodsAttribute/getalist", { "sceneid": $(this).attr("data-message") }, function(json) {
+        document.getElementById('recpHead').innerHTML = doT.template(recpPro)(json);
+        $("#retunRcp").show()
+    })
+
+
 
 })
 
-function replay(typid, skId, obj) {
-    $(".confirmTips").show()
-    $(".sure").click(function() {
-        removePlanP(typid, skId, $(obj))
-        window.location = 'index.html'
-    })
+//数据
+
+var recpListTem = document.getElementById('recpListTem').innerHTML;
+
+function recpAlert(ArrList) {
+    $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": ArrList.categoryid, "bidlist": ArrList.bidlist, "avlist": ArrList.avlist },
+
+        function(item) {
+            document.getElementById('recpList').innerHTML = doT.template(recpListTem)(item);
+
+        });
 }
 
+$("#recpHead").delegate(".submit", "click", function() {
+
+    isCheck()
+    if ($("#recpHead .must").hasClass("addBorder")) {
+        alert("请完成必选项")
+    } else {
+        recpAlert(isCheck())
+    }
+
+
+})
+
+
+//选中判断
+function isCheck() {
+    var bidlist = []; //可选项目
+    var avlist = []; //必选项目
+    var categoryid = []; //机型
+    var Arrlist = {
+        "categoryid": "",
+        "avlist": "",
+        "bidlist": ""
+    }
+
+    //非必选
+    $.each($("#recpHead").find(".tem input"), function(i) {
+
+        if ($(this).prop("checked") == true) {
+            bidlist.push($(this).val())
+        }
+    })
+
+    // 非必选品牌
+    $.each($(".over_a").find("li"), function() {
+        if ($(this).hasClass("activeLi")) {
+            bidlist.push($(this).attr("data-id"))
+        }
+    })
+
+    //必选  第一位属于机型
+    $.each($("#recpHead").find(".re input"), function(i) {
+
+        if ($(this).prop("checked") == true) {
+            avlist.push($(this).val())
+        }
+    })
+
+    //判断是否选中
+    $.each($("#recpHead").find(".must"), function(i) {
+        if ($(this).hasClass("re")) {} else {
+            $(this).addClass("addBorder")
+        }
+    })
+    bidlist.length != 0 ? bidlist = bidlist : bidlist.push("");
+    Arrlist.categoryid = avlist[0];
+    Arrlist.avlist = avlist.join("-").slice(2);
+    Arrlist.bidlist = bidlist.join("-");
+    return Arrlist
+
+}
+
+
+
+//必选单个点击判断
+$("#recpHead").delegate(".must input", "click", function() {
+
+        if ($(this).prop("checked") != false) {
+            $(this).parent().addClass("re")
+            $(this).parent().removeClass("addBorder")
+        } else {
+
+            $(this).parent().removeClass("re")
+            $(this).parent().addClass("addBorder")
+        }
+
+
+    })
+    //替换功能（先添加 后删除）
+$("#recpList").delegate(".addSelect", "click", function() {
+    //先添加
+    var skuId = $(this).attr("data-sku")
+    var typeId = $(".typeText").attr("data-type")
+    var messageid = $(".typeText").attr("data-message")
+    var type = $(".typeText").text()
+    var deskuId = $(".typeText").attr("data-deskuId");
+    var collect = $(".typeText").attr("data-col");
+    var addUrl = "procurementItem";
+    var delUrl = "procurement";
+    collect == undefined ? addUrl = addUrl : addUrl = "procurementBakItem";
+    collect == undefined ? delUrl = delUrl : delUrl = "procurementBak";
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/" + addUrl + "/addpitem",
+        data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
+        cache: true,
+        success: function(item) {
+            isCheckAdd(typeId, 1)
+            $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: baseUrl + "/" + delUrl + "/delete",
+                data: { "procurementId": typeId, "pitemlist": deskuId },
+                cache: false,
+                success: function(item) {
+                    if (collect != undefined) {
+                        Collection()
+                    } else {
+                        Purchase()
+                    }
+
+                    leftBut()
+                    moClick(typeId)
+                    $("#retunRcp").hide();
+                }
+            })
+        }
+    })
+
+})
+
+$("#recpHead").delegate(".reset", "click", function() {
+    $(".over_a li").removeClass("activeLi")
+    $(".over_a li").find("img").css("opacity", 1);
+    $.each($(".r_head").find("input"), function(i) {
+
+        $(this).prop("checked", false)
+
+    })
+})
+
+$("#recpHead").delegate(".over_a li", "click", function() {
+    if ($(this).hasClass("activeLi")) {
+        $(this).removeClass("activeLi")
+        $(this).find("img").css("opacity", 1);
+    } else {
+        $(this).addClass("activeLi")
+        $(this).find("img").css("opacity", 0.4);
+    }
+
+})
 
 function removePlanP(typeId, skuId, obj) {
 
@@ -238,7 +397,6 @@ function removePlanP(typeId, skuId, obj) {
             Purchase()
             leftBut()
             $(obj).parent().parent().remove();
-            addTips("已删除")
             moClick(typeId)
         }
     })
@@ -311,37 +469,13 @@ function changListdataW(obj) {
 
 //收藏
 $("#w_person").delegate(".c_isCheck", "click", function() {
-    cnshrine($(this).attr("data-type"))
+    cnshrine($(this).attr("data-type"), 2)
         //更新数据
 
 });
 
 
-//方案夹收藏
-function cnshrine(typeId, list) {
 
-    isCheckAdd(typeId, 2)
-    $.ajax({
-        type: "POST",
-        url: baseUrl + "/procurementBak/addp?pid=" + typeId,
-        contentType: "application/json",
-        dataType: "json",
-        success: function(jsonResult) {
-            Purchase()
-            setTimeout(leftBut(), 200)
-            addTips("已加入收藏方案")
-            moClick(typeId);
-            try {
-                if (list != null) {
-                    Collection();
-                }
-            } catch (error) {
-
-            }
-        }
-    })
-
-}
 
 //模拟点击
 function moClick(type) {
@@ -406,7 +540,7 @@ $.ajax({
     cache: false,
     beforeSend: function() {
         var videoH = getCookie("videoH");
-        videoH == null ? setCookie("videoH", " ") : videoH = videoH;
+        videoH == null ? setCookie("videoH", " ", 0) : videoH = videoH;
         if (getCookie("videoH") != "") {
             return false
         }

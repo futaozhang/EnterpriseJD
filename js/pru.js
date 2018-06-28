@@ -154,7 +154,7 @@ function addPlan(typeId, skuId, type, tipsName) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/addpitem",
-        data: { "pid": typeId, "goodsid": skuId, "message": type },
+        data: { "pid": typeId, "goodsid": skuId, "message": type, "messageid": getCookie("messageid") },
         cache: true,
         success: function(item) {
             isCheckAdd(typeId, 1)
@@ -218,7 +218,7 @@ $.ajax({
     cache: false,
     beforeSend: function() {
         var videoH = getCookie("videoH");
-        videoH == null ? setCookie("videoH", 2, 3) : videoH = videoH;
+        videoH == null ? setCookie("videoH", 2, 0.5) : videoH = videoH;
 
         if (getCookie("videoH") == 1) {
 

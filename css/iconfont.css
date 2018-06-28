@@ -18,22 +18,47 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-jia:before { content: "\f018b"; }
+.icon-jia:before {
+    content: "\f018b";
+}
 
-.icon-user:before { content: "\e611"; }
+.icon-user:before {
+    content: "\e611";
+}
 
-.icon-xiugai07:before { content: "\e738"; }
+.icon-xiugai07:before {
+    content: "\e738";
+}
 
-.icon-you:before { content: "\e63f"; }
+.icon-you:before {
+    content: "\e63f";
+}
 
-.icon-zuo:before { content: "\e640"; }
+.icon-zuo:before {
+    content: "\e640";
+}
 
-.icon-jianhao:before { content: "\e688"; }
+.icon-jianhao:before {
+    content: "\e688";
+}
 
-.icon-jiahao:before { content: "\e689"; }
+.icon-jiahao:before {
+    content: "\e689";
+}
 
-.icon-guanbi:before { content: "\e606"; }
+.icon-guanbi:before {
+    content: "\e606";
+}
 
-.icon-jiahao1:before { content: "\e616"; }
+.icon-jiahao1:before {
+    content: "\e616";
+}
 
-.icon-jianhao1:before { content: "\e617"; }
+.icon-jianhao1:before {
+    content: "\e617";
+}
+
+.scroll_content::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}

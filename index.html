@@ -113,10 +113,10 @@
                         </div>
 
                         {{~it:value:index}} {{?value.filtername!=undefined}}
-                        <div class="alert_t alist">
+                        <div class="alert_t alist {{? value.ischecked==1}}must {{?}}">
                             <span>{{=value.filtername}}
                              {{? value.ischecked==1}}<i class="tem">*</i>{{??}}<i>&nbsp;</i>{{?}}
-                            </span> {{? value.selecttype==2}} {{~value.avlist:item:j}}
+                            </span> {{?value.selecttype==2}} {{~value.avlist:item:j}}
                             <input type="radio" name="radio_{{=index}}" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{??}} {{~value.avlist:item:j}}
                             <input type="checkBox" name="" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{?}}
                         </div>

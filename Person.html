@@ -134,10 +134,79 @@
     </div>
 
     <div id="retunRcp">
-        <div>
+        <i class="iconfont" onclick="$('#retunRcp').hide()">&#xe606;</i>
+        <i class="bg"></i>
+        <div class="tempelateD">
+            <div class="r_body">
 
+                <div class="r_head" id="recpHead">
+                    <script type="text/template" id="recpPro">
+                        <div class="alert_t must">
+                            <span>选购机型<i>*</i></span>
+                            <input type="radio" name="noType" id="alert_1" value="2" /><label for="alert_1">台式机(含一体机)</label>
+                            <input type="radio" name="noType" id="alert_2" value="3" /><label for="alert_2">笔记本电脑</label>
+                        </div>
+                        {{~it:value:index}} {{?value.filtername!=undefined}}
+                        <div class="alert_t alist {{? value.ischecked==1}}must{{??}}tem{{?}}">
+                            <span>{{=value.filtername}}
+                             {{? value.ischecked==1}}<i class="tem">*</i>{{??}}<i>&nbsp;</i>{{?}}
+                            </span> {{? value.selecttype==2}} {{~value.avlist:item:j}}
+                            <input type="radio" name="radio_{{=index}}" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{??}} {{~value.avlist:item:j}}
+                            <input type="checkBox" name="" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{?}}
+                        </div>
+                        {{?}} {{~}}
+                        <div class="alert_w"> <span>选择品牌</span>
+                            <div class="alert_ws"> <i></i>
+                                <div id="alert_img_h">
+                                    <ul class="over_a">
+                                        {{~it:value:index}} {{~value.brandlist:item:j}}
+                                        <li data-id="{{=item.id}}"><img src="{{=item.logo}}" alt="{{=item.name}}" /></li>
+                                        {{~}} {{~}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alertFoot">
+                            <button class="reset">重置</button>
+                            <button class="submit">搜索</button>
+                        </div>
+                    </script>
+
+                </div>
+                <div class="typeText"></div>
+
+                <div class="r_content" id="recpList">
+                    <script type="text/template" id="recpListTem">
+                        <ul>
+                            {{?it.length==0}}
+                            <h2 class="moreTips">暂无筛选中商品，请重新选择</h2>
+                            {{?}} {{~it:value:index}}
+                            <li>
+                                <div class="warp">
+                                    <div class="warp_img">
+                                        <a href="https://item.jd.com/{{=value.skuid}}.html" target="_blank"> <img src="{{=value.thumbnail}}" title="{{=value.name}}" /></a>
+                                    </div>
+                                    <div class="warp_Price">
+                                        <h5>京东价：￥{{=value.jdprice.toFixed(2)}}</h5>
+                                        {{?value.eprice!=undefined}}
+                                        <h4>企业专享价：￥{{=value.eprice}}</h4>
+                                        {{??}}
+                                        <h4>企业专享价：暂无</h4>
+                                        {{?}}
+                                    </div>
+                                    <div class="warp_t">
+                                        <p class="warp_title"> {{=value.name}}</p>
+                                        <p class="warp_ft">{{=value.brandName}}</p>
+                                    </div>
+                                    <div class="warp_sle"><span class="addSelect" data-sku="{{=value.skuid}}"><label for="add_0">加入到当前方案</label></span> </div>
+                                </div>
+                            </li>
+                            {{~}}
+                        </ul>
+                    </script>
+                </div>
+            </div>
         </div>
-
     </div>
 
 </body>
@@ -172,7 +241,7 @@
             </span>
         </span>
         {{?it.collecttype==1}}
-        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}"><i class="iconfont"></i>加入收藏</a>{{??}}
+        <a href="javascript:;" class="collection nockeck" data-type="{{=it.id}}" data_p="2"><i class="iconfont"></i>加入收藏</a>{{??}}
         <a href="javascript:;" class="collection ischeck"><i class="iconfont red"></i>已收藏</a>{{?}}
 
     </div>
@@ -361,18 +430,18 @@
                             {{?}} {{~}}
 
                         </td>
-                        <td>
+                        <td class="titleText">
                             {{?item.message=="行政办公"}}
                             <span class="office">行政办公</span> {{??item.message=="技术研发"}}
                             <span class="techology">技术研发</span> {{??item.message=="高层管理"}}
                             <span class="manager">高层管理</span> {{??item.message=="商务便携"}}
                             <span class="portadle">商务便携</span> {{??}}
-                            <span class="techology">视觉设计</span> {{?}}
+                            <span class="techology">----</span> {{?}}
 
                         </td>
                         <td class="tb_opreat">
                             <a href="javascript:;" class="tb_del" data-typid="{{=value.id}}" data-skid="{{=item.id}}">删除</a>
-                            <!-- <a href="javascript:; " class="replay " data-typid="{{=value.id}} " data-skid="{{=item.id}} ">替换</a> -->
+                            <a href="javascript:;" class="replay" data-typid="{{=value.id}}" data-message="{{=item.messageid}}" data-skid="{{=item.id}}">替换</a>
                         </td>
                     </tr>
 

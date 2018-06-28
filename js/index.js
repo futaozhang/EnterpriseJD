@@ -63,7 +63,7 @@ $("#mainList").delegate(".selcetor", 'click', function() {
 
     //设置选择类目
     setCookie("Type", $(this).find(".p1").text().trim().replace(/\s/g, ""))
-
+    setCookie("messageid", $(this).attr("data-jum"))
 
 });
 
@@ -131,7 +131,8 @@ function isCheck() {
 
     //品牌
     setCookie("categoryid", $('input[name="noType"]:checked').val())
-        //图标
+
+    //图标
     href.length != 0 ? href = href : href.push("")
     setCookie("bidlist", href.join("-"))
         //
@@ -174,7 +175,7 @@ function alertTem(id) {
         if (item.length != 0) {
             document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
             $(".alertBox").show()
-            $(".tem").parent().parent().addClass("must")
+                // $(".tem").parent().parent().addClass("must")
         }
         return false
     })
