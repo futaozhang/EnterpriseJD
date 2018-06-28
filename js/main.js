@@ -585,9 +585,11 @@ function login() {
 
 function setCookie(name, value, time) {
 
-    var Days = 30;
+
+    time == undefined ? time = 5 : time = time;
+    //alert(time)
     var exp = new Date();
-    exp.setTime(exp.getTime() + Days * 3 * 60 * 60 * 1000);
+    exp.setTime(exp.getTime() + 8 * time * 60 * 60 * 1000);
     document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
@@ -736,9 +738,10 @@ $.ajax({
 
 function closeTop(obj) {
     $("#topImg").hide()
+
 }
 
 $("body").delegate("#videos .iconfont", "click", function() {
     $("#videos").hide()
-    setCookie("videoH", 1)
+    setCookie("videoH", 1, 3)
 })

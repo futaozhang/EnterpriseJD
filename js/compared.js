@@ -15,13 +15,16 @@ function comparedList() {
         },
         cache: false,
         success: function(item) {
+            var listData = [];
             $("#warp_content").empty()
-            document.getElementById('warp_content').innerHTML = doT.template(k_tmpl)(item);
+            for (var i = 0; i < 3; i++) {
+                listData.push(item[i])
+            }
+            document.getElementById('warp_content').innerHTML = doT.template(k_tmpl)(listData);
             pricCom()
         }
 
     })
-
 }
 
 comparedList();

@@ -178,10 +178,13 @@ Array.prototype.remove = function(val) {
     //ie
     //写cookies 
 
-function setCookie(name, value) {
-    var Days = 30;
+function setCookie(name, value, time) {
+
+
+    time == undefined ? time = 5 : time = time;
+    //alert(time)
     var exp = new Date();
-    exp.setTime(exp.getTime() + Days * 2 * 60 * 60 * 1000);
+    exp.setTime(exp.getTime() + 8 * time * 60 * 60 * 1000);
     document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
@@ -215,9 +218,9 @@ $.ajax({
     cache: false,
     beforeSend: function() {
         var videoH = getCookie("videoH");
-        videoH == null ? setCookie("videoH", " ") : videoH = videoH;
+        videoH == null ? setCookie("videoH", 2, 3) : videoH = videoH;
 
-        if (getCookie("videoH") != "") {
+        if (getCookie("videoH") == 1) {
 
             return false
         }
