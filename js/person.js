@@ -540,8 +540,8 @@ $.ajax({
     cache: false,
     beforeSend: function() {
         var videoH = getCookie("videoH");
-        videoH == null ? setCookie("videoH", " ", 0) : videoH = videoH;
-        if (getCookie("videoH") != "") {
+
+        if (videoH == 2) {
             return false
         }
     },

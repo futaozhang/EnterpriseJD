@@ -218,10 +218,8 @@ $.ajax({
     cache: false,
     beforeSend: function() {
         var videoH = getCookie("videoH");
-        videoH == null ? setCookie("videoH", 2, 0.5) : videoH = videoH;
 
-        if (getCookie("videoH") == 1) {
-
+        if (videoH == 2) {
             return false
         }
     },
