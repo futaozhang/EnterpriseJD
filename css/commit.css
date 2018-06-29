@@ -104,9 +104,9 @@ button:focus {
 }
 
 .isLogoing {
-    position: fixed;
+    position: absolute;
     left: 360px;
-    top: 35%;
+    top: 32%;
     width: 60px;
 }
 
@@ -1853,12 +1853,12 @@ table {
     height: 100%;
     left: 50%;
     top: 0px;
-    margin-left: -640px;
+    margin-left: -655px;
     display: none;
 }
 
 #retunRcp .r_body {
-    width: 100%;
+    width: 1310px;
     height: 90%;
     overflow-y: auto;
     background: white;
@@ -1868,7 +1868,7 @@ table {
     width: 98%;
     margin-left: 1%;
     margin-top: 10px;
-    height: 300px;
+    height: 220px;
     min-width: 1260px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -1913,13 +1913,18 @@ table {
     width: 100%
 }
 
+#retunRcp .alert_ws {
+    top: 5px;
+}
+
 #retunRcp .alert_w {
     overflow-y: auto;
-    height: 140px;
+    height: 60px;
 }
 
 #retunRcp .alert_w span {
-    height: 140px;
+    height: 60px;
+    line-height: 60px;
 }
 
 #retunRcp .r_content {
@@ -1928,17 +1933,18 @@ table {
 
 #retunRcp .r_content ul {
     padding: 15px;
-    min-width: 1260px;
+    min-width: 1200px;
 }
 
 #retunRcp .r_content ul li {
     float: left;
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
     margin-bottom: 15px;
 }
 
 #retunRcp .warp {
-    width: 215px;
+    width: 218px;
     height: 370px;
     padding: 2px 10px;
     border: 1px solid silver;
@@ -1958,8 +1964,16 @@ table {
 }
 
 #retunRcp .warp .addSelect {
-    width: 180px;
-    margin-left: 15px;
+    width: 100px;
+    cursor: pointer;
+}
+
+#retunRcp .warp .addSelectRcp {
+    width: 100px;
+    cursor: pointer;
+}
+
+#retunRcp .warp .addSelectRcp label {
     cursor: pointer;
 }
 
@@ -1987,7 +2001,13 @@ table {
 }
 
 #retunRcp .over_a {
-    height: 120px !important;
+    height: 50px !important;
+    overflow: auto;
+    min-height: 50px;
+}
+
+#retunRcp .alert_ws ul li {
+    margin: 4px;
 }
 
 

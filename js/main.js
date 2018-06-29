@@ -73,9 +73,9 @@ function leftBut() {
                 var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
                     //增加购物方案延迟渲染
                 if (item.length > 3) {
-                    $(".isLogoing").css("top", "20%");
+                    $(".isLogoing").css("top", "30%");
                 } else if (item.length > 5) {
-                    $(".isLogoing").css("top", "15%");
+                    $(".isLogoing").css("top", "25%");
                 }
                 setTimeout(function() {
 

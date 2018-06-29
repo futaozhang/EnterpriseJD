@@ -205,7 +205,11 @@
                                         <p class="warp_title"> {{=value.name}}</p>
                                         <p class="warp_ft">{{=value.brandName}}</p>
                                     </div>
-                                    <div class="warp_sle"><span class="addSelect" data-sku="{{=value.skuid}}"><label for="add_0">替换到当前方案</label></span> </div>
+                                    <div class="warp_sle">
+                                        <span class="addSelect" data-sku="{{=value.skuid}}"><label for="add_0">替换</label></span>
+                                        <span class="addSelectRcp" data-sku="{{=value.skuid}}"><label for="add_0">添加</label></span>
+
+                                    </div>
                                 </div>
                             </li>
                             {{~}}
@@ -448,7 +452,7 @@
                         </td>
                         <td class="tb_opreat">
                             <a href="javascript:;" class="tb_del" data-typid="{{=value.id}}" data-skid="{{=item.id}}">删除</a>
-                            <a href="javascript:;" class="replay" data-typid="{{=value.id}}" data-message="{{=item.messageid}}" data-skid="{{=item.id}}">替换</a>
+                            <a href="javascript:;" class="replay" data-typid="{{=value.id}}" data-message="{{=item.messageid}}" data-skid="{{=item.id}}">编辑</a>
                         </td>
                     </tr>
 

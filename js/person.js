@@ -250,7 +250,7 @@ $(".tempelateD").delegate(".submit", "click", function() {
 })
 $("#retunRcp").delegate(".openSlect", "click", function() {
 
-    $(".tempelateD .r_head").animate({ height: "300px" }, 500);
+    $(".tempelateD .r_head").animate({ height: "220px" }, 500);
     $(".alertFoot").show()
     $(this).hide()
     $(".closeSlect").show()
@@ -342,7 +342,6 @@ $("#recpList").delegate(".addSelect", "click", function() {
     var delUrl = "procurement";
     collect == undefined ? addUrl = addUrl : addUrl = "procurementBakItem";
     collect == undefined ? delUrl = delUrl : delUrl = "procurementBak";
-
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -363,7 +362,6 @@ $("#recpList").delegate(".addSelect", "click", function() {
                     } else {
                         Purchase()
                     }
-
                     leftBut()
                     moClick(typeId)
                     $("#retunRcp").hide();
@@ -373,6 +371,44 @@ $("#recpList").delegate(".addSelect", "click", function() {
     })
 
 })
+
+
+//仅添加
+
+$("#recpList").delegate(".addSelectRcp", "click", function() {
+    //先添加
+    var skuId = $(this).attr("data-sku")
+    var typeId = $(".typeText").attr("data-type")
+    var messageid = $(".typeText").attr("data-message")
+    var type = $(".typeText").text()
+    var deskuId = $(".typeText").attr("data-deskuId");
+    var collect = $(".typeText").attr("data-col");
+    var addUrl = "procurementItem";
+    collect == undefined ? addUrl = addUrl : addUrl = "procurementBakItem";
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/" + addUrl + "/addpitem",
+        data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
+        cache: true,
+        success: function(item) {
+            isCheckAdd(typeId, 1)
+            Collection()
+            Purchase()
+            if (collect != undefined) {
+
+            } else {
+
+            }
+            leftBut()
+            moClick(typeId)
+            $("#retunRcp").hide();
+        }
+    })
+
+})
+
 
 $("#recpHead").delegate(".reset", "click", function() {
     $(".over_a li").removeClass("activeLi")
