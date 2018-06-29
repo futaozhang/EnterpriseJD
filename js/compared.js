@@ -17,9 +17,16 @@ function comparedList() {
         success: function(item) {
             var listData = [];
             $("#warp_content").empty()
-            for (var i = 0; i < 3; i++) {
-                listData.push(item[i])
+
+            if (item.length > 3) {
+                for (var i = 0; i < 3; i++) {
+                    listData.push(item[i])
+                }
+            } else {
+                listData = item
+
             }
+
             document.getElementById('warp_content').innerHTML = doT.template(k_tmpl)(listData);
             pricCom()
         }

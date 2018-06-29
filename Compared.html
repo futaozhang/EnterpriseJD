@@ -56,8 +56,8 @@
         <div class="w clearfix" id="warp_content">
 
             <script type="text/template" id="k_tempelate">
-
-                {{ for (var i = 0, l = it.length; i
+                {{?it.length==0}}
+                <h3>暂无采购方案</h3>{{?}} {{ for (var i = 0, l = it.length; i
                 < l; i++) {}} <div class="c_conte">
 
                     <div class="t_title">
@@ -94,12 +94,13 @@
                                     </td>
                                     <td>
                                         <div class="ul_text">
-                                            {{?item.message=="日常办公"}}
-                                            <span class="office">日常办公</span> {{??item.message=="技术研发"}}
+                                            {{?item.message=="行政办公"}}
+                                            <span class="office">行政办公</span> {{??item.message=="技术研发"}}
                                             <span class="techology">技术研发</span> {{??item.message=="高层管理"}}
                                             <span class="manager">高层管理</span> {{??item.message=="商务便携"}}
-                                            <span class="portadle">商务便携</span> {{??}}
-                                            <span class="techology">技术研发</span> {{?}}
+                                            <span class="portadle">商务便携</span> {{??item.message=="视觉设计"}}
+                                            <span class="designer">视觉设计</span> {{??}}
+                                            <span class="">----</span> {{?}}
                                             <span>{{~item.goodsdetail:goods:j}}{{=goods.name}}{{~}}</span>
                                             <span>{{~item.goodsdetail:goods:j}}{{=goods.name}}{{~}}</span>
                                         </div>

@@ -208,12 +208,12 @@ var recpPro = document.getElementById('recpPro').innerHTML;
 //替换
 $("#w_person").delegate(".tb_opreat .replay", "click", function() {
     $(".typeText").removeAttr("data-col")
-    $("body").css("overflow", "hidden")
+
     $(".r_body .typeText").attr("data-type", $(this).attr("data-typid"))
     $(".r_body .typeText").attr("data-message", $(this).attr("data-message"))
     $(".typeText").attr("data-deskuId", $(this).attr("data-skid"))
     $(".r_body .typeText").text($(this).parent().siblings(".titleText").text())
-
+    $("body").css("overflow", "hidden")
     $.getJSON(baseUrl + "/goodsAttribute/getalist", { "sceneid": $(this).attr("data-message") }, function(json) {
         document.getElementById('recpHead').innerHTML = doT.template(recpPro)(json);
         $("#retunRcp").show()
@@ -222,6 +222,11 @@ $("#w_person").delegate(".tb_opreat .replay", "click", function() {
 
 
 })
+
+function retunRcp() {
+    $("#retunRcp").hide()
+    $("body").css("overflow", "auto")
+}
 
 //数据
 

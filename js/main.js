@@ -726,7 +726,7 @@ function getCookieCores(c_name) {
 
 $.ajax({
     type: "GET",
-    contentType: "application/json",
+
     url: baseUrl + "/homepageAd/list",
     cache: false,
     success: function(item) {
