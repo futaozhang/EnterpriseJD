@@ -20,12 +20,12 @@ $.ajax({
     type: "POST",
     contentType: "application/json",
     url: baseUrl + "/scene/list",
-    timeout: 8000,
+    timeout: 5000,
     cache: false,
     success: function(item) {},
     error: function(request, status, error) {
         if (error == 'timeout' || error == "null") {
-
+            alert("服务响应超时")
         }
         if (status == 408 || status == 500) {
             alert('服务数据出错')
@@ -206,7 +206,7 @@ function newAddColect(id, json) {
 function runBg(th) {
 
     setTimeout(function() {
-        $(".Jd_footer").fadeIn()
+        $(".Jd_footer").show()
     }, 300)
     $(".isLogoing a").removeClass("activeYellow")
     $(th).addClass("activeYellow")

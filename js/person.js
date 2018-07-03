@@ -208,7 +208,6 @@ var recpPro = document.getElementById('recpPro').innerHTML;
 //替换
 $("#w_person").delegate(".tb_opreat .replay", "click", function() {
     $(".typeText").removeAttr("data-col")
-
     $(".r_body .typeText").attr("data-type", $(this).attr("data-typid"))
     $(".r_body .typeText").attr("data-message", $(this).attr("data-message"))
     $(".typeText").attr("data-deskuId", $(this).attr("data-skid"))

@@ -94,6 +94,11 @@ function addP() {
             document.getElementById('contrast_warp').innerHTML = doT.template(j_contrast)(item);
             if (item != "") {
                 $(".contrast").fadeIn()
+                try {
+                    ContrastFuc()
+                } catch (error) {
+
+                }
             }
         });
 }
