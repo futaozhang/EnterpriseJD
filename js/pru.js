@@ -88,40 +88,50 @@ $(".contrast").delegate(".clear_cont", "click", function() {
 function addP() {
     var date = getCookie("Contrast").split(",").join("-")
     var j_contrast = document.getElementById('j_Contrast').innerHTML;
-    //getCookie("Contrast")
+
     $.getJSON(baseUrl + "/goods/compare", { "skulist": date },
         function(item) {
             document.getElementById('contrast_warp').innerHTML = doT.template(j_contrast)(item);
+
             if (item != "") {
                 $(".contrast").fadeIn()
-                try {
-                    ContrastFuc()
-                } catch (error) {
-
-                }
             }
+
+            var datas = getCookie("Contrast").split(',')
+
+            //全局置空
+            $("#content_warp").find("input[type=checkbox]").prop("checked", false)
+                //页面相同数据默认加入选中
+            var skuAdd = $("#content_warp").find("input[type=checkbox]");
+
+            for (var i = 0; i < $(skuAdd).length; i++) {
+                var elment = $(skuAdd)[i]
+                if ($.inArray($(elment).attr("data-sku"), datas) != -1) {
+                    $(elment).prop("checked", true)
+                }
+
+            }
+
         });
 }
 
 //数据对比
 function ContrastFuc() {
-
-
     addP()
-    var data = getCookie("Contrast").split(',')
+        // var data = getCookie("Contrast").split(',')
 
-    //全局置空
-    $("#content_warp").find("input[type=checkbox]").prop("checked", false)
-        //页面相同数据默认加入选中
-    var skuAdd = $("#content_warp").find("input[type=checkbox]");
+    // //全局置空
+    // $("#content_warp").find("input[type=checkbox]").prop("checked", false)
+    //     //页面相同数据默认加入选中
+    // var skuAdd = $("#content_warp").find("input[type=checkbox]");
 
-    for (var i = 0; i < $(skuAdd).length; i++) {
-        var elment = $(skuAdd)[i]
-        if ($.inArray($(elment).attr("data-sku"), data) != -1) {
-            $(elment).prop("checked", true)
-        }
+    // for (var i = 0; i < $(skuAdd).length; i++) {
+    //     var elment = $(skuAdd)[i]
+    //     if ($.inArray($(elment).attr("data-sku"), data) != -1) {
+    //         $(elment).prop("checked", true)
+    //     }
 
-    }
+    // }
 
 }
 
