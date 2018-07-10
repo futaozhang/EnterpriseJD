@@ -26,7 +26,7 @@ function reload() {
         }, 40)
 
     } else {
-
+        leftBut();
 
     };
 

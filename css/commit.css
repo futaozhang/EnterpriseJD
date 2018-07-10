@@ -538,7 +538,7 @@ button:focus {
 }
 
 .Jd_footer {
-    display: none;
+    /* display: none; */
 }
 
 .Jd_footer li {
