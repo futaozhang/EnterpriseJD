@@ -1,17 +1,17 @@
 var sourDate = { "id": -1 }
     //未登录用户数据
     //模拟用户Id
-setCookie("userId", "1")
+    //setCookie("userId", "2")
 
 
 //var baseUrl = "http://localhost:8080"
-// var baseUrl = "http://pre-admin.pcshop.jd.com"
-var baseUrl = "http://192.168.1.247:8080"
+var baseUrl = "http://pre-admin.pcshop.jd.com"
+    //var baseUrl = "http://192.168.1.247:8080"
 
 
 //用户名
 var userName = "游客"
-$("#userName").text(getCookieCores("unick") == null ? unescape(userName) : unescape((getCookieCores("unick"))))
+
 
 //存储是否被收藏的采购
 var judgment = [];
@@ -38,6 +38,7 @@ $.ajax({
 // 左侧按钮数据请求
 
 $.ajaxSetup({ cache: false });
+leftBut();
 
 function leftBut() {
     var leftTmp = document.getElementById('leftTmp').innerHTML;
@@ -56,50 +57,52 @@ function leftBut() {
         return false;
     }
     $.ajax({
-            url: baseUrl + "/procurement/getplist",
-            data: { "userid": getCookie("userId"), "status": 1 },
-            cache: false,
-            success: function(item) {
-                // sourDate = item;
-                var add_pri = '';
-                //数据渲染
+        url: baseUrl + "/procurement/getplist",
+        data: { "userid": getCookie("userId"), "status": 1 },
+        cache: false,
+        success: function(item) {
+            // sourDate = item;
+            //数据渲染
+            addpr_li(item)
+            document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
 
-                document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
-
-                for (var i = 0; i < item.length; i++) {
-                    add_pri += "<a href='javascript:;' data-typId=" + item[i].id + "><li class=" + 'jdAdd_' + [i] + ">" + item[i].name + "</li></a>"
-                }
-
-                var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
-                    //增加购物方案延迟渲染
-                if (item.length > 3) {
-                    $(".isLogoing").css("top", "30%");
-                } else if (item.length > 5) {
-                    $(".isLogoing").css("top", "25%");
-                }
-                setTimeout(function() {
-
-                    $(".add_pri ul").html(function(n) {
-                        if (item.length > 5) {
-
-                            return add_pri
-                        } else {
-                            return add_pri + addp
-                        }
-
-                    })
-
-                }, 300)
-
-
-            }
         }
-
-    );
-
+    });
 
 }
-leftBut();
+
+
+
+function addpr_li(item) {
+    var add_pri = '';
+    for (var i = 0; i < item.length; i++) {
+        add_pri += "<a href='javascript:;' data-typId=" + item[i].id + "><li class=" + 'jdAdd_' + [i] + ">" + item[i].name + "</li></a>"
+    }
+
+    var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
+        //增加购物方案延迟渲染
+    if (item.length > 3) {
+        $(".isLogoing").css("top", "30%");
+    } else if (item.length > 5) {
+        $(".isLogoing").css("top", "25%");
+    }
+    //setTimeout(function() {
+
+    $(".add_pri ul").html(function(n) {
+        if (item.length > 5) {
+            return add_pri
+
+        } else if (item.length == 0) {
+
+            return addp
+        } else if (item.length < 5) {
+            return add_pri + addp
+        }
+
+    })
+
+    //}, 300)
+}
 
 //左侧数据切换
 
@@ -160,8 +163,10 @@ function leftList(id, fun) {
 //新添加方案
 
 function addProgram() {
+    $(".Jd_footer").hide()
     if (getCookie("userId") == null || getCookie("userId") == "") {
-        alert("请先登录")
+        // alert("请先登录")
+        login()
         return false
     };
     var str = '<a href="javascript:;" data-src="2-1" class="addProgram">自主采购方案</a>'
@@ -183,6 +188,7 @@ function addProgram() {
 
 //新增采购方案
 function newAddColect(id, json) {
+    $(".Jd_footer").hide()
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -589,8 +595,14 @@ function changListdataL(obj) {
         }
     })
 }
-
-
+//清除所有cookie
+function clearCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if (keys) {
+        for (var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+}
 
 //登陆调用
 function login() {
@@ -599,11 +611,18 @@ function login() {
             // firstCheck: false,
             modal: true, //false跳转,true显示登录注册弹层
             complete: function() {
-                $.post(baseUrl + "/appuser/adduser", {}, function(i) {
 
-                    setCookie("userId", i.id);
+                $.post(baseUrl + "/appuser/adduser", { "pin": getCookie('pin') },
 
-                })
+                    function(i) {
+                        if (i.code == 200 || i.code == 304) {
+                            setCookie("userId", i.userid);
+                        } else if (i.code = 201) {
+                            alert("验证失败请重新登录")
+                            clearCookie();
+                            setTimeout(function() { login() }, 300)
+                        }
+                    })
             }
         })
     })
@@ -767,6 +786,7 @@ function closeTop(obj) {
 
 }
 
+$("#userName").text(getCookie("unick") == null ? unescape(userName) : unescape((getCookie("unick"))))
 $("body").delegate("#videos .iconfont", "click", function() {
     $("#videos").hide()
     document.cookie = "videoH=2";

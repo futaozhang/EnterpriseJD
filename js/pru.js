@@ -11,6 +11,7 @@ window.onload = function() {
         if (getCookie("slectorType") == null || getCookie("slectorType") == "") {
             window.location = "index.html"
         }
+        leftBut()
 
     }
     // 筛选后数据渲染
@@ -28,10 +29,13 @@ $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid")
             })
         }, 300)
         return false;
+    } else {
+        leftBut()
     }
     leftBut()
 
 });
+
 
 
 //悬停加入购物方案显示

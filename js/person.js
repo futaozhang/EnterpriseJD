@@ -2,8 +2,8 @@
  * 采购
  */
 var noData = [];
-var baseUrl = "http://192.168.1.247:8080"
-    // var baseUrl = "http://pre-admin.pcshop.jd.com"
+//var baseUrl = "http://192.168.1.247:8080"
+var baseUrl = "http://pre-admin.pcshop.jd.com"
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)
@@ -586,7 +586,7 @@ $("#w_person").delegate(".but_jd", "click", function() {
         id.push($(this).find(".t_num input").attr("id"))
     })
 
-    shoppingCart(num.join(","), id.join(","))
+    shoppingCart(id.join(","), num.join(","))
 });
 
 $.ajax({

@@ -134,6 +134,7 @@ function getCookie(name) {
 }
 
 function diffrent() {
+    leftBut()
     var dif = $("#warp_product tr")
     for (var i = 1; i < dif.length; i++) {
 
