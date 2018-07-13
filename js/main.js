@@ -1,7 +1,7 @@
 var sourDate = { "id": -1 }
     //未登录用户数据
     //模拟用户Id
-    //setCookie("userId", "2")
+setCookie("userId", "2")
 
 
 //var baseUrl = "http://localhost:8080"
@@ -134,6 +134,7 @@ function leftList(id, fun) {
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
     $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
+        // $.getJSON("../lib/listdata.json",
         function(item) {
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
@@ -147,10 +148,12 @@ function leftList(id, fun) {
 
                     picur = item.eprice * infoLIst.goodsnum
 
-                    if (item.eprice != " ") {
+                    if (item.eprice != "") {
                         sum.push(item.jdprice * infoLIst.goodsnum)
+
                     } else {
                         sum.push(item.eprice * infoLIst.goodsnum)
+
                     }
                 })
             })
@@ -324,25 +327,27 @@ $("#mianCont").delegate(".input_num .reduce", 'click', function(dom) {
     if (nowData < 2) {
         return false;
     }
-
-    $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
-    var redues = $("#price").text() - $(this).parent().parent().find("strong").text().substring(1)
-    $("#price").text(parseInt(redues).toFixed(2))
-    var price = $("#number").text()
-    $("#number").text(parseInt(--price))
+    leftList($(this).parent().siblings("button").attr("data-type"))
+        // $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
+        // var redues = $("#price").text() - $(this).parent().parent().find("strong").text().substring(1)
+        // $("#price").text(parseInt(redues).toFixed(2))
+        // var price = $("#number").text()
+        // $("#number").text(parseInt(--price))
     changListdataL($(this))
 
 });
 
 
 $("#mianCont").delegate(".add", 'click', function() {
-    var nowData = $(this).parent().find("input[type='text']").prop("value");
-    $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
-    var sum = parseInt($("#price").text()) +
-        parseInt($(this).parent().parent().find("strong").text().substring(1))
-    $("#price").text(parseInt(sum).toFixed(2))
-    var price = $("#number").text()
-    $("#number").text(parseInt(++price))
+
+    leftList($(this).parent().siblings("button").attr("data-type"))
+        // var nowData = $(this).parent().find("input[type='text']").prop("value");
+        // $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
+        // var sum = parseInt($("#price").text()) +
+        // parseInt($(this).parent().parent().find("strong").text().substring(1))
+        // $("#price").text(parseInt(sum).toFixed(2))
+        // var price = $("#number").text()
+        // $("#number").text(parseInt(++price))
     changListdataL($(this))
 });
 
