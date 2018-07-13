@@ -104,7 +104,7 @@ function addPland(typeId, skuId, type, tipsName) {
         type: "GET",
         contentType: "application/json",
         url: baseUrl + "/procurementItem/addpitem",
-        data: { "pid": typeId, "goodsid": skuId, "message": type },
+        data: { "pid": typeId, "goodsid": skuId, "message": type, "messageid": getCookie("messageid") },
         cache: true,
         success: function(item) {
 

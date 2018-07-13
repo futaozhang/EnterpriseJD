@@ -5,8 +5,8 @@ var sourDate = { "id": -1 }
 
 
 //var baseUrl = "http://localhost:8080"
-var baseUrl = "http://pre-admin.pcshop.jd.com"
-    //var baseUrl = "http://192.168.1.247:8080"
+//var baseUrl = "http://pre-admin.pcshop.jd.com"
+var baseUrl = "http://192.168.1.247:8080"
 
 
 //用户名
