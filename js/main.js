@@ -699,12 +699,13 @@ $("#mianCont").delegate(".shoping", "click", function() {
 //加入购物车 widsList物品id  numsList数量
 function shoppingCart(widsList, numsList) {
     // wids = skuid1, skuid2, skuid3 & nums = 1, 1, 1
-    console.log(widsList)
+
     if (widsList == "" || numsList == "") {
         addTips("当前无物品")
         return false;
 
     }
+
     var url = "https://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=" + widsList + "&nums=" + numsList + "";
     window.open(url);
     addTips("加入购物车成功")
