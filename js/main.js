@@ -134,7 +134,7 @@ function leftList(id, fun) {
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
     $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
-        // $.getJSON("../lib/listdata.json",
+
         function(item) {
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
@@ -321,36 +321,76 @@ $("#mianCont").delegate(".checkBox input[type='checkbox']", "click", function() 
 
 //加减
 $("#mianCont").delegate(".input_num .reduce", 'click', function(dom) {
-
+    var redues;
     var nowData = $(this).parent().find("input[type='text']").prop("value");
 
     if (nowData < 2) {
         return false;
     }
     leftList($(this).parent().siblings("button").attr("data-type"))
-        // $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
-        // var redues = $("#price").text() - $(this).parent().parent().find("strong").text().substring(1)
-        // $("#price").text(parseInt(redues).toFixed(2))
-        // var price = $("#number").text()
-        // $("#number").text(parseInt(--price))
+    $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
+
+    if ($(this).parent().parent().find("strong").text().substring(1) == "") {
+
+        redues = $("#price").text() - $(this).parent().parent().find(".jdPrice").text().substring(5)
+    } else {
+        redues = $("#price").text() - $(this).parent().parent().find("strong").text().substring(1)
+    }
+
+    $("#price").text(parseInt(redues).toFixed(2))
+
+    var price = $("#number").text()
+
+    $("#number").text(parseInt(--price))
+
     changListdataL($(this))
 
 });
 
 
 $("#mianCont").delegate(".add", 'click', function() {
+    var sum;
 
-    leftList($(this).parent().siblings("button").attr("data-type"))
-        // var nowData = $(this).parent().find("input[type='text']").prop("value");
-        // $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
-        // var sum = parseInt($("#price").text()) +
-        // parseInt($(this).parent().parent().find("strong").text().substring(1))
-        // $("#price").text(parseInt(sum).toFixed(2))
-        // var price = $("#number").text()
-        // $("#number").text(parseInt(++price))
+    var nowData = $(this).parent().find("input[type='text']").prop("value");
+    $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
+    console.log($(this).parent().parent().find(".jdPrice").text().substring(5))
+    if ($(this).parent().parent().find("strong").text().substring(1) == "") {
+        sum = parseInt($("#price").text()) +
+            parseInt($(this).parent().parent().find(".jdPrice").text().substring(5))
+    } else {
+        sum = parseInt($("#price").text()) +
+            parseInt($(this).parent().parent().find("strong").text().substring(1))
+    }
+
+    $("#price").text(parseInt(sum).toFixed(2))
+    var price = $("#number").text()
+    $("#number").text(parseInt(++price))
+
     changListdataL($(this))
 });
 
+// function priceNun() {
+
+//     $.each($("#leftDate .li"), function() {
+//         var jdprice = [];
+//         var eprice = [];
+
+//         $.each($(this).find(".input_num input"), function(item) {
+
+//             if ($(this).val() * $(this).attr("data-eprice") == 0) {
+//                 eprice.push($(this).val() * $(this).attr("data-price"))
+//             } else {
+//                 eprice.push($(this).val() * $(this).attr("data-eprice"))
+//             }
+//             jdprice.push($(this).val() * $(this).attr("data-price"))
+
+//         })
+
+//         $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
+//         $(this).find(".price .jdPrice").text("￥" + eprice.sum().toFixed(2))
+
+//     })
+// }
 //方案更名
 $("#mianCont").delegate(".changName a", "click", function() {
     //方案Id
