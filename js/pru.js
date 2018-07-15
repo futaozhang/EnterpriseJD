@@ -94,9 +94,10 @@ $(".contrast").delegate(".clear_cont", "click", function() {
     delCookie("Contrast")
     ContrastArr = [];
     $("#content_warp").find("input[type=checkbox]").prop("checked", false)
-
-    $(".contrast").fadeOut()
-        //  addP()
+        //addP()
+        //$(".contrast").fadeIn()
+    var j_contrast = document.getElementById('j_Contrast').innerHTML;
+    document.getElementById('contrast_warp').innerHTML = doT.template(j_contrast)(ContrastArr);
 })
 
 //对比栏目数据渲染
