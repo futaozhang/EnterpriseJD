@@ -667,7 +667,7 @@ function login() {
                 } else if (i.code = 201) {
                     alert("验证失败请重新登录")
                     clearCookie();
-                    set(function() { login() }, 300)
+                    setTimeout(function() { login() }, 300)
                 }
             })
         return false;
@@ -687,7 +687,7 @@ function login() {
                         } else if (i.code = 201) {
                             alert("验证失败请重新登录")
                             clearCookie();
-                            set(function() { login() }, 300)
+                            setTimeout(function() { login() }, 300)
                         }
                     })
             }
