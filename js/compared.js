@@ -18,7 +18,7 @@ function comparedList() {
             var listData = [];
             $("#warp_content").empty()
 
-            if (item.length > 3) {
+            if (item.length > 6) {
                 for (var i = 0; i < 3; i++) {
                     listData.push(item[i])
                 }

@@ -62,7 +62,7 @@
                         </div>
                         <div class="warp_Price">
                             <h5>京东价：￥{{=value.jdprice.toFixed(2)}}</h5>
-                            {{?value.eprice!=undefined}}
+                            {{?value.eprice!=0}}
                             <h4>企业专享价：￥{{=value.eprice}}</h4>
                             {{??}}
                             <h4>企业专享价：暂无</h4>
@@ -244,7 +244,7 @@
                             <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
                             <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice.toFixed(2)}}{{~}}</p>
                             {{~value.goodsdetail:item:j}}
-                            {{?item.eprice!=""}}
+                            {{?item.eprice!=0}}
                             <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong></p>
                             {{?}}
                             {{~}}

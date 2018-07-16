@@ -143,7 +143,7 @@
                         </div>
                         <p class="pro_text">{{=value.name}}</p>
                         <p class="slive">京东价:￥{{=value.jdprice.toFixed(2)}}</p>
-                        {{?value.eprice!=""}}
+                        {{?value.eprice!=0}}
                         <p>企业专享价:<i class="jd_text">￥{{=value.eprice.toFixed(2)}}</i> </p>
                         {{??}}
                         <p><i class="jd_text"> &nbsp; </i></p>
@@ -255,7 +255,7 @@
                             <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
                             <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice.toFixed(2)}}{{~}}</p>
                             {{~value.goodsdetail:item:j}}
-                            {{?item.eprice!=""}}
+                            {{?item.eprice!=0}}
                             <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong></p>
                             {{?}}
                             {{~}}

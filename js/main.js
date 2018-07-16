@@ -40,7 +40,8 @@ $.ajax({
 $.ajaxSetup({ cache: false });
 leftBut();
 
-function leftBut() {
+function leftBut(type) {
+
     var leftTmp = document.getElementById('leftTmp').innerHTML;
 
     if (getCookie("userId") == null || getCookie("userId") == "") {
@@ -52,10 +53,11 @@ function leftBut() {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"
             })
 
-        }, 300)
+        }, 100)
 
         return false;
     }
+
     $.ajax({
         url: baseUrl + "/procurement/getplist",
         data: { "userid": getCookie("userId"), "status": 1 },
@@ -65,9 +67,16 @@ function leftBut() {
             //数据渲染
             addpr_li(item)
             document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
+            if (type == 1) {
+                $(".Jd_footer").fadeIn();
+                $(".leftSelct .bg").show();
+                $(".isLogoing").css("left", "360px")
 
+            }
+            return true
         }
     });
+
 
 }
 
@@ -148,7 +157,8 @@ function leftList(id, fun) {
 
                     picur = item.eprice * infoLIst.goodsnum
 
-                    if (item.eprice != "") {
+                    if (item.eprice == 0) {
+
                         sum.push(item.jdprice * infoLIst.goodsnum)
 
                     } else {
@@ -157,6 +167,7 @@ function leftList(id, fun) {
                     }
                 })
             })
+
             $("#number").text(num)
             $("#price").text(sum.sum().toFixed(2))
 
@@ -172,7 +183,7 @@ function addProgram() {
         login()
         return false
     };
-    var str = '<a href="javascript:;" data-src="2-1" class="addProgram">自主采购方案</a>'
+    var str = '<a href="javascript:;" data-src="2-1" class="addProgram">新建采购方案</a>'
     $(".isLogoing ").append(str)
 
     var interTextd = document.getElementById('j_tmpl').innerHTML;
@@ -283,8 +294,9 @@ function removeList(typeId, deleate) {
         data: { "procurementId": typeId, "pitemlist": deleate },
         cache: false,
         success: function(item) {
-            leftBut();
+
             leftList(typeId)
+            leftBut()
             closeOpen();
             try {
                 Purchase()
@@ -369,32 +381,11 @@ $("#mianCont").delegate(".add", 'click', function() {
     changListdataL($(this))
 });
 
-// function priceNun() {
-
-//     $.each($("#leftDate .li"), function() {
-//         var jdprice = [];
-//         var eprice = [];
-
-//         $.each($(this).find(".input_num input"), function(item) {
-
-//             if ($(this).val() * $(this).attr("data-eprice") == 0) {
-//                 eprice.push($(this).val() * $(this).attr("data-price"))
-//             } else {
-//                 eprice.push($(this).val() * $(this).attr("data-eprice"))
-//             }
-//             jdprice.push($(this).val() * $(this).attr("data-price"))
-
-//         })
-
-//         $(this).find(".price .slive").text("京东价：￥" + jdprice.sum().toFixed(2));
-//         $(this).find(".price .jdPrice").text("￥" + eprice.sum().toFixed(2))
-
-//     })
-// }
 //方案更名
 $("#mianCont").delegate(".changName a", "click", function() {
     //方案Id
     //方案名称
+
     var type = $(this).attr("data-type")
     $.ajax({
         type: "POST",
@@ -404,15 +395,19 @@ $("#mianCont").delegate(".changName a", "click", function() {
         cache: false,
         success: function(item) {
             leftList(type);
-            leftBut();
-            close(type);
+            leftBut(1)
+
             $(".changName").hide();
+            // close(type)
+
+
             try {
-                // runBg()
+
                 Purchase()
             } catch (error) {
 
             }
+
         }
     })
 
@@ -489,6 +484,11 @@ function addTips(text) {
 
 }
 
+function loadings(text) {
+    $(".tips span").text(text)
+    $(".tips").show()
+
+}
 //写cookies 
 
 
@@ -541,7 +541,7 @@ function enshrine(typeId, list) {
         dataType: "json",
         data: JSON.stringify({ "id": parseInt(typeId) }),
         success: function(jsonResult) {
-            setTimeout(leftBut(), 40)
+            setTimeout(leftBut(1), 40)
             leftList(typeId)
             close(typeId);
             try {
@@ -566,7 +566,7 @@ function cnshrine(typeId, list) {
         dataType: "json",
         success: function(jsonResult) {
 
-            setTimeout(leftBut(), 40)
+            setTimeout(leftBut(1), 40)
             addTips("已加入收藏方案")
                 //runBg()
             try {
@@ -607,9 +607,9 @@ function removePland(typeId, skuId, obj) {
         cache: false,
         success: function(item) {
             leftList(typeId);
-            leftBut(); //数据更新
+            leftBut(1); //数据更新
             $(obj).parent().parent().remove(); //物理删除
-            close(typeId);
+            //close(typeId);
             try {
                 Purchase()
             } catch (error) {

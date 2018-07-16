@@ -117,7 +117,7 @@
 
                                         <div class="ul_price">
 
-                                            <span>京东价:￥{{~item.goodsdetail:goods:j}}{{=goods.jdprice.toFixed(2)}}{{~}}</span> {{~item.goodsdetail:goods:j}} {{?goods.eprice!=""}}
+                                            <span>京东价:￥{{~item.goodsdetail:goods:j}}{{=goods.jdprice.toFixed(2)}}{{~}}</span> {{~item.goodsdetail:goods:j}} {{?goods.eprice!=0}}
                                             <span>企业专享价: <i class="jd_text">￥{{=goods.eprice.toFixed(2)}} </i> </span> {{?}} {{~}}
                                         </div>
 
@@ -268,7 +268,7 @@
                             <p class="title">{{~value.goodsdetail:item:j}}{{=item.name}}{{~}} </p>
                             <p class="jdPrice">京东价：￥{{~value.goodsdetail:item:j}}{{=item.jdprice.toFixed(2)}}{{~}}</p>
                             {{~value.goodsdetail:item:j}}
-                            {{?item.eprice!=""}}
+                            {{?item.eprice!=0}}
                             <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong></p>
                             {{?}}
                             {{~}}

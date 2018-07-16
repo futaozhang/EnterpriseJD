@@ -17,11 +17,13 @@ window.onload = function() {
     // 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
 
-
-
+loadings("商品加载中")
+$("#left_w").hide()
 $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid"), "bidlist": getCookie("bidlist"), "avlist": getCookie("slectorType") }, function(item) {
-    document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
 
+    document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
+    $(".tips").fadeOut();
+    $("#left_w").show()
     if (getCookie("userId") == null || getCookie("userId") == "") {
         setTimeout(function() {
             $(".add_pri ul").html(function(n) {

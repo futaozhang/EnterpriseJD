@@ -1256,12 +1256,23 @@ button:focus {
 }
 
 .but_jd {
-    width: 100px;
+    width: 120px;
     height: 30px;
     background: rgb(226, 58, 58);
     color: white !important;
     line-height: 30px;
     border-radius: 3px;
+    /* border: 1px solid silver; */
+}
+
+#Product .but_jd {
+    width: 120px;
+    height: 30px;
+    background: white;
+    color: rgb(226, 58, 58) !important;
+    line-height: 30px;
+    border-radius: 3px;
+    border: 1px solid silver;
 }
 
 .slive {
