@@ -177,8 +177,7 @@ $("#warp_content").delegate(".but_jd", "click", function() {
         num.push($(this).find(".ul_num input").val())
         id.push($(this).find(".ul_num input").attr("id"))
     })
-
-    shoppingCart(num.join(","), id.join(","))
+    shoppingCart(id.join(","), num.join(","))
 });
 $.ajax({
     type: "GET",

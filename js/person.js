@@ -2,8 +2,8 @@
  * 采购
  */
 var noData = [];
-var baseUrl = "http://192.168.1.247:8080"
-    //var baseUrl = "http://pre-admin.pcshop.jd.com"
+//var baseUrl = "http://192.168.1.247:8080"
+var baseUrl = "http://pre-admin.pcshop.jd.com"
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)
@@ -76,7 +76,7 @@ var j_person = document.getElementById('j_person').innerHTML;
 function Purchase() {
     $.ajaxSetup({ cache: false });
 
-    $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userid"), "status": 1 }, function(item) {
+    $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userId"), "status": 1 }, function(item) {
 
         if (item.length != 0) {
             document.getElementById('w_person').innerHTML = doT.template(j_person)(item);

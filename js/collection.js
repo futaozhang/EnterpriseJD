@@ -402,5 +402,5 @@ $("#w_collection").delegate(".but_jd", "click", function() {
         id.push($(this).find(".t_num input").attr("id"))
     })
 
-    shoppingCart(num.join(","), id.join(","))
+    shoppingCart(id.join(","), num.join(","))
 });

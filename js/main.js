@@ -1,12 +1,12 @@
 var sourDate = { "id": -1 }
     //未登录用户数据
     //模拟用户Id
-setCookie("userId", "2")
+    //setCookie("userId", "2")
 
 
 //var baseUrl = "http://localhost:8080"
-//var baseUrl = "http://pre-admin.pcshop.jd.com"
-var baseUrl = "http://192.168.1.247:8080"
+var baseUrl = "http://pre-admin.pcshop.jd.com"
+    //var baseUrl = "http://192.168.1.247:8080"
 
 
 //用户名
@@ -25,7 +25,7 @@ $.ajax({
     success: function(item) {},
     error: function(request, status, error) {
         if (error == 'timeout' || error == "null") {
-            alert("服务响应超时")
+            // alert("服务响应超时")
         }
         if (status == 408 || status == 500) {
             alert('服务数据出错')
@@ -408,6 +408,7 @@ $("#mianCont").delegate(".changName a", "click", function() {
             close(type);
             $(".changName").hide();
             try {
+                // runBg()
                 Purchase()
             } catch (error) {
 
@@ -540,10 +541,11 @@ function enshrine(typeId, list) {
         dataType: "json",
         data: JSON.stringify({ "id": parseInt(typeId) }),
         success: function(jsonResult) {
-            setTimeout(leftBut(), 200)
+            setTimeout(leftBut(), 40)
             leftList(typeId)
             close(typeId);
             try {
+                //  runBg()
                 cnshrine(typeId, list)
                 Purchase();
             } catch (error) {
@@ -564,9 +566,9 @@ function cnshrine(typeId, list) {
         dataType: "json",
         success: function(jsonResult) {
 
-            setTimeout(leftBut(), 200)
+            setTimeout(leftBut(), 40)
             addTips("已加入收藏方案")
-
+                //runBg()
             try {
                 if (list != undefined) {
                     Purchase()
@@ -665,7 +667,7 @@ function login() {
                         } else if (i.code = 201) {
                             alert("验证失败请重新登录")
                             clearCookie();
-                            setTimeout(function() { login() }, 300)
+                            set(function() { login() }, 300)
                         }
                     })
             }
