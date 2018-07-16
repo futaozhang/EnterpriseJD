@@ -667,10 +667,10 @@ function login() {
                 } else if (i.code = 201) {
                     alert("验证失败请重新登录")
                     clearCookie();
-                    setTimeout(function() { login() }, 300)
+
                 }
             })
-        return false;
+
     }
     seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
         login({
@@ -687,7 +687,7 @@ function login() {
                         } else if (i.code = 201) {
                             alert("验证失败请重新登录")
                             clearCookie();
-                            setTimeout(function() { login() }, 300)
+
                         }
                     })
             }
