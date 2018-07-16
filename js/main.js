@@ -663,6 +663,7 @@ function login() {
             function(i) {
                 if (i.code == 200 || i.code == 304) {
                     setCookie("userId", i.userid);
+                    location.replace(document.referrer)
                 } else if (i.code = 201) {
                     alert("验证失败请重新登录")
                     clearCookie();
@@ -681,6 +682,7 @@ function login() {
 
                     function(i) {
                         if (i.code == 200 || i.code == 304) {
+                            location.replace(document.referrer)
                             setCookie("userId", i.userid);
                         } else if (i.code = 201) {
                             alert("验证失败请重新登录")
