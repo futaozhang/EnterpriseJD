@@ -539,7 +539,7 @@ function changListdataW(obj) {
 
 //收藏
 $("#w_person").delegate(".c_isCheck", "click", function() {
-    cnshrine($(this).attr("data-type"), 2)
+    cnshrine($(this).attr("data-type"), 3)
         //更新数据
 
 });

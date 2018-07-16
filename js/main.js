@@ -566,7 +566,11 @@ function cnshrine(typeId, list) {
         dataType: "json",
         success: function(jsonResult) {
 
-            setTimeout(leftBut(1), 40)
+            if (list == 3) {
+                leftBut()
+            } else {
+                setTimeout(leftBut(1), 40)
+            }
             addTips("已加入收藏方案")
                 //runBg()
             try {
