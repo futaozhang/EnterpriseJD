@@ -149,7 +149,7 @@ function isCheck() {
 
 //必选单个点击判断
 $("#alert_t").delegate(".must input", "click", function() {
-
+    var that = this
     if ($(this).prop("checked") != false) {
         $(this).parent().addClass("re")
         $(this).parent().removeClass("addBorder")
@@ -157,6 +157,17 @@ $("#alert_t").delegate(".must input", "click", function() {
 
         $(this).parent().removeClass("re")
         $(this).parent().addClass("addBorder")
+    }
+
+    if ($("#wert_00").prop("checked") != false) {
+        $(that).parent().addClass("re")
+        $(that).parent().removeClass("addBorder")
+    } else if ($("#wert_10").prop("checked") != false) {
+        $(that).parent().addClass("re")
+        $(that).parent().removeClass("addBorder")
+    } else if ($("#wert_20").prop("checked") != false) {
+        $(that).parent().addClass("re")
+        $(that).parent().removeClass("addBorder")
     }
 
 

@@ -653,6 +653,20 @@ function clearCookie() {
 
 //登陆调用
 function login() {
+    if (getCookie('pin') != null || getCookie('pin') != "") {
+        $.post(baseUrl + "/appuser/adduser", { "pin": getCookie('pin') },
+
+            function(i) {
+                if (i.code == 200 || i.code == 304) {
+                    setCookie("userId", i.userid);
+                } else if (i.code = 201) {
+                    alert("验证失败请重新登录")
+                    clearCookie();
+                    set(function() { login() }, 300)
+                }
+            })
+        return false;
+    }
     seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
         login({
             // firstCheck: false,
@@ -834,7 +848,12 @@ function closeTop(obj) {
 
 }
 
-$("#userName").text(getCookie("unick") == null ? unescape(userName) : unescape((getCookie("unick"))))
+if (getCookie("unick") == null || getCookie("unick") == "") {
+    $("#userName").text(getCookie("pin") == null ? unescape(userName) : unescape((getCookie("pin"))))
+} else {
+    $("#userName").text(getCookie("unick") == null ? unescape(userName) : unescape((getCookie("unick"))))
+}
+
 $("body").delegate("#videos .iconfont", "click", function() {
     $("#videos").hide()
     document.cookie = "videoH=2";
