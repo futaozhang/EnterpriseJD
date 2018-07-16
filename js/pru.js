@@ -74,6 +74,8 @@ $("#content_warp").delegate(".addCompared input", "click", function() {
         if (cks.length > 4 || ContrastArr.length > 4) {
             addTips("对比栏已满")
             return false
+        } else {
+
         }
         ContrastArr.push(skuId)
         setCookie("Contrast", ContrastArr)
@@ -105,6 +107,11 @@ $(".contrast").delegate(".clear_cont", "click", function() {
 //对比栏目数据渲染
 function addP() {
     var date = getCookie("Contrast").split(",").join("-")
+    if (date.split("-").length > 5) {
+        $(".contrast").fadeIn()
+        addTips("对比栏已满")
+        return false
+    }
     var j_contrast = document.getElementById('j_Contrast').innerHTML;
 
     $.getJSON(baseUrl + "/goods/compare", { "skulist": date },

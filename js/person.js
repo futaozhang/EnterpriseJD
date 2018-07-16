@@ -29,7 +29,7 @@ function dataListChange(data) {
         $(" .p_but .pur").addClass("activeRightBut")
         $("#w_collection").hide()
         $("#w_person").show()
-        Purchase(this)
+        Purchase()
 
 
     } else {
@@ -37,7 +37,7 @@ function dataListChange(data) {
         $(" .p_but .collec").addClass("activeRightBut")
         $("#w_person").hide()
         $("#w_collection").show()
-        Collection(this)
+        Collection()
     }
 }
 
@@ -73,7 +73,7 @@ function change(changId) {
 }
 var j_person = document.getElementById('j_person').innerHTML;
 //采购数据更新
-function Purchase() {
+function Purchase(ip) {
     $.ajaxSetup({ cache: false });
 
     $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userId"), "status": 1 }, function(item) {
@@ -88,6 +88,8 @@ function Purchase() {
             document.getElementById('w_person').innerHTML = doT.template(j_person)(noData);
             return false
         }
+
+        moClick(ip)
 
     })
 
@@ -321,16 +323,26 @@ function isCheck() {
 
 //必选单个点击判断
 $("#recpHead").delegate(".must input", "click", function() {
-
+        var that = this
         if ($(this).prop("checked") != false) {
             $(this).parent().addClass("re")
             $(this).parent().removeClass("addBorder")
-        } else {
 
+        } else {
             $(this).parent().removeClass("re")
             $(this).parent().addClass("addBorder")
         }
 
+        if ($("#wert_00").prop("checked") != false) {
+            $(that).parent().addClass("re")
+            $(that).parent().removeClass("addBorder")
+        } else if ($("#wert_10").prop("checked") != false) {
+            $(that).parent().addClass("re")
+            $(that).parent().removeClass("addBorder")
+        } else if ($("#wert_20").prop("checked") != false) {
+            $(that).parent().addClass("re")
+            $(that).parent().removeClass("addBorder")
+        }
 
     })
     //替换功能（先添加 后删除）
@@ -362,13 +374,15 @@ $("#recpList").delegate(".addSelect", "click", function() {
                 cache: false,
                 success: function(item) {
                     if (collect != undefined) {
-                        Collection()
+                        Collection(typeId)
                     } else {
-                        Purchase()
+                        Purchase(typeId)
                     }
                     leftBut()
-                    moClick(typeId)
+
                     $("#retunRcp").hide();
+                    retunRcp()
+                        // moClick(typeId)
                 }
             })
         }
@@ -398,16 +412,16 @@ $("#recpList").delegate(".addSelectRcp", "click", function() {
         cache: true,
         success: function(item) {
             isCheckAdd(typeId, 1)
-            Collection()
-            Purchase()
+            Collection(typeId)
+            Purchase(typeId)
             if (collect != undefined) {
 
             } else {
 
             }
             leftBut()
-            moClick(typeId)
-            $("#retunRcp").hide();
+                //  moClick(typeId)
+            retunRcp()
         }
     })
 
@@ -450,10 +464,10 @@ function removePlanP(typeId, skuId, obj) {
         data: { "procurementId": typeIds, "pitemlist": skuIds },
         cache: false,
         success: function(item) {
-            Purchase()
+            Purchase(typeId)
             leftBut()
             $(obj).parent().parent().remove();
-            moClick(typeId)
+            // moClick(typeId)
         }
     })
 }
@@ -535,14 +549,28 @@ $("#w_person").delegate(".c_isCheck", "click", function() {
 
 //模拟点击
 function moClick(type) {
+
     setTimeout(function() {
-        $(".left_warp a").each(function() {
+        $("#w_person .left_warp a").each(function() {
             var that = this
             if (parseInt($(this).attr("data-src")) == parseInt(type)) {
                 $(this).click();
             }
         })
-    }, 300)
+    }, 400)
+
+}
+
+function moClickC(type) {
+
+    setTimeout(function() {
+        $("#w_collection .left_warp a").each(function() {
+            var that = this
+            if (parseInt($(this).attr("data-src")) == parseInt(type)) {
+                $(this).click();
+            }
+        })
+    }, 40)
 
 }
 

@@ -71,11 +71,11 @@ $("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
 })
 
 //收藏数据
-function Collection() {
+function Collection(ip) {
 
     var j_persond = document.getElementById('j_person').innerHTML;
     $.getJSON(baseUrl + '/procurementBak/getplist', {
-        "userid": getCookie("userid"),
+        "userid": getCookie("userId"),
         "status": 1
     }, function(item) {
 
@@ -94,7 +94,7 @@ function Collection() {
             document.getElementById('w_collection').innerHTML = doT.template(j_persond)(noData);
         }
 
-
+        moClickC(ip)
 
     })
 
