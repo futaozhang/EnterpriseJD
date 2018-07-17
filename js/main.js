@@ -65,15 +65,18 @@ function leftBut(type) {
         success: function(item) {
             // sourDate = item;
             //数据渲染
-          
+
             document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
+
             if (type == 1) {
                 $(".Jd_footer").fadeIn();
                 $(".leftSelct .bg").show();
                 $(".isLogoing").css("left", "360px")
                 $(".addProjiect ").show()
             }
+
             addpr_li(item)
+
             return true
         }
     });
@@ -219,7 +222,7 @@ function newAddColect(id, json) {
             } catch (error) {
 
             }
-           
+
         }
     })
 
@@ -297,15 +300,15 @@ $("#mianCont").delegate(".l_top .refershCar", "click", function() {
 
     })
     var interTextd = document.getElementById('j_tmpl').innerHTML;
-   
+
     // $.each($("#leftDate").find("input[type='checkbox']"), function(i, item) {
 
     //     deleate.push($(this).parent().parent().find("button").attr('data-sku'))
     //     $(this).parent().parent().remove();
 
     // })
-    
-    if(deleate.length==0){
+
+    if (deleate.length == 0) {
         return false
     }
     removeList(typeId, deleate.join("-"), 1)
@@ -398,7 +401,7 @@ $("#mianCont").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
-    // console.log($(this).parent().parent().find(".jdPrice").text().substring(5))
+        // console.log($(this).parent().parent().find(".jdPrice").text().substring(5))
     if ($(this).parent().parent().find("strong").text().substring(1) == "") {
         sum = parseInt($("#price").text()) +
             parseInt($(this).parent().parent().find(".jdPrice").text().substring(5))
@@ -418,7 +421,7 @@ $("#mianCont").delegate(".add", 'click', function() {
 $("#mianCont").delegate(".changName a", "click", function() {
     //方案Id
     //方案名称
-  
+
     var type = $(this).attr("data-type")
     isCheckAdd(type, 1)
     $.ajax({
@@ -430,11 +433,9 @@ $("#mianCont").delegate(".changName a", "click", function() {
         success: function(item) {
             leftList(type);
             leftBut(1)
-           
+
             $(".changName").hide();
             // close(type)
-
-
             try {
 
                 Purchase()
@@ -472,10 +473,10 @@ $("#left_w").delegate(".noLogoing", "click", function() {
 
 //名称修改展示
 $("#mianCont").delegate(".text .iconfont", "click", function() {
-   
-    if($(".collection").text()=="已收藏"){
-         
-        alert("当前方案已被收藏，更改名称后会成为新的方案")  
+
+    if ($(".collection").text() == "已收藏") {
+
+        alert("当前方案已被收藏，更改名称后会成为新的方案")
     }
     $(".changName").show()
 });
@@ -785,20 +786,20 @@ $("#mianCont").delegate(".export", "click", function() {
 });
 
 $("#imgDowload").click(function() {
-    
-  if(window.location.pathname =="/Person.html"){
-      closeOpen()
-  }else{
 
-    window.location.href = "Person.html?id=1";
-  }
-   
-  
+    if (window.location.pathname == "/Person.html") {
+        closeOpen()
+    } else {
+
+        window.location.href = "Person.html?id=1";
+    }
+
+
 })
 
 //导出采购方案
 $("#execlDowload").click(function() {
-  
+
     if ($(this).attr("data-w") != undefined) {
         //收藏
         window.open(baseUrl + "/procurementBakItem/export?pid=" + $(this).attr("data-pid") + "");
