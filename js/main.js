@@ -167,9 +167,9 @@ function leftList(id, fun) {
                     }
                 })
             })
-
             $("#number").text(num)
             $("#price").text(sum.sum().toFixed(2))
+            runBg()
 
         });
 }
@@ -266,7 +266,7 @@ $("#mianCont").delegate("#all", "click", function() {
 });
 
 //全选删除
-$("#mianCont").delegate(".l_top button", "click", function() {
+$("#mianCont").delegate(".l_top .delCar", "click", function() {
     var deleate = [];
     var typeId = $(this).attr("data-typeid")
     if ($("#all").prop("checked") != true) {
@@ -284,8 +284,28 @@ $("#mianCont").delegate(".l_top button", "click", function() {
     removeList(typeId, deleate.join("-"))
 
 });
+//清空方案
+$("#mianCont").delegate(".l_top .refershCar", "click", function() {
+    var deleate = [];
+    var typeId = $(this).attr("data-typeid")
+    $.each($("#leftDate").find("input[type='checkbox']"), function(i, item) {
+        deleate.push($(this).parent().parent().find("button").attr('data-sku'))
 
-function removeList(typeId, deleate) {
+    })
+    var interTextd = document.getElementById('j_tmpl').innerHTML;
+    document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
+    // $.each($("#leftDate").find("input[type='checkbox']"), function(i, item) {
+
+    //     deleate.push($(this).parent().parent().find("button").attr('data-sku'))
+    //     $(this).parent().parent().remove();
+
+    // })
+
+    removeList(typeId, deleate.join("-"), 1)
+
+});
+
+function removeList(typeId, deleate, per) {
     isCheckAdd(typeId, 1)
     $.ajax({
         type: "GET",
@@ -294,10 +314,16 @@ function removeList(typeId, deleate) {
         data: { "procurementId": typeId, "pitemlist": deleate },
         cache: false,
         success: function(item) {
-
             leftList(typeId)
-            leftBut()
-            closeOpen();
+
+            if (per == 1) {
+                leftBut(1)
+                    // 
+            } else {
+                leftBut()
+                closeOpen();
+            }
+
             try {
                 Purchase()
             } catch (error) {
@@ -428,7 +454,7 @@ function close(type) {
             }
         })
 
-    }, 405)
+    }, 100)
 
 }
 
@@ -660,17 +686,17 @@ function login() {
     if (getCookie('pin') != null || getCookie('pin') != "") {
         $.post(baseUrl + "/appuser/adduser", { "pin": getCookie('pin') },
 
-            function(i) {
-                if (i.code == 200 || i.code == 304) {
-                    setCookie("userId", i.userid);
-                    location.replace(document.referrer)
-                } else if (i.code = 201) {
-                    alert("验证失败请重新登录")
-                    clearCookie();
-
-                }
-            })
-
+                function(i) {
+                    if (i.code == 200 || i.code == 304) {
+                        setCookie("userId", i.userid);
+                        location.replace(document.referrer)
+                    } else if (i.code = 201) {
+                        alert("验证失败请重新登录")
+                        clearCookie();
+                        // setTimeout(function() { login() }, 300)
+                    }
+                })
+            // return false;
     }
     seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
         login({
@@ -687,7 +713,7 @@ function login() {
                         } else if (i.code = 201) {
                             alert("验证失败请重新登录")
                             clearCookie();
-
+                            // setTimeout(function() { login() }, 300)
                         }
                     })
             }

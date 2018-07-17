@@ -189,6 +189,9 @@ $("#reset").click(function() {
         for (var i = keys.length; i--;)
             document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
     }
+
+    window.open("//passport.jd.com/uc/login?ltype=logout")
+
     window.location.href = "index.html"
 
 })
@@ -557,7 +560,7 @@ function moClick(type) {
                 $(this).click();
             }
         })
-    }, 400)
+    }, 300)
 
 }
 
@@ -570,7 +573,7 @@ function moClickC(type) {
                 $(this).click();
             }
         })
-    }, 40)
+    }, 300)
 
 }
 
