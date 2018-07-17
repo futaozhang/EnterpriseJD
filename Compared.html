@@ -108,7 +108,8 @@
                                     <td>
                                         <div class="ul_num">
                                             <label for="" class="iconfont reduce" data-type="{{=item.id}}">&#xe688;</label>
-                                            <input type="text" name="" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" data-price="{{~item.goodsdetail:goods:j}}{{=goods.jdprice}}{{~}}" data-eprice="{{~item.goodsdetail:goods:j}}{{=goods.eprice}}{{~}}" value="{{=item.goodsnum}}" />
+                                            <input type="text" readonly name="" id="{{~item.goodsdetail:goods:j}}{{=goods.skuid}}{{~}}" data-price="{{~item.goodsdetail:goods:j}}{{=goods.jdprice}}{{~}}" data-eprice="{{~item.goodsdetail:goods:j}}{{=goods.eprice}}{{~}}" value="{{=item.goodsnum}}"
+                                            />
                                             <label for="" data-type="{{=item.id}}" class="iconfont add">&#xe689;</label>
                                         </div>
                                     </td>
@@ -201,8 +202,8 @@
             <h3>请选择需要的文件</h3>
         </div>
         <div>
-            <a href="" id="imgDowload">图片下载</a>
-            <a href="" id="execlDowload">Execl 下载</a>
+            <a href="javascript:;" id="imgDowload">图片下载</a>
+            <a href="javascript:;" id="execlDowload">Execl 下载</a>
         </div>
 
     </div>
@@ -231,7 +232,7 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name='新建采购':it.name}}
+        <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name='':it.name}}
         <span class="changName">
                 <input type="text" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;" data-type="{{=it.id}}">确定</a>
@@ -277,7 +278,7 @@
                         </div>
                         <div class="input_num">
                             <label for="" class="iconfont reduce">&#xe617;</label>
-                    <input type="text" name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
+                    <input type="text" readonly name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
                     <label for="" class="iconfont add" onclick="">&#xe616;</label>
 
         </div>
@@ -327,4 +328,5 @@
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/compared.js" type="text/javascript" charset="utf-8"></script>
 
+</html>
 </html>

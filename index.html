@@ -175,7 +175,7 @@
 
     <div class="leftHead">
 
-        <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name='新建采购':it.name}}
+        <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name='':it.name}}
         <span class="changName">
                 <input type="text" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;" data-type="{{=it.id}}">确定</a>
@@ -219,7 +219,7 @@
                         </div>
                         <div class="input_num">
                             <label for="" class="iconfont reduce">&#xe617;</label>
-                    <input type="text" name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
+                    <input type="text" readonly name="" id="" sku-id="{{~value.goodsdetail:item:j}}{{=item.skuid}}{{~}}" value="{{=value.goodsnum}}" />
                     <label for="" class="iconfont add" onclick="">&#xe616;</label>
 
         </div>
@@ -265,18 +265,6 @@
 
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    //  window.onbeforeunload = unload()
 
-    // function unload() {
-    //     alert(window.offsetX)
-    //     alert("===onbeforeunload===");
-    //     if (event.clientX > document.body.clientWidth && event.clientY < 0 || event.altKey) {
-    //         alert("你关闭了浏览器");
-    //     } else {
-    //         alert("你正在刷新页面");
-    //     }
-    // }
-</script>
 
 </html>

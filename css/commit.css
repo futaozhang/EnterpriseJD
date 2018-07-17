@@ -894,6 +894,7 @@ button:focus {
     width: 100%;
     background-position: center;
     background-size: cover;
+    height:220px;
 }
 
 .warp_Price h5 {
@@ -1967,7 +1968,8 @@ table {
 }
 
 #retunRcp .warp img {
-    width: 100%
+    width: 100%;
+    height:210px;
 }
 
 #retunRcp .typeText {
