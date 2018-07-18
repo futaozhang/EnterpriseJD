@@ -168,7 +168,8 @@ $("#w_collection").delegate(".add", 'click', function() {
 
 $("#w_collection").delegate(".addpro", 'click', function() {
 
-    if ($("#leftsider .isLogoing .addProgram ").length > 5) {
+
+    if ($("#leftsider .isLogoing .addProgram ").length > 2) {
         $(".confirmTips .sure").attr("date-type", $(this).attr("data-id"))
         $(".selectRep").empty();
         $.each($("#leftsider .isLogoing .addProgram"), function(i, item) {
@@ -268,7 +269,7 @@ $("#w_collection").delegate(".exprotIMg", "click", function() {
                 var ctx = canvas.getContext("2d");
                 ctx.fillStyle = "#EEEEEE";
                 ctx.fillRect(40, 20, 160, 100);
-                ctx.fillRect(620, 80, 460, 50);
+                ctx.fillRect(620, 30, 460, 100);
                 ctx.font = "14px microsoft yahei";
                 ctx.rect(40, 30, 150, 90);
                 ctx.stroke();
@@ -300,7 +301,7 @@ $("#w_collection").delegate(".tableDe", "click", function() {
                 deleate.push($(this).attr("data-sku"));
                 listId.push($(this).attr("sc-id"));
 
-                $(this).parent().parent().remove();
+                // $(this).parent().parent().remove();
             }
 
         })
@@ -309,15 +310,36 @@ $("#w_collection").delegate(".tableDe", "click", function() {
         listId = [];
     }
 
-    removePlanWC(typId, listId.join("-"))
+    personAlert(typId, listId.join("-"))
 
 
 });
+//
+function personAlert(typeid, skuId, obj) {
+    var text = "确定删除当前商品？"
+    if (skuId == "") {
+        text = "确定删除当前方案？"
+    }
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4>' + text + '</h4> </div > <div class = "ads_footer" >' +
+            ' <button data-type = "' + typeid + '"  data-sku = "' + skuId + '" data-obj="' + obj + '"  class ="ads_submit" onclick="collectionOpen(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="personAds()">取消</button > </div> </div></div>'
+    })
+    $(".aDs").show()
+}
+
+function collectionOpen(obj) {
+    // removePland($(obj).attr("data-type"), $(obj).attr("data-sku"), $(obj).attr("data-obj"))
+    removePlanWC($(obj).attr("data-type"), $(obj).attr("data-sku"), $(obj).attr("data-obj"))
+    $('.aDs').remove()
+}
+
 
 //单选删除
 $("#w_collection").delegate(".tb_opreat .tb_del", "click", function() {
 
-        removePlanWC($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+        personAlert($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
     })
     //替换
 
@@ -362,6 +384,7 @@ function removePlanWC(typeId, skuId, obj) {
             if (skuIds == "") {
                 Collection()
             }
+            Collection();
             $(obj).parent().parent().remove();
             addTips("已删除")
         }

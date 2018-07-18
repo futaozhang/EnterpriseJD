@@ -17,9 +17,9 @@ window.onload = function() {
     })
 
     // 不存在用户  回首页
-    // if (getCookieCores("unick") == null || getCookieCores("unick") == "") {
-    //     window.location = "index.html"
-    // }
+    if (getCookie("userId") == null || getCookie("userId") == "") {
+        window.location = "index.html"
+    }
 }
 
 function dataListChange(data) {
@@ -125,7 +125,7 @@ $("#w_person").delegate(".tableDe", "click", function() {
             if ($(this).prop("checked") != false) {
                 deleate.push($(this).attr("data-sku"));
                 listId.push($(this).attr("sc-id"));
-                $(this).parent().parent().remove();
+
             }
         })
 
@@ -133,12 +133,13 @@ $("#w_person").delegate(".tableDe", "click", function() {
         listId = [];
     }
 
-    removePlanP(typId, listId.join("-"))
-
+    //  removePlanP(typId, listId.join("-"))
+    personAlert(typId, listId.join("-"))
 
 });
 //导出图片
 $("#w_person").delegate(".exprotIMg", "click", function() {
+    $("#imgDowload").attr('href', "");
     var tableNum = $(this).attr("dataTable")
     var name = $(this).attr("data-name")
     $(".bg").show()
@@ -156,7 +157,8 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
             var ctx = canvas.getContext("2d");
             ctx.fillStyle = "#EEEEEE";
             ctx.fillRect(40, 20, 160, 100);
-            ctx.fillRect(620, 80, 460, 50);
+            ctx.fillRect(620, 50, 460, 80);
+
             ctx.font = "14px microsoft yahei";
             ctx.rect(40, 30, 150, 90);
             ctx.stroke();
@@ -206,9 +208,35 @@ $("#reset").click(function() {
 $("#w_person").delegate(".tb_opreat .tb_del", "click", function() {
 
 
-    removePlanP($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+    personAlert($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
 
 })
+
+function personAlert(typeid, skuId, obj) {
+    var text = "确定删除当前商品？"
+    if (skuId == "") {
+        text = "确定删除当前方案？"
+    }
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4>' + text + '</h4> </div > <div class = "ads_footer" >' +
+            ' <button data-type = "' + typeid + '"  data-sku = "' + skuId + '" data-obj="' + obj + '"  class ="ads_submit" onclick="personOpen(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="personAds()">取消</button > </div> </div></div>'
+    })
+    $(".aDs").show()
+}
+
+function personOpen(obj) {
+    // removePland($(obj).attr("data-type"), $(obj).attr("data-sku"), $(obj).attr("data-obj"))
+    removePlanP($(obj).attr("data-type"), $(obj).attr("data-sku"), $(obj).attr("data-obj"))
+    $('.aDs').remove()
+}
+
+function personAds() {
+    $('.aDs').remove()
+}
+
+
 var recpPro = document.getElementById('recpPro').innerHTML;
 //替换
 $("#w_person").delegate(".tb_opreat .replay", "click", function() {
@@ -252,11 +280,27 @@ $(".tempelateD").delegate(".submit", "click", function() {
 
     isCheck()
     if ($("#recpHead .must").hasClass("addBorder")) {
-        alert("请完成必选项")
+        alertAdsf()
     } else {
         recpAlert(isCheck())
     }
 })
+
+function alertAdsf() {
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4> 请完成必选项目的勾选 </h4> </div > <div class = "ads_footer" >' +
+            ' <button class ="ads_submit" onclick="closeAds(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="closeAds()">取消</button > </div> </div></div>'
+    })
+    $(".aDs").show()
+}
+
+
+
+function closeAds() {
+    $('.aDs').remove()
+}
 $("#retunRcp").delegate(".openSlect", "click", function() {
 
     $(".tempelateD .r_head").animate({ height: "220px" }, 500);
@@ -638,7 +682,7 @@ $.ajax({
             $("body").append(function() {
                 return '<div id="videos"><i class="iconfont" onclick="close(this)">&#xe606;</i>' +
 
-                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" autoplay="autoplay" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
 
                 +'<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
             });

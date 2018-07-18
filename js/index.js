@@ -95,15 +95,31 @@ $("#alert_t").delegate(".submit", "click", function() {
 //页面跳转
 function junstrund(i) {
     if ($("input[name=noType]:checked").val() == undefined) {
-        alert("请完成必选项目")
+        alertAdsf()
         return false;
     }
     if (i == 0) {
         window.location = "Purchase.html"
     } else {
-        alert("请完成必选项目")
+        alertAdsf()
     }
 
+}
+
+function alertAdsf() {
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4> 请完成必选项目的勾选 </h4> </div > <div class = "ads_footer" >' +
+            ' <button class ="ads_submit" onclick="closeAds(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="closeAds()">取消</button > </div> </div></div>'
+    })
+    $(".aDs").show()
+}
+
+
+
+function closeAds() {
+    $('.aDs').remove()
 }
 //选中判断
 function isCheck() {

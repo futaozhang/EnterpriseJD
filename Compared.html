@@ -55,7 +55,7 @@
 
         <div class="w clearfix" id="warp_content">
 
-            <script type="text/template" id="k_tempelate">
+            <script type="text/template" id="k_tempelated">
                 {{?it.length==0}}
                 <h3>暂无采购方案</h3>{{?}} {{ for (var i = 0, l = it.length; i
                 < l; i++) {}} <div class="c_conte">
@@ -70,9 +70,9 @@
                         </div>
 
                         <div class="f_opreat">
-                            <a href="javascript:;" class="but_jd" data-type="{{=it[i].id}}">加入购物车</a> {{? it[i].status==1 }}
-                            <a href="javascript:;" class="changesky"><i class="iconfont n_collect" data-type="{{=it[i].id}}"></i></a> {{??}}
-                            <a href="javascript:;" class="changeRed"><i class="iconfont c_collect">&#xe663;</i></a> {{?}}
+                            <a href="javascript:;" class="but_jd" data-type="{{=it[i].id}}">加入购物车</a> {{? it[i].collecttype==1 }}
+                            <a href="javascript:;" class="changesky"><i class="iconfont n_collect" data-type="{{=it[i].id}}"></i>加入收藏</a> {{??}}
+                            <a href="javascript:;" class="changeRed"><i class="iconfont c_collect"></i>已收藏</a> {{?}}
                         </div>
 
                     </div>
@@ -102,7 +102,7 @@
                                             <span class="designer">视觉设计</span> {{??}}
                                             <span class="">----</span> {{?}}
                                             <span>{{~item.goodsdetail:goods:j}}{{=goods.name}}{{~}}</span>
-                                            <span>{{~item.goodsdetail:goods:j}}{{=goods.name}}{{~}}</span>
+                                            <span>{{~item.goodsdetail:goods:j}}{{=goods.color}}{{~}}</span>
                                         </div>
                                     </td>
                                     <td>
@@ -119,14 +119,15 @@
                                         <div class="ul_price">
 
                                             <span>京东价:￥{{~item.goodsdetail:goods:j}}{{=goods.jdprice.toFixed(2)}}{{~}}</span> {{~item.goodsdetail:goods:j}} {{?goods.eprice!=0}}
-                                            <span>企业专享价: <i class="jd_text">￥{{=goods.eprice.toFixed(2)}} </i> </span> {{?}} {{~}}
+                                            <span>企业专享价: <i class="jd_text">￥{{=goods.eprice.toFixed(2)}} </i> </span> {{??}}
+                                            <span>企业专享价: <i class="jd_text"> <small>暂无</small>  </i> </span> {{?}} {{~}}
                                         </div>
 
                                     </td>
 
                                     <td>
                                         <div class="ui_opret">
-                                            <!-- <a href="javascript:;" class="com_rep" data-typid="{{=it[i].id}}" data-skid="{{=item.id}}">替换</a> -->
+                                            <a href="javascript:;" class="com_rep" data-t="{{=item.message}}" data-messageId="{{=item.messageid}}" data-typid="{{=it[i].id}}" data-skid="{{=item.id}}">编辑</a>
                                             <a href="javascript:;" class="com_del" data-typid="{{=it[i].id}}" data-skid="{{=item.id}}">删除</a>
                                         </div>
                                     </td>
@@ -195,6 +196,92 @@
     <div id="foote">
         <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
     </div>
+    <div id="retunRcp">
+        <i class="iconfont" onclick="retunRcp()">&#xe606;</i>
+        <i class="bg"></i>
+        <div class="tempelateD">
+            <div class="r_body">
+
+                <div class="r_head" id="recpHead">
+                    <script type="text/template" id="recpPro">
+                        <div class="alert_t must">
+                            <span>选购机型<i>*</i></span>
+                            <input type="radio" name="noType" id="alert_1" value="2" /><label for="alert_1">台式机(含一体机)</label>
+                            <input type="radio" name="noType" id="alert_2" value="3" /><label for="alert_2">笔记本电脑</label>
+                        </div>
+                        {{~it:value:index}} {{?value.filtername!=undefined}}
+                        <div class="alert_t alist {{? value.ischecked==1}}must{{??}}tem{{?}}">
+                            <span>{{=value.filtername}}
+                                 {{? value.ischecked==1}}<i class="tem">*</i>{{??}}<i>&nbsp;</i>{{?}}
+                                </span> {{? value.selecttype==2}} {{~value.avlist:item:j}}
+                            <input type="radio" name="radio_{{=index}}" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{??}} {{~value.avlist:item:j}}
+                            <input type="checkBox" name="" id="wert_{{=j}}{{=index}}" value="{{=item.id}}" /><label for="wert_{{=j}}{{=index}}">{{=item.name}}</label> {{~}} {{?}}
+                        </div>
+                        {{?}} {{~}}
+                        <div class="alert_w"> <span>选择品牌</span>
+                            <div class="alert_ws"> <i></i>
+                                <div id="alert_img_h">
+                                    <ul class="over_a">
+                                        {{~it:value:index}} {{~value.brandlist:item:j}}
+                                        <li data-id="{{=item.id}}"><img src="{{=item.logo}}" alt="{{=item.name}}" /></li>
+                                        {{~}} {{~}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </script>
+
+                </div>
+                <div class="alertFoot">
+                    <button class="reset">重置</button>
+                    <button class="submit">搜索</button>
+
+                </div>
+                <div class="alertFootClick">
+                    <button class="openSlect">展开筛选</button>
+                    <button class="closeSlect">收起筛选</button>
+                </div>
+
+                <div class="typeText"></div>
+
+                <div class="r_content" id="recpList">
+                    <script type="text/template" id="recpListTem">
+                        <ul>
+                            {{?it.length==0}}
+                            <h2 class="moreTips">暂无筛选中商品，请重新选择</h2>
+                            {{?}} {{~it:value:index}}
+                            <li>
+                                <div class="warp">
+                                    <div class="warp_img">
+                                        <a href="https://item.jd.com/{{=value.skuid}}.html" target="_blank"> <img src="{{=value.thumbnail}}" title="{{=value.name}}" /></a>
+                                    </div>
+                                    <div class="warp_Price">
+                                        <h5>京东价：￥{{=value.jdprice.toFixed(2)}}</h5>
+                                        {{?value.eprice!=0}}
+                                        <h4>企业专享价：￥{{=value.eprice}}</h4>
+                                        {{??}}
+                                        <h4>企业专享价：暂无</h4>
+                                        {{?}}
+                                    </div>
+                                    <div class="warp_t">
+                                        <p class="warp_title"> {{=value.name}}</p>
+                                        <p class="warp_ft">{{=value.brandName}}</p>
+                                    </div>
+                                    <div class="warp_sle">
+                                        <span class="addSelect" data-sku="{{=value.skuid}}"><label for="add_0">替换</label></span>
+                                        <span class="addSelectRcp" data-sku="{{=value.skuid}}"><label for="add_0">添加</label></span>
+
+                                    </div>
+                                </div>
+                            </li>
+                            {{~}}
+                        </ul>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- 选择文件 -->
     <div class="selectorFile">
 
@@ -223,7 +310,7 @@
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
             <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name==""?item.name="新建采购":item.name}}</a> {{~}} {{?index
-        <5}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+        <2}} <a href="javascript:; " data-src="3" class="addProjiect"><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
     </div>
     {{?}}
 </script>
@@ -273,6 +360,8 @@
                             {{~value.goodsdetail:item:j}}
                             {{?item.eprice!=0}}
                             <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong></p>
+                            {{??}}
+                            <p class="UserPrice">企业专享价：<strong>暂无</strong></p>
                             {{?}}
                             {{~}}
                         </div>
@@ -328,5 +417,5 @@
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/compared.js" type="text/javascript" charset="utf-8"></script>
 
-</html>
+
 </html>

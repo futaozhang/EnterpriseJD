@@ -54,7 +54,7 @@
                     <div class="warp">
                         <div class="warp_right">
                             <!-- 右上角图片 -->
-                            {{?value.imgsrc}}
+                            {{?value.lable}}
                             <i><img src="{{=value.imgsrc}}" /></i> {{?}}
                         </div>
                         <div class="warp_img">
@@ -63,7 +63,7 @@
                         <div class="warp_Price">
                             <h5>京东价：￥{{=value.jdprice.toFixed(2)}}</h5>
                             {{?value.eprice!=0}}
-                            <h4>企业专享价：￥{{=value.eprice}}</h4>
+                            <h4>企业专享价：￥{{=value.eprice.toFixed(2)}}</h4>
                             {{??}}
                             <h4>企业专享价：暂无</h4>
                             {{?}}
@@ -199,7 +199,7 @@
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
             <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name==""?item.name="新建采购":item.name}}</a> {{~}} {{?index
-        <5}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+        <2}} <a href="javascript:; " data-src="3" class="addProjiect"><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
     </div>
     {{?}}
 </script>
@@ -247,6 +247,8 @@
                             {{~value.goodsdetail:item:j}}
                             {{?item.eprice!=0}}
                             <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong></p>
+                            {{??}}
+                            <p class="UserPrice">企业专享价：<strong>暂无</strong></p>
                             {{?}}
                             {{~}}
                         </div>

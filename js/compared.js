@@ -3,7 +3,7 @@
 
 
 
-var k_tmpl = document.getElementById('k_tempelate').innerHTML;
+var k_tmpl = document.getElementById('k_tempelated').innerHTML;
 
 function comparedList() {
 
@@ -18,7 +18,7 @@ function comparedList() {
             var listData = [];
             $("#warp_content").empty()
 
-            if (item.length > 6) {
+            if (item.length > 3) {
                 for (var i = 0; i < 3; i++) {
                     listData.push(item[i])
                 }
@@ -33,8 +33,10 @@ function comparedList() {
 
     })
 }
+window.onload = function() {
 
-comparedList();
+    comparedList();
+}
 
 //减少
 $("#Compared").delegate(".ul_num .reduce", 'click', function() {
@@ -89,48 +91,124 @@ $("#warp_content").delegate(".n_collect", "click", function() {
 
 
     var typeId = $(this).attr("data-type")
-
+    isCheckAdd(typeId, 1)
     $.ajax({
-            type: "POST",
-            url: baseUrl + "/procurement/updatep",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({ "id": parseInt(typeId), "status": 2 }),
-            success: function(jsonResult) {
-                setTimeout(leftBut(), 200)
+        type: "POST",
+        url: baseUrl + "/procurement/updatep",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({ "id": parseInt(typeId), "status": 2 }),
+        success: function(jsonResult) {
+            setTimeout(leftBut(), 200)
 
-            }
-        })
+        }
+    })
+    comparedList()
         //物理删除
     $(this).parent().parent().parent().parent().remove();
 
 
 });
+$("#warp_content").delegate(".changesky", "click", function() {
+    var typeId = $(this).find(".n_collect").attr("data-type")
+    isCheckAdd(typeId, 2)
+    $(this).text("已收藏");
+    // comparedList()
+
+});
+// 收藏
+
 //单选删除
 $("#warp_content").delegate(".ui_opret .com_del", "click", function() {
 
 
-        removePlanCom($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+    alertChange($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+})
+
+function alertChange(typeid, list, obj) {
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4>  确定删除当前物品吗？ </h4> </div > <div class = "ads_footer" >' +
+            ' <button data-type = "' + typeid + '"  data-sku = "' + list + '" class ="ads_submit" onclick="openAll(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="closeAll()">取消</button > </div> </div></div>'
     })
-    //替换
+    $(".aDs").show()
+}
+
+function openAll(obj) {
+    removePlanCom($(obj).attr("data-type"), $(obj).attr("data-sku"))
+    $('.aDs').remove()
+}
+
+
+var recpPro = document.getElementById('recpPro').innerHTML;
+//替换
 $("#warp_content").delegate(".ui_opret .com_rep", "click", function() {
 
-    replayCom($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+    $("body").css("overflow", "hidden")
+    $(".r_body .typeText").attr("data-type", $(this).attr("data-typid"))
+    $(".r_body .typeText").attr("data-message", $(this).attr("data-messageid"))
+    $(".typeText").attr("data-deskuId", $(this).attr("data-skid"))
+
+    $(".r_body .typeText").text($(this).attr("data-t"))
+    $(".typeText").attr("data-col", 2)
+
+    $.getJSON(baseUrl + "/goodsAttribute/getalist", { "sceneid": $(this).attr("data-messageid") }, function(json) {
+        document.getElementById('recpHead').innerHTML = doT.template(recpPro)(json);
+        $("#retunRcp").show()
+    })
+
+
 
 })
 
-function replayCom(typid, skId, obj) {
-    $(".confirmTips").show()
-    $(".sure").click(function() {
+function retunRcp() {
+    $("#retunRcp").hide()
+    $("body").css("overflow", "auto")
+}
+var recpListTem = document.getElementById('recpListTem').innerHTML;
 
-        removePlanCom(typid, skId, $(obj))
+function recpAlert(ArrList) {
+    $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": ArrList.categoryid, "bidlist": ArrList.bidlist, "avlist": ArrList.avlist },
 
-        window.location = 'index.html'
+        function(item) {
+            document.getElementById('recpList').innerHTML = doT.template(recpListTem)(item);
+            $(".tempelateD .r_head").animate({ height: "0px" }, 500);
+            $(".alertFoot").hide()
+            $(".openSlect").show()
+            $(".closeSlect").hide()
+        });
+}
+
+$(".tempelateD").delegate(".submit", "click", function() {
+
+    isCheck()
+    if ($("#recpHead .must").hasClass("addBorder")) {
+        alertAdsf()
+    } else {
+        recpAlert(isCheck())
+    }
+})
+
+function alertAdsf() {
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4> 请完成必选项目的勾选 </h4> </div > <div class = "ads_footer" >' +
+            ' <button class ="ads_submit" onclick="closeAds(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="closeAds()">取消</button > </div> </div></div>'
     })
+    $(".aDs").show()
+}
+
+
+
+function closeAds() {
+    $('.aDs').remove()
 }
 
 //物品删除
 function removePlanCom(typeId, skuId, obj) {
+    isCheckAdd(typeId, 1)
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -143,7 +221,7 @@ function removePlanCom(typeId, skuId, obj) {
         success: function(item) {
             leftBut()
             comparedList()
-            $(this).parent().parent().remove();
+                //$(this).parent().parent().remove();
 
         }
     })
@@ -197,10 +275,190 @@ $.ajax({
             $("body").append(function() {
                 return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
 
-                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" autoplay="autoplay" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
 
                 +'<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
             })
         }
     }
+});
+
+function closeAds() {
+    $('.aDs').remove()
+}
+$("#retunRcp").delegate(".openSlect", "click", function() {
+
+    $(".tempelateD .r_head").animate({ height: "220px" }, 500);
+    $(".alertFoot").show()
+    $(this).hide()
+    $(".closeSlect").show()
+
+})
+$("#retunRcp").delegate(".closeSlect", "click", function() {
+    $(".tempelateD .r_head").animate({ height: "0px" }, 500);
+    $(".alertFoot").hide()
+    $(".openSlect").show()
+    $(this).hide()
+
+})
+
+
+//选中判断
+function isCheck() {
+    var bidlist = []; //可选项目
+    var avlist = []; //必选项目
+    var categoryid = []; //机型
+    var Arrlist = {
+        "categoryid": "",
+        "avlist": "",
+        "bidlist": ""
+    }
+
+    //非必选
+    $.each($("#recpHead").find(".tem input"), function(i) {
+
+        if ($(this).prop("checked") == true) {
+            bidlist.push($(this).val())
+        }
+    })
+
+    // 非必选品牌
+    $.each($(".over_a").find("li"), function() {
+        if ($(this).hasClass("activeLi")) {
+            bidlist.push($(this).attr("data-id"))
+        }
+    })
+
+    //必选  第一位属于机型
+    $.each($("#recpHead").find(".re input"), function(i) {
+
+        if ($(this).prop("checked") == true) {
+            avlist.push($(this).val())
+        }
+    })
+
+    //判断是否选中
+    $.each($("#recpHead").find(".must"), function(i) {
+        if ($(this).hasClass("re")) {} else {
+            $(this).addClass("addBorder")
+        }
+    })
+    bidlist.length != 0 ? bidlist = bidlist : bidlist.push("");
+    Arrlist.categoryid = avlist[0];
+    Arrlist.avlist = avlist.join("-").slice(2);
+    Arrlist.bidlist = bidlist.join("-");
+    return Arrlist
+
+}
+
+
+
+//必选单个点击判断
+$("#recpHead").delegate(".must input", "click", function() {
+        var that = this
+        if ($(this).prop("checked") != false) {
+            $(this).parent().addClass("re")
+            $(this).parent().removeClass("addBorder")
+
+        } else {
+            $(this).parent().removeClass("re")
+            $(this).parent().addClass("addBorder")
+        }
+
+        if ($("#wert_00").prop("checked") != false) {
+            $(that).parent().addClass("re")
+            $(that).parent().removeClass("addBorder")
+        } else if ($("#wert_10").prop("checked") != false) {
+            $(that).parent().addClass("re")
+            $(that).parent().removeClass("addBorder")
+        } else if ($("#wert_20").prop("checked") != false) {
+            $(that).parent().addClass("re")
+            $(that).parent().removeClass("addBorder")
+        }
+
+    })
+    //替换功能（先添加 后删除）
+$("#recpList").delegate(".addSelect", "click", function() {
+    //先添加
+    var skuId = $(this).attr("data-sku")
+    var typeId = $(".typeText").attr("data-type")
+    var messageid = $(".typeText").attr("data-message")
+    var type = $(".typeText").text()
+    var deskuId = $(".typeText").attr("data-deskuId");
+    isCheckAdd(typeId, 1)
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurementItem/addpitem",
+        data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
+        cache: true,
+        success: function(item) {
+
+            $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: baseUrl + "/procurement/delete",
+                data: { "procurementId": typeId, "pitemlist": deskuId },
+                cache: false,
+                success: function(item) {
+                    comparedList()
+                    leftBut()
+                    $("#retunRcp").hide();
+                    retunRcp()
+
+                }
+            })
+        }
+    })
+
+})
+
+//仅添加
+
+$("#recpList").delegate(".addSelectRcp", "click", function() {
+
+    var skuId = $(this).attr("data-sku")
+    var typeId = $(".typeText").attr("data-type")
+    var messageid = $(".typeText").attr("data-message")
+    var type = $(".typeText").text()
+    var deskuId = $(".typeText").attr("data-deskuId");
+
+    isCheckAdd(typeId, 1)
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: baseUrl + "/procurementItem/addpitem",
+        data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
+        cache: true,
+        success: function(item) {
+            comparedList()
+            leftBut()
+            $("#retunRcp").hide();
+            retunRcp()
+
+        }
+    })
+
+})
+
+
+$("#recpHead").delegate(".reset", "click", function() {
+    $(".over_a li").removeClass("activeLi")
+    $(".over_a li").find("img").css("opacity", 1);
+    $.each($(".r_head").find("input"), function(i) {
+
+        $(this).prop("checked", false)
+
+    })
+})
+
+$("#recpHead").delegate(".over_a li", "click", function() {
+    if ($(this).hasClass("activeLi")) {
+        $(this).removeClass("activeLi")
+        $(this).find("img").css("opacity", 1);
+    } else {
+        $(this).addClass("activeLi")
+        $(this).find("img").css("opacity", 0.4);
+    }
+
 })

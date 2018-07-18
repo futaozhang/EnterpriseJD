@@ -84,6 +84,20 @@ button:focus {
     /* filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50); */
 }
 
+.aDs .bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0;
+    z-index: 8;
+    background-color: #000000;
+    opacity: 0.5;
+    /* filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000); */
+    filter: alpha(opacity=50);
+    /* filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=50); */
+}
+
 .bg canvas {
     position: relative;
     left: 400px;
@@ -218,9 +232,9 @@ button:focus {
 
 .leftContent .l_top input {
     margin-left: 10px;
-    height: 20px;
+    height: 14px;
     float: left;
-    display: none;
+    /* display: none; */
 }
 
 .leftContent .l_top label {
@@ -872,8 +886,12 @@ button:focus {
     width: 220px;
     height: 420px;
     padding: 2px 10px;
-    border: 1px solid silver;
+    border: 1px solid #cccccc;
     position: relative;
+}
+
+#Purchase .content .warp:hover {
+    border: 1px solid #2b333f;
 }
 
 
@@ -894,7 +912,7 @@ button:focus {
     width: 100%;
     background-position: center;
     background-size: cover;
-    height:220px;
+    height: 220px;
 }
 
 .warp_Price h5 {
@@ -1354,7 +1372,7 @@ button:focus {
 }
 
 .ul_price span {
-    font-size: 10px !important;
+    font-size: 12px !important;
     color: silver;
 }
 
@@ -1969,7 +1987,7 @@ table {
 
 #retunRcp .warp img {
     width: 100%;
-    height:210px;
+    height: 210px;
 }
 
 #retunRcp .typeText {
@@ -2281,4 +2299,52 @@ table {
 
 .right_but .addpro {
     display: none;
+}
+
+.aDs {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 360px;
+    height: 180px;
+    text-align: center;
+    margin-left: -180px;
+    margin-top: -120px;
+    display: none;
+    z-index: 99;
+}
+
+.aDs .ads_content {
+    z-index: 99;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: snow;
+}
+
+.aDs .ads_text h4 {
+    font-size: 18px;
+}
+
+.aDs .ads_text {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.aDs button {
+    margin: 15px;
+    width: 100px;
+    height: 40px;
+    background-color: #b4b4b4;
+    color: white;
+    letter-spacing: 5px;
+}
+
+.aDs .ads_footer {
+    padding: 20px 0px;
+}
+
+.aDs .ads_submit {
+    background-color: #7b7b83;
 }

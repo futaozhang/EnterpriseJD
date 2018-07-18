@@ -1,7 +1,7 @@
 var sourDate = { "id": -1 }
     //未登录用户数据
     //模拟用户Id
-    //setCookie("userId", "2")
+setCookie("userId", "1")
 
 
 //var baseUrl = "http://localhost:8080"
@@ -94,21 +94,17 @@ function addpr_li(item) {
 
     var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
         //增加购物方案延迟渲染
-    if (item.length > 3) {
-        $(".isLogoing").css("top", "30%");
-    } else if (item.length > 5) {
-        $(".isLogoing").css("top", "25%");
-    }
+    $(".isLogoing").css("top", "38%");
     //setTimeout(function() {
 
     $(".add_pri ul").html(function(n) {
-        if (item.length > 5) {
+        if (item.length >= 3) {
             return add_pri
 
         } else if (item.length == 0) {
             return addp
 
-        } else if (item.length <= 5) {
+        } else if (item.length < 3) {
 
             return add_pri + addp
         }
@@ -194,7 +190,7 @@ function addProgram() {
     var interTextd = document.getElementById('j_tmpl').innerHTML;
     document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
 
-    if ($(".isLogoing .addProgram").length > 5) {
+    if ($(".isLogoing .addProgram").length >= 3) {
         $(".addProjiect").remove()
     }
     if ($("#mianCont").css("width") != "0px") {
@@ -288,9 +284,31 @@ $("#mianCont").delegate(".l_top .delCar", "click", function() {
         deleate = []
     }
 
-    removeList(typeId, deleate.join("-"))
+    alertAll(typeId, deleate.join("-"))
+
 
 });
+
+function alertAll(typeid, list, obj) {
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4>  确定删除当前方案吗？ </h4> </div > <div class = "ads_footer" >' +
+            ' <button data-type = "' + typeid + '"  data-sku = "' + list + '" class ="ads_submit" onclick="openAll(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="closeAll()">取消</button > </div> </div></div>'
+    })
+    $(".aDs").show()
+}
+
+function openAll(obj) {
+    removeList($(obj).attr("data-type"), $(obj).attr("data-sku"))
+    $('.aDs').remove()
+}
+
+function closeAll() {
+    $('.aDs').remove()
+}
+
+
 //清空方案
 $("#mianCont").delegate(".l_top .refershCar", "click", function() {
     var deleate = [];
@@ -299,21 +317,37 @@ $("#mianCont").delegate(".l_top .refershCar", "click", function() {
         deleate.push($(this).parent().parent().find("button").attr('data-sku'))
 
     })
-    var interTextd = document.getElementById('j_tmpl').innerHTML;
-
-    // $.each($("#leftDate").find("input[type='checkbox']"), function(i, item) {
-
-    //     deleate.push($(this).parent().parent().find("button").attr('data-sku'))
-    //     $(this).parent().parent().remove();
-
-    // })
 
     if (deleate.length == 0) {
+        addTips("当前方案已无商品")
         return false
     }
-    removeList(typeId, deleate.join("-"), 1)
-    document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
+    alertClear(typeId, deleate.join("-"))
+
+
 });
+
+function alertClear(typeid, list, obj) {
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4>  确定清空当前方案吗？ </h4> </div > <div class = "ads_footer" >' +
+            ' <button data-type = "' + typeid + '"  data-sku = "' + list + '" class ="ads_submit" onclick="openclear(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="closeClear()">取消</button > </div> </div></div>'
+    })
+    $(".aDs").show()
+}
+
+function openclear(obj) {
+    removeList($(obj).attr("data-type"), $(obj).attr("data-sku"), 1)
+        //removeList(typeId, deleate.join("-"), 1)
+    $('.aDs').remove()
+        // var interTextd = document.getElementById('j_tmpl').innerHTML;
+        //document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
+}
+
+function closeClear() {
+    $('.aDs').remove()
+}
 
 function removeList(typeId, deleate, per) {
     isCheckAdd(typeId, 1)
@@ -375,10 +409,10 @@ $("#mianCont").delegate(".input_num .reduce", 'click', function(dom) {
     if (nowData < 2) {
         return false;
     }
-    // leftList($(this).parent().siblings("button").attr("data-type"))
+
     $(this).parent().find("input[type='text']").prop("value", parseInt(nowData) - 1);
 
-    if ($(this).parent().parent().find("strong").text().substring(1) == "") {
+    if ($(this).parent().parent().find("strong").text() == "暂无") {
 
         redues = $("#price").text() - $(this).parent().parent().find(".jdPrice").text().substring(5)
     } else {
@@ -401,8 +435,8 @@ $("#mianCont").delegate(".add", 'click', function() {
 
     var nowData = $(this).parent().find("input[type='text']").prop("value");
     $(this).parent().find("input[type='text']").prop("value", parseInt(++nowData))
-        // console.log($(this).parent().parent().find(".jdPrice").text().substring(5))
-    if ($(this).parent().parent().find("strong").text().substring(1) == "") {
+
+    if ($(this).parent().parent().find("strong").text() == "暂无") {
         sum = parseInt($("#price").text()) +
             parseInt($(this).parent().parent().find(".jdPrice").text().substring(5))
     } else {
@@ -435,7 +469,8 @@ $("#mianCont").delegate(".changName a", "click", function() {
             leftBut(1)
 
             $(".changName").hide();
-            // close(type)
+            //close(type)
+            //closeOpen()
             try {
 
                 Purchase()
@@ -476,10 +511,30 @@ $("#mianCont").delegate(".text .iconfont", "click", function() {
 
     if ($(".collection").text() == "已收藏") {
 
-        alert("当前方案已被收藏，更改名称后会成为新的方案")
+        alertAdCa()
+        return false;
     }
     $(".changName").show()
 });
+
+function alertAdCa() {
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4>当前方案已被收藏,更改后为新的采购方案</h4> </div > <div class = "ads_footer" >' +
+            ' <button class ="ads_submit" onclick="openAdsSub(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="closeAdsCan()">取消</button > </div> </div></div>'
+    })
+    $(".aDs").show()
+}
+
+function openAdsSub(obj) {
+    $('.aDs').remove()
+    $(".changName").show()
+}
+
+function closeAdsCan() {
+    $('.aDs').remove()
+}
 
 //左侧收藏
 $("#mianCont").delegate(".nockeck", "click", function() {
@@ -494,12 +549,32 @@ $("#mianCont").delegate(".ischeck", "click", function() {
 
 //单个删除
 $("#mianCont").delegate("#leftDate li .ra_de", "click", function() {
+    var Name = $("#mianCont .leftHead .text").text()
 
-    removePland($(this).attr("data-type"), $(this).attr("data-sku"), $(this))
+    alertAds($(this).attr("data-type"), $(this).attr("data-sku"), $(this), "确定删除当前方案夹的商品吗？")
+
+
 
 });
 
+function alertAds(typeid, skuId, obj, text) {
+    $("body").append(function() {
+        return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
+            ' <h4> ' + text + ' </h4> </div > <div class = "ads_footer" >' +
+            ' <button data-type = "' + typeid + '"  data-sku = "' + skuId + '" data-obj="' + obj + '"  class ="ads_submit" onclick="openAds(this)" > 确定 </button>' +
+            '<button class="ads_cancl" onclick="closeAds()">取消</button > </div> </div></div>'
+    })
+    $(".aDs").show()
+}
 
+function openAds(obj) {
+    removePland($(obj).attr("data-type"), $(obj).attr("data-sku"), $(obj).attr("data-obj"))
+    $('.aDs').remove()
+}
+
+function closeAds() {
+    $('.aDs').remove()
+}
 // url  参数
 function GetRequest() {
     var url = location.search; //获取url中"?"符后的字串   
@@ -763,7 +838,7 @@ function shoppingCart(widsList, numsList) {
     // wids = skuid1, skuid2, skuid3 & nums = 1, 1, 1
 
     if (widsList == "" || numsList == "") {
-        addTips("当前无物品")
+        addTips("当前无商品")
         return false;
 
     }
@@ -776,6 +851,8 @@ function shoppingCart(widsList, numsList) {
 }
 
 $("#mianCont").delegate(".export", "click", function() {
+    $("#imgDowload").attr('href', "javascript:;");
+    $("#imgDowload").attr("download", "")
     $(".selectorFile").show()
     var that = this
     $("#execlDowload").attr("data-pid", $(this).attr("data-pid"))
@@ -822,6 +899,7 @@ function IEVersion() {
         reIE.test(userAgent);
         var fIEVersion = parseFloat(RegExp["$1"]);
         if (fIEVersion == 7) {
+            alert(7)
             return 7;
         } else if (fIEVersion == 8) {
             return 8;

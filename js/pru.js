@@ -67,12 +67,14 @@ $("#content_warp").delegate(".addCompared input", "click", function() {
 
         ContrastArr.remove($(this).attr("data-sku"))
         setCookie("Contrast", ContrastArr)
+
         ContrastFuc()
 
     } else {
 
         if (cks.length > 4 || ContrastArr.length > 4) {
             addTips("对比栏已满")
+            $(".contrast").fadeIn()
             return false
         } else {
 
@@ -269,7 +271,7 @@ $.ajax({
             $("body").append(function() {
                 return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
 
-                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" autoplay="autoplay" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
 
                 +'<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
             })

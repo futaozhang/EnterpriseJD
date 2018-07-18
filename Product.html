@@ -146,7 +146,7 @@
                         {{?value.eprice!=0}}
                         <p>企业专享价:<i class="jd_text">￥{{=value.eprice.toFixed(2)}}</i> </p>
                         {{??}}
-                        <p><i class="jd_text"> &nbsp; </i></p>
+                        <p>企业专享价:<i class="jd_text">暂无</i> </p>
                         {{?}}
                         <span class="addSelect">
 						<label class="but_jd" for="add_{{=index}}">加入购物方案</label>
@@ -210,7 +210,7 @@
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
             <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name==""?item.name="新建采购":item.name}}</a> {{~}} {{?index
-        <5}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+        <2}} <a href="javascript:; " data-src="3" class="addProjiect"><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
     </div>
     {{?}}
 </script>
@@ -236,7 +236,7 @@
         <div class="l_top">
             <!-- <input type="checkbox" name="all" id="all" value="" /><label for="all">全选</label> -->
             <button class="delCar" data-typeId='{{=it.id}}'>删除方案</button>
-            <button class="refershCar" data-typeId='{{=it.id}}'>清空方案</button>
+          <button class="refershCar" data-typeId='{{=it.id}}'>清空方案</button>
         </div>
 
         <div class="contents">
@@ -258,6 +258,8 @@
                             {{~value.goodsdetail:item:j}}
                             {{?item.eprice!=0}}
                             <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong></p>
+                            {{??}}
+                            <p class="UserPrice">企业专享价：<strong>暂无</strong></p>
                             {{?}}
                             {{~}}
                         </div>

@@ -236,7 +236,7 @@
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
             <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name==""?item.name="新建采购":item.name}}</a> {{~}} {{?index
-        <5}} <a href="javascript:; " data-src="3" class="addProjiect "><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
+        <2}} <a href="javascript:; " data-src="3" class="addProjiect"><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
     </div>
     {{?}}
 </script>
@@ -264,7 +264,6 @@
             <button class="delCar" data-typeId='{{=it.id}}'>删除方案</button>
             <button class="refershCar" data-typeId='{{=it.id}}'>清空方案</button>
         </div>
-
         <div class="contents">
 
             <ul id="leftDate">
@@ -284,6 +283,8 @@
                             {{~value.goodsdetail:item:j}}
                             {{?item.eprice!=0}}
                             <p class="UserPrice">企业专享价：<strong>￥{{=item.eprice.toFixed(2)}}</strong></p>
+                            {{??}}
+                            <p class="UserPrice">企业专享价：<strong>暂无</strong></p>
                             {{?}}
                             {{~}}
                         </div>
@@ -375,10 +376,11 @@
             </div>
 
             <div class="right_but">
+                {{?value.goods_list.length !=0}}
+                <a href="javascript:;" class="exprotIMg" data-name="{{=value.name}}" {{~value.goods_list:list:k}} datatable="{{=list.pid}}" {{~}}>导出到本地</a> {{?}}
+                <a href="Compared.html" class="pru">对比采购方案</a> {{?value.goods_list.length !=0}}
+                <a href="javascript:;" class="addpro" data-id="{{=value.id}}">添加到当前采购方案</a> {{?}}
 
-                <a href="javascript:;" class="exprotIMg" data-name="{{=value.name}}" {{~value.goods_list:list:k}} datatable="{{=list.pid}}" {{~}}>导出到本地</a>
-                <a href="Compared.html" class="pru">对比采购方案</a>
-                <a href="javascript:;" class="addpro" data-id="{{=value.id}}">添加到当前采购方案</a>
                 <a href="javascript:;" class="tableDe" data-src="{{=value.id}}">{{?value.goods_list.length==0}}删除方案{{??}}删除{{?}}</a>
 
             </div>
@@ -425,7 +427,7 @@
                         </td>
                         <td class="tb_catory">
                             <p>{{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p>
-                            <p>{{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p>
+                            <!-- <p>{{~item.goodsdetail:goods:j}} {{=goods.color}} {{~}}</p> -->
                         </td>
                         <td>
                             <div class="t_num">
@@ -439,6 +441,8 @@
                             <p class="slive">京东价：{{~item.goodsdetail:goods:j}}￥{{=goods.jdprice.toFixed(2)}}{{~}}</p>
                             {{~item.goodsdetail:goods:j}} {{?goods.eprice!=0}}
                             <p>企业专享价：<i class="jd_price">￥{{=goods.eprice.toFixed(2)}}</i></p>
+                            {{??}}
+                            <p>企业专享价：<i class="jd_price">暂无</i></p>
                             {{?}} {{~}}
 
                         </td>
