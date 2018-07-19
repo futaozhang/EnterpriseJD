@@ -1,8 +1,5 @@
 var sourDate = { "id": -1 }
     //未登录用户数据
-    //模拟用户Id
-setCookie("userId", "1")
-
 
 //var baseUrl = "http://localhost:8080"
 var baseUrl = "http://pre-admin.pcshop.jd.com"
@@ -11,7 +8,6 @@ var baseUrl = "http://pre-admin.pcshop.jd.com"
 
 //用户名
 var userName = "游客"
-
 
 //存储是否被收藏的采购
 var judgment = [];
@@ -77,7 +73,7 @@ function leftBut(type) {
 
             addpr_li(item)
 
-            return true
+
         }
     });
 
@@ -687,7 +683,7 @@ function cnshrine(typeId, list) {
                 setTimeout(leftBut(1), 40)
             }
             addTips("已加入收藏方案")
-                //runBg()
+                // runBg()
             try {
                 if (list != undefined) {
                     Purchase()
@@ -899,7 +895,8 @@ function IEVersion() {
         reIE.test(userAgent);
         var fIEVersion = parseFloat(RegExp["$1"]);
         if (fIEVersion == 7) {
-            alert(7)
+            $("html").css("width", "1920px")
+            $("html").css("overflow-x", "hidden")
             return 7;
         } else if (fIEVersion == 8) {
             return 8;
@@ -989,7 +986,21 @@ if (getCookie("unick") == null || getCookie("unick") == "") {
 }
 
 $("body").delegate("#videos .iconfont", "click", function() {
+    var myVideo = document.getElementById('example_video');
+    myVideo.pause();
     $("#videos").hide()
     document.cookie = "videoH=2";
 
 })
+
+var timeout = true; //启动及关闭按钮
+function time() {
+    if (timeout) return;
+    if ($(".isLogoing").css("left") == "0px") {
+
+        $('.leftContent').css("width", "0px")
+    } else {
+        $('.leftContent').css("width", "360px")
+    }
+    setTimeout(time, 50); //time是指本身,延时递归调用自己,100为间隔调用时间,单位毫秒
+}

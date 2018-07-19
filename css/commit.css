@@ -1338,6 +1338,13 @@ button:focus {
     color: white;
 }
 
+.templated {
+    background-color: #a5a5a5;
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: white;
+}
+
 .designer {
     background-color: #ea5787;
     padding: 2px 4px;

@@ -100,7 +100,7 @@
                                             <span class="manager">高层管理</span> {{??item.message=="商务便携"}}
                                             <span class="portadle">商务便携</span> {{??item.message=="视觉设计"}}
                                             <span class="designer">视觉设计</span> {{??}}
-                                            <span class="">----</span> {{?}}
+                                            <span class="templated">{{=item.message}}</span> {{?}}
                                             <span>{{~item.goodsdetail:goods:j}}{{=goods.name}}{{~}}</span>
                                             <span>{{~item.goodsdetail:goods:j}}{{=goods.color}}{{~}}</span>
                                         </div>
@@ -132,7 +132,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        {{?item.hot}}
+                                        {{?item.lable}}
                                         <i class="tipsRight">
 										<img src="img/hot.png"/>
                                         </i> {{?}}
@@ -192,10 +192,7 @@
         <p></p>
         <span>已加入购物方案</span>
     </div>
-    <!--底部-->
-    <div id="foote">
-        <h4>Copyright© 2004-2018 京东JD.com 版权所有</h4>
-    </div>
+
     <div id="retunRcp">
         <i class="iconfont" onclick="retunRcp()">&#xe606;</i>
         <i class="bg"></i>

@@ -310,12 +310,12 @@ $("#w_collection").delegate(".tableDe", "click", function() {
         listId = [];
     }
 
-    personAlert(typId, listId.join("-"))
+    personAlerts(typId, listId.join("-"))
 
 
 });
 //
-function personAlert(typeid, skuId, obj) {
+function personAlerts(typeid, skuId, obj) {
     var text = "确定删除当前商品？"
     if (skuId == "") {
         text = "确定删除当前方案？"
@@ -339,7 +339,7 @@ function collectionOpen(obj) {
 //单选删除
 $("#w_collection").delegate(".tb_opreat .tb_del", "click", function() {
 
-        personAlert($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
+        personAlerts($(this).attr("data-typid"), $(this).attr("data-skid"), $(this))
     })
     //替换
 

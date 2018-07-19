@@ -227,6 +227,7 @@ function personAlert(typeid, skuId, obj) {
 }
 
 function personOpen(obj) {
+
     // removePland($(obj).attr("data-type"), $(obj).attr("data-sku"), $(obj).attr("data-obj"))
     removePlanP($(obj).attr("data-type"), $(obj).attr("data-sku"), $(obj).attr("data-obj"))
     $('.aDs').remove()
@@ -514,7 +515,7 @@ function removePlanP(typeId, skuId, obj) {
             Purchase(typeId)
             leftBut()
             $(obj).parent().parent().remove();
-            // moClick(typeId)
+            moClick(typeId)
         }
     })
 }
