@@ -17,7 +17,9 @@ window.onload = function() {
     })
 
     // 不存在用户  回首页
-   
+   if(getCookie("userId"==""||getCookie("userId"==null)){
+       window.location.href="index.html"
+   }
 }
 
 function dataListChange(data) {
