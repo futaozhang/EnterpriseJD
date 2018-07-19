@@ -1,7 +1,22 @@
 
+function setCookie(name, value, time) {
+    time == undefined ? time = 5 : time = time;
+    //alert(time)
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 8 * time * 60 * 60 * 1000);
+    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+}
+
+   function clearCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if (keys) {
+        for (var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+}
+
   adduser()
   function adduser(){
- 
     var status=false;
     $.ajax({
         type: "POST",
@@ -24,15 +39,6 @@
 }
 })
   return status
-   }
-
-
-   function clearCookie() {
-    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-    if (keys) {
-        for (var i = keys.length; i--;)
-            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
-    }
 }
-
+   
 
