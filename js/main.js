@@ -769,8 +769,7 @@ function clearCookie() {
 //登陆调用
 function login() {
     if (getCookie('pin') != null || getCookie('pin') != "") {
-        $.post(baseUrl + "/appuser/adduser", { "pin": getCookie('pin') },
-
+        $.post(baseUrl + "/appuser/adduser", { "pin": getCookie('pin')},
                 function(i) {
                     if (i.code == 200 || i.code == 304) {
                         setCookie("userId", i.userid);
@@ -778,7 +777,7 @@ function login() {
                     } else if (i.code = 201) {
                         alert("验证失败请重新登录")
                         clearCookie();
-                        // setTimeout(function() { login() }, 300)
+                        //setTimeout(function() { login() }, 300)
                     }
                 })
             // return false;
@@ -863,7 +862,6 @@ $("#imgDowload").click(function() {
     if (window.location.pathname == "/Person.html") {
         closeOpen()
     } else {
-
         window.location.href = "Person.html?id=1";
     }
 
@@ -996,6 +994,7 @@ $("body").delegate("#videos .iconfont", "click", function() {
 var timeout = true; //启动及关闭按钮
 function time() {
     if (timeout) return;
+   // login()
     if ($(".isLogoing").css("left") == "0px") {
 
         $('.leftContent').css("width", "0px")

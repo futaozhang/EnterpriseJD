@@ -91,7 +91,7 @@ $("#warp_content").delegate(".n_collect", "click", function() {
 
 
     var typeId = $(this).attr("data-type")
-    isCheckAdd(typeId, 1)
+
     $.ajax({
         type: "POST",
         url: baseUrl + "/procurement/updatep",
@@ -104,17 +104,34 @@ $("#warp_content").delegate(".n_collect", "click", function() {
         }
     })
     comparedList()
-        //物理删除
+
+    //物理删除
     $(this).parent().parent().parent().parent().remove();
+
 
 
 });
 $("#warp_content").delegate(".changesky", "click", function() {
-    var typeId = $(this).find(".n_collect").attr("data-type")
-    isCheckAdd(typeId, 2)
-    $(this).text("已收藏");
-    // comparedList()
 
+    var typeId = $(this).find(".n_collect").attr("data-type")
+
+
+
+    $(this).text("已收藏");
+
+    isCheckAdd(typeId, 2)
+    $.ajax({
+        type: "POST",
+        url: baseUrl + "/procurementBak/addp?pid=" + typeId,
+        contentType: "application/json",
+        dataType: "json",
+        success: function(jsonResult) {
+
+            addTips("已加入收藏方案")
+
+
+        }
+    })
 });
 // 收藏
 
@@ -128,7 +145,7 @@ $("#warp_content").delegate(".ui_opret .com_del", "click", function() {
 function alertChange(typeid, list, obj) {
     $("body").append(function() {
         return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
-            ' <h4>  确定删除当前物品吗？ </h4> </div > <div class = "ads_footer" >' +
+            ' <h4>确定删除当前物品吗？ </h4> </div > <div class = "ads_footer" >' +
             ' <button data-type = "' + typeid + '"  data-sku = "' + list + '" class ="ads_submit" onclick="openAll(this)" > 确定 </button>' +
             '<button class="ads_cancl" onclick="closeAll()">取消</button > </div> </div></div>'
     })
@@ -275,7 +292,7 @@ $.ajax({
             $("body").append(function() {
                 return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
 
-                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" autoplay="autoplay" preload="auto" controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="none" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
 
                 +'<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
             })
