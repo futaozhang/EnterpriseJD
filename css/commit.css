@@ -501,19 +501,19 @@ button:focus {
 
 .information .title {
     width: 150px;
-    height: 36px;
+    height: 40px;
     overflow: hidden;
 }
 
 .information .jdPrice {
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 12px;
     color: silver;
     overflow: hidden;
 }
 
 .information .UserPrice {
-    margin-top: 10px;
+    margin-top: 1px;
     color: rgb(226, 58, 58);
     overflow: hidden;
     font-size: 12px;

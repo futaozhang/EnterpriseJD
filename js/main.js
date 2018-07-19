@@ -765,56 +765,24 @@ function clearCookie() {
             document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
     }
 }
-
 //登陆调用
 function login() {
-    if (getCookie('pin') != null || getCookie('pin') != "") {
-        $.post(baseUrl + "/appuser/adduser", { "pin": getCookie('pin')},
-                function(i) {
-                    if (i.code == 200 || i.code == 304) {
-                        setCookie("userId", i.userid);
-                        location.replace(document.referrer)
-                    } else if (i.code = 201) {
-                        alert("验证失败请重新登录")
-                        clearCookie();
-                        //setTimeout(function() { login() }, 300)
-                    }
-                })
-            // return false;
-    }
-    seajs.use('jdf/1.0.0/unit/login/1.0.0/login.js', function(login) {
-        login({
-            // firstCheck: false,
-            modal: true, //false跳转,true显示登录注册弹层
-            complete: function() {
 
-                $.post(baseUrl + "/appuser/adduser", { "pin": getCookie('pin') },
+  if(adduser()){
 
-                    function(i) {
-                        if (i.code == 200 || i.code == 304) {
-                            location.replace(document.referrer)
-                            setCookie("userId", i.userid);
-                        } else if (i.code = 201) {
-                            alert("验证失败请重新登录")
-                            clearCookie();
-                            // setTimeout(function() { login() }, 300)
-                        }
-                    })
-            }
-        })
-    })
+    return false
+  }
+  window.location.href="https://passport.jd.com/new/login.aspx?ReturnUrl=http://pcshop.jd.com"
 };
 
-
 function setCookie(name, value, time) {
-
-
     time == undefined ? time = 5 : time = time;
     //alert(time)
     var exp = new Date();
     exp.setTime(exp.getTime() + 8 * time * 60 * 60 * 1000);
     document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
+
 
 $("#mianCont").delegate(".shoping", "click", function() {
     var num = [];
@@ -977,11 +945,11 @@ function closeTop(obj) {
 
 }
 
-if (getCookie("unick") == null || getCookie("unick") == "") {
-    $("#userName").text(getCookie("pin") == null ? unescape(userName) : unescape((getCookie("pin"))))
-} else {
-    $("#userName").text(getCookie("unick") == null ? unescape(userName) : unescape((getCookie("unick"))))
-}
+// if (getCookie("unick") == null || getCookie("unick") == "") {
+//     $("#userName").text(getCookie("pin") == null ? unescape(userName) : unescape((getCookie("pin"))))
+// } else {
+//     $("#userName").text(getCookie("unick") == null ? unescape(userName) : unescape((getCookie("unick"))))
+// }
 
 $("body").delegate("#videos .iconfont", "click", function() {
     var myVideo = document.getElementById('example_video');

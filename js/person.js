@@ -17,9 +17,7 @@ window.onload = function() {
     })
 
     // 不存在用户  回首页
-    if (getCookie("userId") == null || getCookie("userId") == "") {
-        window.location = "index.html"
-    }
+   
 }
 
 function dataListChange(data) {
@@ -143,7 +141,12 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
     var tableNum = $(this).attr("dataTable")
     var name = $(this).attr("data-name")
     $(".bg").show()
-    $("#imgDowload").text("正在生成图片")
+    if (IEVersion() == -1) {
+        $("#imgDowload").text("正在生成图片")
+    } else {
+        $("#imgDowload").hide()
+    }
+   
     $(".selectorFile").show()
     $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
     $("#imgDowload").attr("data-name", name)
@@ -180,7 +183,7 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
 $("#imgDowload").click(function() {
     $(".bg").hide()
     $(".selectorFile").hide()
-
+   
 })
 
 

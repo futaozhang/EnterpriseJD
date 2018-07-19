@@ -254,8 +254,14 @@ function changListdata(obj) {
 $("#w_collection").delegate(".exprotIMg", "click", function() {
         var tableNum = $(this).attr("dataTable")
         var name = $(this).attr("data-name")
+        $("#imgDowload").attr('href', "");
         $(".bg").show()
         $(".selectorFile").show()
+        if (IEVersion() == -1) {
+            $("#imgDowload").text("正在生成图片")
+        } else {
+            $("#imgDowload").hide()
+        }
         $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
         $("#execlDowload").attr("data-w", 1)
         $("#imgDowload").attr("data-name", name)
