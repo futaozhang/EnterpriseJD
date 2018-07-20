@@ -12,7 +12,8 @@ function adduser(){
     success:function(i){
             if (i.code == 200 || i.code == 304) {
                setCookie("userId", i.userid);
-               $("#userName").text(decodeURI(i.username))          
+               $("#userName").text(decodeURI(i.username))   
+               setCookie("userName", i.username);     
                status=true
            } else if (i.code = 201) {
                clearCookie();

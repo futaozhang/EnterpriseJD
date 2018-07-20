@@ -16,8 +16,17 @@ window.onload = function() {
 
     })
 
+    if(getCookie("userName")==null||getCookie("userName")==""){
+
+        $("#userName").text(decodeURI(getCookie("pin"))) 
+    }else{
+        $("#userName").text(decodeURI(getCookie("userName"))) 
+    }
+   
+          
+  
     // 不存在用户  回首页
-   if(getCookie("userId"==""||getCookie("userId"==null)){
+   if(getCookie("userId")==""||getCookie("userId")==null){
        window.location.href="index.html"
    }
 }
