@@ -768,11 +768,11 @@ function clearCookie() {
 //登陆调用
 function login() {
 
-  if(adduser()){
+    if (adduser()) {
 
-    return false
-  }
-  window.location.href="https://passport.jd.com/new/login.aspx?ReturnUrl=http://pcshop.jd.com"
+        return false
+    }
+    window.location.href = "https://passport.jd.com/new/login.aspx?ReturnUrl=http://pcshop.jd.com"
 };
 
 function setCookie(name, value, time) {
@@ -819,9 +819,13 @@ $("#mianCont").delegate(".export", "click", function() {
     $(".selectorFile").show()
     var that = this
     $("#execlDowload").attr("data-pid", $(this).attr("data-pid"))
-    $("#imgDowload").text("前往方案夹下载图片")
 
 
+    if (IEVersion() == -1) {
+        $("#imgDowload").text("正在生成图片")
+    } else {
+        $("#imgDowload").hide()
+    }
 
 });
 
@@ -962,7 +966,7 @@ $("body").delegate("#videos .iconfont", "click", function() {
 var timeout = true; //启动及关闭按钮
 function time() {
     if (timeout) return;
-   // login()
+    // login()
     if ($(".isLogoing").css("left") == "0px") {
 
         $('.leftContent').css("width", "0px")
