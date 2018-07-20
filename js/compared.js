@@ -5,7 +5,8 @@
 
 var k_tmpl = document.getElementById('k_tempelated').innerHTML;
  // 不存在用户  回首页
- if(getCookie("userId"==""||getCookie("userId"==null)){
+
+ if(getCookie("userId")==""||getCookie("userId")==null){
     window.location.href="index.html"
 }
 function comparedList() {

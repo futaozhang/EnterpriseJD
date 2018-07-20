@@ -84,7 +84,7 @@ function Collection(ip) {
 
             $("#w_collection .addCollection a").remove();
             $("#w_collection .right_but .pru").remove();
-            $("#w_collection .right_but .addpro").show()
+            $("#w_collection .right_but .addpro").show()    
             changec(0)
             setTimeout(function() {
                 priceNunCollect()

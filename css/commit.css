@@ -577,7 +577,7 @@ button:focus {
     font-size: 10px;
     color: silver;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 1px;
 }
 
 .Jd_footer li {
@@ -1634,13 +1634,14 @@ table {
 }
 
 .right_but a {
-    padding: 5px 25px;
-    display: inline-block;
+    padding: 10px 25px;
+    /* display: inline-block; */
     height: 20px;
     text-align: center;
     background-color: #a5a5a5;
     color: white;
     border-radius: 2px;
+    line-height:30px;
 }
 
 .warpName {
