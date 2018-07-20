@@ -69,16 +69,12 @@ $("#content_warp").delegate(".addCompared input", "click", function() {
         setCookie("Contrast", ContrastArr)
 
         ContrastFuc()
-
     } else {
-
-        if (cks.length > 4 || ContrastArr.length > 4) {
+        if (cks.length > 4 || ContrastArr.length > 3) {
             addTips("对比栏已满")
             $(".contrast").fadeIn()
             return false
-        } else {
-
-        }
+        } else {}
         ContrastArr.push(skuId)
         setCookie("Contrast", ContrastArr)
         ContrastFuc()
@@ -271,8 +267,8 @@ $.ajax({
             $("body").append(function() {
                 return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
 
-                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="nnone" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >'
-                    +'<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="nnone" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
+                    '<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
             })
         }
     }

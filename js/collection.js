@@ -84,7 +84,7 @@ function Collection(ip) {
 
             $("#w_collection .addCollection a").remove();
             $("#w_collection .right_but .pru").remove();
-            $("#w_collection .right_but .addpro").show()    
+            $("#w_collection .right_but .addpro").show()
             changec(0)
             setTimeout(function() {
                 priceNunCollect()
@@ -175,7 +175,7 @@ $("#w_collection").delegate(".addpro", 'click', function() {
         $.each($("#leftsider .isLogoing .addProgram"), function(i, item) {
             var that = this
             $(".selectRep").append(function() {
-                return '<input type="radio" name="tr" data-src="' + $(that).attr("data-src") + '" id="jdRep_' + i + '"> <label for="jdRep_' + i + '"> ' + $.trim($(that).text()).slice(1) + '</label>'
+                return '<input type="radio" name="tr" data-src="' + $(that).attr("data-src") + '" id="jdRep_' + i + '"> <label for="jdRep_' + i + '"> ' + $.trim($(that).find("small").text()) + '</label>'
             })
         })
         $(".confirmTips").show()

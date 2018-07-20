@@ -5,8 +5,8 @@ var sourDate = { "id": -1 }
 var baseUrl = "http://pre-admin.pcshop.jd.com"
     //var baseUrl = "http://192.168.1.247:8080"
 
-
-//用户名
+$("#imgDowload").hide()
+    //用户名
 var userName = "游客"
 
 //存储是否被收藏的采购

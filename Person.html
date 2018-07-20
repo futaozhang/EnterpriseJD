@@ -130,7 +130,7 @@
 
     </div>
     <!--底部-->
-  
+
     <div id="retunRcp">
         <i class="iconfont" onclick="retunRcp()">&#xe606;</i>
         <i class="bg"></i>
@@ -203,7 +203,7 @@
                                         <p class="warp_title"> {{=value.name}}</p>
                                         <p class="warp_ft">{{=value.brandName}}</p>
                                     </div>
-                                 
+
                                     <div class="warp_sle">
                                         <span class="addSelect" data-sku="{{=value.skuid}}"><label for="add_0">替换</label></span>
                                         <span class="addSelectRcp" data-sku="{{=value.skuid}}"><label for="add_0">添加</label></span>
@@ -219,7 +219,7 @@
         </div>
     </div>
 
-    <iframe src="./Jd_footer.html" frameborder="0" width="100%" height="300px" ></iframe>
+    <iframe src="./Jd_footer.html" frameborder="0" width="100%" height="300px"></iframe>
 
 </body>
 <script type="text/template" id="leftTmp">
@@ -236,7 +236,7 @@
         <a href="Person.html">收藏方案</a>
         <a href="Person.html?id=1">采购方案</a> {{~it:item:index}}
         <a href="javascript:; " class="addProgram" data-src="{{=item.id}} ">
-            <i class="tipsNum">{{=item.goods_list.length}}</i>{{=item.name==""?item.name="新建采购":item.name}}</a> {{~}} {{?index
+            <i class="tipsNum">{{=item.goods_list.length}}</i><small>{{=item.name==""?item.name="新建采购":item.name}}</small></a> {{~}} {{?index
         <2}} <a href="javascript:; " data-src="3" class="addProjiect"><i class="iconfont ">&#xf018b;</i></a>{{??}} {{?}}
     </div>
     {{?}}
