@@ -4,15 +4,18 @@
 
 
 var k_tmpl = document.getElementById('k_tempelated').innerHTML;
- // 不存在用户  回首页
+// 不存在用户  回首页
 
- if(getCookie("userId")==""||getCookie("userId")==null){
-    window.location.href="index.html"
-}
+//  if(getCookie("userId")==""||getCookie("userId")==null){
+//     window.location.href="index.html"
+// }
 function comparedList() {
 
     $.ajax({
         url: baseUrl + "/procurement/getplist",
+        xhrFields: {
+            withCredentials: true
+        },
         data: {
             "userid": getCookie("userId"),
             "status": 1
@@ -98,6 +101,9 @@ $("#warp_content").delegate(".n_collect", "click", function() {
 
     $.ajax({
         type: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurement/updatep",
         contentType: "application/json",
         dataType: "json",
@@ -126,6 +132,9 @@ $("#warp_content").delegate(".changesky", "click", function() {
     isCheckAdd(typeId, 2)
     $.ajax({
         type: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurementBak/addp?pid=" + typeId,
         contentType: "application/json",
         dataType: "json",
@@ -232,6 +241,9 @@ function removePlanCom(typeId, skuId, obj) {
     isCheckAdd(typeId, 1)
     $.ajax({
         type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurement/delete",
         data: {
@@ -255,6 +267,9 @@ function changListdataCom(obj) {
     //type
     $.ajax({
         type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurementItem/updatepitem",
         data: {
@@ -279,7 +294,9 @@ $("#warp_content").delegate(".but_jd", "click", function() {
     shoppingCart(id.join(","), num.join(","))
 });
 $.ajax({
-    type: "GET",
+    xhrFields: {
+        withCredentials: true
+    },
     contentType: "application/json",
     url: baseUrl + "/scene/list",
     cache: false,
@@ -408,7 +425,9 @@ $("#recpList").delegate(".addSelect", "click", function() {
     var deskuId = $(".typeText").attr("data-deskuId");
     isCheckAdd(typeId, 1)
     $.ajax({
-        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurementItem/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
@@ -446,7 +465,9 @@ $("#recpList").delegate(".addSelectRcp", "click", function() {
 
     isCheckAdd(typeId, 1)
     $.ajax({
-        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurementItem/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },

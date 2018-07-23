@@ -3,7 +3,7 @@ var sourDate = { "id": -1 }
 
 //var baseUrl = "http://localhost:8080"
 var baseUrl = "http://pre-admin.pcshop.jd.com"
-    //var baseUrl = "http://192.168.1.247:8080"
+    //var baseUrl = "http://192.168.253.59"
 
 $("#imgDowload").hide()
     //用户名
@@ -16,6 +16,9 @@ $.ajax({
     type: "POST",
     contentType: "application/json",
     url: baseUrl + "/scene/list",
+    xhrFields: {
+        withCredentials: true
+    },
     timeout: 5000,
     cache: false,
     success: function(item) {},
@@ -57,11 +60,13 @@ function leftBut(type) {
     $.ajax({
         url: baseUrl + "/procurement/getplist",
         data: { "userid": getCookie("userId"), "status": 1 },
+        xhrFields: {
+            withCredentials: true
+        },
         cache: false,
         success: function(item) {
             // sourDate = item;
             //数据渲染
-
             document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
 
             if (type == 1) {
@@ -139,36 +144,74 @@ function leftList(id, fun) {
     var jdsum = 0;
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
-    $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
+    $.ajax({
+            type: "GEt",
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true == !(document.all),
+            data: { "id": id, "status": 1 },
+            url: baseUrl + "/procurement/getp",
 
-        function(item) {
-            document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
+            success: function(item) {
+                document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
-            $.each(item[0].goods_list, function(index, infoLIst) {
-                //数量计算
+                $.each(item[0].goods_list, function(index, infoLIst) {
+                    //数量计算
 
-                num += parseFloat(infoLIst.goodsnum)
+                    num += parseFloat(infoLIst.goodsnum)
 
-                //价格计算
-                $.each(infoLIst.goodsdetail, function(j, item) {
+                    //价格计算
+                    $.each(infoLIst.goodsdetail, function(j, item) {
 
-                    picur = item.eprice * infoLIst.goodsnum
+                        picur = item.eprice * infoLIst.goodsnum
 
-                    if (item.eprice == 0) {
+                        if (item.eprice == 0) {
 
-                        sum.push(item.jdprice * infoLIst.goodsnum)
+                            sum.push(item.jdprice * infoLIst.goodsnum)
 
-                    } else {
-                        sum.push(item.eprice * infoLIst.goodsnum)
+                        } else {
+                            sum.push(item.eprice * infoLIst.goodsnum)
 
-                    }
+                        }
+                    })
                 })
-            })
-            $("#number").text(num)
-            $("#price").text(sum.sum().toFixed(2))
-            runBg()
+                $("#number").text(num)
+                $("#price").text(sum.sum().toFixed(2))
+                runBg()
 
-        });
+            }
+        })
+        // $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
+
+    //     function(item) {
+    //         document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
+
+    //         $.each(item[0].goods_list, function(index, infoLIst) {
+    //             //数量计算
+
+    //             num += parseFloat(infoLIst.goodsnum)
+
+    //             //价格计算
+    //             $.each(infoLIst.goodsdetail, function(j, item) {
+
+    //                 picur = item.eprice * infoLIst.goodsnum
+
+    //                 if (item.eprice == 0) {
+
+    //                     sum.push(item.jdprice * infoLIst.goodsnum)
+
+    //                 } else {
+    //                     sum.push(item.eprice * infoLIst.goodsnum)
+
+    //                 }
+    //             })
+    //         })
+    //         $("#number").text(num)
+    //         $("#price").text(sum.sum().toFixed(2))
+    //         runBg()
+
+    //     });
 }
 
 //新添加方案
@@ -201,11 +244,15 @@ function addProgram() {
 function newAddColect(id, json) {
     $(".Jd_footer").hide()
     $(".addProjiect ").hide()
+    var names = encodeURI("新建采购")
     $.ajax({
         type: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurement/addp",
-        data: JSON.stringify({ "good_list": [], "status": 1, "uid": getCookie("userId"), "name": "新建采购" }),
+        data: JSON.stringify({ "good_list": [], "status": 1, "uid": getCookie("userId"), "name": names }),
         cache: false,
         success: function(item) {
             leftBut()
@@ -346,10 +393,14 @@ function closeClear() {
 }
 
 function removeList(typeId, deleate, per) {
+
     isCheckAdd(typeId, 1)
     $.ajax({
         type: "GET",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurement/delete",
         data: { "procurementId": typeId, "pitemlist": deleate },
         cache: false,
@@ -457,6 +508,9 @@ $("#mianCont").delegate(".changName a", "click", function() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurement/updatep",
         data: JSON.stringify({ "id": type, "name": $(this).siblings("input").val() }),
         cache: false,
@@ -616,15 +670,15 @@ function getCookie(name) {
 
 //
 
-function delCookie(name) {   
-    var exp = new Date();   
+function delCookie(name) {
+    var exp = new Date();
 
-    exp.setTime(exp.getTime() - 1);   
-    var cval = getCookie(name);   
+    exp.setTime(exp.getTime() - 1);
+    var cval = getCookie(name);
 
     if (cval != null) {
         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()
-    }; 
+    };
 
 }
 //数组内相加
@@ -647,6 +701,9 @@ function enshrine(typeId, list) {
 
     $.ajax({
         type: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurementBak/updatep",
         contentType: "application/json",
         dataType: "json",
@@ -672,6 +729,9 @@ function cnshrine(typeId, list) {
     isCheckAdd(typeId, 2)
     $.ajax({
         type: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurementBak/addp?pid=" + typeId,
         contentType: "application/json",
         dataType: "json",
@@ -703,6 +763,9 @@ function isCheckAdd(typeId, state) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurement/updatep",
         data: JSON.stringify({ "id": typeId, "collecttype": state }),
         cache: false,
@@ -717,6 +780,9 @@ function removePland(typeId, skuId, obj) {
     $.ajax({
         type: "GET",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurement/delete",
         data: { "procurementId": typeId, "pitemlist": skuId },
         cache: false,
@@ -744,6 +810,7 @@ function changListdataL(obj) {
     $.ajax({
         type: "GET",
         contentType: "application/json",
+
         url: baseUrl + "/procurementItem/updatepitem",
         data: { "id": skuid, "goodsnum": value },
         cache: true,
@@ -908,7 +975,6 @@ function getCookieCores(c_name) {
 
 $.ajax({
     type: "GET",
-
     url: baseUrl + "/homepageAd/list",
     cache: false,
     success: function(item) {

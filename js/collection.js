@@ -49,7 +49,7 @@ $("#w_collection").delegate(".warpName .inputNameCance", "click", function() {
 
 //名称修改
 $("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
-    var userName = $(this).parent().siblings("input").val()
+    var collectionName = $(this).parent().siblings("input").val()
     var typId = $(this).parent().siblings("input").attr("id")
 
     $(this).parent().parent().hide();
@@ -58,8 +58,11 @@ $("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurementBak/updatep",
-        data: JSON.stringify({ "id": typId, "name": userName }),
+        data: JSON.stringify({ "id": typId, "name": encodeURI(collectionName) }),
         cache: false,
         success: function(item) {
             Collection()
@@ -210,6 +213,9 @@ function recoverP(coolectId, pid, rcp) {
     pid == null ? pid = "" : pid = pid;
     $.ajax({
         type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurement/recoverP",
         data: {
@@ -238,6 +244,9 @@ function changListdata(obj) {
     var skuid = $(obj).parent().parent().parent().find(".tb_check input").attr("sc-id"); //id
     $.ajax({
         type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurementBakItem/updatepitem",
         data: {
@@ -378,7 +387,9 @@ function removePlanWC(typeId, skuId, obj) {
 
     skuIds == NaN ? skuIds = " " : skuIds = skuIds;
     $.ajax({
-        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurementBak/delete",
         data: {

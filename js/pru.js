@@ -8,9 +8,9 @@ window.onload = function() {
             ContrastFuc()
         }
         //存在无筛选记录  回首页
-        if (getCookie("slectorType") == null || getCookie("slectorType") == "") {
-            window.location = "index.html"
-        }
+        // if (getCookie("slectorType") == null || getCookie("slectorType") == "") {
+        //     window.location = "index.html"
+        // }
         leftBut()
 
     }
@@ -190,6 +190,9 @@ $("#content_warp").delegate(".add_pri ul a", "click", function() {
 function addPlan(typeId, skuId, type, tipsName) {
     $.ajax({
         type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json",
         url: baseUrl + "/procurementItem/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": type, "messageid": getCookie("messageid") },
@@ -251,6 +254,9 @@ function delCookie(name) {   
 
 $.ajax({
     type: "GET",
+    xhrFields: {
+        withCredentials: true
+    },
     contentType: "application/json",
     url: baseUrl + "/scene/list",
     cache: false,

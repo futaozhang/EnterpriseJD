@@ -16,20 +16,20 @@ window.onload = function() {
 
     })
 
-    if(getCookie("userName")==null||getCookie("userName")==""){
+    if (getCookie("userName") == null || getCookie("userName") == "") {
 
-        $("#userName").text(decodeURI(getCookie("pin"))) 
-    }else{
-        $("#userName").text(decodeURI(getCookie("userName"))) 
+        $("#userName").text(decodeURI(getCookie("pin")))
+    } else {
+        $("#userName").text(decodeURI(getCookie("userName")))
     }
-   
-          
-  
+
+
+
     // 不存在用户  回首页
-   if(getCookie("userId")==""||getCookie("userId")==null){
-      
-       window.location.href="index.html"
-   }
+    if (getCookie("userId") == "" || getCookie("userId") == null) {
+
+        window.location.href = "index.html"
+    }
 }
 
 function dataListChange(data) {
@@ -86,21 +86,47 @@ var j_person = document.getElementById('j_person').innerHTML;
 function Purchase(ip) {
     $.ajaxSetup({ cache: false });
 
-    $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userId"), "status": 1 }, function(item) {
+    // $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userId"), "status": 1 }, function(item) {
 
-        if (item.length != 0) {
-            document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
-            change(0)
-            setTimeout(function() {
-                priceNun()
-            }, 5)
-        } else {
-            document.getElementById('w_person').innerHTML = doT.template(j_person)(noData);
-            return false
+    //     if (item.length != 0) {
+    //         document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
+    //         change(0)
+    //         setTimeout(function() {
+    //             priceNun()
+    //         }, 5)
+    //     } else {
+    //         document.getElementById('w_person').innerHTML = doT.template(j_person)(noData);
+    //         return false
+    //     }
+
+    //     moClick(ip)
+
+    // })
+    $.ajax({
+        type: "GET",
+        async: false,
+        url: baseUrl + "/procurement/getplist",
+        data: { "userid": getCookie("userId"), "status": 1 },
+        xhrFields: {
+            withCredentials: true
+        },
+        // crossDomain: true,
+        success: function(item) {
+            if (item.length != 0) {
+                document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
+                change(0)
+                setTimeout(function() {
+                    priceNun()
+                }, 5)
+            } else {
+                document.getElementById('w_person').innerHTML = doT.template(j_person)(noData);
+                return false
+            }
+
+        },
+        error: function() {
+
         }
-
-        moClick(ip)
-
     })
 
 }
@@ -158,7 +184,7 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
     } else {
         $("#imgDowload").hide()
     }
-   
+
     $(".selectorFile").show()
     $("#execlDowload").attr("data-pid", $(this).attr("datatable"))
     $("#imgDowload").attr("data-name", name)
@@ -195,7 +221,7 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
 $("#imgDowload").click(function() {
     $(".bg").hide()
     $(".selectorFile").hide()
-   
+
 })
 
 
@@ -432,6 +458,9 @@ $("#recpList").delegate(".addSelect", "click", function() {
             $.ajax({
                 type: "GET",
                 contentType: "application/json",
+                xhrFields: {
+                    withCredentials: true
+                },
                 url: baseUrl + "/" + delUrl + "/delete",
                 data: { "procurementId": typeId, "pitemlist": deskuId },
                 cache: false,
@@ -470,6 +499,9 @@ $("#recpList").delegate(".addSelectRcp", "click", function() {
     $.ajax({
         type: "GET",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/" + addUrl + "/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
         cache: true,
@@ -523,6 +555,9 @@ function removePlanP(typeId, skuId, obj) {
     $.ajax({
         type: "GET",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurement/delete",
         data: { "procurementId": typeIds, "pitemlist": skuIds },
         cache: false,
@@ -590,6 +625,9 @@ function changListdataW(obj) {
     $.ajax({
         type: "GET",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurementItem/updatepitem",
         data: { "id": skuid, "goodsnum": value },
         cache: true,
@@ -682,6 +720,9 @@ $("#w_person").delegate(".but_jd", "click", function() {
 
 $.ajax({
     type: "GET",
+    xhrFields: {
+        withCredentials: true
+    },
     contentType: "application/json",
     url: baseUrl + "/scene/list",
     cache: false,

@@ -155,6 +155,9 @@ function diffrent() {
 $.ajax({
     type: "GET",
     contentType: "application/json",
+    xhrFields: {
+        withCredentials: true
+    },
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {
