@@ -500,7 +500,7 @@ $("#mianCont").delegate(".add", 'click', function() {
 $("#mianCont").delegate(".changName a", "click", function() {
     //方案Id
     //方案名称
-
+    names = encodeURI($(this).siblings("input").val())
     var type = $(this).attr("data-type")
     isCheckAdd(type, 1)
     $.ajax({
@@ -510,7 +510,7 @@ $("#mianCont").delegate(".changName a", "click", function() {
             withCredentials: true
         },
         url: baseUrl + "/procurement/updatep",
-        data: JSON.stringify({ "id": type, "name": $(this).siblings("input").val() }),
+        data: JSON.stringify({ "id": type, "name": names }),
         cache: false,
         success: function(item) {
             leftList(type);
@@ -833,8 +833,8 @@ function clearCookie() {
 //登陆调用
 function login() {
 
-    if (adduser() == false) {
-
+    if (adduser() == true) {
+        window.location.reload(true)
         return false
     }
     window.location.href = "https://passport.jd.com/new/login.aspx?ReturnUrl=http://pcshop.jd.com"

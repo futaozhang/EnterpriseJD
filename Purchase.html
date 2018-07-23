@@ -58,7 +58,11 @@
                             <i><img src="{{=value.lable}}" /></i> {{?}}
                         </div>
                         <div class="warp_img">
-                            <a href="https://item.jd.com/{{=value.skuid}}.html" target="_blank"> <img src="{{=value.thumbnail}}" title="{{=value.name}}" /></a>
+                            <a href="https://item.jd.com/{{=value.skuid}}.html" target="_blank">
+
+                                <img class="lazy" src="{{=value.thumbnail}}" title="{{=value.name}}" />
+
+                            </a>
                         </div>
                         <div class="warp_Price">
                             <h5>京东价：￥{{=value.jdprice.toFixed(2)}}</h5>
@@ -336,6 +340,7 @@
 <script src="js/login.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/pru.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/echo.js"></script>
 
 
 </html>
