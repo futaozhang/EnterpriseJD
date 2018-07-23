@@ -22,9 +22,10 @@ $("#left_w").hide()
 $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid"), "bidlist": getCookie("bidlist"), "avlist": getCookie("slectorType") }, function(item) {
 
     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
+
     $(".tips").fadeOut();
     $("#left_w").show()
-    if (getCookie("userId") == null || getCookie("userId") == "") {
+    if (adduser() == false) {
         setTimeout(function() {
             $(".add_pri ul").html(function(n) {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"

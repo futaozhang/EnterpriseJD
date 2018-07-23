@@ -147,7 +147,13 @@ function isCheck() {
 
     //品牌
     setCookie("categoryid", $('input[name="noType"]:checked').val())
+        // 类型不同清除对比
+    if ($('input[name="noType"]:checked').val() == getCookie("categoryid")) {
+        if (getCookie("Contrast") != "" || getCookie("Contrast") != null) {
+            delCookie("Contrast")
 
+        }
+    }
     //图标
     href.length != 0 ? href = href : href.push("")
     setCookie("bidlist", href.join("-"))

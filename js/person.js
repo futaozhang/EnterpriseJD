@@ -2,8 +2,8 @@
  * 采购
  */
 var noData = [];
-//var baseUrl = "http://192.168.1.247:8080"
-var baseUrl = "http://pre-admin.pcshop.jd.com"
+var baseUrl = "http://192.168.253.59"
+    //var baseUrl = "http://pcshop-api.jd.com"
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)
@@ -16,20 +16,20 @@ window.onload = function() {
 
     })
 
-    if (getCookie("userName") == null || getCookie("userName") == "") {
+    // if (getCookie("userName") == null || getCookie("userName") == "") {
 
-        $("#userName").text(decodeURI(getCookie("pin")))
-    } else {
-        $("#userName").text(decodeURI(getCookie("userName")))
-    }
+    //     $("#userName").text(decodeURI(getCookie("pin")))
+    // } else {
+    //     $("#userName").text(decodeURI(getCookie("userName")))
+    // }
 
 
 
     // 不存在用户  回首页
-    if (getCookie("userId") == "" || getCookie("userId") == null) {
+    // if (getCookie("userId") == "" || getCookie("userId") == null) {
 
-        window.location.href = "index.html"
-    }
+    //     window.location.href = "index.html"
+    // }
 }
 
 function dataListChange(data) {
@@ -106,7 +106,7 @@ function Purchase(ip) {
         type: "GET",
         async: false,
         url: baseUrl + "/procurement/getplist",
-        data: { "userid": getCookie("userId"), "status": 1 },
+        data: { "status": 1 },
         xhrFields: {
             withCredentials: true
         },

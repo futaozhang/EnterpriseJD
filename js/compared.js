@@ -17,7 +17,7 @@ function comparedList() {
             withCredentials: true
         },
         data: {
-            "userid": getCookie("userId"),
+
             "status": 1
         },
         cache: false,

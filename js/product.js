@@ -2,11 +2,6 @@
  * 采购产品对比getCookie('Contrast')
  */
 
-
-
-//var cookieDtae = "5512841-5363894-5148309-5834183"
-
-
 //对比
 window.onload = function() {
 
@@ -17,8 +12,7 @@ window.onload = function() {
 function reload() {
     var j_contrastC = document.getElementById('j_productC').innerHTML;
     var date = getCookie("Contrast").split(",").join("-")
-    if (getCookie("userId") == null || getCookie("userId") == "") {
-
+    if (adduser() == false) {
         setTimeout(function() {
             $(".add_pri ul").html(function(n) {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"
@@ -103,6 +97,9 @@ function addPland(typeId, skuId, type, tipsName) {
     $.ajax({
         type: "GET",
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/procurementItem/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": type, "messageid": getCookie("messageid") },
         cache: true,

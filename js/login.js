@@ -2,31 +2,26 @@
   adduser()
 
   function adduser() {
-      // var status = false;
-
-      setCookie("usernam", "dd")
+      var status = false;
       $.ajax({
           type: "POST",
-          //   async: false,
-          url: "http://pre-admin.pcshop.jd.com/appuser/adduser",
+          async: false,
+          //   url: "http://pcshop-api.jd.com/appuser/adduser",
+          url: "http://192.168.253.59/appuser/adduser",
           xhrFields: {
               withCredentials: true
           },
           crossDomain: true == !(document.all),
           success: function(i) {
-
               if (i.code == 200 || i.code == 304) {
-                  // setCookie("userId", i.userid);
                   $("#userName").text(decodeURI(i.username))
-                  setCookie("userName", i.username);
                   status = true
               } else if (i.code = 201) {
-                  // clearCookie();
                   status = false
               }
           },
           error: function() {
-              alert(2)
+
           }
       })
       return status

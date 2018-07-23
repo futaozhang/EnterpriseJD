@@ -2,8 +2,8 @@ var sourDate = { "id": -1 }
     //未登录用户数据
 
 //var baseUrl = "http://localhost:8080"
-var baseUrl = "http://pre-admin.pcshop.jd.com"
-    //var baseUrl = "http://192.168.253.59"
+//var baseUrl = "http://pcshop-api.jd.com"
+var baseUrl = "http://192.168.253.59"
 
 $("#imgDowload").hide()
     //用户名
@@ -16,9 +16,7 @@ $.ajax({
     type: "POST",
     contentType: "application/json",
     url: baseUrl + "/scene/list",
-    xhrFields: {
-        withCredentials: true
-    },
+
     timeout: 5000,
     cache: false,
     success: function(item) {},
@@ -41,9 +39,11 @@ leftBut();
 
 function leftBut(type) {
 
+
+
     var leftTmp = document.getElementById('leftTmp').innerHTML;
 
-    if (getCookie("userId") == null || getCookie("userId") == "") {
+    if (adduser() == false) {
 
         document.getElementById('left_w').innerHTML = doT.template(leftTmp)(sourDate);
 
@@ -59,7 +59,7 @@ function leftBut(type) {
 
     $.ajax({
         url: baseUrl + "/procurement/getplist",
-        data: { "userid": getCookie("userId"), "status": 1 },
+        data: { "status": 1 },
         xhrFields: {
             withCredentials: true
         },
@@ -82,9 +82,7 @@ function leftBut(type) {
         }
     });
 
-
 }
-
 
 
 function addpr_li(item) {
@@ -218,9 +216,9 @@ function leftList(id, fun) {
 
 function addProgram() {
     $(".Jd_footer").hide()
-    if (getCookie("userId") == null || getCookie("userId") == "") {
+    if (adduser() == false) {
         // alert("请先登录")
-        login()
+        login();
         return false
     };
     var str = '<a href="javascript:;" data-src="2-1" class="addProgram">新建采购方案</a>'
@@ -252,7 +250,7 @@ function newAddColect(id, json) {
         },
         contentType: "application/json",
         url: baseUrl + "/procurement/addp",
-        data: JSON.stringify({ "good_list": [], "status": 1, "uid": getCookie("userId"), "name": names }),
+        data: JSON.stringify({ "good_list": [], "status": 1, "name": names }),
         cache: false,
         success: function(item) {
             leftBut()
@@ -697,14 +695,14 @@ Array.prototype.sum = function() {
  *
  */
 function enshrine(typeId, list) {
-    isCheckAdd(typeId, 2)
 
+    isCheckAdd(typeId, 2)
     $.ajax({
         type: "POST",
         xhrFields: {
             withCredentials: true
         },
-        url: baseUrl + "/procurementBak/updatep",
+        url: baseUrl + "/procurement/updatep",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({ "id": parseInt(typeId) }),
@@ -712,9 +710,9 @@ function enshrine(typeId, list) {
             setTimeout(leftBut(1), 40)
             leftList(typeId)
             close(typeId);
+            cnshrine(typeId, list)
             try {
-                //  runBg()
-                cnshrine(typeId, list)
+
                 Purchase();
             } catch (error) {
 
@@ -835,7 +833,7 @@ function clearCookie() {
 //登陆调用
 function login() {
 
-    if (adduser()) {
+    if (adduser() == false) {
 
         return false
     }

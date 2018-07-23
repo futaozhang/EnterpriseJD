@@ -78,7 +78,7 @@ function Collection(ip) {
 
     var j_persond = document.getElementById('j_person').innerHTML;
     $.getJSON(baseUrl + '/procurementBak/getplist', {
-        "userid": getCookie("userId"),
+
         "status": 1
     }, function(item) {
 
