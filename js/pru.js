@@ -194,7 +194,7 @@ function addPlan(typeId, skuId, type, tipsName) {
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+        dataType: 'jsonp',
         url: baseUrl + "/procurementItem/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": type, "messageid": getCookie("messageid") },
         cache: true,
@@ -258,7 +258,7 @@ $.ajax({
     xhrFields: {
         withCredentials: true
     },
-    contentType: "application/json",
+    dataType: 'jsonp',
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {

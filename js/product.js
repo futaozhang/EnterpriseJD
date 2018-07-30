@@ -96,7 +96,7 @@ function addTips(text) {
 function addPland(typeId, skuId, type, tipsName) {
     $.ajax({
         type: "GET",
-        contentType: "application/json",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -151,7 +151,7 @@ function diffrent() {
 }
 $.ajax({
     type: "GET",
-    contentType: "application/json",
+    dataType: 'jsonp',
     xhrFields: {
         withCredentials: true
     },

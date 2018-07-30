@@ -56,8 +56,8 @@ $("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
     $(this).parent().parent().siblings(".iconfont").show();
 
     $.ajax({
-        type: "POST",
-        contentType: "application/json",
+        type: "GET",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -216,7 +216,7 @@ function recoverP(coolectId, pid, rcp) {
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+        dataType: 'jsonp',
         url: baseUrl + "/procurement/recoverP",
         data: {
             "pbid": coolectId,
@@ -247,7 +247,7 @@ function changListdata(obj) {
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+        dataType: 'jsonp',
         url: baseUrl + "/procurementBakItem/updatepitem",
         data: {
             "id": skuid,
@@ -390,7 +390,7 @@ function removePlanWC(typeId, skuId, obj) {
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+        dataType: 'jsonp',
         url: baseUrl + "/procurementBak/delete",
         data: {
             "procurementId": typeIds,

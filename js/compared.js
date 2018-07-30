@@ -13,6 +13,7 @@ function comparedList() {
 
     $.ajax({
         url: baseUrl + "/procurement/getplist",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -100,13 +101,12 @@ $("#warp_content").delegate(".n_collect", "click", function() {
     var typeId = $(this).attr("data-type")
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         xhrFields: {
             withCredentials: true
         },
         url: baseUrl + "/procurement/updatep",
-        contentType: "application/json",
-        dataType: "json",
+        dataType: 'jsonp',
         data: JSON.stringify({ "id": parseInt(typeId), "status": 2 }),
         success: function(jsonResult) {
             setTimeout(leftBut(), 200)
@@ -131,13 +131,12 @@ $("#warp_content").delegate(".changesky", "click", function() {
 
     isCheckAdd(typeId, 2)
     $.ajax({
-        type: "POST",
+        type: "GET",
         xhrFields: {
             withCredentials: true
         },
         url: baseUrl + "/procurementBak/addp?pid=" + typeId,
-        contentType: "application/json",
-        dataType: "json",
+        dataType: 'jsonp',
         success: function(jsonResult) {
 
             addTips("已加入收藏方案")
@@ -244,7 +243,7 @@ function removePlanCom(typeId, skuId, obj) {
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+        dataType: 'jsonp',
         url: baseUrl + "/procurement/delete",
         data: {
             "procurementId": typeId,
@@ -270,7 +269,7 @@ function changListdataCom(obj) {
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+        dataType: 'jsonp',
         url: baseUrl + "/procurementItem/updatepitem",
         data: {
             "id": skuid,
@@ -297,7 +296,7 @@ $.ajax({
     xhrFields: {
         withCredentials: true
     },
-    contentType: "application/json",
+    dataType: 'jsonp',
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {
@@ -428,7 +427,7 @@ $("#recpList").delegate(".addSelect", "click", function() {
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+        dataType: 'jsonp',
         url: baseUrl + "/procurementItem/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
         cache: true,
@@ -436,7 +435,7 @@ $("#recpList").delegate(".addSelect", "click", function() {
 
             $.ajax({
                 type: "GET",
-                contentType: "application/json",
+                dataType: 'jsonp',
                 url: baseUrl + "/procurement/delete",
                 data: { "procurementId": typeId, "pitemlist": deskuId },
                 cache: false,
@@ -468,7 +467,7 @@ $("#recpList").delegate(".addSelectRcp", "click", function() {
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+        dataType: 'jsonp',
         url: baseUrl + "/procurementItem/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
         cache: true,

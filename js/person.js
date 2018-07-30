@@ -104,6 +104,7 @@ function Purchase(ip) {
     $.ajax({
         type: "GET",
         async: false,
+        dataType: 'jsonp',
         url: baseUrl + "/procurement/getplist",
         data: { "status": 1 },
         xhrFields: {
@@ -448,7 +449,10 @@ $("#recpList").delegate(".addSelect", "click", function() {
     collect == undefined ? delUrl = delUrl : delUrl = "procurementBak";
     $.ajax({
         type: "GET",
-        contentType: "application/json",
+        dataType: 'jsonp',
+        xhrFields: {
+            withCredentials: true
+        },
         url: baseUrl + "/" + addUrl + "/addpitem",
         data: { "pid": typeId, "goodsid": skuId, "message": $.trim(type).toString(), "messageid": messageid },
         cache: true,
@@ -456,7 +460,7 @@ $("#recpList").delegate(".addSelect", "click", function() {
             isCheckAdd(typeId, 1)
             $.ajax({
                 type: "GET",
-                contentType: "application/json",
+                dataType: 'jsonp',
                 xhrFields: {
                     withCredentials: true
                 },
@@ -497,7 +501,7 @@ $("#recpList").delegate(".addSelectRcp", "click", function() {
 
     $.ajax({
         type: "GET",
-        contentType: "application/json",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -553,7 +557,7 @@ function removePlanP(typeId, skuId, obj) {
 
     $.ajax({
         type: "GET",
-        contentType: "application/json",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -623,7 +627,7 @@ function changListdataW(obj) {
     $(obj).attr("data-type"); //type
     $.ajax({
         type: "GET",
-        contentType: "application/json",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -722,7 +726,7 @@ $.ajax({
     xhrFields: {
         withCredentials: true
     },
-    contentType: "application/json",
+    dataType: 'jsonp',
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {

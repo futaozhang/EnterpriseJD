@@ -1,9 +1,9 @@
 var sourDate = { "id": -1 }
     //未登录用户数据
 
-//var baseUrl = "http://localhost:8080"
-//var baseUrl = "http://pcshop-api.jd.com"
-var baseUrl = "//pre.pcshop.jd.com"
+var baseUrl = "http://192.168.253.59:8088"
+    //var baseUrl = "http://pcshop-api.jd.com"
+    //var baseUrl = "//pre.pcshop.jd.com"
 
 $("#imgDowload").hide()
     //用户名
@@ -44,6 +44,7 @@ function leftBut(type) {
     $.ajax({
         url: baseUrl + "/procurement/getplist",
         data: { "status": 1 },
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -127,15 +128,17 @@ function leftList(id, fun) {
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
     $.ajax({
-            type: "GEt",
+            type: "GET",
             xhrFields: {
                 withCredentials: true
             },
+            dataType: 'jsonp',
             crossDomain: true == !(document.all),
             data: { "id": id, "status": 1 },
             url: baseUrl + "/procurement/getp",
 
             success: function(item) {
+
                 document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
                 $.each(item[0].goods_list, function(index, infoLIst) {
@@ -203,7 +206,7 @@ function addProgram() {
     if (adduser() == false) {
         // alert("请先登录")
         login();
-        return false
+        return false;
     };
     var str = '<a href="javascript:;" data-src="2-1" class="addProgram">新建采购方案</a>'
     $(".isLogoing ").append(str)
@@ -228,11 +231,11 @@ function newAddColect(id, json) {
     $(".addProjiect ").hide()
     var names = encodeURI("新建采购")
     $.ajax({
-        type: "POST",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
-        contentType: "application/json",
+
         url: baseUrl + "/procurement/addp",
         data: JSON.stringify({ "good_list": [], "status": 1, "name": names }),
         cache: false,
@@ -379,7 +382,7 @@ function removeList(typeId, deleate, per) {
     isCheckAdd(typeId, 1)
     $.ajax({
         type: "GET",
-        contentType: "application/json",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -488,8 +491,7 @@ $("#mianCont").delegate(".changName a", "click", function() {
     var type = $(this).attr("data-type")
     isCheckAdd(type, 1)
     $.ajax({
-        type: "POST",
-        contentType: "application/json",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -682,12 +684,12 @@ function enshrine(typeId, list) {
 
     isCheckAdd(typeId, 2)
     $.ajax({
-        type: "POST",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
         url: baseUrl + "/procurement/updatep",
-        contentType: "application/json",
+
         dataType: "json",
         data: JSON.stringify({ "id": parseInt(typeId) }),
         success: function(jsonResult) {
@@ -710,13 +712,11 @@ function cnshrine(typeId, list) {
 
     isCheckAdd(typeId, 2)
     $.ajax({
-        type: "POST",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
         url: baseUrl + "/procurementBak/addp?pid=" + typeId,
-        contentType: "application/json",
-        dataType: "json",
         success: function(jsonResult) {
 
             if (list == 3) {
@@ -743,8 +743,7 @@ function cnshrine(typeId, list) {
 //修改是否被修改状态
 function isCheckAdd(typeId, state) {
     $.ajax({
-        type: "POST",
-        contentType: "application/json",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -761,7 +760,7 @@ function removePland(typeId, skuId, obj) {
     isCheckAdd(typeId, 1)
     $.ajax({
         type: "GET",
-        contentType: "application/json",
+        dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
@@ -820,8 +819,9 @@ function login() {
     if (adduser() == true) {
         window.location.reload(true)
         return false
+    } else {
+        window.location.href = "https://passport.jd.com/new/login.aspx?ReturnUrl=http://pcshop.jd.com"
     }
-    window.location.href = "https://passport.jd.com/new/login.aspx?ReturnUrl=http://pcshop.jd.com"
 };
 
 function setCookie(name, value, time) {
