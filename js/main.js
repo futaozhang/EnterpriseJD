@@ -128,75 +128,48 @@ function leftList(id, fun) {
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
     $.ajax({
-            type: "GET",
-            xhrFields: {
-                withCredentials: true
-            },
-            dataType: 'jsonp',
-            crossDomain: true == !(document.all),
-            data: { "id": id, "status": 1 },
-            url: baseUrl + "/procurement/getp",
+        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
+        dataType: 'jsonp',
+        crossDomain: true == !(document.all),
+        data: { "id": id, "status": 1 },
+        url: baseUrl + "/procurement/getp",
 
-            success: function(item) {
+        success: function(item) {
 
-                document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
+            document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
-                $.each(item[0].goods_list, function(index, infoLIst) {
-                    //数量计算
+            $.each(item[0].goods_list, function(index, infoLIst) {
+                //数量计算
 
-                    num += parseFloat(infoLIst.goodsnum)
+                num += parseFloat(infoLIst.goodsnum)
 
-                    //价格计算
-                    $.each(infoLIst.goodsdetail, function(j, item) {
+                //价格计算
+                $.each(infoLIst.goodsdetail, function(j, item) {
 
-                        picur = item.eprice * infoLIst.goodsnum
+                    picur = item.eprice * infoLIst.goodsnum
 
-                        if (item.eprice == 0) {
+                    if (item.eprice == 0) {
 
-                            sum.push(item.jdprice * infoLIst.goodsnum)
+                        sum.push(item.jdprice * infoLIst.goodsnum)
 
-                        } else {
-                            sum.push(item.eprice * infoLIst.goodsnum)
+                    } else {
+                        sum.push(item.eprice * infoLIst.goodsnum)
 
-                        }
-                    })
+                    }
                 })
-                $("#number").text(num)
-                $("#price").text(sum.sum().toFixed(2))
-                runBg()
+            })
+            $("#number").text(num)
+            $("#price").text(sum.sum().toFixed(2))
+            runBg()
 
-            }
-        })
-        // $.getJSON(baseUrl + "/procurement/getp", { "id": id, "status": 1 },
+        }
+    })
 
-    //     function(item) {
-    //         document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
 
-    //         $.each(item[0].goods_list, function(index, infoLIst) {
-    //             //数量计算
 
-    //             num += parseFloat(infoLIst.goodsnum)
-
-    //             //价格计算
-    //             $.each(infoLIst.goodsdetail, function(j, item) {
-
-    //                 picur = item.eprice * infoLIst.goodsnum
-
-    //                 if (item.eprice == 0) {
-
-    //                     sum.push(item.jdprice * infoLIst.goodsnum)
-
-    //                 } else {
-    //                     sum.push(item.eprice * infoLIst.goodsnum)
-
-    //                 }
-    //             })
-    //         })
-    //         $("#number").text(num)
-    //         $("#price").text(sum.sum().toFixed(2))
-    //         runBg()
-
-    //     });
 }
 
 //新添加方案
@@ -229,15 +202,14 @@ function addProgram() {
 function newAddColect(id, json) {
     $(".Jd_footer").hide()
     $(".addProjiect ").hide()
-    var names = encodeURI("新建采购")
+
     $.ajax({
         dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
-
         url: baseUrl + "/procurement/addp",
-        data: { "good_list": [], "status": 1, "name": names },
+
         cache: false,
         success: function(item) {
             leftBut()
@@ -394,7 +366,7 @@ function removeList(typeId, deleate, per) {
 
             if (per == 1) {
                 leftBut(1)
-                    //
+
             } else {
                 leftBut()
                 closeOpen();
@@ -501,12 +473,12 @@ $("#mianCont").delegate(".changName a", "click", function() {
         data: { "id": type, "name": $(this).siblings("input").val() },
         cache: false,
         success: function(item) {
-            leftList(type);
+
+            leftListd(type);
             leftBut(1)
 
+
             $(".changName").hide();
-            //close(type)
-            //closeOpen()
             try {
 
                 Purchase()
@@ -518,6 +490,58 @@ $("#mianCont").delegate(".changName a", "click", function() {
     })
 
 });
+
+//数据更新
+function leftListd(id, fun) {
+    var sum = [];
+    var num = 0;
+    var jdsum = 0;
+    var picur = 0;
+    var interText = document.getElementById('j_tmpl').innerHTML;
+    $.ajax({
+        type: "GET",
+        xhrFields: {
+            withCredentials: true
+        },
+        dataType: 'jsonp',
+        crossDomain: true == !(document.all),
+        data: { "id": id, "status": 1 },
+        url: baseUrl + "/procurement/getp",
+
+        success: function(item) {
+
+            document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
+
+            $.each(item[0].goods_list, function(index, infoLIst) {
+                //数量计算
+
+                num += parseFloat(infoLIst.goodsnum)
+
+                //价格计算
+                $.each(infoLIst.goodsdetail, function(j, item) {
+
+                    picur = item.eprice * infoLIst.goodsnum
+
+                    if (item.eprice == 0) {
+
+                        sum.push(item.jdprice * infoLIst.goodsnum)
+
+                    } else {
+                        sum.push(item.eprice * infoLIst.goodsnum)
+
+                    }
+                })
+            })
+            $("#number").text(num)
+            $("#price").text(sum.sum().toFixed(2))
+            closeOpen()
+
+        }
+    })
+
+
+
+}
 
 //开启遮罩
 function close(type) {
@@ -685,28 +709,18 @@ Array.prototype.sum = function() {
 function enshrine(typeId, list) {
 
     isCheckAdd(typeId, 2)
-    $.ajax({
-        dataType: 'jsonp',
-        xhrFields: {
-            withCredentials: true
-        },
-        url: baseUrl + "/procurement/updatep",
 
-        dataType: "json",
-        data: { "id": parseInt(typeId) },
-        success: function(jsonResult) {
-            setTimeout(leftBut(1), 40)
-            leftList(typeId)
-            close(typeId);
-            cnshrine(typeId, list)
-            try {
+    leftBut(1)
+    close(typeId);
 
-                Purchase();
-            } catch (error) {
+    cnshrine(typeId, list)
+        // leftList(typeId)
+    try {
 
-            }
-        }
-    });
+        Purchase();
+    } catch (error) {
+
+    }
 
 }
 
@@ -721,13 +735,10 @@ function cnshrine(typeId, list) {
         url: baseUrl + "/procurementBak/addp?pid=" + typeId,
         success: function(jsonResult) {
 
-            if (list == 3) {
-                leftBut()
-            } else {
-                setTimeout(leftBut(1), 40)
-            }
+            leftList(typeId)
+
             addTips("已加入收藏方案")
-                // runBg()
+
             try {
                 if (list != undefined) {
                     Purchase()
@@ -1015,6 +1026,7 @@ var timeout = true; //启动及关闭按钮
 function time() {
     if (timeout) return;
     // login()
+    console.log(i)
     if ($(".isLogoing").css("left") == "0px") {
 
         $('.leftContent').css("width", "0px")

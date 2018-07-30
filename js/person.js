@@ -2,8 +2,9 @@
  * 采购
  */
 var noData = [];
-//var baseUrl = "http://192.168.253.59"
-var baseUrl = "http://pcshop-api.jd.com"
+var baseUrl = "http://192.168.191.12:8088"
+    //var baseUrl = "http://192.168.253.59"
+    //var baseUrl = "http://pcshop-api.jd.com"
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)

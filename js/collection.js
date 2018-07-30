@@ -62,7 +62,7 @@ $("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
             withCredentials: true
         },
         url: baseUrl + "/procurementBak/updatep",
-        data: { "id": typId, "name": encodeURI(collectionName) },
+        data: { "id": typId, "name": collectionName },
         cache: false,
         success: function(item) {
             Collection()
@@ -77,31 +77,39 @@ $("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
 function Collection(ip) {
 
     var j_persond = document.getElementById('j_person').innerHTML;
-    $.getJSON(baseUrl + '/procurementBak/getplist', {
 
-        "status": 1
-    }, function(item) {
+    $.ajax({
+        type: "GET",
+        dataType: 'jsonp',
+        xhrFields: {
+            withCredentials: true
+        },
+        url: baseUrl + "/procurementBak/getplist",
+        data: { "status": 1 },
+        cache: false,
+        success: function(item) {
+            if (item.length != 0) {
+                document.getElementById('w_collection').innerHTML = doT.template(j_persond)(item);
 
-        if (item.length != 0) {
-            document.getElementById('w_collection').innerHTML = doT.template(j_persond)(item);
+                $("#w_collection .addCollection a").remove();
+                $("#w_collection .right_but .pru").remove();
+                $("#w_collection .right_but .addpro").show()
+                changec(0)
+                setTimeout(function() {
+                    priceNunCollect()
+                }, 5)
 
-            $("#w_collection .addCollection a").remove();
-            $("#w_collection .right_but .pru").remove();
-            $("#w_collection .right_but .addpro").show()
-            changec(0)
-            setTimeout(function() {
-                priceNunCollect()
-            }, 5)
+            } else {
+                document.getElementById('w_collection').innerHTML = doT.template(j_persond)(noData);
+            }
 
-        } else {
-            document.getElementById('w_collection').innerHTML = doT.template(j_persond)(noData);
+            moClickC(ip)
         }
-
-        moClickC(ip)
-
     })
 
 }
+// 
+
 //全选
 
 //
