@@ -1,8 +1,8 @@
-var sourDate = { "id": -1 }
+var sourDate = { "render": -1 }
     //未登录用户数据
 
-var baseUrl = "http://192.168.191.12:8088"
-    //var baseUrl = "http://pcshop-api.jd.com"
+
+var baseUrl = "//192.168.191.12:8088"
     //var baseUrl = "//pre.pcshop.jd.com"
 
 $("#imgDowload").hide()
@@ -11,10 +11,6 @@ var userName = "游客"
 
 //存储是否被收藏的采购
 var judgment = [];
-
-
-
-
 
 // 左侧按钮数据请求
 
@@ -27,15 +23,12 @@ function leftBut(type) {
 
     var leftTmp = document.getElementById('leftTmp').innerHTML;
 
-    if (adduser() == false) {
-
+    if (getCookie("loading") == 2) {
         document.getElementById('left_w').innerHTML = doT.template(leftTmp)(sourDate);
-
         setTimeout(function() {
             $(".add_pri ul").html(function(n) {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"
             })
-
         }, 100)
 
         return false;
@@ -50,6 +43,7 @@ function leftBut(type) {
         },
         cache: false,
         success: function(item) {
+
             // sourDate = item;
             //数据渲染
             document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
@@ -176,7 +170,7 @@ function leftList(id, fun) {
 
 function addProgram() {
     $(".Jd_footer").hide()
-    if (adduser() == false) {
+    if (getCookie("loading") == 2) {
         // alert("请先登录")
         login();
         return false;
@@ -827,7 +821,7 @@ function clearCookie() {
 //登陆调用
 function login() {
 
-    if (adduser() == true) {
+    if (getCookie("loading") == 1) {
         window.location.reload(true)
         return false
     } else {
@@ -1025,8 +1019,7 @@ $("body").delegate("#videos .iconfont", "click", function() {
 var timeout = true; //启动及关闭按钮
 function time() {
     if (timeout) return;
-    // login()
-    console.log(i)
+
     if ($(".isLogoing").css("left") == "0px") {
 
         $('.leftContent').css("width", "0px")

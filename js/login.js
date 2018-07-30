@@ -2,33 +2,36 @@
  adduser()
 
  function adduser() {
-     var status = false;
+     var status;
      $.ajax({
          async: false,
          //   url: "http://pcshop-api.jd.com/appuser/adduser",
-         url: "http://192.168.191.12:8088/appuser/adduser",
+         //  url: "//pre.pcshop.jd.com/appuser/adduser",
+         url: "//192.168.191.12:8088/appuser/adduser",
          dataType: 'jsonp',
-
          xhrFields: {
              withCredentials: true
          },
          crossDomain: true == !(document.all),
          success: function(i) {
-
              if (i.code == 200 || i.code == 304) {
-                 $("#userName").text(decodeURI(i.username))
+                 $("#userName").text(decodeURI(i.username));
                  status = true;
-                 return status
-             } else if (i.code = 201) {
-                 status = false
-                 return status
-             }
+                 setCookie("loading", '1')
+                 return status;
+             } else if (i.code == 201) {
+                 $("#userName").text(decodeURI("未登录"));
+                 setCookie("loading", '2')
+                 status = false;
+                 return status;
+             };
          },
          error: function() {
-
+             status = false;
              return status
          }
      })
+
 
  }
 

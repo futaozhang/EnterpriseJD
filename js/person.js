@@ -2,9 +2,10 @@
  * 采购
  */
 var noData = [];
-var baseUrl = "http://192.168.191.12:8088"
-    //var baseUrl = "http://192.168.253.59"
-    //var baseUrl = "http://pcshop-api.jd.com"
+var baseUrl = "//pre.pcshop.jd.com/appuser/adduser";
+
+//var baseUrl = "http://192.168.253.59"
+//var baseUrl = "http://pcshop-api.jd.com"
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)
@@ -17,19 +18,7 @@ window.onload = function() {
 
     })
 
-    // if (getCookie("userName") == null || getCookie("userName") == "") {
 
-    //     $("#userName").text(decodeURI(getCookie("pin")))
-    // } else {
-    //     $("#userName").text(decodeURI(getCookie("userName")))
-    // }
-
-
-    // 不存在用户  回首页
-    // if (getCookie("userId") == "" || getCookie("userId") == null) {
-
-    //     window.location.href = "index.html"
-    // }
 }
 
 function dataListChange(data) {
@@ -86,22 +75,6 @@ var j_person = document.getElementById('j_person').innerHTML;
 function Purchase(ip) {
     $.ajaxSetup({ cache: false });
 
-    // $.getJSON(baseUrl + "/procurement/getplist", { "userid": getCookie("userId"), "status": 1 }, function(item) {
-
-    //     if (item.length != 0) {
-    //         document.getElementById('w_person').innerHTML = doT.template(j_person)(item);
-    //         change(0)
-    //         setTimeout(function() {
-    //             priceNun()
-    //         }, 5)
-    //     } else {
-    //         document.getElementById('w_person').innerHTML = doT.template(j_person)(noData);
-    //         return false
-    //     }
-
-    //     moClick(ip)
-
-    // })
     $.ajax({
         type: "GET",
         async: false,
