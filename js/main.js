@@ -3,8 +3,8 @@ var sourDate = { "render": -1 }
 
 
 
-// var baseUrl = "//pre.pcshop.jd.com"
-var baseUrl = "//192.168.191.12:8088"
+var baseUrl = "//pre.pcshop.jd.com"
+
 $("#imgDowload").hide()
     //用户名
 var userName = "游客"
@@ -18,9 +18,6 @@ $.ajaxSetup({ cache: false });
 leftBut();
 
 function leftBut(type) {
-
-
-
     var leftTmp = document.getElementById('leftTmp').innerHTML;
 
     if (getCookie("loading") == 2) {
@@ -43,20 +40,16 @@ function leftBut(type) {
         },
         cache: false,
         success: function(item) {
-
             // sourDate = item;
             //数据渲染
             document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
-
             if (type == 1) {
                 $(".Jd_footer").fadeIn();
                 $(".leftSelct .bg").show();
                 $(".isLogoing").css("left", "360px")
                 $(".addProjiect ").show()
             }
-
             addpr_li(item)
-
 
         }
     });
@@ -69,7 +62,6 @@ function addpr_li(item) {
     for (var i = 0; i < item.length; i++) {
         add_pri += "<a href='javascript:;' data-typId=" + item[i].id + "><li class=" + 'jdAdd_' + [i] + ">" + item[i].name + "</li></a>"
     }
-
     var addp = "<a href='javascript:;'><li class='addPro'>+</li></a>"
         //增加购物方案延迟渲染
     $(".isLogoing").css("top", "38%");
@@ -102,11 +94,9 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
         //是否为新添加
     if ($(this).attr("data-src") == 3) {
         addProgram()
-
         return false
 
     } else if ($(this).attr("data-src") != undefined) {
-
         runBg(this)
     }
     //左侧数据更新
@@ -500,7 +490,6 @@ function leftListd(id, fun) {
         dataType: 'jsonp',
         data: { "id": id, "status": 1 },
         url: baseUrl + "/procurement/getp",
-
         success: function(item) {
 
             document.getElementById('mianCont').innerHTML = doT.template(interText)(item[0]);
@@ -959,41 +948,35 @@ function getCookieCores(c_name) {
 
 
 
-$.ajax({
-    type: "GET",
-    url: baseUrl + "/homepageAd/list",
-    cache: false,
-    success: function(item) {
-        var CollecImg;
-        $.each(item, function(i, list) {
+$.getJSON(baseUrl + "/homepageAd/list", function(item) {
+    var CollecImg;
+    $.each(item, function(i, list) {
 
-            switch (list.type) {
-                case 1:
-                    CollecImg = this
-                    break;
-                case 2:
-                    var that = this
-                    $(".w_head").prepend(function() { return "<img src=" + that.imageurl + ">" })
-                    break;
-                case 3:
-                    var that = this
-                    $(".headIndex").prepend(function() { return "<img src=" + that.imageurl + ">" })
+        switch (list.type) {
+            case 1:
+                CollecImg = this
+                break;
+            case 2:
+                var that = this
+                $(".w_head").prepend(function() { return "<img src=" + that.imageurl + ">" })
+                break;
+            case 3:
+                var that = this
+                $(".headIndex").prepend(function() { return "<img src=" + that.imageurl + ">" })
 
-                    break;
-            }
+                break;
+        }
 
-        })
+    })
 
-        $("body").prepend(function() {
-            var html = '<div id="topImg">  <a href=' + CollecImg.url + '> <img  src=' + CollecImg.imageurl + '></a>' +
-                '<i class="iconfont" onclick="closeTop(this)">&#xe606;</i></div>';
-            if (CollecImg != "" || CollecImg != null) {
+    $("body").prepend(function() {
+        var html = '<div id="topImg">  <a href=' + CollecImg.url + '> <img  src=' + CollecImg.imageurl + '></a>' +
+            '<i class="iconfont" onclick="closeTop(this)">&#xe606;</i></div>';
+        if (CollecImg != "" || CollecImg != null) {
 
-                return html
-            }
-        });
-
-    }
+            return html
+        }
+    });
 })
 
 function closeTop(obj) {
@@ -1001,11 +984,7 @@ function closeTop(obj) {
 
 }
 
-// if (getCookie("unick") == null || getCookie("unick") == "") {
-//     $("#userName").text(getCookie("pin") == null ? unescape(userName) : unescape((getCookie("pin"))))
-// } else {
-//     $("#userName").text(getCookie("unick") == null ? unescape(userName) : unescape((getCookie("unick"))))
-// }
+
 
 $("body").delegate("#videos .iconfont", "click", function() {
     var myVideo = document.getElementById('example_video');

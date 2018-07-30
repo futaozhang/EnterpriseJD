@@ -18,7 +18,6 @@ function comparedList() {
             withCredentials: true
         },
         data: {
-
             "status": 1
         },
         cache: false,
