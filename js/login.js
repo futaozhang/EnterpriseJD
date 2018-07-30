@@ -6,7 +6,7 @@
      $.ajax({
          async: false,
          //   url: "http://pcshop-api.jd.com/appuser/adduser",
-         url: "http://192.168.253.59:8088/appuser/adduser",
+         url: "http://192.168.191.12:8088/appuser/adduser",
          dataType: 'jsonp',
 
          xhrFields: {

@@ -1,7 +1,7 @@
 var sourDate = { "id": -1 }
     //未登录用户数据
 
-var baseUrl = "http://192.168.253.59:8088"
+var baseUrl = "http://192.168.191.12:8088"
     //var baseUrl = "http://pcshop-api.jd.com"
     //var baseUrl = "//pre.pcshop.jd.com"
 
@@ -237,7 +237,7 @@ function newAddColect(id, json) {
         },
 
         url: baseUrl + "/procurement/addp",
-        data: JSON.stringify({ "good_list": [], "status": 1, "name": names }),
+        data: { "good_list": [], "status": 1, "name": names },
         cache: false,
         success: function(item) {
             leftBut()
@@ -487,8 +487,10 @@ $("#mianCont").delegate(".add", 'click', function() {
 $("#mianCont").delegate(".changName a", "click", function() {
     //方案Id
     //方案名称
-    names = encodeURI($(this).siblings("input").val())
+    // names = encodeURI($(this).siblings("input").val())
+
     var type = $(this).attr("data-type")
+
     isCheckAdd(type, 1)
     $.ajax({
         dataType: 'jsonp',
@@ -496,7 +498,7 @@ $("#mianCont").delegate(".changName a", "click", function() {
             withCredentials: true
         },
         url: baseUrl + "/procurement/updatep",
-        data: JSON.stringify({ "id": type, "name": names }),
+        data: { "id": type, "name": $(this).siblings("input").val() },
         cache: false,
         success: function(item) {
             leftList(type);
@@ -691,7 +693,7 @@ function enshrine(typeId, list) {
         url: baseUrl + "/procurement/updatep",
 
         dataType: "json",
-        data: JSON.stringify({ "id": parseInt(typeId) }),
+        data: { "id": parseInt(typeId) },
         success: function(jsonResult) {
             setTimeout(leftBut(1), 40)
             leftList(typeId)
@@ -748,7 +750,7 @@ function isCheckAdd(typeId, state) {
             withCredentials: true
         },
         url: baseUrl + "/procurement/updatep",
-        data: JSON.stringify({ "id": typeId, "collecttype": state }),
+        data: { "id": typeId, "collecttype": state },
         cache: false,
         success: function(item) {}
     })
@@ -790,8 +792,6 @@ function changListdataL(obj) {
 
     $.ajax({
         type: "GET",
-        contentType: "application/json",
-
         url: baseUrl + "/procurementItem/updatepitem",
         data: { "id": skuid, "goodsnum": value },
         cache: true,

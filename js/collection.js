@@ -62,7 +62,7 @@ $("#w_collection").delegate(".warpName .inputNameSub", "click", function() {
             withCredentials: true
         },
         url: baseUrl + "/procurementBak/updatep",
-        data: JSON.stringify({ "id": typId, "name": encodeURI(collectionName) }),
+        data: { "id": typId, "name": encodeURI(collectionName) },
         cache: false,
         success: function(item) {
             Collection()
