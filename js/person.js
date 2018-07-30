@@ -2,8 +2,8 @@
  * 采购
  */
 var noData = [];
-var baseUrl = "http://192.168.253.59"
-    //var baseUrl = "http://pcshop-api.jd.com"
+//var baseUrl = "http://192.168.253.59"
+var baseUrl = "http://pcshop-api.jd.com"
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)
@@ -22,7 +22,6 @@ window.onload = function() {
     // } else {
     //     $("#userName").text(decodeURI(getCookie("userName")))
     // }
-
 
 
     // 不存在用户  回首页

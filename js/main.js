@@ -3,7 +3,7 @@ var sourDate = { "id": -1 }
 
 //var baseUrl = "http://localhost:8080"
 //var baseUrl = "http://pcshop-api.jd.com"
-var baseUrl = "http://192.168.253.59"
+var baseUrl = "//pre.pcshop.jd.com"
 
 $("#imgDowload").hide()
     //用户名
@@ -12,23 +12,7 @@ var userName = "游客"
 //存储是否被收藏的采购
 var judgment = [];
 
-$.ajax({
-    type: "POST",
-    contentType: "application/json",
-    url: baseUrl + "/scene/list",
 
-    timeout: 5000,
-    cache: false,
-    success: function(item) {},
-    error: function(request, status, error) {
-        if (error == 'timeout' || error == "null") {
-            // alert("服务响应超时")
-        }
-        if (status == 408 || status == 500) {
-            alert('服务数据出错')
-        }
-    }
-})
 
 
 
@@ -407,7 +391,7 @@ function removeList(typeId, deleate, per) {
 
             if (per == 1) {
                 leftBut(1)
-                    // 
+                    //
             } else {
                 leftBut()
                 closeOpen();
@@ -652,7 +636,7 @@ function loadings(text) {
     $(".tips").show()
 
 }
-//写cookies 
+//写cookies
 
 
 //读取cookies 
