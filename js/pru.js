@@ -7,10 +7,7 @@ window.onload = function() {
         if (getCookie("Contrast") != null) {
             ContrastFuc()
         }
-        //存在无筛选记录  回首页
-        // if (getCookie("slectorType") == null || getCookie("slectorType") == "") {
-        //     window.location = "index.html"
-        // }
+
         leftBut()
 
     }
@@ -25,7 +22,7 @@ $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid")
 
     $(".tips").fadeOut();
     $("#left_w").show()
-    if (adduser() == false) {
+    if (getCookie("loading") == 2) {
         setTimeout(function() {
             $(".add_pri ul").html(function(n) {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"

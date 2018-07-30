@@ -2,10 +2,8 @@
  * 采购
  */
 var noData = [];
-var baseUrl = "//pre.pcshop.jd.com/appuser/adduser";
+var baseUrl = "//pre.pcshop.jd.com";
 
-//var baseUrl = "http://192.168.253.59"
-//var baseUrl = "http://pcshop-api.jd.com"
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)

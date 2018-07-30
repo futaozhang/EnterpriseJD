@@ -2,9 +2,9 @@ var sourDate = { "render": -1 }
     //未登录用户数据
 
 
-var baseUrl = "//192.168.191.12:8088"
-    //var baseUrl = "//pre.pcshop.jd.com"
 
+// var baseUrl = "//pre.pcshop.jd.com"
+var baseUrl = "//192.168.191.12:8088"
 $("#imgDowload").hide()
     //用户名
 var userName = "游客"
@@ -127,7 +127,7 @@ function leftList(id, fun) {
             withCredentials: true
         },
         dataType: 'jsonp',
-        crossDomain: true == !(document.all),
+
         data: { "id": id, "status": 1 },
         url: baseUrl + "/procurement/getp",
 
@@ -498,7 +498,6 @@ function leftListd(id, fun) {
             withCredentials: true
         },
         dataType: 'jsonp',
-        crossDomain: true == !(document.all),
         data: { "id": id, "status": 1 },
         url: baseUrl + "/procurement/getp",
 

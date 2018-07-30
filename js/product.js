@@ -12,7 +12,7 @@ window.onload = function() {
 function reload() {
     var j_contrastC = document.getElementById('j_productC').innerHTML;
     var date = getCookie("Contrast").split(",").join("-")
-    if (adduser() == false) {
+    if (getCookie("loading") == 2) {
         setTimeout(function() {
             $(".add_pri ul").html(function(n) {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"
