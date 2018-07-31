@@ -7,7 +7,7 @@ var baseUrl = "//pre.pcshop.jd.com";
 window.onload = function() {
     // 
     dataListChange(GetRequest("id").id)
-
+    leftBut();
     $(".p_but a").click(function() {
         $(" .p_but a").removeClass("activeRightBut")
         $(this).addClass("activeRightBut")

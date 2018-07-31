@@ -60,6 +60,7 @@ function leftBut(type) {
 }
 
 
+
 function addpr_li(item) {
     var add_pri = '';
     for (var i = 0; i < item.length; i++) {
@@ -480,6 +481,7 @@ function leftListd(id, fun) {
     var jdsum = 0;
     var picur = 0;
     var interText = document.getElementById('j_tmpl').innerHTML;
+
     $.ajax({
         type: "GET",
         xhrFields: {
@@ -981,7 +983,7 @@ function closeTop(obj) {
     $("#topImg").hide()
 
 }
-leftBut();
+
 $("body").delegate("#videos .iconfont", "click", function() {
     var myVideo = document.getElementById('example_video');
     myVideo.pause();

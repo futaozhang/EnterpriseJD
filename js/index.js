@@ -18,7 +18,12 @@ $.getJSON(baseUrl + "/scene/list", function(item) {
 
 var current = 0;
 
+window.onload = function() {
+    leftBut();
+}
+
 //主页滑动	
+
 $("#mainList").delegate("li", "mouseenter", function() {
 
     $(".pic .txt").css("background-color", '#b4b4b4');
@@ -198,7 +203,7 @@ $("#alert_t").delegate(".must input", "click", function() {
 
 
 var alert_w = document.getElementById('alert_w').innerHTML;
-
+leftBut();
 //弹出框数据
 function alertTem(id) {
 
@@ -217,6 +222,7 @@ function alertTem(id) {
 
 
 }
+
 
 
 function hide() {

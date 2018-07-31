@@ -6,7 +6,7 @@
 window.onload = function() {
 
     reload()
-
+    leftBut();
 }
 
 function reload() {
