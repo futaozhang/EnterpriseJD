@@ -240,10 +240,6 @@ function delCookie(name) {   
 
 $.ajax({
     type: "GET",
-    xhrFields: {
-        withCredentials: true
-    },
-    dataType: 'jsonp',
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {
@@ -259,7 +255,7 @@ $.ajax({
             $("body").append(function() {
                 return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
 
-                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="nnone" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="none" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
                     '<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
             })
         }

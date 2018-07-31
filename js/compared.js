@@ -291,11 +291,8 @@ $("#warp_content").delegate(".but_jd", "click", function() {
     })
     shoppingCart(id.join(","), num.join(","))
 });
+
 $.ajax({
-    xhrFields: {
-        withCredentials: true
-    },
-    dataType: 'jsonp',
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {

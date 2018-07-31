@@ -695,10 +695,6 @@ $("#w_person").delegate(".but_jd", "click", function() {
 
 $.ajax({
     type: "GET",
-    xhrFields: {
-        withCredentials: true
-    },
-    dataType: 'jsonp',
     url: baseUrl + "/scene/list",
     cache: false,
     beforeSend: function() {
