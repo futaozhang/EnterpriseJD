@@ -247,7 +247,7 @@
 
         <span class="text"><i class="iconfont">&#xe738;</i>{{=it.name==null?it.name=' ':it.name}}
         <span class="changName">
-                <input type="text" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
+                <input type="text" autocomplete="off" name="jd_3" id="jd_3" maxlength="6" placeholder="最多输入六位字符"/>
                 <a href="javascript:;" data-type="{{=it.id}}">确定</a>
             </span>
         </span>
@@ -364,7 +364,7 @@
             <div class="warpName">
                 <i class="iconfont">&#xe738;修改名称</i>
                 <div class="inputName">
-                    <input type="text" name="" maxlength="6" id="{{=value.id}}" />
+                    <input type="text" name="" autocomplete="off" maxlength="6" id="{{=value.id}}" />
                     <lable><button class="inputNameSub">确定</button><button class="inputNameCance">取消</button></lable>
                 </div>
             </div>

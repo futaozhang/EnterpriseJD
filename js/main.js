@@ -3,8 +3,8 @@ var sourDate = { "render": -1 }
 
 
 
-//var baseUrl = "//pre.pcshop.jd.com"
-var baseUrl = "http://192.168.191.12:8088"
+var baseUrl = "//pre.pcshop.jd.com"
+
 $("#imgDowload").hide()
     //用户名
 var userName = "游客"
@@ -444,7 +444,6 @@ $("#mianCont").delegate(".add", 'click', function() {
 $("#mianCont").delegate(".changName a", "click", function() {
     //方案Id
     //方案名称
-    // names = encodeURI($(this).siblings("input").val())
 
     var type = $(this).attr("data-type")
 
@@ -459,13 +458,11 @@ $("#mianCont").delegate(".changName a", "click", function() {
         cache: false,
         success: function(item) {
 
-            leftlist(type);
+            leftListd(type);
+            $(".text").text(" ");
             leftBut(1)
-
-
             $(".changName").hide();
             try {
-
                 Purchase()
             } catch (error) {
 
@@ -517,7 +514,7 @@ function leftListd(id, fun) {
             })
             $("#number").text(num)
             $("#price").text(sum.sum().toFixed(2))
-            closeOpen()
+            runBg()
 
         }
     })
@@ -984,9 +981,7 @@ function closeTop(obj) {
     $("#topImg").hide()
 
 }
-
-
-
+leftBut();
 $("body").delegate("#videos .iconfont", "click", function() {
     var myVideo = document.getElementById('example_video');
     myVideo.pause();
