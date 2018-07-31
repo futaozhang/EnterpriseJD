@@ -15,7 +15,6 @@ var judgment = [];
 // 左侧按钮数据请求
 
 $.ajaxSetup({ cache: false });
-leftBut();
 
 function leftBut(type) {
     var leftTmp = document.getElementById('leftTmp').innerHTML;
@@ -58,7 +57,7 @@ function leftBut(type) {
         });
     }
 }
-
+leftBut();
 
 
 function addpr_li(item) {

@@ -18,9 +18,7 @@ $.getJSON(baseUrl + "/scene/list", function(item) {
 
 var current = 0;
 
-window.onload = function() {
-    leftBut();
-}
+
 
 //主页滑动	
 
@@ -32,8 +30,10 @@ $("#mainList").delegate("li", "mouseenter", function() {
 
 })
 
-
-//轮播方式
+window.onload = function() {
+        leftBut();
+    }
+    //轮播方式
 
 $(".leftSelct").animate({ "display": "none", "z-index": "-1" }, 1200)
 
@@ -203,7 +203,7 @@ $("#alert_t").delegate(".must input", "click", function() {
 
 
 var alert_w = document.getElementById('alert_w').innerHTML;
-leftBut();
+
 //弹出框数据
 function alertTem(id) {
 
@@ -240,7 +240,7 @@ $.each($("#mainList li .txt"), function(i, item) {
         $(this).css("background-color", '#7b7b83')
     }
 });
-
+leftBut();
 $("#alert_t").delegate(".reset", "click", function() {
     $(".over_a li").removeClass("activeLi")
     $(".over_a li").find("img").css("opacity", 1);
