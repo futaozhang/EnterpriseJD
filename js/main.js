@@ -3,8 +3,8 @@ var sourDate = { "render": -1 }
 
 
 
-var baseUrl = "//pre.pcshop.jd.com"
-
+//var baseUrl = "//pre.pcshop.jd.com"
+var baseUrl = "http://192.168.191.12:8088"
 $("#imgDowload").hide()
     //用户名
 var userName = "游客"
@@ -20,40 +20,43 @@ leftBut();
 function leftBut(type) {
     var leftTmp = document.getElementById('leftTmp').innerHTML;
 
-    if (getCookie("loading") == 2) {
-        document.getElementById('left_w').innerHTML = doT.template(leftTmp)(sourDate);
+    if (getCookie("loading") == 2 || getCookie("loading") == null) {
+
+
         setTimeout(function() {
             $(".add_pri ul").html(function(n) {
                 return "<a href='javascript:;'><li class='addPro'>+</li></a>"
             })
-        }, 100)
+            document.getElementById('left_w').innerHTML = doT.template(leftTmp)(sourDate);
+        }, 300)
 
-        return false;
-    }
+        return false
 
-    $.ajax({
-        url: baseUrl + "/procurement/getplist",
-        data: { "status": 1 },
-        dataType: 'jsonp',
-        xhrFields: {
-            withCredentials: true
-        },
-        cache: false,
-        success: function(item) {
-            // sourDate = item;
-            //数据渲染
-            document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
-            if (type == 1) {
-                $(".Jd_footer").fadeIn();
-                $(".leftSelct .bg").show();
-                $(".isLogoing").css("left", "360px")
-                $(".addProjiect ").show()
+    } else {
+
+        $.ajax({
+            url: baseUrl + "/procurement/getplist",
+            data: { "status": 1 },
+            dataType: 'jsonp',
+            xhrFields: {
+                withCredentials: true
+            },
+            cache: false,
+            success: function(item) {
+                // sourDate = item;
+                //数据渲染
+                document.getElementById('left_w').innerHTML = doT.template(leftTmp)(item);
+                if (type == 1) {
+                    $(".Jd_footer").fadeIn();
+                    $(".leftSelct .bg").show();
+                    $(".isLogoing").css("left", "360px")
+                    $(".addProjiect ").show()
+                }
+                addpr_li(item)
+
             }
-            addpr_li(item)
-
-        }
-    });
-
+        });
+    }
 }
 
 
@@ -292,7 +295,6 @@ function closeAll() {
     $('.aDs').remove()
 }
 
-
 //清空方案
 $("#mianCont").delegate(".l_top .refershCar", "click", function() {
     var deleate = [];
@@ -323,10 +325,9 @@ function alertClear(typeid, list, obj) {
 
 function openclear(obj) {
     removeList($(obj).attr("data-type"), $(obj).attr("data-sku"), 1)
-        //removeList(typeId, deleate.join("-"), 1)
+
     $('.aDs').remove()
-        // var interTextd = document.getElementById('j_tmpl').innerHTML;
-        //document.getElementById('mianCont').innerHTML = doT.template(interTextd)(sourDate);
+
 }
 
 function closeClear() {
@@ -458,7 +459,7 @@ $("#mianCont").delegate(".changName a", "click", function() {
         cache: false,
         success: function(item) {
 
-            leftListd(type);
+            leftlist(type);
             leftBut(1)
 
 

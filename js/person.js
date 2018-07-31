@@ -82,7 +82,7 @@ function Purchase(ip) {
         xhrFields: {
             withCredentials: true
         },
-        // crossDomain: true,
+
         success: function(item) {
             if (item.length != 0) {
                 document.getElementById('w_person').innerHTML = doT.template(j_person)(item);

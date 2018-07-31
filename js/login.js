@@ -5,8 +5,8 @@
       var status;
       $.ajax({
 
-          //   url: "http://pcshop-api.jd.com/appuser/adduser",
-          url: "//pre.pcshop.jd.com/appuser/adduser",
+          url: "http://192.168.191.12:8088/appuser/adduser",
+          //url: "//pre.pcshop.jd.com/appuser/adduser",
           dataType: 'jsonp',
           xhrFields: {
               withCredentials: true
