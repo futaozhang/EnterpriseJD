@@ -95,11 +95,12 @@ $("#leftsider").delegate(".isLogoing a", "click", function(obj) {
     var that = this
     $(".selectorFile").hide()
         //是否为新添加
-    if ($(this).attr("data-src") == 3) {
+    if ($(this).attr("data-src") == "a") {
         addProgram()
         return false
 
     } else if ($(this).attr("data-src") != undefined) {
+
         runBg(this)
     }
     //左侧数据更新
@@ -289,6 +290,7 @@ function alertAll(typeid, list, obj) {
 function openAll(obj) {
     removeList($(obj).attr("data-type"), $(obj).attr("data-sku"))
     $('.aDs').remove()
+
 }
 
 function closeAll() {
@@ -354,6 +356,7 @@ function removeList(typeId, deleate, per) {
 
             } else {
                 leftBut()
+
                 closeOpen();
             }
 
@@ -990,16 +993,3 @@ $("body").delegate("#videos .iconfont", "click", function() {
     document.cookie = "videoH=2";
 
 })
-
-var timeout = true; //启动及关闭按钮
-function time() {
-    if (timeout) return;
-
-    if ($(".isLogoing").css("left") == "0px") {
-
-        $('.leftContent').css("width", "0px")
-    } else {
-        $('.leftContent').css("width", "360px")
-    }
-    setTimeout(time, 50); //time是指本身,延时递归调用自己,100为间隔调用时间,单位毫秒
-}

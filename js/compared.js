@@ -157,13 +157,13 @@ function alertChange(typeid, list, obj) {
     $("body").append(function() {
         return '<div class = "aDs" ><i class = "bg" > </i> <div class = "ads_content"> <div class = "ads_text">' +
             ' <h4>确定删除当前物品吗？ </h4> </div > <div class = "ads_footer" >' +
-            ' <button data-type = "' + typeid + '"  data-sku = "' + list + '" class ="ads_submit" onclick="openAll(this)" > 确定 </button>' +
+            ' <button data-type = "' + typeid + '"  data-sku = "' + list + '" class ="ads_submit" onclick="openAlls(this)" > 确定 </button>' +
             '<button class="ads_cancl" onclick="closeAll()">取消</button > </div> </div></div>'
     })
     $(".aDs").show()
 }
 
-function openAll(obj) {
+function openAlls(obj) {
     removePlanCom($(obj).attr("data-type"), $(obj).attr("data-sku"))
     $('.aDs').remove()
 }
@@ -252,6 +252,7 @@ function removePlanCom(typeId, skuId, obj) {
         success: function(item) {
             leftBut()
             comparedList()
+            closeOpen()
                 //$(this).parent().parent().remove();
 
         }

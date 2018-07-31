@@ -100,12 +100,15 @@ $("#alert_t").delegate(".submit", "click", function() {
 //页面跳转
 function junstrund(i) {
     if ($("input[name=noType]:checked").val() == undefined) {
+
         alertAdsf()
         return false;
     }
+
     if (i == 0) {
         window.location = "Purchase.html"
     } else {
+
         alertAdsf()
     }
 
@@ -244,6 +247,7 @@ leftBut();
 $("#alert_t").delegate(".reset", "click", function() {
     $(".over_a li").removeClass("activeLi")
     $(".over_a li").find("img").css("opacity", 1);
+    $(".must").removeClass("re")
     $.each($(".alertBody").find("input"), function(i) {
 
         $(this).prop("checked", false)

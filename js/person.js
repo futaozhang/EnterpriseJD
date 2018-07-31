@@ -191,12 +191,20 @@ $("#w_person").delegate(".exprotIMg", "click", function() {
 })
 
 $("#imgDowload").click(function() {
-    $(".bg").hide()
-    $(".selectorFile").hide()
+        $(".bg").hide()
+        $(".selectorFile").hide()
 
+    })
+    //修改
+$(".reset").click(function() {
+    alert(3)
+    $("#recpHead div").removeClass("addBorder")
+    $("#alert_img_h li").find("img").css("opacity", 1);
+    $.each($(".r_body").find("input"), function(i) {
+        $(this).prop("checked", false)
+
+    })
 })
-
-
 
 $("#reset").click(function() {
     var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
