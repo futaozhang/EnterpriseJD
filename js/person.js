@@ -2,7 +2,7 @@
  * 采购
  */
 var noData = [];
-var baseUrl = "//pre.pcshop.jd.com";
+var baseUrl = "//pcshop-api.jd.com";
 
 window.onload = function() {
     // 

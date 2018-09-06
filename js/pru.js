@@ -1,6 +1,7 @@
 /**
  * 数据筛选页
  */
+var listdata = [];
 window.onload = function() {
         //对比栏目cookie 存在数据
 
@@ -14,28 +15,34 @@ window.onload = function() {
     // 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
 
-loadings("商品加载中")
 $("#left_w").hide()
-
-$.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid"), "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"), "avlist": getCookie("slectorType") }, function(item) {
-
-    document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
-
-    $(".tips").fadeOut();
+if (getCookie("categoryid") == null || getCookie("slectorType") == null) {
+    document.getElementById('content_warp').innerHTML = doT.template(j_warp)(listdata);
     $("#left_w").show()
-    if (getCookie("loading") == 2) {
-        setTimeout(function() {
-            $(".add_pri ul").html(function(n) {
-                return "<a href='javascript:;'><li class='addPro'>+</li></a>"
-            })
-        }, 300)
-        return false;
-    } else {
-        leftBut()
-    }
-    leftBut()
+        // return false;
+} else {
 
-});
+    loadings("商品加载中")
+    $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid"), "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"), "avlist": getCookie("slectorType") }, function(item) {
+
+        document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
+
+        $(".tips").fadeOut();
+        $("#left_w").show()
+        if (getCookie("loading") == 2) {
+            setTimeout(function() {
+                $(".add_pri ul").html(function(n) {
+                    return "<a href='javascript:;'><li class='addPro'>+</li></a>"
+                })
+            }, 300)
+            return false;
+        } else {
+            leftBut()
+        }
+        leftBut()
+
+    });
+}
 
 
 
@@ -69,7 +76,7 @@ $("#content_warp").delegate(".addCompared input", "click", function() {
 
         ContrastFuc()
     } else {
-        if (cks.length > 4 || ContrastArr.length > 3) {
+        if (cks.length > 4 || ContrastArr.length > 4) {
             addTips("对比栏已满")
             $(".contrast").fadeIn()
             return false

@@ -3,7 +3,7 @@ var sourDate = { "render": -1 }
 
 
 
-var baseUrl = "//pre.pcshop.jd.com"
+var baseUrl = "//pcshop-api.jd.com"
 
 $("#imgDowload").hide()
     //用户名
@@ -169,7 +169,7 @@ function addProgram() {
         login();
         return false;
     };
-    var str = '<a href="javascript:;" data-src="2-1" class="addProgram">新建采购方案</a>'
+    var str = '<a href="javascript:;" data-src="2-1" class="addProgram">新建采购</a>'
     $(".isLogoing ").append(str)
 
     var interTextd = document.getElementById('j_tmpl').innerHTML;
@@ -450,14 +450,14 @@ $("#mianCont").delegate(".changName a", "click", function() {
 
     var type = $(this).attr("data-type")
 
-    isCheckAdd(type, 1)
+    // isCheckAdd(type, 1)
     $.ajax({
         dataType: 'jsonp',
         xhrFields: {
             withCredentials: true
         },
         url: baseUrl + "/procurement/updatep",
-        data: { "id": type, "name": $(this).siblings("input").val() },
+        data: { "id": type, "name": $(this).siblings("input").val(), "collecttype": 1 },
         cache: false,
         success: function(item) {
 
