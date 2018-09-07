@@ -1,6 +1,7 @@
 /**
  * 数据筛选页
  */
+
 var listdata = [];
 window.onload = function() {
         //对比栏目cookie 存在数据
@@ -14,6 +15,24 @@ window.onload = function() {
     }
     // 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
+
+//筛选
+$(".screen a").click(function() {
+    var name = $(this).attr("data-screen")
+    alert(name)
+    $.getJSON("/api/list", {
+            "categoryid": getCookie("categoryid"),
+            "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"),
+            "avlist": getCookie("slectorType"),
+            "name": name
+        },
+        function(item) {
+            document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
+        }
+
+    )
+
+})
 
 $("#left_w").hide()
 if (getCookie("categoryid") == null || getCookie("slectorType") == null) {

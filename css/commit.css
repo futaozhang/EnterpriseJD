@@ -2125,6 +2125,40 @@ table {
     margin-bottom: 5px;
 }
 
+.screen {
+    width: 1260px;
+    margin: 5px auto;
+    height: 35px;
+    line-height: 35px;
+}
+
+.screen a {
+    float: left;
+    margin-right: -1px;
+    color: black;
+    border: 1px solid #cccccc;
+    padding: 2px 18px;
+    text-decoration: none;
+}
+
+.screen a:hover {
+    position: relative;
+    color: #e4393c;
+    border: 1px solid #e4393c;
+}
+
+.screen .activeScreen {
+    color: white;
+    border: 1px solid #e4393c;
+    background-color: #e4393c;
+}
+
+.screen .activeScreen:hover {
+    color: white;
+    border: 1px solid #e4393c;
+    background-color: #e4393c;
+}
+
 #ProductTable .but_jd {
     display: inline-block;
     text-align: center;
