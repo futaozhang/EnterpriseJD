@@ -10,7 +10,7 @@ window.onload = function() {
             ContrastFuc()
         }
 
-        leftBut()
+        //leftBut()
 
     }
     // 筛选后数据渲染
@@ -19,8 +19,11 @@ var j_warp = document.getElementById('j_warp').innerHTML;
 //筛选
 $(".screen a").click(function() {
     var name = $(this).attr("data-screen")
-    alert(name)
-    $.getJSON("/api/list", {
+    if ($(this).hasClass("activeScreen")) {
+
+        return false
+    }
+    $.getJSON("http://192.168.122.2:8033/api/list", {
             "categoryid": getCookie("categoryid"),
             "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"),
             "avlist": getCookie("slectorType"),
@@ -31,37 +34,38 @@ $(".screen a").click(function() {
         }
 
     )
-
+    $(this).siblings().removeClass("activeScreen")
+    $(this).addClass("activeScreen")
 })
 
-$("#left_w").hide()
-if (getCookie("categoryid") == null || getCookie("slectorType") == null) {
-    document.getElementById('content_warp').innerHTML = doT.template(j_warp)(listdata);
-    $("#left_w").show()
-        // return false;
-} else {
+// $("#left_w").hide()
+// if (getCookie("categoryid") == null || getCookie("slectorType") == null) {
+//     document.getElementById('content_warp').innerHTML = doT.template(j_warp)(listdata);
+//     $("#left_w").show()
+//         // return false;
+// } else {
 
-    loadings("商品加载中")
-    $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid"), "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"), "avlist": getCookie("slectorType") }, function(item) {
+//     loadings("商品加载中")
+//     $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid"), "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"), "avlist": getCookie("slectorType") }, function(item) {
 
-        document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
+//         document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
 
-        $(".tips").fadeOut();
-        $("#left_w").show()
-        if (getCookie("loading") == 2) {
-            setTimeout(function() {
-                $(".add_pri ul").html(function(n) {
-                    return "<a href='javascript:;'><li class='addPro'>+</li></a>"
-                })
-            }, 300)
-            return false;
-        } else {
-            leftBut()
-        }
-        leftBut()
+//         $(".tips").fadeOut();
+//         $("#left_w").show()
+//         if (getCookie("loading") == 2) {
+//             setTimeout(function() {
+//                 $(".add_pri ul").html(function(n) {
+//                     return "<a href='javascript:;'><li class='addPro'>+</li></a>"
+//                 })
+//             }, 300)
+//             return false;
+//         } else {
+//             leftBut()
+//         }
+//         leftBut()
 
-    });
-}
+//     });
+// }
 
 
 
@@ -264,26 +268,26 @@ function delCookie(name) {   
 
 }
 
-$.ajax({
-    type: "GET",
-    url: baseUrl + "/scene/list",
-    cache: false,
-    beforeSend: function() {
-        var videoH = getCookie("videoH");
+// $.ajax({
+//     type: "GET",
+//     url: baseUrl + "/scene/list",
+//     cache: false,
+//     beforeSend: function() {
+//         var videoH = getCookie("videoH");
 
-        if (videoH == 2) {
-            return false
-        }
-    },
-    success: function(item) {
-        var that = this
-        if (item[0].videourl != "" || item[0].videourl != null) {
-            $("body").append(function() {
-                return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
+//         if (videoH == 2) {
+//             return false
+//         }
+//     },
+//     success: function(item) {
+//         var that = this
+//         if (item[0].videourl != "" || item[0].videourl != null) {
+//             $("body").append(function() {
+//                 return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
 
-                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="none" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
-                    '<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
-            })
-        }
-    }
-})
+//                     '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="none" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
+//                     '<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
+//             })
+//         }
+//     }
+// })

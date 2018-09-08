@@ -898,7 +898,7 @@ button:focus {
 }
 
 #Purchase .content {
-    margin-top: 30px;
+    margin-top: 10px;
     width: 1260px;
     margin-bottom: 50px;
 }
@@ -2137,7 +2137,8 @@ table {
     margin-right: -1px;
     color: black;
     border: 1px solid #cccccc;
-    padding: 2px 18px;
+    padding: 0px 18px;
+    line-height: 28px;
     text-decoration: none;
 }
 
