@@ -208,31 +208,25 @@ $("#alert_t").delegate(".must input", "click", function() {
 var alert_w = document.getElementById('alert_w').innerHTML;
 
 //弹出框数据
-// function alertTem(id) {
-//     $.getJSON(baseUrl + "/goodsAttribute/getalist", { "sceneid": id }, function(item) {
-
-//         if (item.length != 0) {
-//             document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
-//             $(".alertBox").show()
-
-//         }
-//         return false
-//     })
-
-// }
-
 function alertTem(id) {
-    $.getJSON("http://192.168.122.2:8033/api/seclect", { "sceneid": id }, function(item) {
+
+
+    $.getJSON(baseUrl + "/goodsAttribute/getalist", { "sceneid": id }, function(item) {
 
         if (item.length != 0) {
             document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
             $(".alertBox").show()
-
+                // $(".tem").parent().parent().addClass("must")
         }
         return false
     })
 
+    //设置必选标识
+
+
 }
+
+
 
 function hide() {
     $("#index").css("overflow", "auto")
