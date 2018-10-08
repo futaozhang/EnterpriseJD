@@ -19,7 +19,7 @@ var j_warp = document.getElementById('j_warp').innerHTML;
 //筛选
 $(".screen a").click(function() {
     var name = $(this).attr("data-screen")
-    alert(name)
+
     $.getJSON("/api/list", {
             "categoryid": getCookie("categoryid"),
             "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"),
@@ -40,7 +40,6 @@ if (getCookie("categoryid") == null || getCookie("slectorType") == null) {
     $("#left_w").show()
         // return false;
 } else {
-
     loadings("商品加载中")
     $.getJSON(baseUrl + "/goods/gettoplist", { "categoryid": getCookie("categoryid"), "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"), "avlist": getCookie("slectorType") }, function(item) {
 

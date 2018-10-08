@@ -21,7 +21,6 @@ function reload() {
 
     } else {
         leftBut();
-
     };
 
 

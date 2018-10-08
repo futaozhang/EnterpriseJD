@@ -2128,8 +2128,8 @@ table {
 .screen {
     width: 1260px;
     margin: 5px auto;
-    height: 35px;
-    line-height: 35px;
+    height: 24px;
+    line-height: 24px;
 }
 
 .screen a {

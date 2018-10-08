@@ -15,8 +15,6 @@ window.onload = function() {
         dataListChange(data)
 
     })
-
-
 }
 
 function dataListChange(data) {
@@ -412,7 +410,6 @@ $("#recpHead").delegate(".must input", "click", function() {
             $(that).parent().addClass("re")
             $(that).parent().removeClass("addBorder")
         }
-
     })
     //替换功能（先添加 后删除）
 $("#recpList").delegate(".addSelect", "click", function() {
