@@ -1491,6 +1491,9 @@ table {
 #Person .p_user img {
     float: left;
     padding: 10px;
+    width: 55px;
+    height: 50px;
+    border-radius: 50px;
 }
 
 #Person .p_user p {
@@ -2137,8 +2140,9 @@ table {
     margin-right: -1px;
     color: black;
     border: 1px solid #cccccc;
-    padding: 2px 18px;
+    padding: 2px 14px;
     text-decoration: none;
+    min-width: 35px;
 }
 
 .screen a:hover {
@@ -2157,6 +2161,29 @@ table {
     color: white;
     border: 1px solid #e4393c;
     background-color: #e4393c;
+}
+
+#up,
+#down {
+    display: none;
+    color: white;
+    border: 1px solid #e4393c;
+    background-color: #e4393c;
+}
+
+#up i,
+#down i {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+}
+
+.i_up {
+    background-image: url(../img/priceup.png)
+}
+
+.i_down {
+    background-image: url(../img/pricedown.png)
 }
 
 #ProductTable .but_jd {

@@ -92,9 +92,9 @@
                     <div class="alertBody">
 
                         <div class="alert_t must">
-                            <span>选购机型<i>*</i></span>
-                            <input type="radio" name="noType" id="alert_1" value="2" /><label for="alert_1">台式机(含一体机)</label>
-                            <input type="radio" name="noType" id="alert_2" value="3" /><label for="alert_2">笔记本电脑</label>
+                            <span>选购机型<i>*</i></span> {{~it:value:index}} {{~value.clist:item:k}}
+                            <input type="radio" name="noType" id="alert_1{{=k}}" value="{{=item.id}}" /><label for="alert_1{{=k}}">{{=item.name}}</label> {{~}} {{~}}
+
                         </div>
 
                         <div class="alert_w">

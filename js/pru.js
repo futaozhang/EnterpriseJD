@@ -10,29 +10,54 @@ window.onload = function() {
             ContrastFuc()
         }
 
-        leftBut()
+        // leftBut()
 
     }
     // 筛选后数据渲染
 var j_warp = document.getElementById('j_warp').innerHTML;
 
-//筛选
+//筛选结果
 $(".screen a").click(function() {
-    var name = $(this).attr("data-screen")
+        if ($(this).hasClass("activeScreen")) {
+            return false
+        };
+        var name = $(this).attr("data-screen");
+        var sort = $(this).attr("data-sort");
+        priceChange(name, sort);
 
-    $.getJSON("/api/list", {
-            "categoryid": getCookie("categoryid"),
-            "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"),
-            "avlist": getCookie("slectorType"),
-            "name": name
-        },
-        function(item) {
-            document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
-        }
+        $.getJSON(baseUrl + "/goods/gettoplist", {
+                "categoryid": getCookie("categoryid"),
+                "bidlist": getCookie("bidlist") == null ? "" : getCookie("bidlist"),
+                "avlist": getCookie("slectorType"),
+                "sort": name,
+                "type": sort
+            },
 
-    )
+            function(item) {
+                document.getElementById('content_warp').innerHTML = doT.template(j_warp)(item);
+            }
+        )
+        $(this).siblings().removeClass("activeScreen")
+        $(this).addClass("activeScreen")
+    })
+    //价格筛选切换
+function priceChange(key, item) {
 
-})
+    if (key == 1 || key == 3 || key == 4) {
+        $("#pred").show();
+        $("#down").hide();
+        $("#up").hide();
+    } else if (item == 2) {
+        $("#up").show();
+        $("#down").hide();
+        $("#pred").hide();
+    } else {
+        $("#up").hide();
+        $("#down").show();
+        $("#pred").hide();
+    }
+}
+
 
 $("#left_w").hide()
 if (getCookie("categoryid") == null || getCookie("slectorType") == null) {
@@ -126,6 +151,22 @@ $(".contrast").delegate(".clear_cont", "click", function() {
     document.getElementById('contrast_warp').innerHTML = doT.template(j_contrast)(ContrastArr);
 })
 
+// 对比跳转Jd
+$(".contrast").delegate(".compared_cont", "click", function() {
+    var one = getCookie("Contrast").split(",")[0];
+    var two = getCookie("Contrast").split(",")[1];
+    var three = getCookie("Contrast").split(",")[2];
+    var four = getCookie("Contrast").split(",")[3];
+    one == undefined ? one = 0 : one = one;
+    two == undefined ? two = 0 : two = two;
+    three == undefined ? three = 0 : three = three;
+    four == undefined ? four = 0 : four = four;
+    console.log("https://www.jd.com/compare/" + one + "-" + two + "-" + three + "-" + four + ".html")
+    window.open("https://www.jd.com/compare/" + one + "-" + two + "-" + three + "-" + four + ".html")
+
+})
+
+
 //对比栏目数据渲染
 function addP() {
     var date = getCookie("Contrast").split(",").join("-")
@@ -165,8 +206,6 @@ function addP() {
 //数据对比
 function ContrastFuc() {
     addP()
-
-
 }
 
 
@@ -263,26 +302,26 @@ function delCookie(name) {   
 
 }
 
-$.ajax({
-    type: "GET",
-    url: baseUrl + "/scene/list",
-    cache: false,
-    beforeSend: function() {
-        var videoH = getCookie("videoH");
+// $.ajax({
+//     type: "GET",
+//     url: baseUrl + "/scene/list",
+//     cache: false,
+//     beforeSend: function() {
+//         var videoH = getCookie("videoH");
 
-        if (videoH == 2) {
-            return false
-        }
-    },
-    success: function(item) {
-        var that = this
-        if (item[0].videourl != "" || item[0].videourl != null) {
-            $("body").append(function() {
-                return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
+//         if (videoH == 2) {
+//             return false
+//         }
+//     },
+//     success: function(item) {
+//         var that = this
+//         if (item[0].videourl != "" || item[0].videourl != null) {
+//             $("body").append(function() {
+//                 return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
 
-                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="none" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
-                    '<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
-            })
-        }
-    }
-})
+//                     '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="none" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
+//                     '<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
+//             })
+//         }
+//     }
+// })

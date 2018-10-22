@@ -3,7 +3,19 @@ var runDate = []
 
 //手风琴数据
 var j_run = document.getElementById('j_runBaner').innerHTML;
+// $.ajax({
+//         dataType: "jsonp",
+//         url: baseUrl + "/scene/list",
+//         success: function(data) {
 
+//         },
+//         error: function(XMLHttpRequest, textStatus, errorThrown) {
+//             // alert(XMLHttpRequest.status);
+//             // alert(XMLHttpRequest.readyState);
+//             // alert(textStatus);
+//         }
+
+//     })
 $.getJSON(baseUrl + "/scene/list", function(item) {
     if (item.length != 0) {
         document.getElementById('mainList').innerHTML = doT.template(j_run)(item);
@@ -13,8 +25,7 @@ $.getJSON(baseUrl + "/scene/list", function(item) {
     }
     document.getElementById('mainList').innerHTML = doT.template(j_run)(runDate);
     return false
-})
-
+});
 
 var current = 0;
 
@@ -108,7 +119,6 @@ function junstrund(i) {
     if (i == 0) {
         window.location = "Purchase.html"
     } else {
-
         alertAdsf()
     }
 
@@ -209,23 +219,28 @@ var alert_w = document.getElementById('alert_w').innerHTML;
 
 //弹出框数据
 function alertTem(id) {
-
-
-    $.getJSON(baseUrl + "/goodsAttribute/getalist", { "sceneid": id }, function(item) {
-
-        if (item.length != 0) {
-            document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
-            $(".alertBox").show()
-                // $(".tem").parent().parent().addClass("must")
-        }
-        return false
-    })
+    $.getJSON(baseUrl + "goodsAttribute/getalist", { "sceneid": id }, function(item) {
+            console.log(item)
+            if (item.length != 0) {
+                document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
+                $(".alertBox").show()
+            }
+            return false
+        })
+        // $.ajax({
+        //     dataType: 'jsonp',
+        //     url: baseUrl + "/goodsAttribute/getalist",
+        //     data: { "sceneid": id },
+        //     cache: true,
+        //     success: function(item) {
+        //         console.log(item)
+        //         document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
+        //         $(".alertBox").show()
+        //     }
+        // })
 
     //设置必选标识
-
-
 }
-
 
 
 function hide() {

@@ -44,10 +44,12 @@
         </div>
     </div>
     <div class="screen">
-        <a href="javascript:;" data-screen="1">销量</a>
-        <a href="javascript:;" data-screen="2">价格</a>
-        <a href="javascript:;" data-screen="3">评论数</a>
-        <a href="javascript:;" data-screen="4">上架时间</a>
+        <a href="javascript:;" data-screen="1" data-sort="">销量</a>
+        <a href="javascript:;" data-screen="2" data-sort="2" id="pred">价格</a>
+        <a href="javascript:;" data-screen="2" data-sort="1" id="up">价格<i class="i_up"></i></a>
+        <a href="javascript:;" data-screen="2" data-sort="2" id="down">价格<i class="i_down"></i></a>
+        <a href="javascript:;" data-screen="3" data-sort="">评论数</a>
+        <a href="javascript:;" data-screen="4" data-sort="">上架时间</a>
     </div>
     <!--content-->
     <div class="content clearfix">
@@ -324,13 +326,14 @@
         </div>
         </li>{{?}} {{ } }}
         <li class="operat">
-            <a href="Product.html" class="compared_cont">对比</a>
+            <a href="javascript:;" class="compared_cont">对比</a>
             <a href="javascript:;" class="clear_cont">清空对比栏</a>
         </li>
+
 </script>
 
-<!-- <script src="js/login.js" type="text/javascript" charset="utf-8"></script> -->
-<!-- <script src="js/main.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/pru.js" type="text/javascript" charset="utf-8"></script>
 
 

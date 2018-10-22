@@ -12,6 +12,7 @@ function adduser() {
         success: function(i) {
             if (i.code == 200 || i.code == 304) {
                 $("#userName").text(decodeURI(i.username));
+                $("#Person .p_user img").attr("src", "http://storage.360buyimg.com/i.imageUpload/6674616f7a68616e6731353430313836373839393434_mid.jpg")
                 status = true;
                 setCookie("loading", '1')
                 return status;
