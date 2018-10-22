@@ -3,19 +3,7 @@ var runDate = []
 
 //手风琴数据
 var j_run = document.getElementById('j_runBaner').innerHTML;
-// $.ajax({
-//         dataType: "jsonp",
-//         url: baseUrl + "/scene/list",
-//         success: function(data) {
 
-//         },
-//         error: function(XMLHttpRequest, textStatus, errorThrown) {
-//             // alert(XMLHttpRequest.status);
-//             // alert(XMLHttpRequest.readyState);
-//             // alert(textStatus);
-//         }
-
-//     })
 $.getJSON(baseUrl + "/scene/list", function(item) {
     if (item.length != 0) {
         document.getElementById('mainList').innerHTML = doT.template(j_run)(item);
@@ -227,19 +215,7 @@ function alertTem(id) {
             }
             return false
         })
-        // $.ajax({
-        //     dataType: 'jsonp',
-        //     url: baseUrl + "/goodsAttribute/getalist",
-        //     data: { "sceneid": id },
-        //     cache: true,
-        //     success: function(item) {
-        //         console.log(item)
-        //         document.getElementById('alert_t').innerHTML = doT.template(alert_w)(item);
-        //         $(".alertBox").show()
-        //     }
-        // })
-
-    //设置必选标识
+        //设置必选标识
 }
 
 

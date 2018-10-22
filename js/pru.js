@@ -161,8 +161,12 @@ $(".contrast").delegate(".compared_cont", "click", function() {
     two == undefined ? two = 0 : two = two;
     three == undefined ? three = 0 : three = three;
     four == undefined ? four = 0 : four = four;
-    console.log("https://www.jd.com/compare/" + one + "-" + two + "-" + three + "-" + four + ".html")
-    window.open("https://www.jd.com/compare/" + one + "-" + two + "-" + three + "-" + four + ".html")
+    if (one != 0) {
+        window.open("https://www.jd.com/compare/" + one + "-" + two + "-" + three + "-" + four + ".html")
+    } else {
+        addTips("对比栏中无商品")
+    }
+
 
 })
 
@@ -302,26 +306,26 @@ function delCookie(name) {   
 
 }
 
-// $.ajax({
-//     type: "GET",
-//     url: baseUrl + "/scene/list",
-//     cache: false,
-//     beforeSend: function() {
-//         var videoH = getCookie("videoH");
+$.ajax({
+    type: "GET",
+    url: baseUrl + "/scene/list",
+    cache: false,
+    beforeSend: function() {
+        var videoH = getCookie("videoH");
 
-//         if (videoH == 2) {
-//             return false
-//         }
-//     },
-//     success: function(item) {
-//         var that = this
-//         if (item[0].videourl != "" || item[0].videourl != null) {
-//             $("body").append(function() {
-//                 return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
+        if (videoH == 2) {
+            return false
+        }
+    },
+    success: function(item) {
+        var that = this
+        if (item[0].videourl != "" || item[0].videourl != null) {
+            $("body").append(function() {
+                return '<div id="videos"><i class="iconfont">&#xe606;</i>' +
 
-//                     '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="none" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
-//                     '<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
-//             })
-//         }
-//     }
-// })
+                    '<video id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" preload="none" autoplay="autoplay"  controls width="425" height="240" align="middle" poster="' + item[0].videoimg + '" >' +
+                    '<source src="' + item[0].videourl + '" type="video/mp4"/> </video></div>'
+            })
+        }
+    }
+})

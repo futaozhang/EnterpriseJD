@@ -1,7 +1,7 @@
 var sourDate = { "render": -1 }
     //未登录用户数据
     //var baseUrl = "//pcshop-api.jd.com"
-var baseUrl = "//192.168.1.52:8088"
+
 $("#imgDowload").hide()
     //用户名
 var userName = "游客"
@@ -947,36 +947,36 @@ function getCookieCores(c_name) {
 
 
 
-// $.getJSON(baseUrl + "/homepageAd/list", function(item) {
-//     var CollecImg;
-//     $.each(item, function(i, list) {
+$.getJSON(baseUrl + "/homepageAd/list", function(item) {
+    var CollecImg;
+    $.each(item, function(i, list) {
 
-//         switch (list.type) {
-//             case 1:
-//                 CollecImg = this
-//                 break;
-//             case 2:
-//                 var that = this
-//                 $(".w_head").prepend(function() { return "<img src=" + that.imageurl + ">" })
-//                 break;
-//             case 3:
-//                 var that = this
-//                 $(".headIndex").prepend(function() { return "<img src=" + that.imageurl + ">" })
+        switch (list.type) {
+            case 1:
+                CollecImg = this
+                break;
+            case 2:
+                var that = this
+                $(".w_head").prepend(function() { return "<img src=" + that.imageurl + ">" })
+                break;
+            case 3:
+                var that = this
+                $(".headIndex").prepend(function() { return "<img src=" + that.imageurl + ">" })
 
-//                 break;
-//         }
+                break;
+        }
 
-//     })
+    })
 
-//     $("body").prepend(function() {
-//         var html = '<div id="topImg">  <a href=' + CollecImg.url + '> <img  src=' + CollecImg.imageurl + '></a>' +
-//             '<i class="iconfont" onclick="closeTop(this)">&#xe606;</i></div>';
-//         if (CollecImg != "" || CollecImg != null) {
+    $("body").prepend(function() {
+        var html = '<div id="topImg">  <a href=' + CollecImg.url + '> <img  src=' + CollecImg.imageurl + '></a>' +
+            '<i class="iconfont" onclick="closeTop(this)">&#xe606;</i></div>';
+        if (CollecImg != "" || CollecImg != null) {
 
-//             return html
-//         }
-//     });
-// })
+            return html
+        }
+    });
+})
 
 function closeTop(obj) {
     $("#topImg").hide()
